@@ -90,6 +90,29 @@
       transition:background .2s;
     }
     .nav-phone:hover { background:var(--blue2); }
+    .lang-select-wrap {
+      display:flex; align-items:center; gap:12px;
+    }
+    .lang-select {
+      background:rgba(255,255,255,.95);
+      border:1px solid rgba(26,79,160,.25);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.9rem;
+      cursor:pointer;
+      min-width:170px;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    .lang-select:focus {
+      outline:none; box-shadow:0 0 0 4px rgba(74,144,217,.18);
+      border-color:var(--blue);
+    }
+    .sr-only {
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;
+      border:0;
+    }
 
     /* ── HERO ── */
     #hero {
@@ -270,6 +293,16 @@
       text-decoration:none; font-size:1.5rem; transition:transform .2s;
     }
     .wa-float:hover { transform:scale(1.12); }
+    .audio-toggle {
+      position:fixed; bottom:100px; right:28px; z-index:200;
+      width:52px; height:52px; border-radius:50%;
+      border:none; background:rgba(26,79,160,.95); color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; cursor:pointer;
+      box-shadow:0 4px 24px rgba(26,79,160,.25);
+      transition:transform .2s, background .2s;
+    }
+    .audio-toggle:hover { transform:scale(1.06); background:var(--blue2); }
 
     /* ── RESPONSIVE ── */
     @media (max-width:860px) {
@@ -295,9 +328,9 @@
       onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80'"
     />
     <div class="banner-content">
-      <h2>Bienvenido a <span>Aleks Rent</span></h2>
-      <p>Alquiler de motos, scooters y quads en Lloret de Mar – Costa Brava</p>
-      <button class="banner-close" onclick="closeBanner()">¡Empezar a explorar!</button>
+      <h2 data-i18n="banner.welcome">Bienvenido a <span>Aleks Rent</span></h2>
+      <p data-i18n="banner.description">Alquiler de motos, scooters y quads en Lloret de Mar – Costa Brava</p>
+      <button class="banner-close" onclick="closeBanner()" data-i18n="banner.button">¡Empezar a explorar!</button>
     </div>
   </div>
 </div>
@@ -306,10 +339,27 @@
 <nav>
   <a class="nav-logo" href="#hero">ALEKS RENT</a>
   <ul class="nav-links">
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#prices">Precios</a></li>
-    <li><a href="#contact">Contacto</a></li>
+    <li><a href="#about" data-i18n="nav.about">Nosotros</a></li>
+    <li><a href="#prices" data-i18n="nav.prices">Precios</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
   </ul>
+  <div class="lang-select-wrap">
+    <label class="sr-only" for="language-switcher">Idioma</label>
+    <select id="language-switcher" class="lang-select" aria-label="Seleccionar idioma">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+      <option value="ru">Русский</option>
+      <option value="pt">Português</option>
+      <option value="nl">Nederlands</option>
+      <option value="pl">Polski</option>
+      <option value="sv">Svenska</option>
+      <option value="da">Dansk</option>
+      <option value="no">Norsk</option>
+    </select>
+  </div>
   <a class="nav-phone" href="tel:+34693744814">📞 +34 693 74 48 14</a>
 </nav>
 
@@ -318,12 +368,12 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">🏍️ Lloret de Mar · Costa Brava</div>
+    <div class="hero-badge" data-i18n="hero.badge">🏍️ Lloret de Mar · Costa Brava</div>
     <h1 class="hero-title">ALEKS<br/><span>RENT</span></h1>
-    <p class="hero-sub">Vive la Costa Brava a tu manera. Alquila motos, scooters y quads y explora cada rincón de Lloret con libertad total.</p>
+    <p class="hero-sub" data-i18n="hero.sub">Vive la Costa Brava a tu manera. Alquila motos, scooters y quads y explora cada rincón de Lloret con libertad total.</p>
     <div class="hero-cta">
-      <a class="btn-primary" href="#prices">Ver precios</a>
-      <a class="btn-outline" href="#contact">Cómo llegar</a>
+      <a class="btn-primary" href="#prices" data-i18n="hero.prices">Ver precios</a>
+      <a class="btn-outline" href="#contact" data-i18n="hero.contact">Cómo llegar</a>
     </div>
   </div>
 </section>
@@ -332,9 +382,9 @@
 <section id="about">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Sobre nosotros</div>
-      <h2 class="section-title">Fundada por Gevorg Avdalyan</h2>
-      <p class="section-desc">Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.</p>
+      <div class="section-label" data-i18n="about.label">Sobre nosotros</div>
+      <h2 class="section-title" data-i18n="about.title">Fundada por Gevorg Avdalyan</h2>
+      <p class="section-desc" data-i18n="about.description">Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.</p>
     </div>
     <div class="about-grid">
       <div class="about-img-wrap reveal">
@@ -342,17 +392,17 @@
           onerror="this.src='https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80'" />
       </div>
       <div class="reveal">
-        <p style="color:var(--muted);line-height:1.8;font-size:.97rem;">
+        <p style="color:var(--muted);line-height:1.8;font-size:.97rem;" data-i18n="about.paragraph1">
           Estás visitando uno de los lugares más hermosos de la Costa Brava. Para que disfrutes plenamente de tu estancia, Aleks Rent pone a tu disposición una amplia flota de scooters, motos, quads y bicicletas eléctricas.
         </p>
-        <p style="color:var(--muted);line-height:1.8;font-size:.97rem;margin-top:16px;">
+        <p style="color:var(--muted);line-height:1.8;font-size:.97rem;margin-top:16px;" data-i18n="about.paragraph2">
           Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!
         </p>
         <div class="about-stats">
-          <div class="stat-card"><div class="stat-num">10+</div><div class="stat-lbl">Años de experiencia</div></div>
-          <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Idiomas atendidos</div></div>
-          <div class="stat-card"><div class="stat-num">★4.8</div><div class="stat-lbl">Valoración media</div></div>
-          <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl">Revisión diaria</div></div>
+          <div class="stat-card"><div class="stat-num">10+</div><div class="stat-lbl" data-i18n="about.statExperience">Años de experiencia</div></div>
+          <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl" data-i18n="about.statLanguages">Idiomas atendidos</div></div>
+          <div class="stat-card"><div class="stat-num">★4.8</div><div class="stat-lbl" data-i18n="about.statRating">Valoración media</div></div>
+          <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl" data-i18n="about.statReview">Revisión diaria</div></div>
         </div>
       </div>
     </div>
@@ -363,9 +413,9 @@
 <section id="prices">
   <div class="container">
     <div class="prices-intro reveal">
-      <div class="section-label">Tarifas 2025</div>
-      <h2 class="section-title">Nuestros Vehículos</h2>
-      <p class="section-desc">Precios por hora. Depósito de fianza reembolsable al devolver el vehículo en perfecto estado.</p>
+      <div class="section-label" data-i18n="prices.label">Tarifas 2025</div>
+      <h2 class="section-title" data-i18n="prices.title">Nuestros Vehículos</h2>
+      <p class="section-desc" data-i18n="prices.description">Precios por hora. Depósito de fianza reembolsable al devolver el vehículo en perfecto estado.</p>
     </div>
     <div class="vehicles-grid">
 
@@ -373,10 +423,10 @@
         <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/Vitality_50.jpg" alt="Scooter 50cc"
           onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'" />
         <div class="vehicle-body">
-          <div class="vehicle-tag">No requiere carnet</div>
-          <div class="vehicle-name">Scooter 50 cc</div>
-          <p class="vehicle-desc">Perfecta para moverse por el centro de Lloret. Ligera, fácil de conducir, ideal para novatos.</p>
-          <div class="vehicle-price"><span class="price-num">40€</span><span class="price-unit">/ hora</span></div>
+          <div class="vehicle-tag" data-i18n="vehicle.50.tag">No requiere carnet</div>
+          <div class="vehicle-name" data-i18n="vehicle.50.name">Scooter 50 cc</div>
+          <p class="vehicle-desc" data-i18n="vehicle.50.desc">Perfecta para moverse por el centro de Lloret. Ligera, fácil de conducir, ideal para novatos.</p>
+          <div class="vehicle-price"><span class="price-num">40€</span><span class="price-unit" data-i18n="vehicle.priceUnit">/ hora</span></div>
         </div>
       </div>
 
@@ -384,10 +434,10 @@
         <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg" alt="Moto 140cc"
           onerror="this.src='https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80'" />
         <div class="vehicle-body">
-          <div class="vehicle-tag">Requiere carnet A1</div>
-          <div class="vehicle-name">Moto 140 cc</div>
-          <p class="vehicle-desc">Mayor potencia para explorar la Costa Brava. Ideal para recorridos por carretera.</p>
-          <div class="vehicle-price"><span class="price-num">67€</span><span class="price-unit">/ hora</span></div>
+          <div class="vehicle-tag" data-i18n="vehicle.140.tag">Requiere carnet A1</div>
+          <div class="vehicle-name" data-i18n="vehicle.140.name">Moto 140 cc</div>
+          <p class="vehicle-desc" data-i18n="vehicle.140.desc">Mayor potencia para explorar la Costa Brava. Ideal para recorridos por carretera.</p>
+          <div class="vehicle-price"><span class="price-num">67€</span><span class="price-unit" data-i18n="vehicle.priceUnit">/ hora</span></div>
         </div>
       </div>
 
@@ -395,10 +445,10 @@
         <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="Quad Normal"
           onerror="this.src='https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80'" />
         <div class="vehicle-body">
-          <div class="vehicle-tag">Quad – No requiere carnet</div>
-          <div class="vehicle-name">Quad Normal</div>
-          <p class="vehicle-desc">El clásico quad para aventurarte por caminos y rutas de montaña. Pura adrenalina.</p>
-          <div class="vehicle-price"><span class="price-num">80€</span><span class="price-unit">/ hora</span></div>
+          <div class="vehicle-tag" data-i18n="vehicle.quad1.tag">Quad – No requiere carnet</div>
+          <div class="vehicle-name" data-i18n="vehicle.quad1.name">Quad Normal</div>
+          <p class="vehicle-desc" data-i18n="vehicle.quad1.desc">El clásico quad para aventurarte por caminos y rutas de montaña. Pura adrenalina.</p>
+          <div class="vehicle-price"><span class="price-num">80€</span><span class="price-unit" data-i18n="vehicle.priceUnit">/ hora</span></div>
         </div>
       </div>
 
@@ -406,27 +456,27 @@
         <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg" alt="Quad Medio Grande"
           onerror="this.src='https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80'" />
         <div class="vehicle-body">
-          <div class="vehicle-tag">Quad – Requiere carnet B</div>
-          <div class="vehicle-name">Quad Medio-Grande</div>
-          <p class="vehicle-desc">Mayor cilindrada y potencia. Maneja con facilidad terrenos más exigentes.</p>
-          <div class="vehicle-price"><span class="price-num">70€</span><span class="price-unit">/ hora</span></div>
+          <div class="vehicle-tag" data-i18n="vehicle.quad2.tag">Quad – Requiere carnet B</div>
+          <div class="vehicle-name" data-i18n="vehicle.quad2.name">Quad Medio-Grande</div>
+          <p class="vehicle-desc" data-i18n="vehicle.quad2.desc">Mayor cilindrada y potencia. Maneja con facilidad terrenos más exigentes.</p>
+          <div class="vehicle-price"><span class="price-num">70€</span><span class="price-unit" data-i18n="vehicle.priceUnit">/ hora</span></div>
         </div>
       </div>
 
       <div class="vehicle-card featured reveal">
-        <div class="featured-badge">⭐ TOP</div>
+        <div class="featured-badge" data-i18n="vehicle.featured">⭐ TOP</div>
         <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/c-force-450.jpg" alt="Quad Gigante"
           onerror="this.src='https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80'" />
         <div class="vehicle-body">
-          <div class="vehicle-tag">Quad Premium – Requiere carnet</div>
-          <div class="vehicle-name">Quad Gigante</div>
-          <p class="vehicle-desc">La bestia de la flota. Máxima potencia, máximo agarre. La experiencia definitiva.</p>
-          <div class="vehicle-price"><span class="price-num">3.000€</span><span class="price-unit">/ hora</span></div>
+          <div class="vehicle-tag" data-i18n="vehicle.quad3.tag">Quad Premium – Requiere carnet</div>
+          <div class="vehicle-name" data-i18n="vehicle.quad3.name">Quad Gigante</div>
+          <p class="vehicle-desc" data-i18n="vehicle.quad3.desc">La bestia de la flota. Máxima potencia, máximo agarre. La experiencia definitiva.</p>
+          <div class="vehicle-price"><span class="price-num">3.000€</span><span class="price-unit" data-i18n="vehicle.priceUnit">/ hora</span></div>
         </div>
       </div>
 
     </div>
-    <p style="text-align:center;color:var(--muted);font-size:.82rem;margin-top:28px;">
+    <p style="text-align:center;color:var(--muted);font-size:.82rem;margin-top:28px;" data-i18n="prices.note">
       * Se exige depósito / fianza reembolsable. Precios sujetos a disponibilidad. Consultar en tienda.
     </p>
   </div>
@@ -436,30 +486,30 @@
 <section id="contact">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Encuéntranos</div>
-      <h2 class="section-title">Dónde Estamos</h2>
+      <div class="section-label" data-i18n="contact.label">Encuéntranos</div>
+      <h2 class="section-title" data-i18n="contact.title">Dónde Estamos</h2>
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="info-item">
           <div class="info-icon">📍</div>
-          <div class="info-text"><strong>Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div>
+          <div class="info-text"><strong data-i18n="contact.addressLabel">Dirección</strong><span data-i18n="contact.addressValue">C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div>
         </div>
         <div class="info-item">
           <div class="info-icon">📞</div>
-          <div class="info-text"><strong>Teléfono</strong><a href="tel:+34693744814">+34 693 74 48 14</a></div>
+          <div class="info-text"><strong data-i18n="contact.phoneLabel">Teléfono</strong><a href="tel:+34693744814">+34 693 74 48 14</a></div>
         </div>
         <div class="info-item">
           <div class="info-icon">✉️</div>
-          <div class="info-text"><strong>Email</strong><a href="mailto:aleksrentsl@gmail.com">aleksrentsl@gmail.com</a></div>
+          <div class="info-text"><strong data-i18n="contact.emailLabel">Email</strong><a href="mailto:aleksrentsl@gmail.com">aleksrentsl@gmail.com</a></div>
         </div>
         <div class="info-item">
           <div class="info-icon">🕘</div>
-          <div class="info-text"><strong>Horario</strong><span>Lunes a Domingo: 09:00 – 21:00</span></div>
+          <div class="info-text"><strong data-i18n="contact.hoursLabel">Horario</strong><span data-i18n="contact.hoursValue">Lunes a Domingo: 09:00 – 21:00</span></div>
         </div>
         <div class="info-item">
           <div class="info-icon">💬</div>
-          <div class="info-text"><strong>WhatsApp</strong><a href="https://api.whatsapp.com/send?phone=34693744814" target="_blank">Escríbenos ahora</a></div>
+          <div class="info-text"><strong data-i18n="contact.whatsappLabel">WhatsApp</strong><a href="https://api.whatsapp.com/send?phone=34693744814" target="_blank" data-i18n="contact.whatsappLink">Escríbenos ahora</a></div>
         </div>
       </div>
       <div class="map-wrap reveal">
@@ -475,19 +525,21 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ALEKS <span>RENT</span></div>
-  <p class="footer-tagline">Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan</p>
+  <p class="footer-tagline" data-i18n="footer.tagline">Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan</p>
   <ul class="footer-links">
-    <li><a href="#hero">Inicio</a></li>
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#prices">Precios</a></li>
-    <li><a href="#contact">Contacto</a></li>
-    <li><a href="https://aleksrent.es" target="_blank">Web oficial</a></li>
+    <li><a href="#hero" data-i18n="footer.home">Inicio</a></li>
+    <li><a href="#about" data-i18n="footer.about">Nosotros</a></li>
+    <li><a href="#prices" data-i18n="footer.prices">Precios</a></li>
+    <li><a href="#contact" data-i18n="footer.contact">Contacto</a></li>
+    <li><a href="https://aleksrent.es" target="_blank" data-i18n="footer.website">Web oficial</a></li>
   </ul>
-  <p class="footer-copy">© 2025 Aleks Rent S.L. — Todos los derechos reservados.</p>
+  <p class="footer-copy" data-i18n="footer.copy">© 2025 Aleks Rent S.L. — Todos los derechos reservados.</p>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
 <a class="wa-float" href="https://api.whatsapp.com/send?phone=34693744814" target="_blank" title="WhatsApp">💬</a>
+<button id="audio-toggle" class="audio-toggle" aria-label="Toggle background jazz music">🎷</button>
+<audio id="bg-audio" src="https://www.bensound.com/bensound-music/bensound-jazzyfrenchy.mp3" preload="auto" loop></audio>
 
 <script>
   function closeBanner() {
@@ -498,6 +550,767 @@
     document.body.style.overflow = '';
   }
   document.body.style.overflow = 'hidden';
+
+  const translations = {
+    es: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Nosotros',
+      'nav.prices': 'Precios',
+      'nav.contact': 'Contacto',
+      'banner.welcome': 'Bienvenido a <span>Aleks Rent</span>',
+      'banner.description': 'Alquiler de motos, scooters y quads en Lloret de Mar – Costa Brava',
+      'banner.button': '¡Empezar a explorar!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Vive la Costa Brava a tu manera. Alquila motos, scooters y quads y explora cada rincón de Lloret con libertad total.',
+      'hero.prices': 'Ver precios',
+      'hero.contact': 'Cómo llegar',
+      'about.label': 'Sobre nosotros',
+      'about.title': 'Fundada por Gevorg Avdalyan',
+      'about.description': 'Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.',
+      'about.paragraph1': 'Estás visitando uno de los lugares más hermosos de la Costa Brava. Para que disfrutes plenamente de tu estancia, Aleks Rent pone a tu disposición una amplia flota de scooters, motos, quads y bicicletas eléctricas.',
+      'about.paragraph2': 'Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!',
+      'about.statExperience': 'Años de experiencia',
+      'about.statLanguages': 'Idiomas atendidos',
+      'about.statRating': 'Valoración media',
+      'about.statReview': 'Revisión diaria',
+      'prices.label': 'Tarifas 2025',
+      'prices.title': 'Nuestros Vehículos',
+      'prices.description': 'Precios por hora. Depósito de fianza reembolsable al devolver el vehículo en perfecto estado.',
+      'prices.note': '* Se exige depósito / fianza reembolsable. Precios sujetos a disponibilidad. Consultar en tienda.',
+      'vehicle.50.tag': 'No requiere carnet',
+      'vehicle.50.name': 'Scooter 50 cc',
+      'vehicle.50.desc': 'Perfecta para moverse por el centro de Lloret. Ligera, fácil de conducir, ideal para novatos.',
+      'vehicle.140.tag': 'Requiere carnet A1',
+      'vehicle.140.name': 'Moto 140 cc',
+      'vehicle.140.desc': 'Mayor potencia para explorar la Costa Brava. Ideal para recorridos por carretera.',
+      'vehicle.quad1.tag': 'Quad – No requiere carnet',
+      'vehicle.quad1.name': 'Quad Normal',
+      'vehicle.quad1.desc': 'El clásico quad para aventurarte por caminos y rutas de montaña. Pura adrenalina.',
+      'vehicle.quad2.tag': 'Quad – Requiere carnet B',
+      'vehicle.quad2.name': 'Quad Medio-Grande',
+      'vehicle.quad2.desc': 'Mayor cilindrada y potencia. Maneja con facilidad terrenos más exigentes.',
+      'vehicle.quad3.tag': 'Quad Premium – Requiere carnet',
+      'vehicle.quad3.name': 'Quad Gigante',
+      'vehicle.quad3.desc': 'La bestia de la flota. Máxima potencia, máximo agarre. La experiencia definitiva.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ hora',
+      'contact.label': 'Encuéntranos',
+      'contact.title': 'Dónde Estamos',
+      'contact.addressLabel': 'Dirección',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Teléfono',
+      'contact.emailLabel': 'Email',
+      'contact.hoursLabel': 'Horario',
+      'contact.hoursValue': 'Lunes a Domingo: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Escríbenos ahora',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan',
+      'footer.home': 'Inicio',
+      'footer.about': 'Nosotros',
+      'footer.prices': 'Precios',
+      'footer.contact': 'Contacto',
+      'footer.website': 'Web oficial',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Todos los derechos reservados.'
+    },
+    en: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'About',
+      'nav.prices': 'Prices',
+      'nav.contact': 'Contact',
+      'banner.welcome': 'Welcome to <span>Aleks Rent</span>',
+      'banner.description': 'Motorbike, scooter and quad rental in Lloret de Mar – Costa Brava',
+      'banner.button': 'Start exploring!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Live the Costa Brava your way. Rent bikes, scooters and quads and explore every corner of Lloret with total freedom.',
+      'hero.prices': 'See prices',
+      'hero.contact': 'How to get here',
+      'about.label': 'About us',
+      'about.title': 'Founded by Gevorg Avdalyan',
+      'about.description': 'Aleks Rent is the go-to rental point in Lloret de Mar. Our team speaks Spanish, Russian, English and French, and we inspect every vehicle every morning to keep you safe.',
+      'about.paragraph1': 'You are visiting one of the most beautiful places on the Costa Brava. To help you fully enjoy your stay, Aleks Rent offers a wide fleet of scooters, motorcycles, quads and electric bikes.',
+      'about.paragraph2': 'We offer delivery service directly to hotels across the Costa Brava and Girona Airport. Visit us and we will assist you with the highest friendliness!',
+      'about.statExperience': 'Years of experience',
+      'about.statLanguages': 'Languages supported',
+      'about.statRating': 'Average rating',
+      'about.statReview': 'Daily inspection',
+      'prices.label': 'Rates 2025',
+      'prices.title': 'Our Vehicles',
+      'prices.description': 'Hourly prices. Refundable deposit returned when the vehicle is returned in perfect condition.',
+      'prices.note': '* A refundable deposit is required. Prices are subject to availability. Ask in store.',
+      'vehicle.50.tag': 'No license required',
+      'vehicle.50.name': '50cc Scooter',
+      'vehicle.50.desc': 'Perfect to move around central Lloret. Light, easy to ride, ideal for beginners.',
+      'vehicle.140.tag': 'Requires A1 license',
+      'vehicle.140.name': '140cc Motorcycle',
+      'vehicle.140.desc': 'More power to explore the Costa Brava. Ideal for road trips.',
+      'vehicle.quad1.tag': 'Quad – No license required',
+      'vehicle.quad1.name': 'Standard Quad',
+      'vehicle.quad1.desc': 'The classic quad to adventure through mountain trails and rural roads. Pure adrenaline.',
+      'vehicle.quad2.tag': 'Quad – Requires B license',
+      'vehicle.quad2.name': 'Medium Quad',
+      'vehicle.quad2.desc': 'Higher displacement and power. Handles more demanding terrain with ease.',
+      'vehicle.quad3.tag': 'Premium Quad – Requires license',
+      'vehicle.quad3.name': 'Giant Quad',
+      'vehicle.quad3.desc': 'The beast of the fleet. Maximum power, maximum grip. The ultimate experience.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ hour',
+      'contact.label': 'Find us',
+      'contact.title': 'Where we are',
+      'contact.addressLabel': 'Address',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Phone',
+      'contact.emailLabel': 'Email',
+      'contact.hoursLabel': 'Hours',
+      'contact.hoursValue': 'Monday to Sunday: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Write us now',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Founded by Gevorg Avdalyan',
+      'footer.home': 'Home',
+      'footer.about': 'About',
+      'footer.prices': 'Prices',
+      'footer.contact': 'Contact',
+      'footer.website': 'Official site',
+      'footer.copy': '© 2025 Aleks Rent S.L. — All rights reserved.'
+    },
+    fr: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'À propos',
+      'nav.prices': 'Tarifs',
+      'nav.contact': 'Contact',
+      'banner.welcome': 'Bienvenue chez <span>Aleks Rent</span>',
+      'banner.description': 'Location de motos, scooters et quads à Lloret de Mar – Costa Brava',
+      'banner.button': 'Commencer à explorer !',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Vivez la Costa Brava à votre façon. Louez des motos, scooters et quads et explorez chaque recoin de Lloret en toute liberté.',
+      'hero.prices': 'Voir les tarifs',
+      'hero.contact': 'Comment venir',
+      'about.label': 'À propos de nous',
+      'about.title': 'Fondé par Gevorg Avdalyan',
+      'about.description': 'Aleks Rent est le point de référence pour la location de véhicules à Lloret de Mar. Notre équipe parle espagnol, russe, anglais et français, et nous inspectons chaque véhicule chaque matin pour garantir votre sécurité.',
+      'about.paragraph1': 'Vous visitez l’un des plus beaux endroits de la Costa Brava. Pour que vous profitiez pleinement de votre séjour, Aleks Rent met à votre disposition une large flotte de scooters, motos, quads et vélos électriques.',
+      'about.paragraph2': 'Nous proposons une livraison directe dans les hôtels de toute la Costa Brava et à l’aéroport de Gérone. Venez nous voir et nous vous accueillerons avec la plus grande cordialité !',
+      'about.statExperience': 'Années d’expérience',
+      'about.statLanguages': 'Langues parlées',
+      'about.statRating': 'Note moyenne',
+      'about.statReview': 'Inspection quotidienne',
+      'prices.label': 'Tarifs 2025',
+      'prices.title': 'Nos véhicules',
+      'prices.description': 'Prix à l’heure. Dépôt remboursable rendu lorsque le véhicule est rendu en parfait état.',
+      'prices.note': '* Un dépôt remboursable est requis. Les prix sont soumis à disponibilité. Renseignez-vous en magasin.',
+      'vehicle.50.tag': 'Pas de permis requis',
+      'vehicle.50.name': 'Scooter 50 cc',
+      'vehicle.50.desc': 'Parfait pour se déplacer dans le centre de Lloret. Léger, facile à conduire, idéal pour les débutants.',
+      'vehicle.140.tag': 'Permis A1 requis',
+      'vehicle.140.name': 'Moto 140 cc',
+      'vehicle.140.desc': 'Plus de puissance pour explorer la Costa Brava. Idéale pour les trajets sur route.',
+      'vehicle.quad1.tag': 'Quad – Pas de permis requis',
+      'vehicle.quad1.name': 'Quad standard',
+      'vehicle.quad1.desc': 'Le quad classique pour s’aventurer sur les chemins de montagne et les routes rurales. Plaisir garanti.',
+      'vehicle.quad2.tag': 'Quad – Permis B requis',
+      'vehicle.quad2.name': 'Quad moyen',
+      'vehicle.quad2.desc': 'Plus de cylindrée et de puissance. Maîtrise les terrains plus exigeants avec facilité.',
+      'vehicle.quad3.tag': 'Quad premium – Permis requis',
+      'vehicle.quad3.name': 'Quad géant',
+      'vehicle.quad3.desc': 'La bête de la flotte. Puissance maximale, adhérence maximale. L’expérience ultime.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ heure',
+      'contact.label': 'Retrouvez-nous',
+      'contact.title': 'Où nous trouver',
+      'contact.addressLabel': 'Adresse',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Téléphone',
+      'contact.emailLabel': 'Email',
+      'contact.hoursLabel': 'Horaires',
+      'contact.hoursValue': 'Lundi à dimanche : 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Écrivez-nous maintenant',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Fondé par Gevorg Avdalyan',
+      'footer.home': 'Accueil',
+      'footer.about': 'À propos',
+      'footer.prices': 'Tarifs',
+      'footer.contact': 'Contact',
+      'footer.website': 'Site officiel',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Tous droits réservés.'
+    },
+    de: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Über uns',
+      'nav.prices': 'Preise',
+      'nav.contact': 'Kontakt',
+      'banner.welcome': 'Willkommen bei <span>Aleks Rent</span>',
+      'banner.description': 'Motorrad-, Roller- und Quad-Verleih in Lloret de Mar – Costa Brava',
+      'banner.button': 'Jetzt entdecken!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Erlebe die Costa Brava auf deine Weise. Miete Motorräder, Roller und Quads und erkunde jede Ecke von Lloret frei und flexibel.',
+      'hero.prices': 'Preise anzeigen',
+      'hero.contact': 'Anfahrt',
+      'about.label': 'Über uns',
+      'about.title': 'Gegründet von Gevorg Avdalyan',
+      'about.description': 'Aleks Rent ist die erste Adresse für Fahrzeugvermietung in Lloret de Mar. Unser Team spricht Spanisch, Russisch, Englisch und Französisch und wir prüfen jedes Fahrzeug täglich morgens, um deine Sicherheit zu gewährleisten.',
+      'about.paragraph1': 'Du besuchst einen der schönsten Orte der Costa Brava. Damit du deinen Aufenthalt voll genießen kannst, bietet Aleks Rent eine große Flotte von Rollern, Motorrädern, Quads und E-Bikes.',
+      'about.paragraph2': 'Wir liefern direkt an Hotels in der gesamten Costa Brava und zum Flughafen Girona. Besuche uns und wir betreuen dich freundlich und professionell!',
+      'about.statExperience': 'Jahre Erfahrung',
+      'about.statLanguages': 'Sprachen verfügbar',
+      'about.statRating': 'Durchschnittsbewertung',
+      'about.statReview': 'Tägliche Kontrolle',
+      'prices.label': 'Tarife 2025',
+      'prices.title': 'Unsere Fahrzeuge',
+      'prices.description': 'Preise pro Stunde. Rückzahlbare Kaution bei Rückgabe des Fahrzeugs im perfekten Zustand.',
+      'prices.note': '* Eine rückzahlbare Kaution ist erforderlich. Preise gelten bei Verfügbarkeit. Im Shop nachfragen.',
+      'vehicle.50.tag': 'Kein Führerschein erforderlich',
+      'vehicle.50.name': '50cc Roller',
+      'vehicle.50.desc': 'Perfekt für die Fahrt durch das Zentrum von Lloret. Leicht, einfach zu fahren, ideal für Einsteiger.',
+      'vehicle.140.tag': 'Führerschein A1 erforderlich',
+      'vehicle.140.name': '140cc Motorrad',
+      'vehicle.140.desc': 'Mehr Leistung, um die Costa Brava zu entdecken. Ideal für Straßenfahrten.',
+      'vehicle.quad1.tag': 'Quad – Kein Führerschein erforderlich',
+      'vehicle.quad1.name': 'Standard Quad',
+      'vehicle.quad1.desc': 'Das klassische Quad für Abenteuer auf Bergpfaden und Landstraßen. Pure Action.',
+      'vehicle.quad2.tag': 'Quad – Führerschein B erforderlich',
+      'vehicle.quad2.name': 'Mittel-Quad',
+      'vehicle.quad2.desc': 'Mehr Hubraum und Leistung. Bewältigt anspruchsvolleres Gelände mühelos.',
+      'vehicle.quad3.tag': 'Premium-Quad – Führerschein erforderlich',
+      'vehicle.quad3.name': 'Gigantisches Quad',
+      'vehicle.quad3.desc': 'Das Biest der Flotte. Maximale Leistung, maximaler Grip. Das ultimative Erlebnis.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ Stunde',
+      'contact.label': 'Finde uns',
+      'contact.title': 'Wo wir sind',
+      'contact.addressLabel': 'Adresse',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefon',
+      'contact.emailLabel': 'E-Mail',
+      'contact.hoursLabel': 'Öffnungszeiten',
+      'contact.hoursValue': 'Montag bis Sonntag: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Schreib uns jetzt',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Gegründet von Gevorg Avdalyan',
+      'footer.home': 'Start',
+      'footer.about': 'Über uns',
+      'footer.prices': 'Preise',
+      'footer.contact': 'Kontakt',
+      'footer.website': 'Offizielle Seite',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Alle Rechte vorbehalten.'
+    },
+    it: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Chi siamo',
+      'nav.prices': 'Tariffe',
+      'nav.contact': 'Contatti',
+      'banner.welcome': 'Benvenuto da <span>Aleks Rent</span>',
+      'banner.description': 'Noleggio moto, scooter e quad a Lloret de Mar – Costa Brava',
+      'banner.button': 'Inizia a esplorare!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Vivi la Costa Brava a modo tuo. Noleggia moto, scooter e quad ed esplora ogni angolo di Lloret con totale libertà.',
+      'hero.prices': 'Vedi prezzi',
+      'hero.contact': 'Come arrivare',
+      'about.label': 'Chi siamo',
+      'about.title': 'Fondata da Gevorg Avdalyan',
+      'about.description': 'Aleks Rent è il punto di riferimento per il noleggio veicoli a Lloret de Mar. Il nostro team parla spagnolo, russo, inglese e francese, e controlliamo ogni veicolo ogni mattina per garantirti sicurezza.',
+      'about.paragraph1': 'Stai visitando uno dei luoghi più belli della Costa Brava. Per farti godere appieno il soggiorno, Aleks Rent mette a disposizione una vasta flotta di scooter, moto, quad e biciclette elettriche.',
+      'about.paragraph2': 'Offriamo servizio di consegna direttamente negli hotel di tutta la Costa Brava e all’aeroporto di Girona. Vieni a trovarci e ti assisteremo con la massima cordialità!',
+      'about.statExperience': 'Anni di esperienza',
+      'about.statLanguages': 'Lingue parlate',
+      'about.statRating': 'Valutazione media',
+      'about.statReview': 'Controllo giornaliero',
+      'prices.label': 'Tariffe 2025',
+      'prices.title': 'I nostri veicoli',
+      'prices.description': 'Prezzi all’ora. Deposito rimborsabile restituito al riconsegna del veicolo in perfette condizioni.',
+      'prices.note': '* È richiesto un deposito rimborsabile. I prezzi sono soggetti a disponibilità. Consulta il negozio.',
+      'vehicle.50.tag': 'Nessuna patente richiesta',
+      'vehicle.50.name': 'Scooter 50 cc',
+      'vehicle.50.desc': 'Perfetto per muoversi nel centro di Lloret. Leggero, facile da guidare, ideale per principianti.',
+      'vehicle.140.tag': 'Richiede patente A1',
+      'vehicle.140.name': 'Moto 140 cc',
+      'vehicle.140.desc': 'Maggiore potenza per esplorare la Costa Brava. Ideale per tour su strada.',
+      'vehicle.quad1.tag': 'Quad – Nessuna patente richiesta',
+      'vehicle.quad1.name': 'Quad Standard',
+      'vehicle.quad1.desc': 'Il quad classico per avventurarti su sentieri di montagna e strade di campagna. Pura adrenalina.',
+      'vehicle.quad2.tag': 'Quad – Richiede patente B',
+      'vehicle.quad2.name': 'Quad Medio',
+      'vehicle.quad2.desc': 'Maggiore cilindrata e potenza. Gestisce terreni più impegnativi con facilità.',
+      'vehicle.quad3.tag': 'Quad Premium – Richiede patente',
+      'vehicle.quad3.name': 'Quad Gigante',
+      'vehicle.quad3.desc': 'La bestia della flotta. Massima potenza, massima aderenza. L’esperienza definitiva.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ ora',
+      'contact.label': 'Trovaci',
+      'contact.title': 'Dove siamo',
+      'contact.addressLabel': 'Indirizzo',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefono',
+      'contact.emailLabel': 'Email',
+      'contact.hoursLabel': 'Orario',
+      'contact.hoursValue': 'Lunedì a domenica: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Scrivici ora',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Fondata da Gevorg Avdalyan',
+      'footer.home': 'Home',
+      'footer.about': 'Chi siamo',
+      'footer.prices': 'Tariffe',
+      'footer.contact': 'Contatti',
+      'footer.website': 'Sito ufficiale',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Tutti i diritti riservati.'
+    },
+    ru: {
+      pageTitle: 'Aleks Rent – Льорет-де-Мар',
+      'nav.about': 'О нас',
+      'nav.prices': 'Цены',
+      'nav.contact': 'Контакты',
+      'banner.welcome': 'Добро пожаловать в <span>Aleks Rent</span>',
+      'banner.description': 'Прокат мотоциклов, скутеров и квадроциклов в Льорет-де-Мар – Коста-Брава',
+      'banner.button': 'Начать исследование!',
+      'hero.badge': '🏍️ Льорет-де-Мар · Коста-Брава',
+      'hero.sub': 'Ощути Коста-Браву по-своему. Арендуй мотоциклы, скутеры и квадроциклы и исследуй каждый уголок Льорета с полной свободой.',
+      'hero.prices': 'Смотреть цены',
+      'hero.contact': 'Как добраться',
+      'about.label': 'О нас',
+      'about.title': 'Основано Геворгом Авдаляном',
+      'about.description': 'Aleks Rent — опорная точка аренды транспорта в Льорет-де-Мар. Наша команда говорит на испанском, русском, английском и французском, и мы проверяем каждый транспорт каждый день утром для вашей безопасности.',
+      'about.paragraph1': 'Вы посещаете одно из самых красивых мест Коста-Бравы. Чтобы вы могли полностью насладиться отдыхом, Aleks Rent предлагает широкий парк скутеров, мотоциклов, квадроциклов и электровелосипедов.',
+      'about.paragraph2': 'Мы доставляем транспорт прямо в отели по всей Коста-Брава и в аэропорт Жирона. Посетите нас, и мы обслужим вас с максимальным вниманием!',
+      'about.statExperience': 'Лет опыта',
+      'about.statLanguages': 'Поддерживаемые языки',
+      'about.statRating': 'Средний рейтинг',
+      'about.statReview': 'Ежедневный осмотр',
+      'prices.label': 'Тарифы 2025',
+      'prices.title': 'Наши транспортные средства',
+      'prices.description': 'Цены за час. Возвращаемый депозит возвращается при сдаче транспорта в идеальном состоянии.',
+      'prices.note': '* Требуется возвращаемый депозит. Цены действительны при наличии. Уточняйте в магазине.',
+      'vehicle.50.tag': 'Без прав',
+      'vehicle.50.name': 'Скутер 50 см³',
+      'vehicle.50.desc': 'Идеально для передвижения по центру Льорета. Легкий, простой в управлении, идеален для новичков.',
+      'vehicle.140.tag': 'Требуется права A1',
+      'vehicle.140.name': 'Мотоцикл 140 см³',
+      'vehicle.140.desc': 'Больше мощности для изучения Коста-Бравы. Идеально для поездок по шоссе.',
+      'vehicle.quad1.tag': 'Квадроцикл – без прав',
+      'vehicle.quad1.name': 'Стандартный квадроцикл',
+      'vehicle.quad1.desc': 'Классический квадроцикл для приключений по горным тропам и проселочным дорогам. Чистый адреналин.',
+      'vehicle.quad2.tag': 'Квадроцикл – права B',
+      'vehicle.quad2.name': 'Средний квадроцикл',
+      'vehicle.quad2.desc': 'Больший объем и мощность. Легко справляется с более сложными трассами.',
+      'vehicle.quad3.tag': 'Премиум квадроцикл – права',
+      'vehicle.quad3.name': 'Гигантский квадроцикл',
+      'vehicle.quad3.desc': 'Зверь парка. Максимальная мощность, максимальное сцепление. Абсолютный опыт.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ час',
+      'contact.label': 'Найдите нас',
+      'contact.title': 'Где мы находимся',
+      'contact.addressLabel': 'Адрес',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Телефон',
+      'contact.emailLabel': 'Электронная почта',
+      'contact.hoursLabel': 'Часы работы',
+      'contact.hoursValue': 'Понедельник-воскресенье: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Напишите нам сейчас',
+      'footer.tagline': 'Льорет-де-Мар · Коста-Брава · Основано Геворгом Авдаляном',
+      'footer.home': 'Главная',
+      'footer.about': 'О нас',
+      'footer.prices': 'Цены',
+      'footer.contact': 'Контакты',
+      'footer.website': 'Официальный сайт',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Все права защищены.'
+    },
+    pt: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Sobre nós',
+      'nav.prices': 'Preços',
+      'nav.contact': 'Contato',
+      'banner.welcome': 'Bem-vindo à <span>Aleks Rent</span>',
+      'banner.description': 'Aluguel de motos, scooters e quads em Lloret de Mar – Costa Brava',
+      'banner.button': 'Comece a explorar!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Viva a Costa Brava do seu jeito. Alugue motos, scooters e quads e explore cada canto de Lloret com total liberdade.',
+      'hero.prices': 'Ver preços',
+      'hero.contact': 'Como chegar',
+      'about.label': 'Sobre nós',
+      'about.title': 'Fundada por Gevorg Avdalyan',
+      'about.description': 'Aleks Rent é o ponto de referência para aluguel de veículos em Lloret de Mar. Nossa equipe fala espanhol, russo, inglês e francês, e inspecionamos cada veículo todas as manhãs para garantir sua segurança.',
+      'about.paragraph1': 'Você está visitando um dos lugares mais bonitos da Costa Brava. Para que você aproveite ao máximo sua estadia, Aleks Rent oferece uma ampla frota de scooters, motos, quads e bicicletas elétricas.',
+      'about.paragraph2': 'Temos serviço de entrega diretamente em hotéis de toda a Costa Brava e no aeroporto de Girona. Visite-nos e atenderemos você com muita cordialidade!',
+      'about.statExperience': 'Anos de experiência',
+      'about.statLanguages': 'Idiomas atendidos',
+      'about.statRating': 'Avaliação média',
+      'about.statReview': 'Inspeção diária',
+      'prices.label': 'Tarifas 2025',
+      'prices.title': 'Nossos veículos',
+      'prices.description': 'Preços por hora. Depósito reembolsável devolvido ao retornar o veículo em perfeito estado.',
+      'prices.note': '* É exigido depósito reembolsável. Preços sujeitos à disponibilidade. Consulte na loja.',
+      'vehicle.50.tag': 'Sem habilitação necessária',
+      'vehicle.50.name': 'Scooter 50 cc',
+      'vehicle.50.desc': 'Perfeito para se deslocar pelo centro de Lloret. Leve, fácil de conduzir, ideal para iniciantes.',
+      'vehicle.140.tag': 'Exige habilitação A1',
+      'vehicle.140.name': 'Moto 140 cc',
+      'vehicle.140.desc': 'Mais potência para explorar a Costa Brava. Ideal para passeios rodoviários.',
+      'vehicle.quad1.tag': 'Quad – Sem habilitação necessária',
+      'vehicle.quad1.name': 'Quad padrão',
+      'vehicle.quad1.desc': 'O quad clássico para se aventurar em trilhas de montanha e estradas rurais. Pura adrenalina.',
+      'vehicle.quad2.tag': 'Quad – Exige habilitação B',
+      'vehicle.quad2.name': 'Quad médio',
+      'vehicle.quad2.desc': 'Maior cilindrada e potência. Lida com terrenos mais exigentes com facilidade.',
+      'vehicle.quad3.tag': 'Quad premium – Exige habilitação',
+      'vehicle.quad3.name': 'Quad gigante',
+      'vehicle.quad3.desc': 'A fera da frota. Potência máxima, aderência máxima. A experiência definitiva.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ hora',
+      'contact.label': 'Nos encontre',
+      'contact.title': 'Onde estamos',
+      'contact.addressLabel': 'Endereço',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefone',
+      'contact.emailLabel': 'Email',
+      'contact.hoursLabel': 'Horário',
+      'contact.hoursValue': 'Segunda a domingo: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Escreva para nós agora',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan',
+      'footer.home': 'Início',
+      'footer.about': 'Sobre nós',
+      'footer.prices': 'Preços',
+      'footer.contact': 'Contato',
+      'footer.website': 'Site oficial',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Todos os direitos reservados.'
+    },
+    nl: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Over ons',
+      'nav.prices': 'Prijzen',
+      'nav.contact': 'Contact',
+      'banner.welcome': 'Welkom bij <span>Aleks Rent</span>',
+      'banner.description': 'Verhuur van motoren, scooters en quads in Lloret de Mar – Costa Brava',
+      'banner.button': 'Begin met ontdekken!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Ervaar de Costa Brava op jouw manier. Huur motoren, scooters en quads en verken elke hoek van Lloret met totale vrijheid.',
+      'hero.prices': 'Bekijk prijzen',
+      'hero.contact': 'Hoe er te komen',
+      'about.label': 'Over ons',
+      'about.title': 'Opgericht door Gevorg Avdalyan',
+      'about.description': 'Aleks Rent is het referentiepunt voor voertuigverhuur in Lloret de Mar. Ons team spreekt Spaans, Russisch, Engels en Frans, en we controleren elke ochtend elk voertuig om je veiligheid te garanderen.',
+      'about.paragraph1': 'Je bezoekt een van de mooiste plekken aan de Costa Brava. Om je verblijf optimaal te laten genieten, biedt Aleks Rent een breed assortiment scooters, motoren, quads en elektrische fietsen.',
+      'about.paragraph2': 'We leveren direct bij hotels door heel de Costa Brava en bij Girona Airport. Bezoek ons en wij helpen je met veel vriendelijkheid!',
+      'about.statExperience': 'Jaren ervaring',
+      'about.statLanguages': 'Ondersteunde talen',
+      'about.statRating': 'Gemiddelde beoordeling',
+      'about.statReview': 'Dagelijkse inspectie',
+      'prices.label': 'Tarieven 2025',
+      'prices.title': 'Onze voertuigen',
+      'prices.description': 'Uurtarieven. Terugbetaalbare borg wordt teruggegeven bij inlevering in perfecte staat.',
+      'prices.note': '* Er is een terugbetaalbare borg vereist. Prijzen zijn onder voorbehoud van beschikbaarheid. Vraag in de winkel.',
+      'vehicle.50.tag': 'Geen rijbewijs nodig',
+      'vehicle.50.name': '50cc Scooter',
+      'vehicle.50.desc': 'Perfect om door het centrum van Lloret te rijden. Licht, gemakkelijk te besturen, ideaal voor beginners.',
+      'vehicle.140.tag': 'Rijbewijs A1 vereist',
+      'vehicle.140.name': '140cc Motor',
+      'vehicle.140.desc': 'Meer vermogen om de Costa Brava te verkennen. Ideaal voor tochten over de weg.',
+      'vehicle.quad1.tag': 'Quad – Geen rijbewijs nodig',
+      'vehicle.quad1.name': 'Standaard Quad',
+      'vehicle.quad1.desc': 'De klassieke quad om te avonturieren over bergpaden en landelijke wegen. Pure adrenaline.',
+      'vehicle.quad2.tag': 'Quad – Rijbewijs B vereist',
+      'vehicle.quad2.name': 'Middelgrote Quad',
+      'vehicle.quad2.desc': 'Hogere cilinderinhoud en vermogen. Beheerst uitdagender terrein met gemak.',
+      'vehicle.quad3.tag': 'Premium Quad – Rijbewijs vereist',
+      'vehicle.quad3.name': 'Gigantische Quad',
+      'vehicle.quad3.desc': 'Het beest van de vloot. Maximale kracht, maximale grip. De ultieme ervaring.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ uur',
+      'contact.label': 'Vind ons',
+      'contact.title': 'Waar we zijn',
+      'contact.addressLabel': 'Adres',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefoon',
+      'contact.emailLabel': 'E-mail',
+      'contact.hoursLabel': 'Openingstijden',
+      'contact.hoursValue': 'Maandag tot zondag: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Stuur ons nu een bericht',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Opgericht door Gevorg Avdalyan',
+      'footer.home': 'Start',
+      'footer.about': 'Over ons',
+      'footer.prices': 'Prijzen',
+      'footer.contact': 'Contact',
+      'footer.website': 'Officiële site',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Alle rechten voorbehouden.'
+    },
+    pl: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'O nas',
+      'nav.prices': 'Ceny',
+      'nav.contact': 'Kontakt',
+      'banner.welcome': 'Witamy w <span>Aleks Rent</span>',
+      'banner.description': 'Wynajem motocykli, skuterów i quadów w Lloret de Mar – Costa Brava',
+      'banner.button': 'Zacznij odkrywać!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Przeżyj Costa Bravę na swój sposób. Wynajmij motocykle, skutery i quady i odkrywaj każdy zakątek Lloret w pełnej wolności.',
+      'hero.prices': 'Zobacz ceny',
+      'hero.contact': 'Jak dojechać',
+      'about.label': 'O nas',
+      'about.title': 'Założone przez Gevorga Avdalyana',
+      'about.description': 'Aleks Rent to punkt odniesienia dla wynajmu pojazdów w Lloret de Mar. Nasz zespół mówi po hiszpańsku, rosyjsku, angielsku i francusku, a każdy pojazd kontrolujemy każdego ranka, aby zapewnić Twoje bezpieczeństwo.',
+      'about.paragraph1': 'Odwiedzasz jedno z najpiękniejszych miejsc na Costa Brava. Abyś mógł w pełni cieszyć się pobytem, Aleks Rent oferuje szeroką flotę skuterów, motocykli, quadów i rowerów elektrycznych.',
+      'about.paragraph2': 'Oferujemy dostawę bezpośrednio do hoteli na całej Costa Brava oraz na lotnisko w Gironie. Odwiedź nas, a obsłużymy Cię z najwyższą życzliwością!',
+      'about.statExperience': 'Lata doświadczenia',
+      'about.statLanguages': 'Języki obsługiwane',
+      'about.statRating': 'Średnia ocena',
+      'about.statReview': 'Codzienna kontrola',
+      'prices.label': 'Cennik 2025',
+      'prices.title': 'Nasze pojazdy',
+      'prices.description': 'Ceny za godzinę. Zwrotny depozyt zwracany przy oddaniu pojazdu w idealnym stanie.',
+      'prices.note': '* Wymagany jest zwrotny depozyt. Ceny zależne od dostępności. Zapytaj w sklepie.',
+      'vehicle.50.tag': 'Nie wymaga prawa jazdy',
+      'vehicle.50.name': 'Skuter 50 cc',
+      'vehicle.50.desc': 'Idealny, aby poruszać się po centrum Lloret. Lekki, łatwy w prowadzeniu, idealny dla początkujących.',
+      'vehicle.140.tag': 'Wymaga prawa jazdy A1',
+      'vehicle.140.name': 'Motocykl 140 cc',
+      'vehicle.140.desc': 'Więcej mocy, aby odkrywać Costa Bravę. Idealny na wycieczki drogowe.',
+      'vehicle.quad1.tag': 'Quad – Nie wymaga prawa jazdy',
+      'vehicle.quad1.name': 'Quad standardowy',
+      'vehicle.quad1.desc': 'Klasyczny quad do przygód po górskich ścieżkach i drogach wiejskich. Czysty adrenalina.',
+      'vehicle.quad2.tag': 'Quad – Wymaga prawa jazdy B',
+      'vehicle.quad2.name': 'Quad średni',
+      'vehicle.quad2.desc': 'Większa pojemność i moc. Radzi sobie z trudniejszym terenem z łatwością.',
+      'vehicle.quad3.tag': 'Quad premium – Wymaga prawa jazdy',
+      'vehicle.quad3.name': 'Gigantyczny quad',
+      'vehicle.quad3.desc': 'Bestia floty. Maksymalna moc, maksymalna przyczepność. Ostateczne doświadczenie.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ godz',
+      'contact.label': 'Znajdź nas',
+      'contact.title': 'Gdzie jesteśmy',
+      'contact.addressLabel': 'Adres',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefon',
+      'contact.emailLabel': 'Email',
+      'contact.hoursLabel': 'Godziny',
+      'contact.hoursValue': 'Poniedziałek–niedziela: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Napisz do nas teraz',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Założone przez Gevorga Avdalyana',
+      'footer.home': 'Start',
+      'footer.about': 'O nas',
+      'footer.prices': 'Ceny',
+      'footer.contact': 'Kontakt',
+      'footer.website': 'Oficjalna strona',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Wszelkie prawa zastrzeżone.'
+    },
+    sv: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Om oss',
+      'nav.prices': 'Priser',
+      'nav.contact': 'Kontakt',
+      'banner.welcome': 'Välkommen till <span>Aleks Rent</span>',
+      'banner.description': 'Hyr motorcyklar, scootrar och quads i Lloret de Mar – Costa Brava',
+      'banner.button': 'Börja utforska!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Upplev Costa Brava på ditt sätt. Hyr motorcyklar, scootrar och quads och utforska varje hörn av Lloret med total frihet.',
+      'hero.prices': 'Se priser',
+      'hero.contact': 'Så kommer du hit',
+      'about.label': 'Om oss',
+      'about.title': 'Grundat av Gevorg Avdalyan',
+      'about.description': 'Aleks Rent är referenspunkten för fordonsuthyrning i Lloret de Mar. Vårt team talar spanska, ryska, engelska och franska, och vi inspekterar varje fordon varje morgon för att garantera din säkerhet.',
+      'about.paragraph1': 'Du besöker en av de vackraste platserna på Costa Brava. För att du ska kunna njuta fullt ut av din vistelse erbjuder Aleks Rent en bred flotta med scootrar, motorcyklar, quads och elcyklar.',
+      'about.paragraph2': 'Vi erbjuder leverans direkt till hotell i hela Costa Brava och Girona flygplats. Besök oss så hjälper vi dig med största vänlighet!',
+      'about.statExperience': 'År av erfarenhet',
+      'about.statLanguages': 'Språk stöds',
+      'about.statRating': 'Genomsnittsbetyg',
+      'about.statReview': 'Daglig kontroll',
+      'prices.label': 'Priser 2025',
+      'prices.title': 'Våra fordon',
+      'prices.description': 'Timpriser. Återbetalningsbar deposition ges tillbaka när fordonet returneras i perfekt skick.',
+      'prices.note': '* En återbetalningsbar deposition krävs. Priser är beroende av tillgänglighet. Fråga i butiken.',
+      'vehicle.50.tag': 'Ingen körkort krävs',
+      'vehicle.50.name': '50cc Scooter',
+      'vehicle.50.desc': 'Perfekt för att ta sig runt centrala Lloret. Lätt, enkel att köra, idealisk för nybörjare.',
+      'vehicle.140.tag': 'Körkort A1 krävs',
+      'vehicle.140.name': '140cc Motorcykel',
+      'vehicle.140.desc': 'Mer kraft för att utforska Costa Brava. Perfekt för vägutflykter.',
+      'vehicle.quad1.tag': 'Quad – Ingen körkort krävs',
+      'vehicle.quad1.name': 'Standard Quad',
+      'vehicle.quad1.desc': 'Den klassiska quaden för äventyr på bergsstigar och landsvägar. Ren adrenalin.',
+      'vehicle.quad2.tag': 'Quad – Körkort B krävs',
+      'vehicle.quad2.name': 'Medelstor Quad',
+      'vehicle.quad2.desc': 'Större cylindervolym och kraft. Hanterar mer krävande terräng med lätthet.',
+      'vehicle.quad3.tag': 'Premium Quad – Körkort krävs',
+      'vehicle.quad3.name': 'Gigantisk Quad',
+      'vehicle.quad3.desc': 'Flottans best. Maximal kraft, maximal grepp. Den ultimata upplevelsen.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ timme',
+      'contact.label': 'Hitta oss',
+      'contact.title': 'Var vi är',
+      'contact.addressLabel': 'Adress',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefon',
+      'contact.emailLabel': 'E-post',
+      'contact.hoursLabel': 'Öppettider',
+      'contact.hoursValue': 'Måndag till söndag: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Skriv till oss nu',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Grundat av Gevorg Avdalyan',
+      'footer.home': 'Start',
+      'footer.about': 'Om oss',
+      'footer.prices': 'Priser',
+      'footer.contact': 'Kontakt',
+      'footer.website': 'Officiell webbplats',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Alla rättigheter reserverade.'
+    },
+    da: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Om os',
+      'nav.prices': 'Priser',
+      'nav.contact': 'Kontakt',
+      'banner.welcome': 'Velkommen til <span>Aleks Rent</span>',
+      'banner.description': 'Leje af motorcykler, scootere og quads i Lloret de Mar – Costa Brava',
+      'banner.button': 'Begynd at udforske!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Oplev Costa Brava på din måde. Lej motorcykler, scootere og quads og udforsk hvert hjørne af Lloret med total frihed.',
+      'hero.prices': 'Se priser',
+      'hero.contact': 'Sådan kommer du',
+      'about.label': 'Om os',
+      'about.title': 'Grundlagt af Gevorg Avdalyan',
+      'about.description': 'Aleks Rent er referencepunktet for leje af køretøjer i Lloret de Mar. Vores team taler spansk, russisk, engelsk og fransk, og vi inspicerer hvert køretøj hver morgen for at sikre din sikkerhed.',
+      'about.paragraph1': 'Du besøger et af de smukkeste steder på Costa Brava. For at du kan nyde dit ophold fuldt ud, tilbyder Aleks Rent en bred vifte af scootere, motorcykler, quads og elcykler.',
+      'about.paragraph2': 'Vi leverer direkte til hoteller i hele Costa Brava og Girona lufthavn. Besøg os, og vi hjælper dig med stor venlighed!',
+      'about.statExperience': 'Års erfaring',
+      'about.statLanguages': 'Understøttede sprog',
+      'about.statRating': 'Gennemsnitlig vurdering',
+      'about.statReview': 'Daglig inspektion',
+      'prices.label': 'Priser 2025',
+      'prices.title': 'Vores køretøjer',
+      'prices.description': 'Timepriser. Refunderbart depositum returneres, når køretøjet returneres i perfekt stand.',
+      'prices.note': '* Der kræves et refunderbart depositum. Priser er afhængige af tilgængelighed. Spørg i butikken.',
+      'vehicle.50.tag': 'Ingen licens påkrævet',
+      'vehicle.50.name': '50cc Scooter',
+      'vehicle.50.desc': 'Perfekt til at komme rundt i centrum af Lloret. Let, nem at køre, ideel til begyndere.',
+      'vehicle.140.tag': 'Kræver A1-licens',
+      'vehicle.140.name': '140cc Motorcykel',
+      'vehicle.140.desc': 'Mere kraft til at udforske Costa Brava. Ideel til ture på vejen.',
+      'vehicle.quad1.tag': 'Quad – Ingen licens påkrævet',
+      'vehicle.quad1.name': 'Standard Quad',
+      'vehicle.quad1.desc': 'Den klassiske quad til eventyr på bjergstier og landeveje. Ren adrenalin.',
+      'vehicle.quad2.tag': 'Quad – Kræver B-licens',
+      'vehicle.quad2.name': 'Mellem Quad',
+      'vehicle.quad2.desc': 'Større slagvolumen og kraft. Mestring af mere udfordrende terræn med lethed.',
+      'vehicle.quad3.tag': 'Premium Quad – Licens påkrævet',
+      'vehicle.quad3.name': 'Gigantisk Quad',
+      'vehicle.quad3.desc': 'Flottens bæst. Maksimal kraft, maksimal greb. Den ultimative oplevelse.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ time',
+      'contact.label': 'Find os',
+      'contact.title': 'Hvor vi er',
+      'contact.addressLabel': 'Adresse',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefon',
+      'contact.emailLabel': 'Email',
+      'contact.hoursLabel': 'Åbningstider',
+      'contact.hoursValue': 'Mandag til søndag: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Skriv til os nu',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Grundlagt af Gevorg Avdalyan',
+      'footer.home': 'Start',
+      'footer.about': 'Om os',
+      'footer.prices': 'Priser',
+      'footer.contact': 'Kontakt',
+      'footer.website': 'Officiel side',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Alle rettigheder forbeholdes.'
+    },
+    no: {
+      pageTitle: 'Aleks Rent – Lloret de Mar',
+      'nav.about': 'Om oss',
+      'nav.prices': 'Priser',
+      'nav.contact': 'Kontakt',
+      'banner.welcome': 'Velkommen til <span>Aleks Rent</span>',
+      'banner.description': 'Leie av motorsykler, scootere og quads i Lloret de Mar – Costa Brava',
+      'banner.button': 'Begynn å utforske!',
+      'hero.badge': '🏍️ Lloret de Mar · Costa Brava',
+      'hero.sub': 'Opplev Costa Brava på din måte. Lei motorsykler, scootere og quads og utforsk hvert hjørne av Lloret med full frihet.',
+      'hero.prices': 'Se priser',
+      'hero.contact': 'Hvordan komme dit',
+      'about.label': 'Om oss',
+      'about.title': 'Grunnlagt av Gevorg Avdalyan',
+      'about.description': 'Aleks Rent er referansepunktet for kjøretøyleie i Lloret de Mar. Teamet vårt snakker spansk, russisk, engelsk og fransk, og vi inspiserer hvert kjøretøy hver morgen for å sikre din trygghet.',
+      'about.paragraph1': 'Du besøker et av de vakreste stedene på Costa Brava. For at du skal kunne nyte oppholdet fullt ut, tilbyr Aleks Rent en bred flåte av scootere, motorsykler, quads og elsykler.',
+      'about.paragraph2': 'Vi tilbyr levering direkte til hoteller i hele Costa Brava og Girona lufthavn. Besøk oss og vi hjelper deg med stor vennlighet!',
+      'about.statExperience': 'År med erfaring',
+      'about.statLanguages': 'Støttede språk',
+      'about.statRating': 'Gjennomsnittlig vurdering',
+      'about.statReview': 'Daglig inspeksjon',
+      'prices.label': 'Priser 2025',
+      'prices.title': 'Våre kjøretøy',
+      'prices.description': 'Timepriser. Refunderbart depositum returneres når kjøretøyet leveres tilbake i perfekt stand.',
+      'prices.note': '* Et refunderbart depositum kreves. Priser avhenger av tilgjengelighet. Spør i butikken.',
+      'vehicle.50.tag': 'Ingen førerkort kreves',
+      'vehicle.50.name': '50cc Scooter',
+      'vehicle.50.desc': 'Perfekt for å komme rundt i sentrum av Lloret. Lett, enkel å kjøre, ideell for nybegynnere.',
+      'vehicle.140.tag': 'Førerkort A1 kreves',
+      'vehicle.140.name': '140cc Motorsykkel',
+      'vehicle.140.desc': 'Mer kraft for å utforske Costa Brava. Ideell for bilturer.',
+      'vehicle.quad1.tag': 'Quad – Ingen førerkort kreves',
+      'vehicle.quad1.name': 'Standard Quad',
+      'vehicle.quad1.desc': 'Den klassiske quaden for eventyr på fjellstier og landeveier. Ren adrenalin.',
+      'vehicle.quad2.tag': 'Quad – Førerkort B kreves',
+      'vehicle.quad2.name': 'Mellomstor Quad',
+      'vehicle.quad2.desc': 'Større slagvolum og kraft. Mestring av mer krevende terreng med letthet.',
+      'vehicle.quad3.tag': 'Premium Quad – Førerkort kreves',
+      'vehicle.quad3.name': 'Gigantisk Quad',
+      'vehicle.quad3.desc': 'Flåtens uhyre. Maksimal kraft, maksimal grep. Den ultimate opplevelsen.',
+      'vehicle.featured': '⭐ TOP',
+      'vehicle.priceUnit': '/ time',
+      'contact.label': 'Finn oss',
+      'contact.title': 'Hvor vi er',
+      'contact.addressLabel': 'Adresse',
+      'contact.addressValue': 'C/ Josep de Togores 17, 17310 Lloret de Mar, Girona',
+      'contact.phoneLabel': 'Telefon',
+      'contact.emailLabel': 'E-post',
+      'contact.hoursLabel': 'Åpningstider',
+      'contact.hoursValue': 'Mandag til søndag: 09:00 – 21:00',
+      'contact.whatsappLabel': 'WhatsApp',
+      'contact.whatsappLink': 'Skriv til oss nå',
+      'footer.tagline': 'Lloret de Mar · Costa Brava · Grunnlagt av Gevorg Avdalyan',
+      'footer.home': 'Start',
+      'footer.about': 'Om oss',
+      'footer.prices': 'Priser',
+      'footer.contact': 'Kontakt',
+      'footer.website': 'Offisiell side',
+      'footer.copy': '© 2025 Aleks Rent S.L. — Alle rettigheter reservert.'
+    }
+  };
+
+  const setLanguage = (lang) => {
+    const strings = translations[lang] || translations.es;
+    document.documentElement.lang = lang;
+    document.title = strings.pageTitle;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      const value = strings[key] || translations.es[key] || el.textContent;
+      if (key === 'banner.welcome') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    });
+    localStorage.setItem('aleksrentLang', lang);
+  };
+
+  const languageSwitcher = document.getElementById('language-switcher');
+  const savedLang = localStorage.getItem('aleksrentLang') || 'es';
+  languageSwitcher.value = savedLang;
+  setLanguage(savedLang);
+  languageSwitcher.addEventListener('change', (event) => setLanguage(event.target.value));
+
+  const bgAudio = document.getElementById('bg-audio');
+  const audioToggle = document.getElementById('audio-toggle');
+  const savedAudio = localStorage.getItem('aleksrentAudio') === 'on';
+  const updateAudioState = (on) => {
+    if (on) {
+      bgAudio.play().catch(() => {});
+      audioToggle.textContent = '🔇';
+    } else {
+      bgAudio.pause();
+      audioToggle.textContent = '🎷';
+    }
+    localStorage.setItem('aleksrentAudio', on ? 'on' : 'off');
+  };
+  updateAudioState(savedAudio);
+  audioToggle.addEventListener('click', () => updateAudioState(bgAudio.paused));
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
