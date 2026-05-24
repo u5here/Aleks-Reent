@@ -213,6 +213,50 @@
     /* ── PRICES ── */
     #prices { background:var(--bg); }
     .prices-intro { margin-bottom:50px; }
+    .booking-grid {
+      display:grid; grid-template-columns:1.5fr 1fr; gap:34px; align-items:start; margin-top:30px;
+    }
+    .booking-form {
+      display:flex; flex-direction:column; gap:18px;
+    }
+    .form-row {
+      display:grid; grid-template-columns:1fr 1fr; gap:16px;
+    }
+    .booking-form label {
+      display:flex; flex-direction:column; gap:8px;
+      color:var(--text); font-size:.94rem;
+    }
+    .booking-form input,
+    .booking-form select,
+    .booking-form textarea {
+      width:100%; border:1px solid var(--border);
+      border-radius:14px; padding:14px 16px;
+      background:#fff; color:var(--text); font:inherit;
+    }
+    .booking-form textarea { min-height:120px; resize:vertical; }
+    .booking-form small { color:var(--muted); font-size:.78rem; }
+    .booking-form .full-width { grid-column:1 / -1; }
+    .payment-panel { display:flex; align-items:flex-start; }
+    .payment-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:18px; padding:26px; box-shadow:0 14px 32px rgba(26,79,160,.08);
+      width:100%; position:sticky; top:100px;
+    }
+    .payment-card h3 { margin-bottom:14px; }
+    .payment-details { display:grid; gap:10px; margin:18px 0 16px; color:var(--muted); }
+    .payment-details strong { color:var(--text); }
+    .btn-secondary {
+      display:inline-flex; justify-content:center; align-items:center;
+      width:100%; padding:14px 22px; border-radius:12px;
+      border:1px solid var(--blue); background:#fff; color:var(--blue);
+      font-weight:700; cursor:pointer; transition:all .2s;
+    }
+    .btn-secondary:hover { background:rgba(26,79,160,.08); }
+    @media (max-width: 880px) {
+      .booking-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .payment-card { position:relative; top:0; }
+    }
     .vehicles-grid {
       display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px;
     }
@@ -389,6 +433,7 @@
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav.about">Nosotros</a></li>
     <li><a href="#prices" data-i18n="nav.prices">Precios</a></li>
+    <li><a href="#booking" data-i18n="nav.booking">Reserva</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
   </ul>
   <div class="nav-end">
@@ -547,6 +592,74 @@
   </div>
 </section>
 
+<!-- BOOKING -->
+<section id="booking">
+  <div class="container">
+    <div class="booking-intro reveal">
+      <div class="section-label" data-i18n="booking.label">Reserva ahora</div>
+      <h2 class="section-title" data-i18n="booking.title">Reserva tu vehículo</h2>
+      <p class="section-desc" data-i18n="booking.desc">Rellena el formulario y recibirás un correo de confirmación. Después podrás proceder al pago seguro.</p>
+    </div>
+    <div class="booking-grid reveal">
+      <form class="booking-form" id="booking-form" action="https://formsubmit.co/aleksrentsl@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nueva reserva Aleks Rent">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://u5here.github.io/Aleks-Reent/?reserva=ok">
+        <div class="form-row">
+          <label>Nombre completo<input type="text" name="Nombre completo" required></label>
+          <label>Email<input type="email" name="Email" required></label>
+        </div>
+        <div class="form-row">
+          <label>Teléfono<input type="tel" name="Teléfono" required></label>
+          <label>Vehículo<select name="Vehículo" required>
+              <option value="KYMCO VITALITY 50CC">KYMCO VITALITY 50CC</option>
+              <option value="KYMCO AGILITY CITY 125CC">KYMCO AGILITY CITY 125CC</option>
+              <option value="KYMCO SUPERDIMK 125CC">KYMCO SUPERDIMK 125CC</option>
+              <option value="KYMCO MXU RESERVE 50CC">KYMCO MXU RESERVE 50CC</option>
+              <option value="KYMCO MXU 150CC">KYMCO MXU 150CC</option>
+              <option value="KYMCO MXU 300CC">KYMCO MXU 300CC</option>
+              <option value="CFORCE CF MOTO 450CC">CFORCE CF MOTO 450CC</option>
+              <option value="BICICLETA ELÉCTRICA">BICICLETA ELÉCTRICA</option>
+              <option value="BICICLETA NORMAL">BICICLETA NORMAL</option>
+              <option value="PATINETE ELÉCTRICO">PATINETE ELÉCTRICO</option>
+            </select></label>
+        </div>
+        <div class="form-row">
+          <label>Fecha de recogida<input type="date" name="Fecha de recogida" required></label>
+          <label>Hora de recogida<input type="time" name="Hora de recogida" required></label>
+        </div>
+        <div class="form-row">
+          <label>Fecha de devolución<input type="date" name="Fecha de devolución" required></label>
+          <label>Hora de devolución<input type="time" name="Hora de devolución" required></label>
+        </div>
+        <label class="full-width">Comentarios<textarea name="Comentarios" rows="4" placeholder="Escribe aquí detalles adicionales..."></textarea></label>
+        <div class="form-row">
+          <label>Forma de pago<select name="Forma de pago" required>
+              <option value="Tarjeta bancaria">Tarjeta bancaria</option>
+              <option value="Bizum">Bizum</option>
+              <option value="Transferencia">Transferencia</option>
+            </select></label>
+          <label>Importe estimado<small>Solo para referencia</small><input type="text" name="Importe estimado" placeholder="Ej. 120€"></label>
+        </div>
+        <button type="submit" class="btn-primary" data-i18n="booking.submit">Enviar reserva</button>
+      </form>
+      <div class="payment-panel">
+        <div class="payment-card">
+          <h3 data-i18n="booking.payTitle">Pago seguro</h3>
+          <p data-i18n="booking.payText">El pago se puede realizar con tarjeta o transferencia. Cuando nos pases los datos, los añadiremos aquí.</p>
+          <div class="payment-details" id="payment-details">
+            <div><strong>Titular:</strong> Aleks Rent S.L.</div>
+            <div><strong>Tarjeta / IBAN:</strong> 0000 0000 0000 0000</div>
+            <div><strong>Concepto:</strong> RESERVA NOMBRE APELLIDO</div>
+            <div><strong>Email de confirmación:</strong> aleksrentsl@gmail.com</div>
+          </div>
+          <button type="button" class="btn-secondary" id="copy-payment-button">Copiar datos de pago</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -595,6 +708,7 @@
     <li><a href="#hero" data-i18n="footer.home">Inicio</a></li>
     <li><a href="#about" data-i18n="footer.about">Nosotros</a></li>
     <li><a href="#prices" data-i18n="footer.prices">Precios</a></li>
+    <li><a href="#booking" data-i18n="footer.booking">Reserva</a></li>
     <li><a href="#contact" data-i18n="footer.contact">Contacto</a></li>
     <li><a href="https://aleksrent.es" target="_blank" data-i18n="footer.official">aleksrent.es</a></li>
   </ul>
@@ -616,36 +730,40 @@
 
   const translations = {
     es: {
-      nav: { about: 'Nosotros', prices: 'Precios', contact: 'Contacto' },
+      nav: { about: 'Nosotros', prices: 'Precios', booking: 'Reserva', contact: 'Contacto' },
       hero: { badge: '🏍️ Lloret de Mar · Costa Brava', sub: 'Vive la Costa Brava a tu manera. Alquila motos, scooters y quads y explora cada rincón de Lloret con libertad total.', cta1: 'Ver precios', cta2: 'Cómo llegar' },
       about: { label: 'Sobre nosotros', title: 'Fundada por Gevorg Avdalyan', desc: 'Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.', text1: 'Estás visitando uno de los lugares más hermosos de la Costa Brava. Para que disfrutes plenamente de tu estancia, Aleks Rent pone a tu disposición una amplia flota de scooters, motos, quads y bicicletas eléctricas.', text2: 'Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!' },
       prices: { label: 'Tarifas 2025', title: 'Nuestros Vehículos', desc: 'Precios por hora. Depósito de fianza reembolsable al devolver el vehículo en perfecto estado.', note: '* Se exige depósito / fianza reembolsable. Precios sujetos a disponibilidad. Consultar en tienda.' },
       contact: { label: 'Encuéntranos', title: 'Dónde Estamos', address: 'Dirección', phone: 'Teléfono', email: 'Email', schedule: 'Horario', scheduleValue: 'Lunes a Domingo: 09:00 – 21:00', whatsapp: 'WhatsApp', whatsappLink: 'Escríbenos ahora' },
-      footer: { home: 'Inicio', about: 'Nosotros', prices: 'Precios', contact: 'Contacto', official: 'aleksrent.es' }
+      footer: { home: 'Inicio', about: 'Nosotros', prices: 'Precios', booking: 'Reserva', contact: 'Contacto', official: 'aleksrent.es' },
+      booking: { label: 'Reserva ahora', title: 'Reserva tu vehículo', desc: 'Rellena el formulario y recibirás un correo de confirmación. Después podrás proceder al pago seguro.', payTitle: 'Pago seguro', payText: 'El pago se puede realizar con tarjeta o transferencia. Cuando nos pases los datos, los añadiremos aquí.', submit: 'Enviar reserva' }
     },
     en: {
-      nav: { about: 'About', prices: 'Prices', contact: 'Contact' },
+      nav: { about: 'About', prices: 'Prices', booking: 'Book', contact: 'Contact' },
       hero: { badge: '🏍️ Lloret de Mar · Costa Brava', sub: 'Experience the Costa Brava your way. Rent motorcycles, scooters and quads and explore every corner of Lloret with total freedom.', cta1: 'View prices', cta2: 'How to arrive' },
       about: { label: 'About us', title: 'Founded by Gevorg Avdalyan', desc: 'Aleks Rent is the go-to place for vehicle rental in Lloret de Mar. Our team speaks Spanish, Russian, English and French, and we inspect every vehicle each morning to keep you safe.', text1: 'You are visiting one of the most beautiful places on the Costa Brava. To help you enjoy your stay, Aleks Rent offers a wide fleet of scooters, motorcycles, quads and e-bikes.', text2: 'We provide delivery service directly to hotels across the Costa Brava and to Girona airport. Visit us and we will serve you with the greatest friendliness!' },
       prices: { label: 'Rates 2025', title: 'Our Vehicles', desc: 'Hourly prices. Refundable deposit when you return the vehicle in perfect condition.', note: '* A refundable deposit is required. Prices are subject to availability. Check in store.' },
       contact: { label: 'Find us', title: 'Where we are', address: 'Address', phone: 'Phone', email: 'Email', schedule: 'Hours', scheduleValue: 'Monday to Sunday: 09:00 – 21:00', whatsapp: 'WhatsApp', whatsappLink: 'Write to us now' },
-      footer: { home: 'Home', about: 'About', prices: 'Prices', contact: 'Contact', official: 'aleksrent.es' }
+      footer: { home: 'Home', about: 'About', prices: 'Prices', booking: 'Book', contact: 'Contact', official: 'aleksrent.es' },
+      booking: { label: 'Book now', title: 'Reserve your vehicle', desc: 'Complete the form and receive a confirmation email. After that you can proceed with secure payment.', payTitle: 'Secure payment', payText: 'Payment can be made by card or transfer. When you provide the details, we will add them here.', submit: 'Submit booking' }
     },
     fr: {
-      nav: { about: 'À propos', prices: 'Tarifs', contact: 'Contact' },
+      nav: { about: 'À propos', prices: 'Tarifs', booking: 'Réserver', contact: 'Contact' },
       hero: { badge: '🏍️ Lloret de Mar · Costa Brava', sub: 'Vivez la Costa Brava à votre façon. Louez motos, scooters et quads et explorez chaque coin de Lloret en toute liberté.', cta1: 'Voir les prix', cta2: 'Itinéraire' },
       about: { label: 'À propos', title: 'Fondée par Gevorg Avdalyan', desc: 'Aleks Rent est la référence pour la location de véhicules à Lloret de Mar. Notre équipe parle espagnol, russe, anglais et français, et nous inspectons chaque véhicule chaque matin pour garantir votre sécurité.', text1: 'Vous visitez l’un des plus beaux endroits de la Costa Brava. Pour que vous profitiez pleinement de votre séjour, Aleks Rent met à votre disposition une large flotte de scooters, motos, quads et vélos électriques.', text2: 'Nous proposons un service de livraison directement dans les hôtels de toute la Costa Brava et à l’aéroport de Gérone. Visitez-nous et nous vous servirons avec la plus grande cordialité !' },
       prices: { label: 'Tarifs 2025', title: 'Nos véhicules', desc: 'Prix à l’heure. Dépôt remboursable au retour du véhicule en parfait état.', note: '* Un dépôt remboursable est exigé. Prix soumis à disponibilité. Consultez le magasin.' },
       contact: { label: 'Nous trouver', title: 'Où nous sommes', address: 'Adresse', phone: 'Téléphone', email: 'Email', schedule: 'Horaires', scheduleValue: 'Lundi à dimanche : 09:00 – 21:00', whatsapp: 'WhatsApp', whatsappLink: 'Écrivez-nous maintenant' },
-      footer: { home: 'Accueil', about: 'À propos', prices: 'Tarifs', contact: 'Contact', official: 'aleksrent.es' }
+      footer: { home: 'Accueil', about: 'À propos', prices: 'Tarifs', booking: 'Réserver', contact: 'Contact', official: 'aleksrent.es' },
+      booking: { label: 'Réservez maintenant', title: 'Réservez votre véhicule', desc: 'Remplissez le formulaire et recevez un e-mail de confirmation. Ensuite, vous pourrez procéder au paiement sécurisé.', payTitle: 'Paiement sécurisé', payText: 'Le paiement peut être effectué par carte ou virement. Lorsque vous transmettez les informations, nous les ajouterons ici.', submit: 'Envoyer la réservation' }
     },
     ru: {
-      nav: { about: 'О нас', prices: 'Цены', contact: 'Контакты' },
+      nav: { about: 'О нас', prices: 'Цены', booking: 'Бронирование', contact: 'Контакты' },
       hero: { badge: '🏍️ Льорет де Мар · Коста-Брава', sub: 'Откройте Коста-Браву по-своему. Арендуйте мотоциклы, скутеры и квадроциклы и исследуйте каждый уголок Льорета с полной свободой.', cta1: 'Смотреть цены', cta2: 'Как добраться' },
       about: { label: 'О нас', title: 'Основана Геворгом Авдаляном', desc: 'Aleks Rent — это точка аренды транспорта в Льорет де Мар. Наша команда говорит на испанском, русском, английском и французском, и мы проверяем каждое транспортное средство каждое утро, чтобы гарантировать вашу безопасность.', text1: 'Вы посещаете одно из самых красивых мест на Коста-Брава. Чтобы вы могли полностью насладиться своим пребыванием, Aleks Rent предоставляет широкий парк скутеров, мотоциклов, квадроциклов и электровелосипедов.', text2: 'Мы предоставляем доставку прямо в отели по всей Коста-Браве и в аэропорт Жироны. Посетите нас, и мы обслужим вас с максимальным гостеприимством!' },
       prices: { label: 'Тарифы 2025', title: 'Наши транспортные средства', desc: 'Цены за час. Возвращаемый депозит при возврате транспортного средства в идеальном состоянии.', note: '* Требуется возвратный депозит. Цены могут быть изменены. Узнайте в магазине.' },
       contact: { label: 'Где нас найти', title: 'Где мы', address: 'Адрес', phone: 'Телефон', email: 'Email', schedule: 'Часы работы', scheduleValue: 'Понедельник — воскресенье: 09:00 – 21:00', whatsapp: 'WhatsApp', whatsappLink: 'Напишите нам сейчас' },
-      footer: { home: 'Главная', about: 'О нас', prices: 'Цены', contact: 'Контакты', official: 'aleksrent.es' }
+      footer: { home: 'Главная', about: 'О нас', prices: 'Цены', booking: 'Бронирование', contact: 'Контакты', official: 'aleksrent.es' },
+      booking: { label: 'Бронируйте сейчас', title: 'Забронируйте ваш транспорт', desc: 'Заполните форму и получите подтверждение по электронной почте. После этого вы сможете перейти к безопасной оплате.', payTitle: 'Безопасная оплата', payText: 'Оплата может быть произведена картой или переводом. Когда вы передадите данные, мы добавим их сюда.', submit: 'Отправить бронирование' }
     }
   };
 
@@ -699,6 +817,24 @@
       });
     });
   });
+
+  const copyPaymentButton = document.getElementById('copy-payment-button');
+  if (copyPaymentButton) {
+    copyPaymentButton.addEventListener('click', () => {
+      const paymentText = 'Titular: Aleks Rent S.L.\nTarjeta / IBAN: 0000 0000 0000 0000\nConcepto: RESERVA NOMBRE APELLIDO';
+      navigator.clipboard.writeText(paymentText).then(() => {
+        alert('Datos de pago copiados. Pégalos en tu app bancaria o de Bizum.');
+      }).catch(() => {
+        alert('Copia manual: ' + paymentText);
+      });
+    });
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('reserva') === 'ok') {
+    alert('Reserva enviada. Revisa tu correo y procederemos con la confirmación.');
+    history.replaceState(null, '', window.location.pathname);
+  }
 
   updateLanguage('es');
 
