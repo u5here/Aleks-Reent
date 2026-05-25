@@ -90,6 +90,14 @@
       transition:background .2s;
     }
     .nav-phone:hover { background:var(--blue2); }
+    .lang-selector { display:flex; gap:4px; margin-left:10px; }
+    .lang-btn {
+      background:transparent; border:2px solid transparent;
+      font-size:1.4rem; padding:2px 4px; border-radius:8px; cursor:pointer;
+      transition:all .2s; opacity:.55; line-height:1;
+    }
+    .lang-btn:hover { opacity:1; transform:scale(1.15); }
+    .lang-btn.active { opacity:1; border-color:var(--blue); background:rgba(26,79,160,.08); transform:scale(1.1); }
 
     /* ── HERO ── */
     #hero {
@@ -310,7 +318,15 @@
     <li><a href="#prices">Precios</a></li>
     <li><a href="#contact">Contacto</a></li>
   </ul>
-  <a class="nav-phone" href="tel:+34693744814">📞 +34 693 74 48 14</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lang-selector">
+      <button class="lang-btn active" onclick="setLang('es',this)" title="Español">🇪🇸</button>
+      <button class="lang-btn" onclick="setLang('en',this)" title="English">🇬🇧</button>
+      <button class="lang-btn" onclick="setLang('fr',this)" title="Français">🇫🇷</button>
+      <button class="lang-btn" onclick="setLang('ru',this)" title="Русский">🇷🇺</button>
+    </div>
+    <a class="nav-phone" href="tel:+34693744814">📞 +34 693 74 48 14</a>
+  </div>
 </nav>
 
 <!-- HERO -->
