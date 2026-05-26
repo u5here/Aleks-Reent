@@ -10,7 +10,6 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
-
     /* BANNER */
     #banner-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(13,27,62,0.90);animation:fadeIn .4s ease;}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -21,9 +20,8 @@
     .banner-content h2{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#fff;letter-spacing:2px;}
     .banner-content h2 span{color:var(--sky);}
     .banner-content p{font-size:.9rem;color:#a8bcd4;margin:5px 0 16px;}
-    .banner-btn{background:var(--blue);color:#fff;border:none;padding:12px 34px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s,transform .15s;}
-    .banner-btn:hover{background:var(--blue2);transform:scale(1.04);}
-
+    .banner-btn{background:var(--blue);color:#fff;border:none;padding:12px 34px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s;}
+    .banner-btn:hover{background:var(--blue2);}
     /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 32px;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(26,79,160,.07);}
     .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);letter-spacing:2px;text-decoration:none;}
@@ -31,14 +29,13 @@
     .nav-links a{color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s;}
     .nav-links a:hover{color:var(--blue);}
     .nav-right{display:flex;align-items:center;gap:10px;}
-    .lang-selector{display:flex;gap:3px;}
-    .lang-btn{background:transparent;border:2px solid transparent;padding:2px;border-radius:6px;cursor:pointer;opacity:.55;transition:all .2s;line-height:0;display:inline-flex;}
+    .lang-selector{display:flex;gap:4px;}
+    .lang-btn{background:transparent;border:2px solid transparent;padding:2px;border-radius:6px;cursor:pointer;opacity:.5;transition:all .2s;line-height:0;display:inline-flex;}
     .lang-btn img{width:32px;height:auto;border-radius:3px;display:block;box-shadow:0 1px 4px rgba(0,0,0,.2);}
     .lang-btn:hover{opacity:1;transform:scale(1.15);}
-    .lang-btn.active{opacity:1;border-color:var(--blue);background:rgba(26,79,160,.1);border-radius:6px;}
+    .lang-btn.active{opacity:1;border-color:var(--blue);background:rgba(26,79,160,.1);}
     .nav-phone{background:var(--blue);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border-radius:50px;white-space:nowrap;transition:background .2s;}
     .nav-phone:hover{background:var(--blue2);}
-
     /* HERO */
     #hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
     .hero-bg{position:absolute;inset:0;background:url('hero_final.jpg') center center/cover no-repeat;}
@@ -53,14 +50,12 @@
     .btn-primary:hover{background:var(--blue2);transform:translateY(-2px);}
     .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.38);padding:14px 36px;border-radius:50px;font-weight:600;font-size:.97rem;text-decoration:none;transition:border-color .2s,color .2s;}
     .btn-outline:hover{border-color:var(--sky);color:var(--sky);}
-
     /* SECTIONS */
     section{padding:88px 0;}
     .container{max-width:1150px;margin:0 auto;padding:0 24px;}
     .section-label{font-size:.72rem;letter-spacing:3px;font-weight:700;color:var(--blue);text-transform:uppercase;margin-bottom:8px;}
     .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.3rem);letter-spacing:2px;line-height:1;margin-bottom:14px;color:var(--text);}
     .section-desc{color:var(--muted);max-width:550px;line-height:1.7;font-size:.96rem;}
-
     /* ABOUT */
     #about{background:#fff;}
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:46px;}
@@ -71,14 +66,20 @@
     .stat-card:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(26,79,160,.08);}
     .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;color:var(--blue);}
     .stat-lbl{font-size:.78rem;color:var(--muted);margin-top:2px;}
-
+    /* FILTER TABS */
+    .filter-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 36px;}
+    .ftab{background:#fff;border:1.5px solid var(--border);color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:10px 22px;border-radius:50px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px;}
+    .ftab:hover{border-color:var(--blue);color:var(--blue);}
+    .ftab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(26,79,160,.25);}
     /* PRICES */
     #prices{background:var(--bg);}
-    .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:22px;margin-top:42px;}
-    .vcard{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 12px rgba(26,79,160,.05);transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;}
+    .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:22px;}
+    .vcard{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 12px rgba(26,79,160,.05);transition:transform .25s,box-shadow .25s,border-color .25s,opacity .3s;}
     .vcard:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(26,79,160,.13);border-color:rgba(26,79,160,.28);}
+    .vcard.hidden{display:none;}
     .vcard.featured{background:linear-gradient(135deg,#EEF4FF,#fff);border-color:rgba(26,79,160,.18);}
     .featured-badge{position:absolute;top:12px;right:12px;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:50px;}
+    .vcard{position:relative;}
     .vimg{width:100%;height:195px;object-fit:cover;display:block;background:#eef4fb;}
     .vbody{padding:20px;}
     .vtag{font-size:.66rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
@@ -87,23 +88,29 @@
     .ptable td{font-size:.82rem;padding:4px 0;color:var(--muted);border-bottom:1px solid rgba(26,79,160,.05);}
     .ptable tr:last-child td{border-bottom:none;}
     .ptable td:last-child{text-align:right;font-weight:700;color:var(--blue);}
-    .ptable tr:first-child td{font-size:.88rem;}
-    .ptable tr:first-child td:last-child{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--blue);}
+    .ptable tr:first-child td:last-child{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;}
     .bail-tag{display:inline-block;margin-top:11px;background:rgba(26,79,160,.07);color:var(--blue);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;}
-
+    /* GRUPO BANNER */
+    .grupo-banner{margin-top:44px;background:linear-gradient(135deg,var(--dark) 0%,#1A4FA0 100%);border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;}
+    .grupo-banner::before{content:'🏍️';position:absolute;right:32px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.1;}
+    .grupo-content{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+    .grupo-icon{font-size:2.8rem;flex-shrink:0;}
+    .grupo-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:1.5px;margin-bottom:6px;}
+    .grupo-content p{color:#a8bcd4;font-size:.88rem;line-height:1.6;max-width:480px;}
+    .grupo-btn{flex-shrink:0;background:#fff;color:var(--blue);font-weight:700;font-size:.88rem;padding:12px 26px;border-radius:50px;text-decoration:none;transition:all .2s;margin-left:auto;white-space:nowrap;}
+    .grupo-btn:hover{background:var(--sky);color:#fff;}
     /* CONTACT */
     #contact{background:#fff;}
     .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:46px;}
     .cinfo{display:flex;flex-direction:column;gap:13px;}
-    .citem{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:17px;transition:border-color .2s,box-shadow .2s;}
-    .citem:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(26,79,160,.07);}
+    .citem{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:17px;transition:border-color .2s;}
+    .citem:hover{border-color:var(--blue);}
     .cicon{font-size:1.3rem;min-width:34px;text-align:center;}
     .ctxt strong{display:block;font-size:.91rem;color:var(--text);margin-bottom:3px;}
     .ctxt span,.ctxt a{color:var(--muted);font-size:.85rem;text-decoration:none;}
     .ctxt a:hover{color:var(--blue);}
-    .mapwrap{border-radius:16px;overflow:hidden;height:400px;border:1px solid var(--border);box-shadow:0 2px 16px rgba(26,79,160,.07);}
+    .mapwrap{border-radius:16px;overflow:hidden;height:400px;border:1px solid var(--border);}
     .mapwrap iframe{width:100%;height:100%;border:none;}
-
     /* FOOTER */
     footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;text-align:center;}
     .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;letter-spacing:3px;}
@@ -113,49 +120,16 @@
     .footer-links a{color:#6a85b0;text-decoration:none;font-size:.82rem;}
     .footer-links a:hover{color:var(--sky);}
     .footer-copy{font-size:.74rem;color:#3a4f6e;}
-
-
-    /* FILTER TABS */
-    .filter-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 36px;}
-    .ftab{background:#fff;border:1.5px solid var(--border);color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:10px 22px;border-radius:50px;cursor:pointer;transition:all .2s;}
-    .ftab:hover{border-color:var(--blue);color:var(--blue);}
-    .ftab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(26,79,160,.25);}
-    .ftab .ftab-icon{margin-right:6px;font-size:.95rem;}
-    /* Card filter animation */
-    .vcard{transition:transform .25s,box-shadow .25s,border-color .25s,opacity .3s,max-height .3s;}
-    .vcard.hidden{display:none;}
-
-
-    /* GRUPO BANNER */
-    .grupo-banner{margin-top:44px;background:linear-gradient(135deg,var(--dark) 0%,#1A4FA0 100%);border-radius:18px;padding:32px 36px;overflow:hidden;position:relative;}
-    .grupo-banner::before{content:'🏍️';position:absolute;right:36px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.12;}
-    .grupo-content{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
-    .grupo-icon{font-size:2.8rem;flex-shrink:0;}
-    .grupo-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:#fff;letter-spacing:1.5px;margin-bottom:6px;}
-    .grupo-content p{color:#a8bcd4;font-size:.88rem;line-height:1.6;max-width:500px;}
-    .grupo-btn{flex-shrink:0;background:#fff;color:var(--blue);font-weight:700;font-size:.88rem;padding:12px 26px;border-radius:50px;text-decoration:none;transition:all .2s;margin-left:auto;white-space:nowrap;}
-    .grupo-btn:hover{background:var(--sky);color:#fff;}
-
     /* UTILS */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
     .reveal.visible{opacity:1;transform:none;}
     .wa-float{position:fixed;bottom:26px;right:26px;z-index:200;background:#25D366;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;font-size:1.4rem;transition:transform .2s;}
     .wa-float:hover{transform:scale(1.12);}
-
-    @media(max-width:860px){
-      nav{padding:10px 16px;}
-      .nav-links{display:none;}
-      .about-grid,.cgrid{grid-template-columns:1fr;gap:28px;}
-      .about-img{height:250px;}
-    }
-    @media(max-width:500px){
-      .hero-cta{flex-direction:column;}
-      .btn-primary,.btn-outline{width:100%;text-align:center;}
-    }
+    @media(max-width:860px){nav{padding:10px 16px;}.nav-links{display:none;}.about-grid,.cgrid{grid-template-columns:1fr;gap:28px;}.about-img{height:250px;}}
+    @media(max-width:500px){.hero-cta{flex-direction:column;}.btn-primary,.btn-outline{width:100%;text-align:center;}}
   </style>
 </head>
 <body>
-
 <script>
 const T={
   es:{
@@ -168,9 +142,13 @@ const T={
     about_desc1:"Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.",
     about_desc2:"Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!",
     s1:"Años de experiencia",s2:"Idiomas atendidos",s3:"Valoración media",s4:"Revisión diaria",
-    prices_lbl:"Tarifas 2025",prices_title:"Nuestros Vehículos",prices_desc:"Precios por hora y por días. Fianza reembolsable al devolver el vehículo en perfecto estado.",
-    bail:"Fianza",h1:"1 hora",h2:"2 horas (mín.)",extra:"Hora extra",xday:"día",xdays:"días",
+    prices_lbl:"Tarifas 2025",prices_title:"Nuestros Vehículos",prices_desc:"Vehículos con carnet, sin carnet y salidas en grupo.",
+    f_all:"Todos",f_nocarnet:"Sin carnet",f_carnet:"Requiere carnet",f_grupo:"Salidas en grupo",
+    bail:"Fianza",h1:"1 hora",h2:"2 horas",extra:"Hora extra",xday:"día",xdays:"días",
     no_lic:"Sin carnet",lic_a1:"Carnet A1",lic_b:"Carnet B",
+    grupo_title:"Excursiones en Grupo por la Costa Brava",
+    grupo_desc:"Organiza tu excursión en quad o moto por los paisajes más espectaculares. Rutas guiadas desde 4 personas. ¡Contacta para presupuesto especial!",
+    grupo_btn:"Reservar grupo",
     contact_lbl:"Encuéntranos",contact_title:"Dónde Estamos",
     c_addr:"Dirección",c_phone:"Teléfono",c_email:"Email",c_web:"Web oficial",
     c_sched:"Horario",c_sched_val:"Lunes a Domingo: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Escríbenos ahora",
@@ -187,9 +165,13 @@ const T={
     about_desc1:"Aleks Rent is the leading vehicle rental in Lloret de Mar. Our team speaks Spanish, Russian, English and French, and we inspect every vehicle every morning to ensure your safety.",
     about_desc2:"We offer delivery to hotels across the Costa Brava and to Girona Airport. Come visit us — we'll take great care of you!",
     s1:"Years of experience",s2:"Languages spoken",s3:"Average rating",s4:"Daily inspection",
-    prices_lbl:"2025 Rates",prices_title:"Our Vehicles",prices_desc:"Hourly and daily rates. Security deposit refunded on return in perfect condition.",
-    bail:"Deposit",h1:"1 hour",h2:"2 hours (min.)",extra:"Extra hour",xday:"day",xdays:"days",
+    prices_lbl:"2025 Rates",prices_title:"Our Vehicles",prices_desc:"Vehicles with license, without license and group tours.",
+    f_all:"All",f_nocarnet:"No license",f_carnet:"License required",f_grupo:"Group tours",
+    bail:"Deposit",h1:"1 hour",h2:"2 hours",extra:"Extra hour",xday:"day",xdays:"days",
     no_lic:"No license",lic_a1:"A1 license",lic_b:"B license",
+    grupo_title:"Group Excursions along the Costa Brava",
+    grupo_desc:"Organize your quad or motorbike excursion. Guided routes from 4 people. Contact us for a special quote!",
+    grupo_btn:"Book group",
     contact_lbl:"Find us",contact_title:"Where We Are",
     c_addr:"Address",c_phone:"Phone",c_email:"Email",c_web:"Official website",
     c_sched:"Hours",c_sched_val:"Monday to Sunday: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Message us now",
@@ -203,12 +185,16 @@ const T={
     hero_sub:"Explorez la Costa Brava à votre façon. Louez motos, scooters, quads et vélos en toute liberté.",
     btn_prices:"Voir les tarifs",btn_map:"Nous trouver",
     about_lbl:"À propos",about_title:"Fondée par Gevorg Avdalyan",
-    about_desc1:"Aleks Rent est la référence de la location de véhicules à Lloret de Mar. Notre équipe parle espagnol, russe, anglais et français, et inspecte chaque véhicule chaque matin.",
-    about_desc2:"Nous proposons la livraison dans les hôtels de toute la Costa Brava et à l'aéroport de Gérone. Venez nous rendre visite!",
+    about_desc1:"Aleks Rent est la référence de la location à Lloret de Mar. Notre équipe parle espagnol, russe, anglais et français et inspecte chaque véhicule chaque matin.",
+    about_desc2:"Livraison dans les hôtels de toute la Costa Brava et à l'aéroport de Gérone. Venez nous voir!",
     s1:"Ans d'expérience",s2:"Langues parlées",s3:"Note moyenne",s4:"Inspection quotidienne",
-    prices_lbl:"Tarifs 2025",prices_title:"Nos Véhicules",prices_desc:"Tarifs horaires et journaliers. Caution remboursable au retour.",
-    bail:"Caution",h1:"1 heure",h2:"2 heures (min.)",extra:"Heure sup.",xday:"jour",xdays:"jours",
+    prices_lbl:"Tarifs 2025",prices_title:"Nos Véhicules",prices_desc:"Véhicules avec permis, sans permis et sorties en groupe.",
+    f_all:"Tous",f_nocarnet:"Sans permis",f_carnet:"Permis requis",f_grupo:"Sorties en groupe",
+    bail:"Caution",h1:"1 heure",h2:"2 heures",extra:"Heure sup.",xday:"jour",xdays:"jours",
     no_lic:"Sans permis",lic_a1:"Permis A1",lic_b:"Permis B",
+    grupo_title:"Excursions en Groupe sur la Costa Brava",
+    grupo_desc:"Organisez votre excursion en quad ou moto. Circuits guidés à partir de 4 personnes. Contactez-nous!",
+    grupo_btn:"Réserver groupe",
     contact_lbl:"Nous trouver",contact_title:"Où Nous Sommes",
     c_addr:"Adresse",c_phone:"Téléphone",c_email:"Email",c_web:"Site officiel",
     c_sched:"Horaires",c_sched_val:"Lundi au Dimanche: 09h – 21h",c_wa:"WhatsApp",c_wa_val:"Écrivez-nous",
@@ -222,12 +208,16 @@ const T={
     hero_sub:"Исследуйте Коста-Браву по-своему. Арендуйте мотоциклы, скутеры, квадроциклы и велосипеды.",
     btn_prices:"Смотреть цены",btn_map:"Как нас найти",
     about_lbl:"О нас",about_title:"Основана Геворгом Авдалян",
-    about_desc1:"Aleks Rent — ведущая компания по аренде транспортных средств в Льорет-де-Мар. Наша команда говорит на испанском, русском, английском и французском языках и проверяет каждый транспорт каждое утро.",
-    about_desc2:"Мы предлагаем доставку в отели по всей Коста-Браве и в аэропорт Жироны. Приходите, мы рады вас видеть!",
+    about_desc1:"Aleks Rent — ведущая компания по аренде в Льорет-де-Мар. Наша команда говорит на испанском, русском, английском и французском языках.",
+    about_desc2:"Доставка в отели по всей Коста-Браве и в аэропорт Жироны. Приходите к нам!",
     s1:"Лет опыта",s2:"Языков",s3:"Рейтинг",s4:"Ежедн. проверка",
-    prices_lbl:"Тарифы 2025",prices_title:"Наши Транспортные Средства",prices_desc:"Почасовые и дневные тарифы. Залог возвращается при возврате.",
-    bail:"Залог",h1:"1 час",h2:"2 часа (мин.)",extra:"Доп. час",xday:"день",xdays:"дней",
+    prices_lbl:"Тарифы 2025",prices_title:"Наши Транспортные Средства",prices_desc:"Транспорт с правами, без прав и групповые туры.",
+    f_all:"Все",f_nocarnet:"Без прав",f_carnet:"Нужны права",f_grupo:"Групповые туры",
+    bail:"Залог",h1:"1 час",h2:"2 часа",extra:"Доп. час",xday:"день",xdays:"дней",
     no_lic:"Без прав",lic_a1:"Права A1",lic_b:"Права B",
+    grupo_title:"Групповые экскурсии по Коста-Браве",
+    grupo_desc:"Организуйте экскурсию на квадроцикле или мотоцикле. Маршруты от 4 человек. Свяжитесь с нами!",
+    grupo_btn:"Забронировать группу",
     contact_lbl:"Найти нас",contact_title:"Где Мы Находимся",
     c_addr:"Адрес",c_phone:"Телефон",c_email:"Email",c_web:"Официальный сайт",
     c_sched:"Расписание",c_sched_val:"Пн – Вс: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Написать нам",
@@ -236,33 +226,22 @@ const T={
   }
 };
 let lang='es';
-function setLang(l,
-    f_all:'Todos',f_nocarnet:'Sin carnet',f_carnet:'Requiere carnet',f_grupo:'Salidas en grupo',grupo_title:'Excursiones en Grupo por la Costa Brava',grupo_desc:'Organiza tu excursión en quad o moto. Rutas guiadas desde 4 personas. ¡Contacta para presupuesto especial!',grupo_btn:'Reservar grupo',btn){
+function setLang(l,btn){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('[data-t]').forEach(el=>{
-    const val=T[lang][el.dataset.t];
-    if(val) el.textContent=val;
-  });
+  document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
 }
-
-  function filterVehicles(cat, btn) {
-    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.vcard').forEach(card => {
-      const cats = card.dataset.cat || '';
-      if (cat === 'all' || cats.includes(cat)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-    // Show/hide grupo banner
-    const banner = document.querySelector('.grupo-banner');
-    if (banner) banner.style.display = (cat === 'all' || cat === 'grupo') ? '' : 'none';
-  }
-
+function filterVehicles(cat,btn){
+  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.vcard').forEach(card=>{
+    const cats=card.dataset.cat||'';
+    (cat==='all'||cats.includes(cat))?card.classList.remove('hidden'):card.classList.add('hidden');
+  });
+  const banner=document.querySelector('.grupo-banner');
+  if(banner) banner.style.display=(cat==='all'||cat==='grupo')?'':'none';
+}
 </script>
 
 <!-- BANNER -->
@@ -319,9 +298,7 @@ function setLang(l,
       <h2 class="section-title" data-t="about_title">Fundada por Gevorg Avdalyan</h2>
     </div>
     <div class="about-grid">
-      <div class="reveal">
-        <img class="about-img" src="interior.jpg" alt="Interior Aleks Rent"/>
-      </div>
+      <div class="reveal"><img class="about-img" src="interior.jpg" alt="Interior Aleks Rent"/></div>
       <div class="about-text reveal">
         <p data-t="about_desc1">Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar.</p>
         <p data-t="about_desc2">Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava.</p>
@@ -342,17 +319,14 @@ function setLang(l,
     <div class="reveal">
       <div class="section-label" data-t="prices_lbl">Tarifas 2025</div>
       <h2 class="section-title" data-t="prices_title">Nuestros Vehículos</h2>
-      <p class="section-desc" data-t="prices_desc">Precios por hora y días. Fianza reembolsable.</p>
+      <p class="section-desc" data-t="prices_desc">Vehículos con carnet, sin carnet y salidas en grupo.</p>
     </div>
-
-    <!-- FILTER TABS -->
     <div class="filter-tabs reveal">
-      <button class="ftab active" onclick="filterVehicles('all',this)"><span class="ftab-icon">🚗</span><span data-t="f_all">Todos</span></button>
-      <button class="ftab" onclick="filterVehicles('nocarnet',this)"><span class="ftab-icon">✅</span><span data-t="f_nocarnet">Sin carnet</span></button>
-      <button class="ftab" onclick="filterVehicles('carnet',this)"><span class="ftab-icon">🪪</span><span data-t="f_carnet">Requiere carnet</span></button>
-      <button class="ftab" onclick="filterVehicles('grupo',this)"><span class="ftab-icon">👥</span><span data-t="f_grupo">Salidas en grupo</span></button>
+      <button class="ftab active" onclick="filterVehicles('all',this)">🚗 <span data-t="f_all">Todos</span></button>
+      <button class="ftab" onclick="filterVehicles('nocarnet',this)">✅ <span data-t="f_nocarnet">Sin carnet</span></button>
+      <button class="ftab" onclick="filterVehicles('carnet',this)">🪪 <span data-t="f_carnet">Requiere carnet</span></button>
+      <button class="ftab" onclick="filterVehicles('grupo',this)">👥 <span data-t="f_grupo">Salidas en grupo</span></button>
     </div>
-
     <div class="vgrid">
 
       <div class="vcard reveal" data-cat="nocarnet">
@@ -397,7 +371,7 @@ function setLang(l,
       </div>
 
       <div class="vcard reveal" data-cat="nocarnet">
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="KYMCO MXU 50cc"/>
+        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="KYMCO MXU Reserve 50cc"/>
         <div class="vbody">
           <div class="vtag" data-t="no_lic">Sin carnet</div>
           <div class="vname">KYMCO MXU Reserve 50cc</div>
@@ -495,13 +469,12 @@ function setLang(l,
 
     </div>
 
-    <!-- SALIDAS EN GRUPO BANNER -->
     <div class="grupo-banner reveal">
       <div class="grupo-content">
         <div class="grupo-icon">👥</div>
         <div>
           <h3 data-t="grupo_title">Excursiones en Grupo por la Costa Brava</h3>
-          <p data-t="grupo_desc">Organiza tu excursión en quad o moto por los paisajes más espectaculares de la Costa Brava. Rutas guiadas para grupos desde 4 personas. ¡Contacta para presupuesto especial!</p>
+          <p data-t="grupo_desc">Organiza tu excursión en quad o moto por los paisajes más espectaculares.</p>
         </div>
         <a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" class="grupo-btn" data-t="grupo_btn">Reservar grupo</a>
       </div>
@@ -519,10 +492,7 @@ function setLang(l,
     </div>
     <div class="cgrid">
       <div class="cinfo reveal">
-        <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong data-t="c_addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar,
-    f_all:'All',f_nocarnet:'No license',f_carnet:'License required',f_grupo:'Group tours',grupo_title:'Group Excursions along the Costa Brava',grupo_desc:'Organize your quad or motorbike excursion through the Costa Brava. Guided routes from 4 people. Contact us for a special quote!',grupo_btn:'Book group',
-    f_all:'Tous',f_nocarnet:'Sans permis',f_carnet:'Permis requis',f_grupo:'Sorties en groupe',grupo_title:'Excursions en Groupe sur la Costa Brava',grupo_desc:'Organisez votre excursion en quad ou moto. Circuits guidés à partir de 4 personnes. Contactez-nous pour un devis!',grupo_btn:'Réserver groupe',
-    f_all:'Все',f_nocarnet:'Без прав',f_carnet:'Нужны права',f_grupo:'Групповые туры',grupo_title:'Групповые экскурсии по Коста-Браве',grupo_desc:'Организуйте экскурсию на квадроцикле или мотоцикле. Маршруты от 4 человек. Свяжитесь с нами для специального предложения!',grupo_btn:'Забронировать группу', Girona</span></div></div>
+        <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong data-t="c_addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div></div>
         <div class="citem"><div class="cicon">📞</div><div class="ctxt"><strong data-t="c_phone">Teléfono</strong><a href="tel:+34641459907">+34 641 459 907</a></div></div>
         <div class="citem"><div class="cicon">✉️</div><div class="ctxt"><strong data-t="c_email">Email</strong><a href="mailto:aleksrent1@gmail.com">aleksrent1@gmail.com</a></div></div>
         <div class="citem"><div class="cicon">🌐</div><div class="ctxt"><strong data-t="c_web">Web oficial</strong><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></div></div>
@@ -530,7 +500,7 @@ function setLang(l,
         <div class="citem"><div class="cicon">💬</div><div class="ctxt"><strong data-t="c_wa">WhatsApp</strong><a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" data-t="c_wa_val">Escríbenos ahora</a></div></div>
       </div>
       <div class="mapwrap reveal">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d748.1!2d2.8408!3d41.6998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v1716900000000" allowfullscreen loading="lazy" title="Aleks Rent Lloret de Mar"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d748.1!2d2.8408!3d41.6998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v1716900000000" allowfullscreen loading="lazy" title="Aleks Rent"></iframe>
       </div>
     </div>
   </div>
@@ -555,23 +525,6 @@ function setLang(l,
   document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-  function filterVehicles(cat, btn) {
-    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.vcard').forEach(card => {
-      const cats = card.dataset.cat || '';
-      if (cat === 'all' || cats.includes(cat)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-    // Show/hide grupo banner
-    const banner = document.querySelector('.grupo-banner');
-    if (banner) banner.style.display = (cat === 'all' || cat === 'grupo') ? '' : 'none';
-  }
-
 </script>
 </body>
 </html>
