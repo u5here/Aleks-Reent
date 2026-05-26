@@ -203,6 +203,28 @@
     .vimg { overflow:hidden; }
     .vcard .vimg:hover { transform: scale(1.08) !important; }
 
+
+    /* MODAL */
+    #reserva-modal{display:none;}
+    #reserva-modal.open{display:flex !important;}
+    .modal-box{background:#fff;border-radius:20px;padding:36px;max-width:600px;width:94%;max-height:90vh;overflow-y:auto;position:relative;animation:popIn .4s cubic-bezier(.34,1.56,.64,1);}
+    .modal-close{position:absolute;top:16px;right:16px;background:var(--bg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;color:var(--muted);transition:all .2s;}
+    .modal-close:hover{background:var(--blue);color:#fff;transform:scale(1.1) rotate(90deg);}
+    .modal-header{text-align:center;margin-bottom:24px;}
+    .modal-icon{font-size:2.5rem;margin-bottom:8px;}
+    .modal-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--text);letter-spacing:2px;}
+    .modal-sub{color:var(--muted);font-size:.88rem;margin-top:4px;}
+    .modal-form{display:flex;flex-direction:column;gap:14px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .form-group{display:flex;flex-direction:column;gap:5px;}
+    .form-group label{font-size:.78rem;font-weight:700;color:var(--text);letter-spacing:.5px;text-transform:uppercase;}
+    .form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--text);background:#fff;transition:border-color .2s,box-shadow .2s;outline:none;width:100%;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,79,160,.1);}
+    .form-group textarea{resize:none;}
+    .form-submit{background:var(--blue);color:#fff;border:none;padding:14px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s;margin-top:4px;}
+    .form-submit:hover{background:var(--blue2);transform:scale(1.03);}
+    @media(max-width:500px){.form-row{grid-template-columns:1fr;}}
+
     /* UTILS */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
     .reveal.visible{opacity:1;transform:none;}
@@ -236,6 +258,7 @@ const T={
     c_addr:"Dirección",c_phone:"Teléfono",c_email:"Email",c_web:"Web oficial",
     c_sched:"Horario",c_sched_val:"Lunes a Domingo: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Escríbenos ahora",
     ftag:"Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan",
+    modal_title:'Reservar Vehículo',modal_sub:'Rellena el formulario y te contactamos en menos de 1 hora',form_name:'Nombre completo',form_phone:'Teléfono / WhatsApp',form_vehicle:'Vehículo',form_people:'Nº de personas',form_date:'Fecha de inicio',form_days:'Duración',form_msg:'Mensaje adicional (opcional)',form_submit:'Enviar por WhatsApp 💬',
     fcopy:"© 2025 Aleks Rent S.L. — Todos los derechos reservados."
   },
   en:{
@@ -259,6 +282,7 @@ const T={
     c_addr:"Address",c_phone:"Phone",c_email:"Email",c_web:"Official website",
     c_sched:"Hours",c_sched_val:"Monday to Sunday: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Message us now",
     ftag:"Lloret de Mar · Costa Brava · Founded by Gevorg Avdalyan",
+    modal_title:'Reserve Vehicle',modal_sub:'Fill the form and we will contact you in less than 1 hour',form_name:'Full name',form_phone:'Phone / WhatsApp',form_vehicle:'Vehicle',form_people:'No. of people',form_date:'Start date',form_days:'Duration',form_msg:'Additional message (optional)',form_submit:'Send via WhatsApp 💬',
     fcopy:"© 2025 Aleks Rent S.L. — All rights reserved."
   },
   fr:{
@@ -282,6 +306,7 @@ const T={
     c_addr:"Adresse",c_phone:"Téléphone",c_email:"Email",c_web:"Site officiel",
     c_sched:"Horaires",c_sched_val:"Lundi au Dimanche: 09h – 21h",c_wa:"WhatsApp",c_wa_val:"Écrivez-nous",
     ftag:"Lloret de Mar · Costa Brava · Fondée par Gevorg Avdalyan",
+    modal_title:'Réserver un Véhicule',modal_sub:'Remplissez le formulaire et nous vous contacterons en moins d\'une heure',form_name:'Nom complet',form_phone:'Téléphone / WhatsApp',form_vehicle:'Véhicule',form_people:'Nb. de personnes',form_date:'Date de début',form_days:'Durée',form_msg:'Message supplémentaire (optionnel)',form_submit:'Envoyer via WhatsApp 💬',
     fcopy:"© 2025 Aleks Rent S.L. — Tous droits réservés."
   },
   ru:{
@@ -305,6 +330,7 @@ const T={
     c_addr:"Адрес",c_phone:"Телефон",c_email:"Email",c_web:"Официальный сайт",
     c_sched:"Расписание",c_sched_val:"Пн – Вс: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Написать нам",
     ftag:"Льорет-де-Мар · Коста-Брава · Основана Геворгом Авдалян",
+    modal_title:'Забронировать',modal_sub:'Заполните форму и мы свяжемся с вами менее чем за 1 час',form_name:'Полное имя',form_phone:'Телефон / WhatsApp',form_vehicle:'Транспорт',form_people:'Кол-во человек',form_date:'Дата начала',form_days:'Продолжительность',form_msg:'Дополнительное сообщение (необязательно)',form_submit:'Отправить через WhatsApp 💬',
     fcopy:"© 2025 Aleks Rent S.L. — Все права защищены."
   }
 };
@@ -385,6 +411,36 @@ function filterVehicles(cat,btn){
   const banner=document.querySelector('.grupo-banner');
   if(banner) banner.style.display=(cat==='all'||cat==='grupo')?'':'none';
 }
+
+  function openModal(){
+    const m = document.getElementById('reserva-modal');
+    m.style.display='flex';
+    document.body.style.overflow='hidden';
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('f-date').min = today;
+  }
+  function closeModal(){
+    document.getElementById('reserva-modal').style.display='none';
+    document.body.style.overflow='';
+  }
+  document.getElementById('reserva-modal').addEventListener('click', function(e){
+    if(e.target===this) closeModal();
+  });
+  function sendReserva(e){
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const phone = document.getElementById('f-phone').value;
+    const vehicle = document.getElementById('f-vehicle').value;
+    const people = document.getElementById('f-people').value;
+    const date = document.getElementById('f-date').value;
+    const duration = document.getElementById('f-duration').value;
+    const msg = document.getElementById('f-msg').value;
+    const text = `🏍️ *RESERVA ALEKS RENT*%0A%0A👤 *Nombre:* ${name}%0A📞 *Teléfono:* ${phone}%0A🚗 *Vehículo:* ${vehicle}%0A👥 *Personas:* ${people||1}%0A📅 *Fecha:* ${date}%0A⏱️ *Duración:* ${duration}${msg ? '%0A💬 *Notas:* '+msg : ''}`;
+    window.open(`https://api.whatsapp.com/send?phone=34641459907&text=${text}`, '_blank');
+    closeModal();
+  }
+
 </script>
 
 <!-- BANNER -->
@@ -579,7 +635,84 @@ function filterVehicles(cat,btn){
           <h3 data-t="grupo_title">Excursiones en Grupo por la Costa Brava</h3>
           <p data-t="grupo_desc">Organiza tu excursión en quad o moto por los paisajes más espectaculares.</p>
         </div>
-        <a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" class="grupo-btn" data-t="grupo_btn">Reservar grupo</a>
+        <button class="grupo-btn" onclick="openModal()" data-t="grupo_btn">Reservar grupo</button>
+      </div>
+    </div>
+
+    <!-- RESERVATION MODAL -->
+    <div id="reserva-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(13,27,62,.88);align-items:center;justify-content:center;animation:fadeIn .3s ease;">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-header">
+          <div class="modal-icon">📋</div>
+          <h2 class="modal-title" data-t="modal_title">Reservar Vehículo</h2>
+          <p class="modal-sub" data-t="modal_sub">Rellena el formulario y te contactamos en menos de 1 hora</p>
+        </div>
+        <form class="modal-form" onsubmit="sendReserva(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label data-t="form_name">Nombre completo</label>
+              <input type="text" id="f-name" placeholder="Tu nombre" required/>
+            </div>
+            <div class="form-group">
+              <label data-t="form_phone">Teléfono / WhatsApp</label>
+              <input type="tel" id="f-phone" placeholder="+34 600 000 000" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label data-t="form_vehicle">Vehículo</label>
+              <select id="f-vehicle" required>
+                <option value="">-- Selecciona --</option>
+                <optgroup label="🏍️ Motos">
+                  <option>KYMCO Vitality 50cc</option>
+                  <option>KYMCO Agility City 125cc</option>
+                </optgroup>
+                <optgroup label="🏎️ Quads">
+                  <option>KYMCO MXU Reserve 50cc</option>
+                  <option>KYMCO MXU 150cc</option>
+                  <option>KYMCO MXU 300cc</option>
+                  <option>CFMoto C-Force 450cc ⭐</option>
+                </optgroup>
+                <optgroup label="🚲 Bicicletas">
+                  <option>Bicicleta Normal</option>
+                </optgroup>
+                <optgroup label="👥 Grupo">
+                  <option>Excursión en grupo (quads)</option>
+                  <option>Excursión en grupo (motos)</option>
+                  <option>Excursión mixta (motos + quads)</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-t="form_people">Nº de personas</label>
+              <input type="number" id="f-people" placeholder="1" min="1" max="30"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label data-t="form_date">Fecha de inicio</label>
+              <input type="date" id="f-date" required/>
+            </div>
+            <div class="form-group">
+              <label data-t="form_days">Duración</label>
+              <select id="f-duration">
+                <option>1 hora</option>
+                <option>2 horas</option>
+                <option>Medio día</option>
+                <option>1 día</option>
+                <option>2–3 días</option>
+                <option>1 semana</option>
+                <option>+1 semana</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-t="form_msg">Mensaje adicional (opcional)</label>
+            <textarea id="f-msg" rows="2" placeholder="Hotel, llegada, dudas..."></textarea>
+          </div>
+          <button type="submit" class="form-submit" data-t="form_submit">Enviar por WhatsApp 💬</button>
+        </form>
       </div>
     </div>
 
@@ -690,6 +823,36 @@ function filterVehicles(cat,btn){
   document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  function openModal(){
+    const m = document.getElementById('reserva-modal');
+    m.style.display='flex';
+    document.body.style.overflow='hidden';
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('f-date').min = today;
+  }
+  function closeModal(){
+    document.getElementById('reserva-modal').style.display='none';
+    document.body.style.overflow='';
+  }
+  document.getElementById('reserva-modal').addEventListener('click', function(e){
+    if(e.target===this) closeModal();
+  });
+  function sendReserva(e){
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const phone = document.getElementById('f-phone').value;
+    const vehicle = document.getElementById('f-vehicle').value;
+    const people = document.getElementById('f-people').value;
+    const date = document.getElementById('f-date').value;
+    const duration = document.getElementById('f-duration').value;
+    const msg = document.getElementById('f-msg').value;
+    const text = `🏍️ *RESERVA ALEKS RENT*%0A%0A👤 *Nombre:* ${name}%0A📞 *Teléfono:* ${phone}%0A🚗 *Vehículo:* ${vehicle}%0A👥 *Personas:* ${people||1}%0A📅 *Fecha:* ${date}%0A⏱️ *Duración:* ${duration}${msg ? '%0A💬 *Notas:* '+msg : ''}`;
+    window.open(`https://api.whatsapp.com/send?phone=34641459907&text=${text}`, '_blank');
+    closeModal();
+  }
+
 </script>
 </body>
 </html>
