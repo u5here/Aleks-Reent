@@ -1,141 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aleks Rent – Lloret de Mar</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --blue:#1A4FA0; --blue2:#1565C0; --sky:#4A90D9;
-      --dark:#0D1B3E; --card:#FFFFFF; --bg:#F0F4FA;
-      --text:#0D1B3E; --muted:#607090; --white:#FFFFFF;
-      --border:rgba(26,79,160,0.15);
-    }
+    :root{--blue:#1A4FA0;--blue2:#1565C0;--sky:#4A90D9;--orange:#E87C2A;--dark:#0D1B3E;--bg:#F4F7FB;--card:#fff;--text:#0D1B3E;--muted:#607090;--border:rgba(26,79,160,0.13);}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
-    /* BANNER */
-    #banner-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(13,27,62,0.92);animation:fadeIn .4s ease;}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .banner-box{position:relative;max-width:680px;width:92%;border-radius:18px;overflow:hidden;box-shadow:0 0 80px rgba(26,79,160,.5);animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .2s both;}
-    @keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-    .banner-img{width:100%;display:block;object-fit:cover;max-height:440px;}
-    .banner-content{background:linear-gradient(to top,rgba(13,27,62,.97) 55%,transparent);padding:32px 28px 28px;position:absolute;bottom:0;left:0;right:0;text-align:center;}
-    .banner-content h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.2rem);color:#fff;letter-spacing:2px;}
-    .banner-content h2 span{color:var(--sky);}
-    .banner-content p{font-size:.95rem;color:#a8bcd4;margin:6px 0 18px;}
-    .banner-close{background:var(--blue);color:#fff;border:none;padding:12px 36px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s,transform .15s;}
-    .banner-close:hover{background:var(--blue2);transform:scale(1.04);}
+    /* ── BANNER ── */
+    #banner-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(13,27,62,0.88);}
+    .banner-box{position:relative;max-width:700px;width:94%;border-radius:20px;overflow:hidden;box-shadow:0 0 80px rgba(26,79,160,.5);}
+    .banner-img{width:100%;display:block;object-fit:cover;height:420px;}
+    .banner-top{position:absolute;top:0;left:0;right:0;padding:20px;display:flex;justify-content:center;background:linear-gradient(to bottom,rgba(13,27,62,.9) 60%,transparent);}
+    .banner-logo{height:80px;object-fit:contain;}
+    .banner-content{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,27,62,.97) 60%,transparent);padding:28px 28px 24px;text-align:center;}
+    .banner-content h2{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:#fff;letter-spacing:2px;}
+    .banner-content h2 span{color:#4A90D9;}
+    .banner-content p{font-size:.9rem;color:#a8bcd4;margin:5px 0 16px;}
+    .banner-close{background:var(--blue);color:#fff;border:none;padding:11px 34px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s;}
+    .banner-close:hover{background:var(--blue2);}
 
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 32px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(26,79,160,.08);}
-    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);letter-spacing:2px;text-decoration:none;}
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:10px 32px;background:rgba(255,255,255,0.97);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(26,79,160,.07);}
+    .nav-logo img{height:44px;object-fit:contain;}
     .nav-links{display:flex;gap:24px;list-style:none;}
-    .nav-links a{color:var(--text);text-decoration:none;font-size:.9rem;font-weight:600;transition:color .2s;cursor:pointer;}
+    .nav-links a{color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s;}
     .nav-links a:hover{color:var(--blue);}
     .nav-right{display:flex;align-items:center;gap:10px;}
     .lang-selector{display:flex;gap:3px;}
-    .lang-btn{background:transparent;border:2px solid transparent;font-size:1.5rem;padding:2px 3px;border-radius:8px;cursor:pointer;transition:all .2s;opacity:.5;line-height:1;}
+    .lang-btn{background:transparent;border:2px solid transparent;font-size:1.45rem;padding:1px 3px;border-radius:7px;cursor:pointer;opacity:.5;transition:all .2s;line-height:1;}
     .lang-btn:hover{opacity:1;transform:scale(1.18);}
-    .lang-btn.active{opacity:1;border-color:var(--blue);background:rgba(26,79,160,.1);transform:scale(1.1);}
-    .nav-phone{color:#fff;font-weight:700;text-decoration:none;font-size:.85rem;background:var(--blue);padding:8px 16px;border-radius:50px;white-space:nowrap;transition:background .2s;}
+    .lang-btn.active{opacity:1;border-color:var(--blue);background:rgba(26,79,160,.1);}
+    .nav-phone{background:var(--blue);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 15px;border-radius:50px;white-space:nowrap;transition:background .2s;}
     .nav-phone:hover{background:var(--blue2);}
 
-    /* HERO */
-    #hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
-    .hero-bg{position:absolute;inset:0;background:url('https://aleksrent.es/img/3.jpg') center/cover no-repeat;filter:brightness(.28);transform:scale(1.05);transition:transform 8s ease;}
-    #hero:hover .hero-bg{transform:scale(1);}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,27,62,.2) 0%,rgba(13,27,62,.85) 100%);}
+    /* ── HERO ── */
+    #hero{position:relative;height:100vh;min-height:580px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:url('fachada.jpg') center/cover no-repeat;filter:brightness(.25);}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,27,62,.15) 0%,rgba(13,27,62,.82) 100%);}
     .hero-content{position:relative;z-index:2;padding:0 20px;}
-    .hero-badge{display:inline-block;background:var(--sky);color:#fff;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:20px;}
-    .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,7rem);line-height:.95;letter-spacing:4px;color:#fff;text-shadow:0 4px 40px rgba(74,144,217,.35);}
-    .hero-title span{color:var(--sky);}
-    .hero-sub{margin:18px auto 0;font-size:clamp(.95rem,2vw,1.15rem);color:#a8bcd4;max-width:520px;line-height:1.7;}
-    .hero-cta{margin-top:36px;display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
-    .btn-primary{background:var(--blue);color:#fff;border:none;padding:15px 38px;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;}
+    .hero-logo{height:100px;margin-bottom:20px;filter:drop-shadow(0 4px 24px rgba(74,144,217,.4));}
+    .hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:#b0c6df;max-width:500px;margin:0 auto 28px;line-height:1.7;}
+    .hero-badge{display:inline-block;background:var(--sky);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:16px;}
+    .hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:.97rem;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;}
     .btn-primary:hover{background:var(--blue2);transform:translateY(-2px);}
-    .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:15px 38px;border-radius:50px;font-weight:600;font-size:1rem;text-decoration:none;transition:border-color .2s,color .2s;}
+    .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.38);padding:14px 36px;border-radius:50px;font-weight:600;font-size:.97rem;text-decoration:none;transition:border-color .2s,color .2s;}
     .btn-outline:hover{border-color:var(--sky);color:var(--sky);}
 
-    /* SECTIONS */
-    section{padding:90px 0;}
-    .container{max-width:1160px;margin:0 auto;padding:0 24px;}
-    .section-label{font-size:.78rem;letter-spacing:3px;font-weight:700;color:var(--blue);text-transform:uppercase;margin-bottom:10px;}
-    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:2px;line-height:1;margin-bottom:16px;color:var(--text);}
-    .section-desc{color:var(--muted);max-width:560px;line-height:1.7;font-size:.97rem;}
+    /* ── SECTIONS ── */
+    section{padding:80px 0;}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px;}
+    .section-label{font-size:.72rem;letter-spacing:3px;font-weight:700;color:var(--blue);text-transform:uppercase;margin-bottom:8px;}
+    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:2px;line-height:1;margin-bottom:14px;color:var(--text);}
+    .section-desc{color:var(--muted);max-width:540px;line-height:1.7;font-size:.95rem;}
 
-    /* ABOUT */
+    /* ── ABOUT ── */
     #about{background:#fff;}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:48px;}
-    .about-img-wrap{position:relative;border-radius:16px;overflow:hidden;}
-    .about-img-wrap img{width:100%;display:block;border-radius:16px;object-fit:cover;height:440px;}
-    .about-img-wrap::after{content:'';position:absolute;inset:0;border:2px solid rgba(26,79,160,.2);border-radius:16px;}
-    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
-    .stat-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .2s,box-shadow .2s;}
-    .stat-card:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(26,79,160,.1);}
-    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--blue);}
-    .stat-lbl{font-size:.82rem;color:var(--muted);margin-top:2px;}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:44px;}
+    .about-img{width:100%;border-radius:16px;object-fit:cover;height:420px;display:block;box-shadow:0 8px 40px rgba(26,79,160,.1);}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+    .stat-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px;transition:border-color .2s;}
+    .stat-card:hover{border-color:var(--blue);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--blue);}
+    .stat-lbl{font-size:.78rem;color:var(--muted);margin-top:2px;}
 
-    /* PRICES */
+    /* ── PRICES ── */
     #prices{background:var(--bg);}
-    .vehicles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px;}
-    .vehicle-card{background:var(--card);border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 12px rgba(26,79,160,.06);transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;}
-    .vehicle-card:hover{transform:translateY(-6px);border-color:rgba(26,79,160,.35);box-shadow:0 20px 50px rgba(26,79,160,.14);}
-    .vehicle-img{width:100%;height:190px;object-fit:cover;display:block;}
-    .vehicle-body{padding:20px;}
-    .vehicle-tag{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
-    .vehicle-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:var(--text);}
-    .vehicle-desc{color:var(--muted);font-size:.83rem;margin:6px 0 12px;line-height:1.55;}
-    .price-table{width:100%;border-collapse:collapse;margin-top:6px;}
-    .price-table td{font-size:.82rem;padding:4px 0;color:var(--muted);}
-    .price-table td:last-child{text-align:right;font-weight:700;color:var(--blue);}
-    .price-table tr:first-child td{font-size:1rem;}
-    .price-table tr:first-child td:last-child{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;}
-    .bail-tag{display:inline-block;margin-top:10px;background:rgba(26,79,160,.08);color:var(--blue);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:50px;}
-    .featured-badge{position:absolute;top:12px;right:12px;background:var(--blue);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:50px;}
-    .vehicle-card.featured{border-color:rgba(26,79,160,.25);background:linear-gradient(135deg,#EEF4FF 0%,#fff 60%);}
+    .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:40px;}
+    .vcard{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 10px rgba(26,79,160,.05);transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;}
+    .vcard:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(26,79,160,.12);border-color:rgba(26,79,160,.28);}
+    .vcard.top{background:linear-gradient(135deg,#EEF4FF,#fff);border-color:rgba(26,79,160,.2);}
+    .vtop-badge{position:absolute;top:12px;right:12px;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:50px;}
+    .vimg{width:100%;height:180px;object-fit:cover;display:block;background:#eef4fb;}
+    .vbody{padding:18px;}
+    .vtag{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
+    .vname{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:1px;color:var(--text);margin-bottom:4px;}
+    .ptable{width:100%;border-collapse:collapse;margin-top:8px;}
+    .ptable td{font-size:.82rem;padding:3px 0;color:var(--muted);}
+    .ptable td:last-child{text-align:right;font-weight:700;color:var(--blue);}
+    .ptable tr:first-child td{font-size:.9rem;}
+    .ptable tr:first-child td:last-child{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--blue);}
+    .bail{display:inline-block;margin-top:10px;background:rgba(26,79,160,.07);color:var(--blue);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;}
 
-    /* CONTACT */
+    /* ── CONTACT ── */
     #contact{background:#fff;}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;margin-top:48px;}
-    .contact-info{display:flex;flex-direction:column;gap:14px;}
-    .info-item{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .2s;}
-    .info-item:hover{border-color:var(--blue);}
-    .info-icon{font-size:1.3rem;min-width:36px;text-align:center;}
-    .info-text strong{display:block;font-size:.93rem;color:var(--text);margin-bottom:3px;}
-    .info-text span,.info-text a{color:var(--muted);font-size:.86rem;text-decoration:none;}
-    .info-text a:hover{color:var(--blue);}
-    .map-wrap{border-radius:16px;overflow:hidden;height:400px;border:1px solid var(--border);}
-    .map-wrap iframe{width:100%;height:100%;border:none;}
+    .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;margin-top:44px;}
+    .cinfo{display:flex;flex-direction:column;gap:12px;}
+    .citem{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .2s;}
+    .citem:hover{border-color:var(--blue);}
+    .cicon{font-size:1.3rem;min-width:34px;text-align:center;}
+    .ctxt strong{display:block;font-size:.9rem;color:var(--text);margin-bottom:3px;}
+    .ctxt span,.ctxt a{color:var(--muted);font-size:.84rem;text-decoration:none;}
+    .ctxt a:hover{color:var(--blue);}
+    .mapwrap{border-radius:16px;overflow:hidden;height:380px;border:1px solid var(--border);}
+    .mapwrap iframe{width:100%;height:100%;border:none;}
 
-    /* FOOTER */
-    footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;text-align:center;}
-    .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;letter-spacing:3px;}
-    .footer-logo span{color:var(--sky);}
-    .footer-tagline{font-size:.82rem;color:#6a85b0;margin:8px 0 20px;}
-    .footer-links{display:flex;justify-content:center;gap:22px;list-style:none;flex-wrap:wrap;}
-    .footer-links a{color:#6a85b0;text-decoration:none;font-size:.84rem;cursor:pointer;}
-    .footer-links a:hover{color:var(--sky);}
-    .footer-copy{margin-top:20px;font-size:.76rem;color:#3a4f6e;}
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:2px solid var(--blue);padding:36px 0;text-align:center;}
+    .flogo{height:60px;margin-bottom:12px;filter:brightness(0) invert(1);}
+    .ftag{font-size:.8rem;color:#6a85b0;margin-bottom:18px;}
+    .flinks{display:flex;justify-content:center;gap:22px;list-style:none;flex-wrap:wrap;margin-bottom:18px;}
+    .flinks a{color:#6a85b0;text-decoration:none;font-size:.82rem;cursor:pointer;}
+    .flinks a:hover{color:var(--sky);}
+    .fcopy{font-size:.74rem;color:#3a4f6e;}
 
-    /* REVEAL */
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+    /* ── UTILS ── */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s;}
     .reveal.visible{opacity:1;transform:none;}
-
-    /* WA FLOAT */
-    .wa-float{position:fixed;bottom:28px;right:28px;z-index:200;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.45);text-decoration:none;font-size:1.5rem;transition:transform .2s;}
+    .wa-float{position:fixed;bottom:26px;right:26px;z-index:200;background:#25D366;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;font-size:1.4rem;transition:transform .2s;}
     .wa-float:hover{transform:scale(1.12);}
 
     @media(max-width:860px){
-      nav{padding:12px 16px;}
+      nav{padding:10px 16px;}
       .nav-links{display:none;}
-      .about-grid,.contact-grid{grid-template-columns:1fr;gap:32px;}
-      .about-img-wrap img{height:260px;}
+      .about-grid,.cgrid{grid-template-columns:1fr;gap:28px;}
+      .about-img{height:240px;}
     }
     @media(max-width:500px){
       .hero-cta{flex-direction:column;}
@@ -145,117 +129,116 @@
 </head>
 <body>
 
-<!-- TRANSLATIONS -->
 <script>
-const T = {
-  es: {
-    banner_title: "Bienvenido a", banner_sub: "Alquiler de motos, scooters y quads en Lloret de Mar – Costa Brava", banner_btn: "¡Empezar a explorar!",
-    nav_about: "Nosotros", nav_prices: "Precios", nav_contact: "Contacto",
-    hero_badge: "🏍️ Lloret de Mar · Costa Brava", hero_sub: "Vive la Costa Brava a tu manera. Alquila motos, scooters y quads y explora cada rincón de Lloret con libertad total.",
-    btn_prices: "Ver precios", btn_map: "Cómo llegar",
-    about_lbl: "Sobre nosotros", about_title: "Fundada por Gevorg Avdalyan",
-    about_desc: "Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés.",
-    about_p1: "Estás visitando uno de los lugares más hermosos de la Costa Brava. Para que disfrutes plenamente de tu estancia, Aleks Rent pone a tu disposición una amplia flota de scooters, motos, quads y bicicletas eléctricas.",
-    about_p2: "Disponemos de servicio de entrega en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!",
-    stat1:"Años de experiencia", stat2:"Idiomas atendidos", stat3:"Valoración media", stat4:"Revisión diaria",
-    prices_lbl:"Tarifas 2025", prices_title:"Nuestros Vehículos", prices_desc:"Consulta las tarifas por hora y por días. Depósito de fianza reembolsable.",
-    bail:"Fianza", h1:"1 hora", h2:"2 horas", extra:"hora extra", day:"día", days:"días",
-    contact_lbl:"Encuéntranos", contact_title:"Dónde Estamos",
-    addr:"Dirección", phone:"Teléfono", email:"Email", schedule:"Horario", wa:"WhatsApp", wa_link:"Escríbenos ahora",
-    schedule_val:"Lunes a Domingo: 09:00 – 21:00",
-    footer_tag:"Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan",
-    footer_copy:"© 2025 Aleks Rent S.L. — Todos los derechos reservados.",
-    no_license:"Sin carnet", license_a1:"Carnet A1", license_b:"Carnet B",
+const T={
+  es:{
+    banner_sub:"Alquiler de motos, scooters, quads y bicicletas en Lloret de Mar",
+    banner_btn:"¡Explorar ahora!",
+    nav_about:"Nosotros",nav_prices:"Precios",nav_contact:"Contacto",
+    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
+    hero_sub:"Vive la Costa Brava a tu manera. Alquila motos, scooters, quads y bicicletas con total libertad.",
+    btn_prices:"Ver precios",btn_map:"Cómo llegar",
+    about_lbl:"Sobre nosotros",about_title:"Tu alquiler de confianza en Lloret",
+    about_desc:"Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Hablamos español, ruso, inglés y francés.",
+    about_p1:"Estás visitando uno de los lugares más hermosos de la Costa Brava. Aleks Rent pone a tu disposición una amplia flota de scooters, motos, quads y bicicletas eléctricas para que disfrutes al máximo.",
+    about_p2:"Entrega en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos!",
+    s1:"Años de exp.",s2:"Idiomas",s3:"Valoración",s4:"Revisión diaria",
+    prices_lbl:"Tarifas 2025",prices_title:"Nuestros Vehículos",prices_desc:"Precios por hora y días. Fianza reembolsable al devolver.",
+    bail:"Fianza",h1:"1 hora",h2:"2 horas",extra:"hora extra",xday:"día",xdays:"días",
+    contact_lbl:"Encuéntranos",contact_title:"Dónde Estamos",
+    addr:"Dirección",phone:"Teléfono",email:"Email",sched:"Horario",sched_val:"Lun–Dom: 09:00–21:00",wa:"WhatsApp",wa_val:"Escríbenos ahora",
+    ftag:"Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan",
+    fcopy:"© 2025 Aleks Rent S.L. — Todos los derechos reservados.",
+    no_lic:"Sin carnet",lic_a1:"Carnet A1",lic_b:"Carnet B",
   },
-  en: {
-    banner_title: "Welcome to", banner_sub: "Motorbike, scooter & quad rental in Lloret de Mar – Costa Brava", banner_btn: "Start exploring!",
-    nav_about: "About", nav_prices: "Prices", nav_contact: "Contact",
-    hero_badge: "🏍️ Lloret de Mar · Costa Brava", hero_sub: "Explore the Costa Brava your way. Rent motorcycles, scooters and quads and discover every corner of Lloret with total freedom.",
-    btn_prices: "See prices", btn_map: "Find us",
-    about_lbl: "About us", about_title: "Founded by Gevorg Avdalyan",
-    about_desc: "Aleks Rent is the leading vehicle rental in Lloret de Mar. Our team speaks Spanish, Russian, English and French.",
-    about_p1: "You are visiting one of the most beautiful places on the Costa Brava. To make the most of your stay, Aleks Rent offers a wide fleet of scooters, motorbikes, quads and electric bicycles.",
-    about_p2: "We offer delivery to hotels across the Costa Brava and to Girona Airport. Come visit us — we'll take great care of you!",
-    stat1:"Years of experience", stat2:"Languages spoken", stat3:"Average rating", stat4:"Daily inspection",
-    prices_lbl:"2025 Rates", prices_title:"Our Vehicles", prices_desc:"Check hourly and daily rates. Security deposit refundable on return.",
-    bail:"Deposit", h1:"1 hour", h2:"2 hours", extra:"extra hour", day:"day", days:"days",
-    contact_lbl:"Find us", contact_title:"Where We Are",
-    addr:"Address", phone:"Phone", email:"Email", schedule:"Hours", wa:"WhatsApp", wa_link:"Message us now",
-    schedule_val:"Monday to Sunday: 09:00 – 21:00",
-    footer_tag:"Lloret de Mar · Costa Brava · Founded by Gevorg Avdalyan",
-    footer_copy:"© 2025 Aleks Rent S.L. — All rights reserved.",
-    no_license:"No license needed", license_a1:"A1 license", license_b:"B license",
+  en:{
+    banner_sub:"Motorbike, scooter, quad & bicycle rental in Lloret de Mar",
+    banner_btn:"Explore now!",
+    nav_about:"About",nav_prices:"Prices",nav_contact:"Contact",
+    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
+    hero_sub:"Explore the Costa Brava your way. Rent motorbikes, scooters, quads and bicycles with total freedom.",
+    btn_prices:"See prices",btn_map:"Find us",
+    about_lbl:"About us",about_title:"Your trusted rental in Lloret",
+    about_desc:"Aleks Rent is the leading vehicle rental in Lloret de Mar. We speak Spanish, Russian, English and French.",
+    about_p1:"You are visiting one of the most beautiful spots on the Costa Brava. Aleks Rent offers a wide fleet of scooters, motorbikes, quads and electric bicycles.",
+    about_p2:"Hotel delivery across the Costa Brava and Girona Airport. Come visit us!",
+    s1:"Years exp.",s2:"Languages",s3:"Rating",s4:"Daily check",
+    prices_lbl:"2025 Rates",prices_title:"Our Vehicles",prices_desc:"Hourly and daily rates. Security deposit refunded on return.",
+    bail:"Deposit",h1:"1 hour",h2:"2 hours",extra:"extra hour",xday:"day",xdays:"days",
+    contact_lbl:"Find us",contact_title:"Where We Are",
+    addr:"Address",phone:"Phone",email:"Email",sched:"Hours",sched_val:"Mon–Sun: 09:00–21:00",wa:"WhatsApp",wa_val:"Message us now",
+    ftag:"Lloret de Mar · Costa Brava · Founded by Gevorg Avdalyan",
+    fcopy:"© 2025 Aleks Rent S.L. — All rights reserved.",
+    no_lic:"No license",lic_a1:"A1 license",lic_b:"B license",
   },
-  fr: {
-    banner_title: "Bienvenue chez", banner_sub: "Location de motos, scooters et quads à Lloret de Mar – Costa Brava", banner_btn: "Commencer à explorer!",
-    nav_about: "À propos", nav_prices: "Tarifs", nav_contact: "Contact",
-    hero_badge: "🏍️ Lloret de Mar · Costa Brava", hero_sub: "Explorez la Costa Brava à votre façon. Louez motos, scooters et quads et découvrez chaque coin de Lloret en toute liberté.",
-    btn_prices: "Voir les tarifs", btn_map: "Nous trouver",
-    about_lbl: "À propos", about_title: "Fondée par Gevorg Avdalyan",
-    about_desc: "Aleks Rent est la référence de la location de véhicules à Lloret de Mar. Notre équipe parle espagnol, russe, anglais et français.",
-    about_p1: "Vous visitez l'un des plus beaux endroits de la Costa Brava. Pour profiter pleinement de votre séjour, Aleks Rent met à votre disposition une large flotte de scooters, motos, quads et vélos électriques.",
-    about_p2: "Nous proposons la livraison dans les hôtels de toute la Costa Brava et à l'aéroport de Gérone. Venez nous rendre visite!",
-    stat1:"Ans d'expérience", stat2:"Langues parlées", stat3:"Note moyenne", stat4:"Inspection quotidienne",
-    prices_lbl:"Tarifs 2025", prices_title:"Nos Véhicules", prices_desc:"Consultez les tarifs horaires et journaliers. Caution remboursable.",
-    bail:"Caution", h1:"1 heure", h2:"2 heures", extra:"heure sup.", day:"jour", days:"jours",
-    contact_lbl:"Nous trouver", contact_title:"Où Nous Sommes",
-    addr:"Adresse", phone:"Téléphone", email:"Email", schedule:"Horaires", wa:"WhatsApp", wa_link:"Écrivez-nous",
-    schedule_val:"Lundi au Dimanche: 09h – 21h",
-    footer_tag:"Lloret de Mar · Costa Brava · Fondée par Gevorg Avdalyan",
-    footer_copy:"© 2025 Aleks Rent S.L. — Tous droits réservés.",
-    no_license:"Sans permis", license_a1:"Permis A1", license_b:"Permis B",
+  fr:{
+    banner_sub:"Location de motos, scooters, quads et vélos à Lloret de Mar",
+    banner_btn:"Explorer maintenant!",
+    nav_about:"À propos",nav_prices:"Tarifs",nav_contact:"Contact",
+    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
+    hero_sub:"Explorez la Costa Brava à votre façon. Louez motos, scooters, quads et vélos en toute liberté.",
+    btn_prices:"Voir tarifs",btn_map:"Nous trouver",
+    about_lbl:"À propos",about_title:"Votre location de confiance",
+    about_desc:"Aleks Rent est la référence de la location à Lloret de Mar. Nous parlons espagnol, russe, anglais et français.",
+    about_p1:"Vous visitez l'un des plus beaux endroits de la Costa Brava. Aleks Rent met à disposition une large flotte de scooters, motos, quads et vélos électriques.",
+    about_p2:"Livraison en hôtels et à l'aéroport de Gérone. Venez nous voir!",
+    s1:"Ans d'exp.",s2:"Langues",s3:"Note",s4:"Vérif. quotidienne",
+    prices_lbl:"Tarifs 2025",prices_title:"Nos Véhicules",prices_desc:"Tarifs horaires et journaliers. Caution remboursable au retour.",
+    bail:"Caution",h1:"1 heure",h2:"2 heures",extra:"heure sup.",xday:"jour",xdays:"jours",
+    contact_lbl:"Nous trouver",contact_title:"Où Nous Sommes",
+    addr:"Adresse",phone:"Téléphone",email:"Email",sched:"Horaires",sched_val:"Lun–Dim: 09h–21h",wa:"WhatsApp",wa_val:"Écrivez-nous",
+    ftag:"Lloret de Mar · Costa Brava · Fondée par Gevorg Avdalyan",
+    fcopy:"© 2025 Aleks Rent S.L. — Tous droits réservés.",
+    no_lic:"Sans permis",lic_a1:"Permis A1",lic_b:"Permis B",
   },
-  ru: {
-    banner_title: "Добро пожаловать в", banner_sub: "Аренда мотоциклов, скутеров и квадроциклов в Льорет-де-Мар", banner_btn: "Начать знакомство!",
-    nav_about: "О нас", nav_prices: "Цены", nav_contact: "Контакты",
-    hero_badge: "🏍️ Льорет-де-Мар · Коста-Брава", hero_sub: "Исследуйте Коста-Браву по-своему. Арендуйте мотоциклы, скутеры и квадроциклы и откройте для себя каждый уголок Льорета.",
-    btn_prices: "Смотреть цены", btn_map: "Как нас найти",
-    about_lbl: "О нас", about_title: "Основана Геворгом Авдалян",
-    about_desc: "Aleks Rent — лучшая компания по аренде транспортных средств в Льорет-де-Мар. Наша команда говорит на испанском, русском, английском и французском языках.",
-    about_p1: "Вы посещаете одно из красивейших мест Коста-Бравы. Чтобы вы могли в полной мере насладиться отдыхом, Aleks Rent предоставляет широкий парк скутеров, мотоциклов, квадроциклов и электровелосипедов.",
-    about_p2: "Мы предлагаем доставку в отели по всей Коста-Браве и в аэропорт Жироны. Приходите, мы рады вас видеть!",
-    stat1:"Лет опыта", stat2:"Языков обслуживания", stat3:"Средний рейтинг", stat4:"Ежедневная проверка",
-    prices_lbl:"Тарифы 2025", prices_title:"Наши Транспортные Средства", prices_desc:"Почасовые и дневные тарифы. Залог возвращается при возврате.",
-    bail:"Залог", h1:"1 час", h2:"2 часа", extra:"доп. час", day:"день", days:"дней",
-    contact_lbl:"Найти нас", contact_title:"Где Мы Находимся",
-    addr:"Адрес", phone:"Телефон", email:"Email", schedule:"Расписание", wa:"WhatsApp", wa_link:"Написать нам",
-    schedule_val:"Пн – Вс: 09:00 – 21:00",
-    footer_tag:"Льорет-де-Мар · Коста-Брава · Основана Геворгом Авдалян",
-    footer_copy:"© 2025 Aleks Rent S.L. — Все права защищены.",
-    no_license:"Права не нужны", license_a1:"Права A1", license_b:"Права B",
+  ru:{
+    banner_sub:"Аренда мотоциклов, скутеров, квадроциклов и велосипедов в Льорет-де-Мар",
+    banner_btn:"Начать!",
+    nav_about:"О нас",nav_prices:"Цены",nav_contact:"Контакты",
+    hero_badge:"🏍️ Льорет-де-Мар · Коста-Брава",
+    hero_sub:"Исследуйте Коста-Браву. Арендуйте мотоциклы, скутеры, квадроциклы и велосипеды.",
+    btn_prices:"Смотреть цены",btn_map:"Как нас найти",
+    about_lbl:"О нас",about_title:"Ваша аренда в Льорете",
+    about_desc:"Aleks Rent — лучшая компания по аренде в Льорет-де-Мар. Говорим на испанском, русском, английском и французском.",
+    about_p1:"Aleks Rent предлагает широкий парк скутеров, мотоциклов, квадроциклов и электровелосипедов для незабываемого отдыха на Коста-Браве.",
+    about_p2:"Доставка в отели и аэропорт Жироны. Приходите к нам!",
+    s1:"Лет опыта",s2:"Языков",s3:"Рейтинг",s4:"Ежедн. проверка",
+    prices_lbl:"Тарифы 2025",prices_title:"Наши Транспортные Средства",prices_desc:"Почасовые и дневные тарифы. Залог возвращается при возврате.",
+    bail:"Залог",h1:"1 час",h2:"2 часа",extra:"доп. час",xday:"день",xdays:"дней",
+    contact_lbl:"Найти нас",contact_title:"Где Мы Находимся",
+    addr:"Адрес",phone:"Телефон",email:"Email",sched:"Расписание",sched_val:"Пн–Вс: 09:00–21:00",wa:"WhatsApp",wa_val:"Написать нам",
+    ftag:"Льорет-де-Мар · Коста-Брава · Основана Геворгом Авдалян",
+    fcopy:"© 2025 Aleks Rent S.L. — Все права защищены.",
+    no_lic:"Без прав",lic_a1:"Права A1",lic_b:"Права B",
   }
 };
-
-let currentLang = 'es';
-function setLang(lang, btn) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+let lang='es';
+function setLang(l,btn){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  applyTranslations();
-}
-function t(key) { return T[currentLang][key] || T['es'][key] || key; }
-function applyTranslations() {
-  document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
-  document.querySelectorAll('[data-t-href]').forEach(el => { el.textContent = t(el.dataset.tHref); });
+  document.querySelectorAll('[data-t]').forEach(el=>{ if(T[lang][el.dataset.t]) el.textContent=T[lang][el.dataset.t]; });
 }
 </script>
 
 <!-- BANNER -->
 <div id="banner-overlay">
   <div class="banner-box">
-    <img class="banner-img" src="https://aleksrent.es/img/3.jpg" alt="Aleks Rent"
-      onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80'"/>
+    <img class="banner-img" src="fachada.jpg" alt="Aleks Rent Lloret de Mar"/>
+    <div class="banner-top">
+      <img class="banner-logo" src="logo.png" alt="Aleks Rent Logo"/>
+    </div>
     <div class="banner-content">
-      <h2><span data-t="banner_title">Bienvenido a</span> <span style="color:var(--sky)">Aleks Rent</span></h2>
-      <p data-t="banner_sub">Alquiler de motos, scooters y quads en Lloret de Mar</p>
-      <button class="banner-close" onclick="document.getElementById('banner-overlay').style.display='none'" data-t="banner_btn">¡Empezar a explorar!</button>
+      <h2>Aleks <span>Rent</span></h2>
+      <p data-t="banner_sub">Alquiler de motos, scooters, quads y bicicletas en Lloret de Mar</p>
+      <button class="banner-close" onclick="document.getElementById('banner-overlay').style.display='none'" data-t="banner_btn">¡Explorar ahora!</button>
     </div>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero">ALEKS RENT</a>
+  <a class="nav-logo" href="#hero"><img src="logo.png" alt="Aleks Rent"/></a>
   <ul class="nav-links">
     <li><a href="#about" data-t="nav_about">Nosotros</a></li>
     <li><a href="#prices" data-t="nav_prices">Precios</a></li>
@@ -278,7 +261,7 @@ function applyTranslations() {
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge" data-t="hero_badge">🏍️ Lloret de Mar · Costa Brava</div>
-    <h1 class="hero-title">ALEKS<br/><span>RENT</span></h1>
+    <img class="hero-logo" src="logo.png" alt="Aleks Rent"/>
     <p class="hero-sub" data-t="hero_sub">Vive la Costa Brava a tu manera.</p>
     <div class="hero-cta">
       <a class="btn-primary" href="#prices" data-t="btn_prices">Ver precios</a>
@@ -292,22 +275,21 @@ function applyTranslations() {
   <div class="container">
     <div class="reveal">
       <div class="section-label" data-t="about_lbl">Sobre nosotros</div>
-      <h2 class="section-title" data-t="about_title">Fundada por Gevorg Avdalyan</h2>
+      <h2 class="section-title" data-t="about_title">Tu alquiler de confianza en Lloret</h2>
       <p class="section-desc" data-t="about_desc">Aleks Rent es el punto de referencia...</p>
     </div>
     <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <img src="https://aleksrent.es/img/1.jpg" alt="Flota Aleks Rent"
-          onerror="this.src='https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80'"/>
+      <div class="reveal">
+        <img class="about-img" src="interior.jpg" alt="Interior Aleks Rent"/>
       </div>
       <div class="reveal">
-        <p style="color:var(--muted);line-height:1.8;font-size:.97rem;" data-t="about_p1"></p>
-        <p style="color:var(--muted);line-height:1.8;font-size:.97rem;margin-top:16px;" data-t="about_p2"></p>
+        <p style="color:var(--muted);line-height:1.8;font-size:.95rem;" data-t="about_p1"></p>
+        <p style="color:var(--muted);line-height:1.8;font-size:.95rem;margin-top:14px;" data-t="about_p2"></p>
         <div class="about-stats">
-          <div class="stat-card"><div class="stat-num">10+</div><div class="stat-lbl" data-t="stat1">Años de experiencia</div></div>
-          <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl" data-t="stat2">Idiomas atendidos</div></div>
-          <div class="stat-card"><div class="stat-num">★4.8</div><div class="stat-lbl" data-t="stat3">Valoración media</div></div>
-          <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl" data-t="stat4">Revisión diaria</div></div>
+          <div class="stat-card"><div class="stat-num">10+</div><div class="stat-lbl" data-t="s1">Años de exp.</div></div>
+          <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl" data-t="s2">Idiomas</div></div>
+          <div class="stat-card"><div class="stat-num">★4.8</div><div class="stat-lbl" data-t="s3">Valoración</div></div>
+          <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl" data-t="s4">Revisión diaria</div></div>
         </div>
       </div>
     </div>
@@ -317,154 +299,136 @@ function applyTranslations() {
 <!-- PRICES -->
 <section id="prices">
   <div class="container">
-    <div style="margin-bottom:40px;" class="reveal">
+    <div class="reveal">
       <div class="section-label" data-t="prices_lbl">Tarifas 2025</div>
       <h2 class="section-title" data-t="prices_title">Nuestros Vehículos</h2>
       <p class="section-desc" data-t="prices_desc">Precios por hora y días.</p>
     </div>
-    <div class="vehicles-grid">
+    <div class="vgrid">
 
-      <!-- QUAD 50cc -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="Quad 50cc"
-          onerror="this.src='https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="no_license">Sin carnet</div>
-          <div class="vehicle-name">Quad 50 CC</div>
-          <table class="price-table">
-            <tr><td data-t="h2">2 horas</td><td>80€</td></tr>
-            <tr><td data-t="extra">hora extra</td><td>20€</td></tr>
+      <div class="vcard reveal">
+        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="Quad 50cc" onerror="this.style.background='#eef4fb';this.style.display='block'"/>
+        <div class="vbody">
+          <div class="vtag" data-t="no_lic">Sin carnet</div>
+          <div class="vname">Quad 50 CC</div>
+          <table class="ptable">
+            <tr><td data-t="h2">2 horas (mín.)</td><td>80€</td></tr>
+            <tr><td data-t="extra">Hora extra</td><td>20€</td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 100€</span>
         </div>
       </div>
 
-      <!-- QUAD 150cc -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg" alt="Quad 150cc"
-          onerror="this.src='https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="license_b">Carnet B</div>
-          <div class="vehicle-name">Quad 150 CC</div>
-          <table class="price-table">
+      <div class="vcard reveal">
+        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg" alt="Quad 150cc" onerror="this.style.background='#eef4fb'"/>
+        <div class="vbody">
+          <div class="vtag" data-t="lic_b">Carnet B</div>
+          <div class="vname">Quad 150 CC</div>
+          <table class="ptable">
             <tr><td data-t="h1">1 hora</td><td>60€</td></tr>
             <tr><td data-t="h2">2 horas</td><td>90€</td></tr>
-            <tr><td data-t="extra">hora extra</td><td>25€</td></tr>
+            <tr><td data-t="extra">Hora extra</td><td>25€</td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 100€</span>
         </div>
       </div>
 
-      <!-- QUAD 300cc -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="Quad 300cc"
-          onerror="this.src='https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="license_b">Carnet B</div>
-          <div class="vehicle-name">Quad 300 CC</div>
-          <table class="price-table">
+      <div class="vcard reveal">
+        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="Quad 300cc" onerror="this.style.background='#eef4fb'"/>
+        <div class="vbody">
+          <div class="vtag" data-t="lic_b">Carnet B</div>
+          <div class="vname">Quad 300 CC</div>
+          <table class="ptable">
             <tr><td data-t="h1">1 hora</td><td>70€</td></tr>
             <tr><td data-t="h2">2 horas</td><td>130€</td></tr>
-            <tr><td data-t="extra">hora extra</td><td>30€</td></tr>
+            <tr><td data-t="extra">Hora extra</td><td>30€</td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 300€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 300€</span>
         </div>
       </div>
 
-      <!-- QUAD C-FORCE 450cc -->
-      <div class="vehicle-card featured reveal">
-        <div class="featured-badge">⭐ TOP</div>
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/c-force-450.jpg" alt="Quad C-Force 450cc"
-          onerror="this.src='https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="license_b">Carnet B</div>
-          <div class="vehicle-name">Quad C-Force 450 CC</div>
-          <table class="price-table">
+      <div class="vcard top reveal">
+        <div class="vtop-badge">⭐ TOP</div>
+        <img class="vimg" src="https://aleksrent.es/img-vehiculos/c-force-450.jpg" alt="Quad C-Force 450cc" onerror="this.style.background='#eef4fb'"/>
+        <div class="vbody">
+          <div class="vtag" data-t="lic_b">Carnet B</div>
+          <div class="vname">Quad C-Force 450 CC</div>
+          <table class="ptable">
             <tr><td data-t="h1">1 hora</td><td>80€</td></tr>
             <tr><td data-t="h2">2 horas</td><td>140€</td></tr>
-            <tr><td data-t="extra">hora extra</td><td>35€</td></tr>
+            <tr><td data-t="extra">Hora extra</td><td>35€</td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 400€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 400€</span>
         </div>
       </div>
 
-      <!-- MOTO 50cc -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/Vitality_50.jpg" alt="Motorbike 50cc"
-          onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="no_license">Sin carnet</div>
-          <div class="vehicle-name">Motorbike 50 CC</div>
-          <table class="price-table">
-            <tr><td>1–3 <span data-t="days">días</span></td><td>45€/<span data-t="day">día</span></td></tr>
-            <tr><td>4–7 <span data-t="days">días</span></td><td>40€/<span data-t="day">día</span></td></tr>
-            <tr><td>7–28 <span data-t="days">días</span></td><td>35€/<span data-t="day">día</span></td></tr>
+      <div class="vcard reveal">
+        <img class="vimg" src="https://aleksrent.es/img-vehiculos/Vitality_50.jpg" alt="Motorbike 50cc" onerror="this.style.background='#eef4fb'"/>
+        <div class="vbody">
+          <div class="vtag" data-t="no_lic">Sin carnet</div>
+          <div class="vname">Motorbike 50 CC</div>
+          <table class="ptable">
+            <tr><td>1–3 <span data-t="xdays">días</span></td><td>45€/<span data-t="xday">día</span></td></tr>
+            <tr><td>4–7 <span data-t="xdays">días</span></td><td>40€/<span data-t="xday">día</span></td></tr>
+            <tr><td>7–28 <span data-t="xdays">días</span></td><td>35€/<span data-t="xday">día</span></td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 100€</span>
         </div>
       </div>
 
-      <!-- MOTO 125cc -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg" alt="Motorbike 125cc"
-          onerror="this.src='https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="license_a1">Carnet A1</div>
-          <div class="vehicle-name">Motorbike 125 CC</div>
-          <table class="price-table">
+      <div class="vcard reveal">
+        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg" alt="Motorbike 125cc" onerror="this.style.background='#eef4fb'"/>
+        <div class="vbody">
+          <div class="vtag" data-t="lic_a1">Carnet A1</div>
+          <div class="vname">Motorbike 125 CC</div>
+          <table class="ptable">
             <tr><td data-t="h1">1 hora</td><td>50€</td></tr>
-            <tr><td>1–3 <span data-t="days">días</span></td><td>50€/<span data-t="day">día</span></td></tr>
-            <tr><td>3–7 <span data-t="days">días</span></td><td>45€/<span data-t="day">día</span></td></tr>
-            <tr><td>7–28 <span data-t="days">días</span></td><td>40€/<span data-t="day">día</span></td></tr>
+            <tr><td>1–3 <span data-t="xdays">días</span></td><td>50€/<span data-t="xday">día</span></td></tr>
+            <tr><td>3–7 <span data-t="xdays">días</span></td><td>45€/<span data-t="xday">día</span></td></tr>
+            <tr><td>7–28 <span data-t="xdays">días</span></td><td>40€/<span data-t="xday">día</span></td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 100€</span>
         </div>
       </div>
 
-      <!-- PATINETE ELÉCTRICO -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/patinete-electrico.jpg" alt="Electric Scooter"
-          onerror="this.src='https://images.unsplash.com/photo-1600881333168-2ef49b341f30?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="no_license">Sin carnet</div>
-          <div class="vehicle-name">Electric Scooter</div>
-          <table class="price-table">
+      <div class="vcard reveal">
+        <img class="vimg" src="https://images.unsplash.com/photo-1600881333168-2ef49b341f30?w=600&q=80" alt="Electric Scooter"/>
+        <div class="vbody">
+          <div class="vtag" data-t="no_lic">Sin carnet</div>
+          <div class="vname">Electric Scooter</div>
+          <table class="ptable">
             <tr><td data-t="h1">1 hora</td><td>15€</td></tr>
             <tr><td data-t="h2">2 horas</td><td>25€</td></tr>
-            <tr><td><span data-t="days">Días</span></td><td>45€/<span data-t="day">día</span></td></tr>
+            <tr><td><span data-t="xdays">Días</span></td><td>45€/<span data-t="xday">día</span></td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 100€</span>
         </div>
       </div>
 
-      <!-- BICICLETA ELÉCTRICA -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/bicicleta-electrica.jpg" alt="Electric Bicycle"
-          onerror="this.src='https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="no_license">Sin carnet</div>
-          <div class="vehicle-name">Electric Bicycle</div>
-          <table class="price-table">
+      <div class="vcard reveal">
+        <img class="vimg" src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80" alt="Electric Bicycle"/>
+        <div class="vbody">
+          <div class="vtag" data-t="no_lic">Sin carnet</div>
+          <div class="vname">Electric Bicycle</div>
+          <table class="ptable">
             <tr><td data-t="h2">2 horas</td><td>25€</td></tr>
-            <tr><td><span data-t="days">Días</span></td><td>35€/<span data-t="day">día</span></td></tr>
+            <tr><td><span data-t="xdays">Días</span></td><td>35€/<span data-t="xday">día</span></td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 100€</span>
         </div>
       </div>
 
-      <!-- BICICLETA NORMAL -->
-      <div class="vehicle-card reveal">
-        <img class="vehicle-img" src="https://aleksrent.es/img-vehiculos/bicicleta.jpg" alt="Regular Bike"
-          onerror="this.src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&q=80'"/>
-        <div class="vehicle-body">
-          <div class="vehicle-tag" data-t="no_license">Sin carnet</div>
-          <div class="vehicle-name">Regular Bike</div>
-          <table class="price-table">
-            <tr><td>1–3 <span data-t="days">días</span></td><td>20€/<span data-t="day">día</span></td></tr>
-            <tr><td>3–7 <span data-t="days">días</span></td><td>15€/<span data-t="day">día</span></td></tr>
-            <tr><td>7–28 <span data-t="days">días</span></td><td>10€/<span data-t="day">día</span></td></tr>
+      <div class="vcard reveal">
+        <img class="vimg" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&q=80" alt="Regular Bike"/>
+        <div class="vbody">
+          <div class="vtag" data-t="no_lic">Sin carnet</div>
+          <div class="vname">Regular Bike</div>
+          <table class="ptable">
+            <tr><td>1–3 <span data-t="xdays">días</span></td><td>20€/<span data-t="xday">día</span></td></tr>
+            <tr><td>3–7 <span data-t="xdays">días</span></td><td>15€/<span data-t="xday">día</span></td></tr>
+            <tr><td>7–28 <span data-t="xdays">días</span></td><td>10€/<span data-t="xday">día</span></td></tr>
           </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 50€</span>
+          <span class="bail"><span data-t="bail">Fianza</span>: 50€</span>
         </div>
       </div>
 
@@ -479,15 +443,16 @@ function applyTranslations() {
       <div class="section-label" data-t="contact_lbl">Encuéntranos</div>
       <h2 class="section-title" data-t="contact_title">Dónde Estamos</h2>
     </div>
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <div class="info-item"><div class="info-icon">📍</div><div class="info-text"><strong data-t="addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div></div>
-        <div class="info-item"><div class="info-icon">📞</div><div class="info-text"><strong data-t="phone">Teléfono</strong><a href="tel:+34641459907">+34 641 459 907</a></div></div>
-        <div class="info-item"><div class="info-icon">✉️</div><div class="info-text"><strong data-t="email">Email</strong><a href="mailto:aleksrent1@gmail.com">aleksrent1@gmail.com</a></div></div>
-        <div class="info-item"><div class="info-icon">🕘</div><div class="info-text"><strong data-t="schedule">Horario</strong><span data-t="schedule_val">Lunes a Domingo: 09:00 – 21:00</span></div></div>
-        <div class="info-item"><div class="info-icon">💬</div><div class="info-text"><strong data-t="wa">WhatsApp</strong><a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" data-t="wa_link">Escríbenos ahora</a></div></div>
+    <div class="cgrid">
+      <div class="cinfo reveal">
+        <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong data-t="addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div></div>
+        <div class="citem"><div class="cicon">📞</div><div class="ctxt"><strong data-t="phone">Teléfono</strong><a href="tel:+34641459907">+34 641 459 907</a></div></div>
+        <div class="citem"><div class="cicon">✉️</div><div class="ctxt"><strong data-t="email">Email</strong><a href="mailto:aleksrent1@gmail.com">aleksrent1@gmail.com</a></div></div>
+        <div class="citem"><div class="cicon">🌐</div><div class="ctxt"><strong>Web</strong><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></div></div>
+        <div class="citem"><div class="cicon">🕘</div><div class="ctxt"><strong data-t="sched">Horario</strong><span data-t="sched_val">Lun–Dom: 09:00–21:00</span></div></div>
+        <div class="citem"><div class="cicon">💬</div><div class="ctxt"><strong data-t="wa">WhatsApp</strong><a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" data-t="wa_val">Escríbenos ahora</a></div></div>
       </div>
-      <div class="map-wrap reveal">
+      <div class="mapwrap reveal">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2980.5!2d2.8418!3d41.6996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v1716900000000" allowfullscreen loading="lazy" title="Aleks Rent"></iframe>
       </div>
     </div>
@@ -496,28 +461,23 @@ function applyTranslations() {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">ALEKS <span>RENT</span></div>
-  <p class="footer-tagline" data-t="footer_tag">Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan</p>
-  <ul class="footer-links">
-    <li><a href="#hero" data-t="nav_about">Nosotros</a></li>
+  <img class="flogo" src="logo.png" alt="Aleks Rent"/>
+  <p class="ftag" data-t="ftag">Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan</p>
+  <ul class="flinks">
+    <li><a href="#about" data-t="nav_about">Nosotros</a></li>
     <li><a href="#prices" data-t="nav_prices">Precios</a></li>
     <li><a href="#contact" data-t="nav_contact">Contacto</a></li>
     <li><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></li>
   </ul>
-  <p class="footer-copy" data-t="footer_copy">© 2025 Aleks Rent S.L.</p>
+  <p class="fcopy" data-t="fcopy">© 2025 Aleks Rent S.L.</p>
 </footer>
 
-<a class="wa-float" href="https://api.whatsapp.com/send?phone=34641459907" target="_blank">💬</a>
+<a class="wa-float" href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" title="WhatsApp">💬</a>
 
 <script>
-  // Apply translations on load
-  applyTranslations();
-
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, {threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-t]').forEach(el=>{ if(T[lang][el.dataset.t]) el.textContent=T[lang][el.dataset.t]; });
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
