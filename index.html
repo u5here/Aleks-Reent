@@ -225,6 +225,27 @@
     .form-submit:hover{background:var(--blue2);transform:scale(1.03);}
     @media(max-width:500px){.form-row{grid-template-columns:1fr;}}
 
+
+    /* MESSAGE RESULT */
+    .msg-result{display:flex;flex-direction:column;gap:18px;}
+    .msg-header{display:flex;align-items:center;gap:14px;}
+    .msg-icon{font-size:2rem;}
+    .msg-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--text);letter-spacing:1px;}
+    .msg-sub{font-size:.82rem;color:var(--muted);}
+    .msg-preview{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:18px;font-size:.88rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:260px;overflow-y:auto;}
+    .msg-actions{display:flex;gap:10px;flex-wrap:wrap;}
+    .btn-back{background:var(--bg);color:var(--muted);border:1.5px solid var(--border);padding:11px 20px;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;flex:1;}
+    .btn-copy{background:var(--bg);color:var(--blue);border:1.5px solid var(--blue);padding:11px 20px;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;flex:1;}
+    .btn-send{background:#25D366;color:#fff;border:none;padding:11px 24px;border-radius:50px;font-weight:700;font-size:.9rem;cursor:pointer;flex:2;}
+    .btn-back:hover{border-color:var(--blue);color:var(--blue);}
+    .btn-copy:hover{background:var(--blue);color:#fff;}
+    .btn-send:hover{background:#1da851;}
+    /* AI loading animation */
+    @keyframes typing{0%,100%{opacity:.3}50%{opacity:1}}
+    .typing-dot{display:inline-block;width:8px;height:8px;background:var(--blue);border-radius:50%;margin:0 2px;animation:typing 1.2s ease infinite;}
+    .typing-dot:nth-child(2){animation-delay:.2s;}
+    .typing-dot:nth-child(3){animation-delay:.4s;}
+
     /* UTILS */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
     .reveal.visible{opacity:1;transform:none;}
@@ -412,13 +433,15 @@ function filterVehicles(cat,btn){
   if(banner) banner.style.display=(cat==='all'||cat==='grupo')?'':'none';
 }
 
+  let generatedMsg = '';
+
   function openModal(){
     const m = document.getElementById('reserva-modal');
     m.style.display='flex';
     document.body.style.overflow='hidden';
-    // Set min date to today
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('f-date').min = today;
+    document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
+    // Set modal lang selector to match current page lang
+    document.getElementById('f-lang').value = lang;
   }
   function closeModal(){
     document.getElementById('reserva-modal').style.display='none';
@@ -427,18 +450,85 @@ function filterVehicles(cat,btn){
   document.getElementById('reserva-modal').addEventListener('click', function(e){
     if(e.target===this) closeModal();
   });
-  function sendReserva(e){
+  function backToForm(){
+    document.getElementById('modal-step1').style.display='';
+    document.getElementById('modal-step2').style.display='none';
+  }
+  function copyMsg(){
+    navigator.clipboard.writeText(generatedMsg).then(()=>{
+      const btn = document.querySelector('.btn-copy');
+      btn.textContent='✅ Copiado!';
+      setTimeout(()=>btn.textContent='📋 Copiar',2000);
+    });
+  }
+  function sendWhatsApp(){
+    const encoded = encodeURIComponent(generatedMsg);
+    window.open('https://api.whatsapp.com/send?phone=34641459907&text='+encoded,'_blank');
+  }
+
+  async function generateMessage(e){
     e.preventDefault();
-    const name = document.getElementById('f-name').value;
-    const phone = document.getElementById('f-phone').value;
-    const vehicle = document.getElementById('f-vehicle').value;
-    const people = document.getElementById('f-people').value;
-    const date = document.getElementById('f-date').value;
+    const name     = document.getElementById('f-name').value;
+    const msgLang  = document.getElementById('f-lang').value;
+    const vehicle  = document.getElementById('f-vehicle').value;
+    const people   = document.getElementById('f-people').value || 1;
+    const date     = document.getElementById('f-date').value;
     const duration = document.getElementById('f-duration').value;
-    const msg = document.getElementById('f-msg').value;
-    const text = `🏍️ *RESERVA ALEKS RENT*%0A%0A👤 *Nombre:* ${name}%0A📞 *Teléfono:* ${phone}%0A🚗 *Vehículo:* ${vehicle}%0A👥 *Personas:* ${people||1}%0A📅 *Fecha:* ${date}%0A⏱️ *Duración:* ${duration}${msg ? '%0A💬 *Notas:* '+msg : ''}`;
-    window.open(`https://api.whatsapp.com/send?phone=34641459907&text=${text}`, '_blank');
-    closeModal();
+    const notes    = document.getElementById('f-msg').value;
+
+    // Show loading
+    document.getElementById('gen-btn-text').style.display='none';
+    document.getElementById('gen-btn-loading').style.display='inline';
+    document.getElementById('gen-btn').disabled=true;
+
+    const langNames = {es:'español',en:'English',fr:'français',ru:'русский'};
+    const prompt = `Eres un asistente de reservas para Aleks Rent, una empresa de alquiler de vehículos en Lloret de Mar, Costa Brava (España). 
+Genera un mensaje de WhatsApp profesional, amigable y natural en ${langNames[msgLang]} para reservar un vehículo.
+El mensaje debe incluir estos datos de forma natural y conversacional (no como lista):
+- Nombre del cliente: ${name}
+- Vehículo deseado: ${vehicle}
+- Número de personas: ${people}
+- Fecha: ${date}
+- Duración: ${duration}
+${notes ? '- Notas adicionales: '+notes : ''}
+El mensaje debe empezar con un saludo, mencionar que quiere hacer una reserva en Aleks Rent, incluir todos los datos y terminar con una despedida amigable.
+Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:1000,
+          messages:[{role:'user',content:prompt}]
+        })
+      });
+      const data = await res.json();
+      generatedMsg = data.content[0].text;
+
+      // Show result
+      document.getElementById('msg-preview').textContent = generatedMsg;
+      document.getElementById('modal-step1').style.display='none';
+      document.getElementById('modal-step2').style.display='';
+    } catch(err) {
+      // Fallback: generate basic message without AI
+      const fallbacks = {
+        es:`¡Hola! Soy ${name} y me gustaría hacer una reserva en Aleks Rent 🏍️\n\nVehículo: ${vehicle}\nPersonas: ${people}\nFecha: ${date}\nDuración: ${duration}${notes?'\nNotas: '+notes:''}\n\n¡Muchas gracias!`,
+        en:`Hello! I'm ${name} and I'd like to make a booking at Aleks Rent 🏍️\n\nVehicle: ${vehicle}\nPeople: ${people}\nDate: ${date}\nDuration: ${duration}${notes?'\nNotes: '+notes:''}\n\nThank you!`,
+        fr:`Bonjour! Je suis ${name} et je voudrais faire une réservation chez Aleks Rent 🏍️\n\nVéhicule: ${vehicle}\nPersonnes: ${people}\nDate: ${date}\nDurée: ${duration}${notes?'\nNotes: '+notes:''}\n\nMerci beaucoup!`,
+        ru:`Здравствуйте! Меня зовут ${name}, хотел бы забронировать в Aleks Rent 🏍️\n\nТранспорт: ${vehicle}\nЧеловек: ${people}\nДата: ${date}\nПродолжительность: ${duration}${notes?'\nПримечания: '+notes:''}\n\nСпасибо!`
+      };
+      generatedMsg = fallbacks[msgLang] || fallbacks.es;
+      document.getElementById('msg-preview').textContent = generatedMsg;
+      document.getElementById('modal-step1').style.display='none';
+      document.getElementById('modal-step2').style.display='';
+    }
+
+    // Reset button
+    document.getElementById('gen-btn-text').style.display='inline';
+    document.getElementById('gen-btn-loading').style.display='none';
+    document.getElementById('gen-btn').disabled=false;
   }
 
 </script>
@@ -648,54 +738,61 @@ function filterVehicles(cat,btn){
           <h2 class="modal-title" data-t="modal_title">Reservar Vehículo</h2>
           <p class="modal-sub" data-t="modal_sub">Rellena el formulario y te contactamos en menos de 1 hora</p>
         </div>
-        <form class="modal-form" onsubmit="sendReserva(event)">
+        <!-- STEP 1: FORM -->
+        <div id="modal-step1">
+        <form class="modal-form" onsubmit="generateMessage(event)">
           <div class="form-row">
             <div class="form-group">
-              <label data-t="form_name">Nombre completo</label>
+              <label>👤 Nombre completo</label>
               <input type="text" id="f-name" placeholder="Tu nombre" required/>
             </div>
             <div class="form-group">
-              <label data-t="form_phone">Teléfono / WhatsApp</label>
-              <input type="tel" id="f-phone" placeholder="+34 600 000 000" required/>
+              <label>🌍 Idioma del mensaje</label>
+              <select id="f-lang">
+                <option value="es">🇪🇸 Español</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="ru">🇷🇺 Русский</option>
+              </select>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label data-t="form_vehicle">Vehículo</label>
+              <label>🚗 Vehículo</label>
               <select id="f-vehicle" required>
                 <option value="">-- Selecciona --</option>
                 <optgroup label="🏍️ Motos">
-                  <option>KYMCO Vitality 50cc</option>
-                  <option>KYMCO Agility City 125cc</option>
+                  <option>KYMCO Vitality 50cc — 45€/día</option>
+                  <option>KYMCO Agility City 125cc — 50€/día</option>
                 </optgroup>
                 <optgroup label="🏎️ Quads">
-                  <option>KYMCO MXU Reserve 50cc</option>
-                  <option>KYMCO MXU 150cc</option>
-                  <option>KYMCO MXU 300cc</option>
-                  <option>CFMoto C-Force 450cc ⭐</option>
+                  <option>KYMCO MXU Reserve 50cc — 60€/2h</option>
+                  <option>KYMCO MXU 150cc — 60€/h</option>
+                  <option>KYMCO MXU 300cc — 80€/h</option>
+                  <option>CFMoto C-Force 450cc — 100€/h</option>
                 </optgroup>
                 <optgroup label="🚲 Bicicletas">
-                  <option>Bicicleta Normal</option>
+                  <option>Bicicleta Normal — 20€/día</option>
                 </optgroup>
                 <optgroup label="👥 Grupo">
-                  <option>Excursión en grupo (quads)</option>
-                  <option>Excursión en grupo (motos)</option>
-                  <option>Excursión mixta (motos + quads)</option>
+                  <option>Excursión en grupo — Quads</option>
+                  <option>Excursión en grupo — Motos</option>
+                  <option>Excursión mixta — Motos + Quads</option>
                 </optgroup>
               </select>
             </div>
             <div class="form-group">
-              <label data-t="form_people">Nº de personas</label>
-              <input type="number" id="f-people" placeholder="1" min="1" max="30"/>
+              <label>👥 Nº de personas</label>
+              <input type="number" id="f-people" value="1" min="1" max="30"/>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label data-t="form_date">Fecha de inicio</label>
+              <label>📅 Fecha de inicio</label>
               <input type="date" id="f-date" required/>
             </div>
             <div class="form-group">
-              <label data-t="form_days">Duración</label>
+              <label>⏱️ Duración</label>
               <select id="f-duration">
                 <option>1 hora</option>
                 <option>2 horas</option>
@@ -703,16 +800,39 @@ function filterVehicles(cat,btn){
                 <option>1 día</option>
                 <option>2–3 días</option>
                 <option>1 semana</option>
-                <option>+1 semana</option>
+                <option>Más de 1 semana</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label data-t="form_msg">Mensaje adicional (opcional)</label>
-            <textarea id="f-msg" rows="2" placeholder="Hotel, llegada, dudas..."></textarea>
+            <label>💬 Notas extra (hotel, preguntas...)</label>
+            <textarea id="f-msg" rows="2" placeholder="Ej: Estaremos en el Hotel Santa Marta, llegamos el día anterior..."></textarea>
           </div>
-          <button type="submit" class="form-submit" data-t="form_submit">Enviar por WhatsApp 💬</button>
+          <button type="submit" class="form-submit" id="gen-btn">
+            <span id="gen-btn-text">✨ Generar mensaje con IA</span>
+            <span id="gen-btn-loading" style="display:none">⏳ Generando...</span>
+          </button>
         </form>
+        </div>
+
+        <!-- STEP 2: GENERATED MESSAGE -->
+        <div id="modal-step2" style="display:none;">
+          <div class="msg-result">
+            <div class="msg-header">
+              <span class="msg-icon">✅</span>
+              <div>
+                <div class="msg-title">Mensaje generado</div>
+                <div class="msg-sub">Revísalo y envíalo por WhatsApp</div>
+              </div>
+            </div>
+            <div id="msg-preview" class="msg-preview"></div>
+            <div class="msg-actions">
+              <button class="btn-back" onclick="backToForm()">← Editar</button>
+              <button class="btn-copy" onclick="copyMsg()">📋 Copiar</button>
+              <button class="btn-send" onclick="sendWhatsApp()">WhatsApp 💬</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -824,13 +944,15 @@ function filterVehicles(cat,btn){
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
+  let generatedMsg = '';
+
   function openModal(){
     const m = document.getElementById('reserva-modal');
     m.style.display='flex';
     document.body.style.overflow='hidden';
-    // Set min date to today
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('f-date').min = today;
+    document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
+    // Set modal lang selector to match current page lang
+    document.getElementById('f-lang').value = lang;
   }
   function closeModal(){
     document.getElementById('reserva-modal').style.display='none';
@@ -839,18 +961,85 @@ function filterVehicles(cat,btn){
   document.getElementById('reserva-modal').addEventListener('click', function(e){
     if(e.target===this) closeModal();
   });
-  function sendReserva(e){
+  function backToForm(){
+    document.getElementById('modal-step1').style.display='';
+    document.getElementById('modal-step2').style.display='none';
+  }
+  function copyMsg(){
+    navigator.clipboard.writeText(generatedMsg).then(()=>{
+      const btn = document.querySelector('.btn-copy');
+      btn.textContent='✅ Copiado!';
+      setTimeout(()=>btn.textContent='📋 Copiar',2000);
+    });
+  }
+  function sendWhatsApp(){
+    const encoded = encodeURIComponent(generatedMsg);
+    window.open('https://api.whatsapp.com/send?phone=34641459907&text='+encoded,'_blank');
+  }
+
+  async function generateMessage(e){
     e.preventDefault();
-    const name = document.getElementById('f-name').value;
-    const phone = document.getElementById('f-phone').value;
-    const vehicle = document.getElementById('f-vehicle').value;
-    const people = document.getElementById('f-people').value;
-    const date = document.getElementById('f-date').value;
+    const name     = document.getElementById('f-name').value;
+    const msgLang  = document.getElementById('f-lang').value;
+    const vehicle  = document.getElementById('f-vehicle').value;
+    const people   = document.getElementById('f-people').value || 1;
+    const date     = document.getElementById('f-date').value;
     const duration = document.getElementById('f-duration').value;
-    const msg = document.getElementById('f-msg').value;
-    const text = `🏍️ *RESERVA ALEKS RENT*%0A%0A👤 *Nombre:* ${name}%0A📞 *Teléfono:* ${phone}%0A🚗 *Vehículo:* ${vehicle}%0A👥 *Personas:* ${people||1}%0A📅 *Fecha:* ${date}%0A⏱️ *Duración:* ${duration}${msg ? '%0A💬 *Notas:* '+msg : ''}`;
-    window.open(`https://api.whatsapp.com/send?phone=34641459907&text=${text}`, '_blank');
-    closeModal();
+    const notes    = document.getElementById('f-msg').value;
+
+    // Show loading
+    document.getElementById('gen-btn-text').style.display='none';
+    document.getElementById('gen-btn-loading').style.display='inline';
+    document.getElementById('gen-btn').disabled=true;
+
+    const langNames = {es:'español',en:'English',fr:'français',ru:'русский'};
+    const prompt = `Eres un asistente de reservas para Aleks Rent, una empresa de alquiler de vehículos en Lloret de Mar, Costa Brava (España). 
+Genera un mensaje de WhatsApp profesional, amigable y natural en ${langNames[msgLang]} para reservar un vehículo.
+El mensaje debe incluir estos datos de forma natural y conversacional (no como lista):
+- Nombre del cliente: ${name}
+- Vehículo deseado: ${vehicle}
+- Número de personas: ${people}
+- Fecha: ${date}
+- Duración: ${duration}
+${notes ? '- Notas adicionales: '+notes : ''}
+El mensaje debe empezar con un saludo, mencionar que quiere hacer una reserva en Aleks Rent, incluir todos los datos y terminar con una despedida amigable.
+Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:1000,
+          messages:[{role:'user',content:prompt}]
+        })
+      });
+      const data = await res.json();
+      generatedMsg = data.content[0].text;
+
+      // Show result
+      document.getElementById('msg-preview').textContent = generatedMsg;
+      document.getElementById('modal-step1').style.display='none';
+      document.getElementById('modal-step2').style.display='';
+    } catch(err) {
+      // Fallback: generate basic message without AI
+      const fallbacks = {
+        es:`¡Hola! Soy ${name} y me gustaría hacer una reserva en Aleks Rent 🏍️\n\nVehículo: ${vehicle}\nPersonas: ${people}\nFecha: ${date}\nDuración: ${duration}${notes?'\nNotas: '+notes:''}\n\n¡Muchas gracias!`,
+        en:`Hello! I'm ${name} and I'd like to make a booking at Aleks Rent 🏍️\n\nVehicle: ${vehicle}\nPeople: ${people}\nDate: ${date}\nDuration: ${duration}${notes?'\nNotes: '+notes:''}\n\nThank you!`,
+        fr:`Bonjour! Je suis ${name} et je voudrais faire une réservation chez Aleks Rent 🏍️\n\nVéhicule: ${vehicle}\nPersonnes: ${people}\nDate: ${date}\nDurée: ${duration}${notes?'\nNotes: '+notes:''}\n\nMerci beaucoup!`,
+        ru:`Здравствуйте! Меня зовут ${name}, хотел бы забронировать в Aleks Rent 🏍️\n\nТранспорт: ${vehicle}\nЧеловек: ${people}\nДата: ${date}\nПродолжительность: ${duration}${notes?'\nПримечания: '+notes:''}\n\nСпасибо!`
+      };
+      generatedMsg = fallbacks[msgLang] || fallbacks.es;
+      document.getElementById('msg-preview').textContent = generatedMsg;
+      document.getElementById('modal-step1').style.display='none';
+      document.getElementById('modal-step2').style.display='';
+    }
+
+    // Reset button
+    document.getElementById('gen-btn-text').style.display='inline';
+    document.getElementById('gen-btn-loading').style.display='none';
+    document.getElementById('gen-btn').disabled=false;
   }
 
 </script>
