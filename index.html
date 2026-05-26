@@ -40,7 +40,7 @@
 
     /* ── HERO ── */
     #hero{position:relative;height:100vh;min-height:580px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
-    .hero-bg{position:absolute;inset:0;background:url('fachada.jpg') center/cover no-repeat;filter:brightness(.25);}
+    .hero-bg{position:absolute;inset:0;background:url('hero_bg.jpg') center/cover no-repeat;}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,27,62,.15) 0%,rgba(13,27,62,.82) 100%);}
     .hero-content{position:relative;z-index:2;padding:0 20px;}
     .hero-logo{height:100px;margin-bottom:20px;filter:drop-shadow(0 4px 24px rgba(74,144,217,.4));}
@@ -225,9 +225,7 @@ function setLang(l,btn){
 <div id="banner-overlay">
   <div class="banner-box">
     <img class="banner-img" src="fachada.jpg" alt="Aleks Rent Lloret de Mar"/>
-    <div class="banner-top">
-      <img class="banner-logo" src="logo.png" alt="Aleks Rent Logo"/>
-    </div>
+    
     <div class="banner-content">
       <h2>Aleks <span>Rent</span></h2>
       <p data-t="banner_sub">Alquiler de motos, scooters, quads y bicicletas en Lloret de Mar</p>
@@ -261,7 +259,7 @@ function setLang(l,btn){
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge" data-t="hero_badge">🏍️ Lloret de Mar · Costa Brava</div>
-    <img class="hero-logo" src="logo.png" alt="Aleks Rent"/>
+    
     <p class="hero-sub" data-t="hero_sub">Vive la Costa Brava a tu manera.</p>
     <div class="hero-cta">
       <a class="btn-primary" href="#prices" data-t="btn_prices">Ver precios</a>
