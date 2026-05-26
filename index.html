@@ -114,6 +114,28 @@
     .footer-links a:hover{color:var(--sky);}
     .footer-copy{font-size:.74rem;color:#3a4f6e;}
 
+
+    /* FILTER TABS */
+    .filter-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 36px;}
+    .ftab{background:#fff;border:1.5px solid var(--border);color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:10px 22px;border-radius:50px;cursor:pointer;transition:all .2s;}
+    .ftab:hover{border-color:var(--blue);color:var(--blue);}
+    .ftab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(26,79,160,.25);}
+    .ftab .ftab-icon{margin-right:6px;font-size:.95rem;}
+    /* Card filter animation */
+    .vcard{transition:transform .25s,box-shadow .25s,border-color .25s,opacity .3s,max-height .3s;}
+    .vcard.hidden{display:none;}
+
+
+    /* GRUPO BANNER */
+    .grupo-banner{margin-top:44px;background:linear-gradient(135deg,var(--dark) 0%,#1A4FA0 100%);border-radius:18px;padding:32px 36px;overflow:hidden;position:relative;}
+    .grupo-banner::before{content:'🏍️';position:absolute;right:36px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.12;}
+    .grupo-content{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+    .grupo-icon{font-size:2.8rem;flex-shrink:0;}
+    .grupo-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:#fff;letter-spacing:1.5px;margin-bottom:6px;}
+    .grupo-content p{color:#a8bcd4;font-size:.88rem;line-height:1.6;max-width:500px;}
+    .grupo-btn{flex-shrink:0;background:#fff;color:var(--blue);font-weight:700;font-size:.88rem;padding:12px 26px;border-radius:50px;text-decoration:none;transition:all .2s;margin-left:auto;white-space:nowrap;}
+    .grupo-btn:hover{background:var(--sky);color:#fff;}
+
     /* UTILS */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
     .reveal.visible{opacity:1;transform:none;}
@@ -214,7 +236,8 @@ const T={
   }
 };
 let lang='es';
-function setLang(l,btn){
+function setLang(l,
+    f_all:'Todos',f_nocarnet:'Sin carnet',f_carnet:'Requiere carnet',f_grupo:'Salidas en grupo',grupo_title:'Excursiones en Grupo por la Costa Brava',grupo_desc:'Organiza tu excursión en quad o moto. Rutas guiadas desde 4 personas. ¡Contacta para presupuesto especial!',grupo_btn:'Reservar grupo',btn){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -223,6 +246,23 @@ function setLang(l,btn){
     if(val) el.textContent=val;
   });
 }
+
+  function filterVehicles(cat, btn) {
+    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.vcard').forEach(card => {
+      const cats = card.dataset.cat || '';
+      if (cat === 'all' || cats.includes(cat)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    // Show/hide grupo banner
+    const banner = document.querySelector('.grupo-banner');
+    if (banner) banner.style.display = (cat === 'all' || cat === 'grupo') ? '' : 'none';
+  }
+
 </script>
 
 <!-- BANNER -->
@@ -304,9 +344,18 @@ function setLang(l,btn){
       <h2 class="section-title" data-t="prices_title">Nuestros Vehículos</h2>
       <p class="section-desc" data-t="prices_desc">Precios por hora y días. Fianza reembolsable.</p>
     </div>
+
+    <!-- FILTER TABS -->
+    <div class="filter-tabs reveal">
+      <button class="ftab active" onclick="filterVehicles('all',this)"><span class="ftab-icon">🚗</span><span data-t="f_all">Todos</span></button>
+      <button class="ftab" onclick="filterVehicles('nocarnet',this)"><span class="ftab-icon">✅</span><span data-t="f_nocarnet">Sin carnet</span></button>
+      <button class="ftab" onclick="filterVehicles('carnet',this)"><span class="ftab-icon">🪪</span><span data-t="f_carnet">Requiere carnet</span></button>
+      <button class="ftab" onclick="filterVehicles('grupo',this)"><span class="ftab-icon">👥</span><span data-t="f_grupo">Salidas en grupo</span></button>
+    </div>
+
     <div class="vgrid">
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="nocarnet">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/Vitality_50.jpg" alt="KYMCO Vitality 50cc"/>
         <div class="vbody">
           <div class="vtag" data-t="no_lic">Sin carnet</div>
@@ -320,7 +369,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="carnet">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg" alt="KYMCO Agility City 125cc"/>
         <div class="vbody">
           <div class="vtag" data-t="lic_a1">Carnet A1</div>
@@ -334,7 +383,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="carnet">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/kimco-Superdimk-125cc.jpg" alt="KYMCO Superdink 125cc"/>
         <div class="vbody">
           <div class="vtag" data-t="lic_a1">Carnet A1</div>
@@ -347,7 +396,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="nocarnet">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="KYMCO MXU 50cc"/>
         <div class="vbody">
           <div class="vtag" data-t="no_lic">Sin carnet</div>
@@ -360,7 +409,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="carnet">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg" alt="KYMCO MXU 150cc"/>
         <div class="vbody">
           <div class="vtag" data-t="lic_b">Carnet B</div>
@@ -374,7 +423,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="carnet grupo">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg" alt="KYMCO MXU 300cc"/>
         <div class="vbody">
           <div class="vtag" data-t="lic_b">Carnet B</div>
@@ -388,7 +437,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard featured reveal">
+      <div class="vcard featured reveal" data-cat="carnet grupo">
         <div class="featured-badge">⭐ TOP</div>
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/c-force-450.jpg" alt="CFMoto C-Force 450cc"/>
         <div class="vbody">
@@ -403,7 +452,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="nocarnet grupo">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/electric-scooter.jpg" alt="Patinete Eléctrico"/>
         <div class="vbody">
           <div class="vtag" data-t="no_lic">Sin carnet</div>
@@ -417,7 +466,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="nocarnet grupo">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/bicicleta-electrica.jpg" alt="Bicicleta Eléctrica"/>
         <div class="vbody">
           <div class="vtag" data-t="no_lic">Sin carnet</div>
@@ -430,7 +479,7 @@ function setLang(l,btn){
         </div>
       </div>
 
-      <div class="vcard reveal">
+      <div class="vcard reveal" data-cat="nocarnet grupo">
         <img class="vimg" src="https://aleksrent.es/img-vehiculos/city-bike.jpg" alt="Bicicleta Normal"/>
         <div class="vbody">
           <div class="vtag" data-t="no_lic">Sin carnet</div>
@@ -445,6 +494,19 @@ function setLang(l,btn){
       </div>
 
     </div>
+
+    <!-- SALIDAS EN GRUPO BANNER -->
+    <div class="grupo-banner reveal">
+      <div class="grupo-content">
+        <div class="grupo-icon">👥</div>
+        <div>
+          <h3 data-t="grupo_title">Excursiones en Grupo por la Costa Brava</h3>
+          <p data-t="grupo_desc">Organiza tu excursión en quad o moto por los paisajes más espectaculares de la Costa Brava. Rutas guiadas para grupos desde 4 personas. ¡Contacta para presupuesto especial!</p>
+        </div>
+        <a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" class="grupo-btn" data-t="grupo_btn">Reservar grupo</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -457,7 +519,10 @@ function setLang(l,btn){
     </div>
     <div class="cgrid">
       <div class="cinfo reveal">
-        <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong data-t="c_addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div></div>
+        <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong data-t="c_addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar,
+    f_all:'All',f_nocarnet:'No license',f_carnet:'License required',f_grupo:'Group tours',grupo_title:'Group Excursions along the Costa Brava',grupo_desc:'Organize your quad or motorbike excursion through the Costa Brava. Guided routes from 4 people. Contact us for a special quote!',grupo_btn:'Book group',
+    f_all:'Tous',f_nocarnet:'Sans permis',f_carnet:'Permis requis',f_grupo:'Sorties en groupe',grupo_title:'Excursions en Groupe sur la Costa Brava',grupo_desc:'Organisez votre excursion en quad ou moto. Circuits guidés à partir de 4 personnes. Contactez-nous pour un devis!',grupo_btn:'Réserver groupe',
+    f_all:'Все',f_nocarnet:'Без прав',f_carnet:'Нужны права',f_grupo:'Групповые туры',grupo_title:'Групповые экскурсии по Коста-Браве',grupo_desc:'Организуйте экскурсию на квадроцикле или мотоцикле. Маршруты от 4 человек. Свяжитесь с нами для специального предложения!',grupo_btn:'Забронировать группу', Girona</span></div></div>
         <div class="citem"><div class="cicon">📞</div><div class="ctxt"><strong data-t="c_phone">Teléfono</strong><a href="tel:+34641459907">+34 641 459 907</a></div></div>
         <div class="citem"><div class="cicon">✉️</div><div class="ctxt"><strong data-t="c_email">Email</strong><a href="mailto:aleksrent1@gmail.com">aleksrent1@gmail.com</a></div></div>
         <div class="citem"><div class="cicon">🌐</div><div class="ctxt"><strong data-t="c_web">Web oficial</strong><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></div></div>
@@ -490,6 +555,23 @@ function setLang(l,btn){
   document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  function filterVehicles(cat, btn) {
+    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.vcard').forEach(card => {
+      const cats = card.dataset.cat || '';
+      if (cat === 'all' || cats.includes(cat)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    // Show/hide grupo banner
+    const banner = document.querySelector('.grupo-banner');
+    if (banner) banner.style.display = (cat === 'all' || cat === 'grupo') ? '' : 'none';
+  }
+
 </script>
 </body>
 </html>
