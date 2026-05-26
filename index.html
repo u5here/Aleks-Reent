@@ -180,6 +180,29 @@
     /* HERO bg parallax feel */
     .hero-bg{will-change:transform;}
 
+
+    /* UNIVERSAL HOVER SCALE */
+    a, button, .vcard, .stat-card, .citem, .ftab, .lang-btn, .nav-links a, 
+    .footer-links a, .grupo-btn, .btn-primary, .btn-outline, .nav-phone,
+    .banner-btn, .bail-tag, .featured-badge, .wa-float, #back-top {
+      transition: transform .2s cubic-bezier(.34,1.56,.64,1), 
+                  box-shadow .2s ease,
+                  border-color .2s ease,
+                  background .2s ease,
+                  color .2s ease,
+                  opacity .2s ease !important;
+    }
+    a:hover, button:hover { transform: scale(1.06) !important; }
+    .vcard:hover { transform: translateY(-8px) scale(1.02) !important; }
+    .stat-card:hover { transform: scale(1.05) !important; }
+    .citem:hover { transform: translateX(6px) scale(1.02) !important; }
+    .ftab:hover { transform: scale(1.07) !important; }
+    .lang-btn:hover { transform: scale(1.2) !important; opacity:1 !important; }
+    .bail-tag:hover { transform: scale(1.08) !important; }
+    img:hover { transform: scale(1.03) !important; }
+    .vimg { overflow:hidden; }
+    .vcard .vimg:hover { transform: scale(1.08) !important; }
+
     /* UTILS */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
     .reveal.visible{opacity:1;transform:none;}
