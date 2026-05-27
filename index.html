@@ -1,371 +1,301 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aleks Rent – Lloret de Mar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root{--blue:#1A4FA0;--blue2:#1565C0;--sky:#4A90D9;--dark:#0D1B3E;--bg:#F0F4FA;--card:#fff;--text:#0D1B3E;--muted:#607090;--border:rgba(26,79,160,0.13);}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
-    /* BANNER */
-    #banner-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(13,27,62,0.90);animation:fadeIn .4s ease;}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .banner-box{position:relative;max-width:680px;width:93%;border-radius:20px;overflow:hidden;box-shadow:0 0 80px rgba(26,79,160,.5);animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .15s both;}
-    @keyframes popIn{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
-    .banner-img{width:100%;height:400px;object-fit:cover;display:block;}
-    .banner-content{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,27,62,.97) 60%,transparent);padding:30px 28px 26px;text-align:center;}
-    .banner-content h2{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#fff;letter-spacing:2px;}
-    .banner-content h2 span{color:var(--sky);}
-    .banner-content p{font-size:.9rem;color:#a8bcd4;margin:5px 0 16px;}
-    .banner-btn{background:var(--blue);color:#fff;border:none;padding:12px 34px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s;}
-    .banner-btn:hover{background:var(--blue2);}
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 32px;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(26,79,160,.07);}
-    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);letter-spacing:2px;text-decoration:none;}
-    .nav-links{display:flex;gap:26px;list-style:none;}
-    .nav-links a{color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s;}
-    .nav-links a:hover{color:var(--blue);}
-    .nav-right{display:flex;align-items:center;gap:10px;}
-    .lang-selector{display:flex;gap:4px;}
-    .lang-btn{background:transparent;border:2px solid transparent;padding:2px;border-radius:6px;cursor:pointer;opacity:.5;transition:all .2s;line-height:0;display:inline-flex;}
-    .lang-btn img{width:32px;height:auto;border-radius:3px;display:block;box-shadow:0 1px 4px rgba(0,0,0,.2);}
-    .lang-btn:hover{opacity:1;transform:scale(1.15);}
-    .lang-btn.active{opacity:1;border-color:var(--blue);background:rgba(26,79,160,.1);}
-    .nav-phone{background:var(--blue);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border-radius:50px;white-space:nowrap;transition:background .2s;}
-    .nav-phone:hover{background:var(--blue2);}
-    /* HERO */
-    #hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
-    .hero-bg{position:absolute;inset:0;background:url('hero_final.jpg') center center/cover no-repeat;}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(13,27,62,.55) 70%,rgba(13,27,62,.82) 100%);}
-    .hero-content{position:relative;z-index:2;padding:0 20px;}
-    .hero-badge{display:inline-block;background:var(--sky);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:18px;}
-    .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,7rem);line-height:.95;letter-spacing:4px;color:#fff;text-shadow:0 4px 40px rgba(74,144,217,.3);}
-    .hero-title span{color:var(--sky);}
-    .hero-sub{margin:16px auto 0;font-size:clamp(.95rem,2vw,1.15rem);color:#b0c8e0;max-width:520px;line-height:1.7;}
-    .hero-cta{margin-top:32px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-    .btn-primary{background:var(--blue);color:#fff;border:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:.97rem;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;}
-    .btn-primary:hover{background:var(--blue2);transform:translateY(-2px);}
-    .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.38);padding:14px 36px;border-radius:50px;font-weight:600;font-size:.97rem;text-decoration:none;transition:border-color .2s,color .2s;}
-    .btn-outline:hover{border-color:var(--sky);color:var(--sky);}
-    /* SECTIONS */
-    section{padding:88px 0;}
-    .container{max-width:1150px;margin:0 auto;padding:0 24px;}
-    .section-label{font-size:.72rem;letter-spacing:3px;font-weight:700;color:var(--blue);text-transform:uppercase;margin-bottom:8px;}
-    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.3rem);letter-spacing:2px;line-height:1;margin-bottom:14px;color:var(--text);}
-    .section-desc{color:var(--muted);max-width:550px;line-height:1.7;font-size:.96rem;}
-    /* ABOUT */
-    #about{background:#fff;}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:46px;}
-    .about-img{width:100%;border-radius:16px;object-fit:cover;height:430px;display:block;box-shadow:0 8px 40px rgba(26,79,160,.1);}
-    .about-text p{color:var(--muted);line-height:1.8;font-size:.96rem;margin-bottom:16px;}
-    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
-    .stat-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .2s,box-shadow .2s;}
-    .stat-card:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(26,79,160,.08);}
-    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;color:var(--blue);}
-    .stat-lbl{font-size:.78rem;color:var(--muted);margin-top:2px;}
-    /* FILTER TABS */
-    .filter-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 36px;}
-    .ftab{background:#fff;border:1.5px solid var(--border);color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:10px 22px;border-radius:50px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px;}
-    .ftab:hover{border-color:var(--blue);color:var(--blue);}
-    .ftab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(26,79,160,.25);}
-    /* PRICES */
-    #prices{background:var(--bg);}
-    .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:22px;}
-    .vcard{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 12px rgba(26,79,160,.05);transition:transform .25s,box-shadow .25s,border-color .25s,opacity .3s;}
-    .vcard:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(26,79,160,.13);border-color:rgba(26,79,160,.28);}
-    .vcard.hidden{display:none;}
-    .vcard.featured{background:linear-gradient(135deg,#EEF4FF,#fff);border-color:rgba(26,79,160,.18);}
-    .featured-badge{position:absolute;top:12px;right:12px;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:50px;}
-    .vcard{position:relative;}
-    .vimg{width:100%;height:195px;object-fit:cover;display:block;background:#eef4fb;}
-    .vbody{padding:20px;}
-    .vtag{font-size:.66rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
-    .vname{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:var(--text);margin-bottom:2px;}
-    .ptable{width:100%;border-collapse:collapse;margin-top:10px;}
-    .ptable td{font-size:.82rem;padding:4px 0;color:var(--muted);border-bottom:1px solid rgba(26,79,160,.05);}
-    .ptable tr:last-child td{border-bottom:none;}
-    .ptable td:last-child{text-align:right;font-weight:700;color:var(--blue);}
-    .ptable tr:first-child td:last-child{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;}
-    .bail-tag{display:inline-block;margin-top:11px;background:rgba(26,79,160,.07);color:var(--blue);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;}
-    /* GRUPO BANNER */
-    .grupo-banner{margin-top:44px;background:linear-gradient(135deg,var(--dark) 0%,#1A4FA0 100%);border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;}
-    .grupo-banner::before{content:'🏍️';position:absolute;right:32px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.1;}
-    .grupo-content{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
-    .grupo-icon{font-size:2.8rem;flex-shrink:0;}
-    .grupo-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:1.5px;margin-bottom:6px;}
-    .grupo-content p{color:#a8bcd4;font-size:.88rem;line-height:1.6;max-width:480px;}
-    .grupo-btn{flex-shrink:0;background:#fff;color:var(--blue);font-weight:700;font-size:.88rem;padding:12px 26px;border-radius:50px;text-decoration:none;transition:all .2s;margin-left:auto;white-space:nowrap;}
-    .grupo-btn:hover{background:var(--sky);color:#fff;}
-    /* CONTACT */
-    #contact{background:#fff;}
-    .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:46px;}
-    .cinfo{display:flex;flex-direction:column;gap:13px;}
-    .citem{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:17px;transition:border-color .2s;}
-    .citem:hover{border-color:var(--blue);}
-    .cicon{font-size:1.3rem;min-width:34px;text-align:center;}
-    .ctxt strong{display:block;font-size:.91rem;color:var(--text);margin-bottom:3px;}
-    .ctxt span,.ctxt a{color:var(--muted);font-size:.85rem;text-decoration:none;}
-    .ctxt a:hover{color:var(--blue);}
-    .mapwrap{border-radius:16px;overflow:hidden;height:400px;border:1px solid var(--border);}
-    .mapwrap iframe{width:100%;height:100%;border:none;}
-    /* FOOTER */
-    footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;text-align:center;}
-    .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;letter-spacing:3px;}
-    .footer-logo span{color:var(--sky);}
-    .footer-tag{font-size:.8rem;color:#6a85b0;margin:8px 0 20px;}
-    .footer-links{display:flex;justify-content:center;gap:22px;list-style:none;flex-wrap:wrap;margin-bottom:18px;}
-    .footer-links a{color:#6a85b0;text-decoration:none;font-size:.82rem;}
-    .footer-links a:hover{color:var(--sky);}
-    .footer-copy{font-size:.74rem;color:#3a4f6e;}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aleks Rent – Lloret de Mar</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--blue:#1A4FA0;--blue2:#1565C0;--sky:#4A90D9;--dark:#0D1B3E;--bg:#F0F4FA;--card:#fff;--text:#0D1B3E;--muted:#607090;--border:rgba(26,79,160,0.13);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
-    /* COUNTERS */
-    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;color:var(--blue);transition:color .3s;}
-    /* HERO title letter animation */
-    .hero-title{animation:heroSlide .9s cubic-bezier(.22,1,.36,1) both;}
-    @keyframes heroSlide{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
-    .hero-badge{animation:heroBadge .7s ease .2s both;}
-    @keyframes heroBadge{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-    .hero-sub{animation:heroSlide .9s ease .35s both;}
-    .hero-cta{animation:heroSlide .9s ease .5s both;}
-    /* CARD hover lift + glow */
-    .vcard{transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s,opacity .3s;}
-    .vcard:hover{transform:translateY(-8px) scale(1.01);}
-    .vcard:hover .vimg{transform:scale(1.06);filter:brightness(1.05);}
-    .vimg{transition:transform .5s ease,filter .5s ease;}
-    /* STAT CARDS pulse on hover */
-    .stat-card{transition:border-color .2s,box-shadow .2s,transform .2s;}
-    .stat-card:hover{transform:translateY(-4px) scale(1.03);}
-    /* NAV logo spin on hover */
-    .nav-logo{transition:letter-spacing .3s,color .2s;}
-    .nav-logo:hover{letter-spacing:5px;}
-    /* FILTER TAB bounce */
-    .ftab{transition:all .2s cubic-bezier(.34,1.56,.64,1);}
-    .ftab:hover{transform:translateY(-2px) scale(1.04);}
-    .ftab.active{transform:scale(1.05);}
-    /* BANNER btn pulse */
-    .banner-btn{animation:pulse 2.5s ease 1.5s infinite;}
-    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,79,160,.4)}50%{box-shadow:0 0 0 10px rgba(26,79,160,0)}}
-    /* WA float bounce */
-    .wa-float{animation:waBounce 2s ease 3s infinite;}
-    @keyframes waBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    /* SECTION titles slide in */
-    .section-title{transition:opacity .6s,transform .6s;}
-    /* REVEAL stagger for vgrid children */
-    .vgrid .vcard:nth-child(1){transition-delay:.05s;}
-    .vgrid .vcard:nth-child(2){transition-delay:.1s;}
-    .vgrid .vcard:nth-child(3){transition-delay:.15s;}
-    .vgrid .vcard:nth-child(4){transition-delay:.2s;}
-    .vgrid .vcard:nth-child(5){transition-delay:.25s;}
-    .vgrid .vcard:nth-child(6){transition-delay:.3s;}
-    .vgrid .vcard:nth-child(7){transition-delay:.35s;}
-    /* GRUPO banner shimmer */
-    .grupo-banner{background-size:200% 100%;animation:shimmer 4s ease infinite;}
-    @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-    .grupo-banner{background:linear-gradient(135deg,var(--dark),#1A4FA0,#0d3578,#1A4FA0,var(--dark));background-size:300% 100%;}
-    /* CITEM hover slide */
-    .citem{transition:border-color .2s,box-shadow .2s,transform .2s;}
-    .citem:hover{transform:translateX(6px);}
-    /* FOOTER logo glow */
-    .footer-logo{transition:text-shadow .3s;}
-    .footer-logo:hover{text-shadow:0 0 30px rgba(74,144,217,.6);}
-    /* SCROLL progress bar */
-    #scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--blue));z-index:9998;width:0%;transition:width .1s linear;}
-    /* BACK TO TOP button */
-    #back-top{position:fixed;bottom:92px;right:26px;z-index:200;background:var(--blue);color:#fff;width:44px;height:44px;border-radius:50%;border:none;font-size:1.2rem;cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(26,79,160,.4);}
-    #back-top.visible{opacity:1;transform:translateY(0);}
-    #back-top:hover{background:var(--blue2);transform:translateY(-3px);}
-    /* HERO bg parallax feel */
-    .hero-bg{will-change:transform;}
+/* SCROLL BAR */
+#scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--blue));z-index:9998;width:0%;transition:width .1s;}
 
+/* BANNER */
+#banner-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(13,27,62,0.90);}
+.banner-box{position:relative;max-width:680px;width:93%;border-radius:20px;overflow:hidden;box-shadow:0 0 80px rgba(26,79,160,.5);animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .15s both;}
+@keyframes popIn{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+.banner-img{width:100%;height:400px;object-fit:cover;display:block;}
+.banner-content{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,27,62,.97) 60%,transparent);padding:30px 28px 26px;text-align:center;}
+.banner-content h2{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#fff;letter-spacing:2px;}
+.banner-content h2 span{color:var(--sky);}
+.banner-content p{font-size:.9rem;color:#a8bcd4;margin:5px 0 16px;}
+.banner-btn{background:var(--blue);color:#fff;border:none;padding:12px 34px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s;animation:pulse 2.5s ease 1.5s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,79,160,.4)}50%{box-shadow:0 0 0 10px rgba(26,79,160,0)}}
+.banner-btn:hover{background:var(--blue2);}
 
-    /* UNIVERSAL HOVER SCALE */
-    a, button, .vcard, .stat-card, .citem, .ftab, .lang-btn, .nav-links a, 
-    .footer-links a, .grupo-btn, .btn-primary, .btn-outline, .nav-phone,
-    .banner-btn, .bail-tag, .featured-badge, .wa-float, #back-top {
-      transition: transform .2s cubic-bezier(.34,1.56,.64,1), 
-                  box-shadow .2s ease,
-                  border-color .2s ease,
-                  background .2s ease,
-                  color .2s ease,
-                  opacity .2s ease !important;
-    }
-    a:hover, button:hover { transform: scale(1.06) !important; }
-    .vcard:hover { transform: translateY(-8px) scale(1.02) !important; }
-    .stat-card:hover { transform: scale(1.05) !important; }
-    .citem:hover { transform: translateX(6px) scale(1.02) !important; }
-    .ftab:hover { transform: scale(1.07) !important; }
-    .lang-btn:hover { transform: scale(1.2) !important; opacity:1 !important; }
-    .bail-tag:hover { transform: scale(1.08) !important; }
-    img:hover { transform: scale(1.03) !important; }
-    .vimg { overflow:hidden; }
-    .vcard .vimg:hover { transform: scale(1.08) !important; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 32px;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(26,79,160,.07);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);letter-spacing:2px;text-decoration:none;transition:letter-spacing .3s;}
+.nav-logo:hover{letter-spacing:5px;}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s,transform .2s;display:inline-block;}
+.nav-links a:hover{color:var(--blue);transform:translateY(-2px);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.lang-selector{display:flex;gap:4px;}
+.lang-btn{background:transparent;border:2px solid transparent;padding:2px;border-radius:6px;cursor:pointer;opacity:.5;transition:all .2s;line-height:0;display:inline-flex;}
+.lang-btn img{width:32px;height:auto;border-radius:3px;display:block;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.lang-btn:hover{opacity:1;transform:scale(1.2);}
+.lang-btn.active{opacity:1;border-color:var(--blue);background:rgba(26,79,160,.1);}
+.nav-phone{background:var(--blue);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border-radius:50px;white-space:nowrap;transition:all .2s;}
+.nav-phone:hover{background:var(--blue2);transform:scale(1.05);}
 
+/* HERO */
+#hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('hero_final.jpg') center center/cover no-repeat;will-change:transform;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(13,27,62,.55) 70%,rgba(13,27,62,.82) 100%);}
+.hero-content{position:relative;z-index:2;padding:0 20px;}
+.hero-badge{display:inline-block;background:var(--sky);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:18px;animation:heroBadge .7s ease .2s both;}
+@keyframes heroBadge{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,7rem);line-height:.95;letter-spacing:4px;color:#fff;text-shadow:0 4px 40px rgba(74,144,217,.3);animation:heroSlide .9s cubic-bezier(.22,1,.36,1) both;}
+@keyframes heroSlide{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.hero-title span{color:var(--sky);}
+.hero-sub{margin:16px auto 0;font-size:clamp(.95rem,2vw,1.15rem);color:#b0c8e0;max-width:520px;line-height:1.7;animation:heroSlide .9s ease .35s both;}
+.hero-cta{margin-top:32px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:heroSlide .9s ease .5s both;}
+.btn-primary{background:var(--blue);color:#fff;border:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:.97rem;cursor:pointer;text-decoration:none;transition:all .2s;}
+.btn-primary:hover{background:var(--blue2);transform:translateY(-3px) scale(1.04);}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.38);padding:14px 36px;border-radius:50px;font-weight:600;font-size:.97rem;text-decoration:none;transition:all .2s;}
+.btn-outline:hover{border-color:var(--sky);color:var(--sky);transform:translateY(-3px);}
 
-    /* MODAL */
-    #reserva-modal{display:none;}
-    #reserva-modal.open{display:flex !important;}
-    .modal-box{background:#fff;border-radius:20px;padding:36px;max-width:600px;width:94%;max-height:90vh;overflow-y:auto;position:relative;animation:popIn .4s cubic-bezier(.34,1.56,.64,1);}
-    .modal-close{position:absolute;top:16px;right:16px;background:var(--bg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;color:var(--muted);transition:all .2s;}
-    .modal-close:hover{background:var(--blue);color:#fff;transform:scale(1.1) rotate(90deg);}
-    .modal-header{text-align:center;margin-bottom:24px;}
-    .modal-icon{font-size:2.5rem;margin-bottom:8px;}
-    .modal-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--text);letter-spacing:2px;}
-    .modal-sub{color:var(--muted);font-size:.88rem;margin-top:4px;}
-    .modal-form{display:flex;flex-direction:column;gap:14px;}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-    .form-group{display:flex;flex-direction:column;gap:5px;}
-    .form-group label{font-size:.78rem;font-weight:700;color:var(--text);letter-spacing:.5px;text-transform:uppercase;}
-    .form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--text);background:#fff;transition:border-color .2s,box-shadow .2s;outline:none;width:100%;}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,79,160,.1);}
-    .form-group textarea{resize:none;}
-    .form-submit{background:var(--blue);color:#fff;border:none;padding:14px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s;margin-top:4px;}
-    .form-submit:hover{background:var(--blue2);transform:scale(1.03);}
-    @media(max-width:500px){.form-row{grid-template-columns:1fr;}}
+/* BACK TO TOP */
+#back-top{position:fixed;bottom:92px;right:26px;z-index:200;background:var(--blue);color:#fff;width:44px;height:44px;border-radius:50%;border:none;font-size:1.2rem;cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(26,79,160,.4);}
+#back-top.visible{opacity:1;transform:translateY(0);}
+#back-top:hover{background:var(--blue2);transform:translateY(-3px)!important;}
 
+/* SECTIONS */
+section{padding:88px 0;}
+.container{max-width:1150px;margin:0 auto;padding:0 24px;}
+.section-label{font-size:.72rem;letter-spacing:3px;font-weight:700;color:var(--blue);text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.3rem);letter-spacing:2px;line-height:1;margin-bottom:14px;color:var(--text);}
+.section-desc{color:var(--muted);max-width:550px;line-height:1.7;font-size:.96rem;}
 
-    /* MESSAGE RESULT */
-    .msg-result{display:flex;flex-direction:column;gap:18px;}
-    .msg-header{display:flex;align-items:center;gap:14px;}
-    .msg-icon{font-size:2rem;}
-    .msg-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--text);letter-spacing:1px;}
-    .msg-sub{font-size:.82rem;color:var(--muted);}
-    .msg-preview{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:18px;font-size:.88rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:260px;overflow-y:auto;}
-    .msg-actions{display:flex;gap:10px;flex-wrap:wrap;}
-    .btn-back{background:var(--bg);color:var(--muted);border:1.5px solid var(--border);padding:11px 20px;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;flex:1;}
-    .btn-copy{background:var(--bg);color:var(--blue);border:1.5px solid var(--blue);padding:11px 20px;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;flex:1;}
-    .btn-send{background:#25D366;color:#fff;border:none;padding:11px 24px;border-radius:50px;font-weight:700;font-size:.9rem;cursor:pointer;flex:2;}
-    .btn-back:hover{border-color:var(--blue);color:var(--blue);}
-    .btn-copy:hover{background:var(--blue);color:#fff;}
-    .btn-send:hover{background:#1da851;}
-    /* AI loading animation */
-    @keyframes typing{0%,100%{opacity:.3}50%{opacity:1}}
-    .typing-dot{display:inline-block;width:8px;height:8px;background:var(--blue);border-radius:50%;margin:0 2px;animation:typing 1.2s ease infinite;}
-    .typing-dot:nth-child(2){animation-delay:.2s;}
-    .typing-dot:nth-child(3){animation-delay:.4s;}
+/* ABOUT */
+#about{background:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:46px;}
+.about-img{width:100%;border-radius:16px;object-fit:cover;height:430px;display:block;box-shadow:0 8px 40px rgba(26,79,160,.1);transition:transform .3s;}
+.about-img:hover{transform:scale(1.02);}
+.about-text p{color:var(--muted);line-height:1.8;font-size:.96rem;margin-bottom:16px;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+.stat-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;transition:all .2s;}
+.stat-card:hover{border-color:var(--blue);transform:translateY(-4px) scale(1.03);box-shadow:0 4px 20px rgba(26,79,160,.08);}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;color:var(--blue);}
+.stat-lbl{font-size:.78rem;color:var(--muted);margin-top:2px;}
 
+/* FILTER TABS */
+.filter-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 36px;}
+.ftab{background:#fff;border:1.5px solid var(--border);color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:10px 22px;border-radius:50px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);}
+.ftab:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px) scale(1.04);}
+.ftab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(26,79,160,.25);transform:scale(1.05);}
 
-    /* REVIEWS */
-    .reviews-layout{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start;margin-top:8px;}
-    .reviews-panel{position:relative;}
-    .reviews-scroll{display:flex;flex-direction:column;gap:14px;max-height:620px;overflow-y:auto;padding-right:8px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
-    .reviews-scroll::-webkit-scrollbar{width:4px;}
-    .reviews-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
-    .reviews-fade-bottom{position:absolute;bottom:0;left:0;right:8px;height:60px;background:linear-gradient(to top,#fff,transparent);pointer-events:none;}
-    .review-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all .25s cubic-bezier(.34,1.56,.64,1);cursor:default;}
-    .review-card:hover{transform:translateX(6px) scale(1.01);border-color:var(--blue);box-shadow:0 4px 20px rgba(26,79,160,.1);}
-    .rv-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-    .rv-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .rv-name{font-weight:700;font-size:.9rem;color:var(--text);}
-    .rv-stars{color:#f59e0b;font-size:.85rem;letter-spacing:1px;}
-    .rv-source{margin-left:auto;font-size:.68rem;font-weight:700;color:var(--muted);background:var(--border);padding:3px 8px;border-radius:50px;letter-spacing:.5px;}
-    .rv-text{font-size:.84rem;color:var(--muted);line-height:1.6;font-style:italic;}
-    .rv-tag{display:inline-block;margin-top:10px;background:rgba(26,79,160,.07);color:var(--blue);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;}
-    /* FEATURED */
-    .review-featured{background:var(--dark);border-radius:20px;padding:32px;position:sticky;top:90px;}
-    .rf-badge{display:inline-block;background:rgba(245,158,11,.15);color:#f59e0b;font-size:.72rem;font-weight:700;letter-spacing:2px;padding:4px 12px;border-radius:50px;margin-bottom:14px;}
-    .rf-stars{color:#f59e0b;font-size:1.3rem;letter-spacing:3px;margin-bottom:16px;}
-    .rf-quote{font-size:1rem;color:#e2e8f0;line-height:1.75;font-style:italic;border-left:3px solid var(--sky);padding-left:16px;margin-bottom:20px;}
-    .rf-author{display:flex;align-items:center;gap:12px;}
-    .rf-avatar{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;display:flex;align-items:center;justify-content:center;}
-    .rf-name{font-weight:700;color:#fff;font-size:.95rem;}
-    .rf-origin{font-size:.78rem;color:#6a85b0;margin-top:2px;}
-    .rf-divider{height:1px;background:rgba(255,255,255,.08);margin:20px 0;}
-    .rf-stats{display:flex;gap:16px;margin-bottom:20px;}
-    .rf-stat{display:flex;align-items:center;gap:8px;flex:1;}
-    .rf-stat span{font-size:1.3rem;}
-    .rf-stat strong{display:block;color:#fff;font-size:.9rem;}
-    .rf-stat small{color:#6a85b0;font-size:.72rem;}
-    .rf-cta{display:block;text-align:center;background:var(--blue);color:#fff;text-decoration:none;padding:12px;border-radius:50px;font-weight:700;font-size:.88rem;transition:all .2s;}
-    .rf-cta:hover{background:var(--sky);}
-    @media(max-width:900px){.reviews-layout{grid-template-columns:1fr;}.review-featured{position:static;}}
+/* PRICES */
+#prices{background:var(--bg);}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:22px;}
+.vcard{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 12px rgba(26,79,160,.05);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s,opacity .3s;position:relative;}
+.vcard:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 20px 50px rgba(26,79,160,.15);border-color:rgba(26,79,160,.3);}
+.vcard.hidden{display:none;}
+.vcard.featured{background:linear-gradient(135deg,#EEF4FF,#fff);border-color:rgba(26,79,160,.18);}
+.featured-badge{position:absolute;top:12px;right:12px;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:50px;}
+.vimg{width:100%;height:195px;object-fit:cover;display:block;background:#eef4fb;transition:transform .5s,filter .5s;}
+.vcard:hover .vimg{transform:scale(1.06);filter:brightness(1.05);}
+.vbody{padding:20px;}
+.vtag{font-size:.66rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
+.vname{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:var(--text);margin-bottom:2px;}
+.ptable{width:100%;border-collapse:collapse;margin-top:10px;}
+.ptable td{font-size:.82rem;padding:4px 0;color:var(--muted);border-bottom:1px solid rgba(26,79,160,.05);}
+.ptable tr:last-child td{border-bottom:none;}
+.ptable td:last-child{text-align:right;font-weight:700;color:var(--blue);}
+.ptable tr:first-child td:last-child{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;}
+.bail-tag{display:inline-block;margin-top:11px;background:rgba(26,79,160,.07);color:var(--blue);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;transition:all .2s;}
+.bail-tag:hover{background:var(--blue);color:#fff;transform:scale(1.08);}
 
+/* GRUPO BANNER */
+.grupo-banner{margin-top:44px;background:linear-gradient(135deg,var(--dark),#1A4FA0,#0d3578,#1A4FA0,var(--dark));background-size:300% 100%;border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;animation:shimmer 4s ease infinite;}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.grupo-banner::before{content:'🏍️';position:absolute;right:32px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.1;}
+.grupo-content{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.grupo-icon{font-size:2.8rem;flex-shrink:0;}
+.grupo-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:1.5px;margin-bottom:6px;}
+.grupo-content p{color:#a8bcd4;font-size:.88rem;line-height:1.6;max-width:480px;}
+.grupo-btn{flex-shrink:0;background:#fff;color:var(--blue);font-weight:700;font-size:.88rem;padding:12px 26px;border-radius:50px;text-decoration:none;transition:all .2s;margin-left:auto;white-space:nowrap;cursor:pointer;border:none;font-family:'Outfit',sans-serif;}
+.grupo-btn:hover{background:var(--sky);color:#fff;transform:scale(1.06);}
 
+/* BATALLA */
+#comparador{background:#050510;padding:88px 0;overflow:hidden;position:relative;}
+#comparador::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(26,79,160,.15) 0%,transparent 70%);}
+#comparador .section-label{color:#4A90D9;}
+#comparador .section-title{color:#fff;}
+#comparador .section-desc{color:#6a85b0;}
+.comp-selects{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin:36px 0 20px;}
+.comp-select-box{background:rgba(255,255,255,.05);border:1.5px solid rgba(74,144,217,.3);border-radius:16px;padding:18px;transition:all .2s;}
+.comp-select-box:hover{border-color:rgba(74,144,217,.7);transform:translateY(-2px);}
+.comp-select-box label{display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4A90D9;margin-bottom:10px;}
+.comp-select-box select{width:100%;border:none;outline:none;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;background:transparent;cursor:pointer;}
+.comp-select-box select option{background:#0a0a20;color:#fff;}
+.comp-vs-btn{text-align:center;}
+#battle-btn{background:linear-gradient(135deg,#1A4FA0,#4A90D9);color:#fff;border:none;padding:14px 28px;border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;cursor:pointer;box-shadow:0 4px 24px rgba(74,144,217,.4);transition:all .2s;}
+#battle-btn:hover{transform:scale(1.1);box-shadow:0 6px 36px rgba(74,144,217,.7);}
+.battle-arena{display:none;margin-top:20px;}
+.battle-arena.active{display:block;}
+.battle-countdown{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:#fff;text-align:center;min-height:80px;line-height:1;margin-bottom:10px;}
+.battle-grid{display:grid;grid-template-columns:1fr 120px 1fr;gap:0;min-height:480px;}
+.battle-panel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;}
+.battle-panel.left{border-radius:20px 0 0 20px;border-right:none;}
+.battle-panel.right{border-radius:0 20px 20px 0;border-left:none;}
+.bp-img{width:100%;height:200px;object-fit:cover;display:block;}
+.bp-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#fff;padding:12px 16px 4px;letter-spacing:1px;}
+.bp-tag{display:inline-block;margin:0 16px 10px;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:50px;background:rgba(74,144,217,.2);color:#4A90D9;border:1px solid rgba(74,144,217,.3);}
+.bp-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;border-top:1px solid rgba(255,255,255,.05);}
+.bp-stat-lbl{font-size:.7rem;color:#6a85b0;text-transform:uppercase;letter-spacing:.5px;}
+.bp-stat-val{font-size:.88rem;font-weight:700;color:#ccc;transition:all .4s;}
+.bp-stat-val.win{color:#39ff14;text-shadow:0 0 12px #39ff14,0 0 24px #39ff14,0 0 40px #39ff14;font-size:1rem;}
+.bp-stat-val.win::before{content:'+ ';}
+.bp-stat-val.lose{color:#ff073a;text-shadow:0 0 8px #ff073a;text-decoration:line-through;opacity:.6;}
+.bp-stat-val.lose::before{content:'- ';}
+.battle-middle{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.battle-vs-txt{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:#fff;letter-spacing:3px;text-shadow:0 0 20px rgba(74,144,217,.8);}
+#beam{width:6px;height:0;background:linear-gradient(to bottom,#ff073a,#ffff00,#39ff14);border-radius:6px;box-shadow:0 0 16px #4A90D9,0 0 32px #4A90D9;margin:8px auto;transition:height .05s;}
+#explosion{font-size:0;text-align:center;transition:all .3s;}
+.winner-banner{display:none;text-align:center;margin-top:24px;animation:winnerPop .5s cubic-bezier(.34,1.56,.64,1);}
+@keyframes winnerPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.winner-banner.show{display:block;}
+.winner-badge{display:inline-block;background:linear-gradient(135deg,#ff9500,#ffcc00);color:#000;font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;padding:12px 36px;border-radius:50px;box-shadow:0 0 40px rgba(255,204,0,.6),0 0 80px rgba(255,204,0,.3);}
+.winner-sub{color:#a8bcd4;font-size:.9rem;margin-top:10px;}
+.particle{position:absolute;pointer-events:none;font-size:1.2rem;animation:particleFly 1s ease forwards;}
+@keyframes particleFly{from{opacity:1;transform:translate(0,0) scale(1)}to{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
+@media(max-width:700px){.comp-selects{grid-template-columns:1fr;}.battle-grid{grid-template-columns:1fr;}.battle-panel.left,.battle-panel.right{border-radius:16px;border:1px solid rgba(255,255,255,.08);}}
 
-    /* COMPARADOR BATALLA */
-    #comparador{background:#050510;padding:88px 0;overflow:hidden;position:relative;}
-    #comparador::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(26,79,160,.15) 0%,transparent 70%);}
-    #comparador .section-label{color:#4A90D9;}
-    #comparador .section-title{color:#fff;}
-    #comparador .section-desc{color:#6a85b0;}
-    .comp-selects{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin:36px 0 20px;}
-    .comp-select-box{background:rgba(255,255,255,.05);border:1.5px solid rgba(74,144,217,.3);border-radius:16px;padding:18px;transition:border-color .2s;}
-    .comp-select-box:hover{border-color:rgba(74,144,217,.7);}
-    .comp-select-box label{display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4A90D9;margin-bottom:10px;}
-    .comp-select-box select{width:100%;border:none;outline:none;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;background:transparent;cursor:pointer;}
-    .comp-select-box select option{background:#0a0a20;color:#fff;}
-    .comp-vs-btn{text-align:center;}
-    .comp-vs-btn button{background:linear-gradient(135deg,#1A4FA0,#4A90D9);color:#fff;border:none;padding:14px 28px;border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;cursor:pointer;box-shadow:0 4px 24px rgba(74,144,217,.4);transition:all .2s;}
-    .comp-vs-btn button:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(74,144,217,.6);}
+/* REVIEWS */
+#reviews{background:#fff;}
+.reviews-layout{display:grid;grid-template-columns:1fr 400px;gap:32px;align-items:start;margin-top:20px;}
+.reviews-panel{position:relative;}
+.reviews-scroll{display:flex;flex-direction:column;gap:14px;max-height:600px;overflow-y:auto;padding-right:8px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.reviews-scroll::-webkit-scrollbar{width:4px;}
+.reviews-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+.reviews-fade{position:absolute;bottom:0;left:0;right:8px;height:60px;background:linear-gradient(to top,#fff,transparent);pointer-events:none;}
+.review-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all .25s cubic-bezier(.34,1.56,.64,1);}
+.review-card:hover{transform:translateX(6px) scale(1.01);border-color:var(--blue);box-shadow:0 4px 20px rgba(26,79,160,.1);}
+.rv-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.rv-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.rv-name{font-weight:700;font-size:.9rem;color:var(--text);}
+.rv-stars{color:#f59e0b;font-size:.85rem;letter-spacing:1px;}
+.rv-source{margin-left:auto;font-size:.68rem;font-weight:700;color:var(--muted);background:var(--border);padding:3px 8px;border-radius:50px;}
+.rv-text{font-size:.84rem;color:var(--muted);line-height:1.6;font-style:italic;}
+.rv-tag{display:inline-block;margin-top:10px;background:rgba(26,79,160,.07);color:var(--blue);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;}
+.review-featured{background:var(--dark);border-radius:20px;padding:32px;position:sticky;top:90px;}
+.rf-badge{display:inline-block;background:rgba(245,158,11,.15);color:#f59e0b;font-size:.72rem;font-weight:700;letter-spacing:2px;padding:4px 12px;border-radius:50px;margin-bottom:14px;}
+.rf-stars{color:#f59e0b;font-size:1.3rem;letter-spacing:3px;margin-bottom:16px;}
+.rf-quote{font-size:1rem;color:#e2e8f0;line-height:1.75;font-style:italic;border-left:3px solid var(--sky);padding-left:16px;margin-bottom:20px;}
+.rf-author{display:flex;align-items:center;gap:12px;}
+.rf-avatar{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;display:flex;align-items:center;justify-content:center;}
+.rf-name{font-weight:700;color:#fff;font-size:.95rem;}
+.rf-origin{font-size:.78rem;color:#6a85b0;margin-top:2px;}
+.rf-divider{height:1px;background:rgba(255,255,255,.08);margin:20px 0;}
+.rf-stats{display:flex;gap:16px;margin-bottom:20px;}
+.rf-stat{display:flex;align-items:center;gap:8px;flex:1;}
+.rf-stat span{font-size:1.3rem;}
+.rf-stat strong{display:block;color:#fff;font-size:.9rem;}
+.rf-stat small{color:#6a85b0;font-size:.72rem;}
+.rf-cta{display:block;text-align:center;background:var(--blue);color:#fff;text-decoration:none;padding:12px;border-radius:50px;font-weight:700;font-size:.88rem;transition:all .2s;}
+.rf-cta:hover{background:var(--sky);transform:scale(1.04);}
+@media(max-width:900px){.reviews-layout{grid-template-columns:1fr;}.review-featured{position:static;}}
 
-    /* BATTLE ARENA */
-    .battle-arena{position:relative;display:none;margin-top:10px;}
-    .battle-arena.active{display:block;}
-    .battle-grid{display:grid;grid-template-columns:1fr 180px 1fr;gap:0;align-items:stretch;min-height:520px;}
+/* MODAL */
+#reserva-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(13,27,62,.88);}
+#reserva-modal.open{display:flex;}
+.modal-box{background:#fff;border-radius:20px;padding:36px;max-width:600px;width:94%;max-height:90vh;overflow-y:auto;position:relative;animation:popIn .4s cubic-bezier(.34,1.56,.64,1);}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--bg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;color:var(--muted);transition:all .3s;}
+.modal-close:hover{background:var(--blue);color:#fff;transform:scale(1.1) rotate(90deg);}
+.modal-header{text-align:center;margin-bottom:24px;}
+.modal-icon{font-size:2.5rem;margin-bottom:8px;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--text);letter-spacing:2px;}
+.modal-sub{color:var(--muted);font-size:.88rem;margin-top:4px;}
+.modal-form{display:flex;flex-direction:column;gap:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-group label{font-size:.78rem;font-weight:700;color:var(--text);letter-spacing:.5px;text-transform:uppercase;}
+.form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--text);background:#fff;transition:border-color .2s,box-shadow .2s;outline:none;width:100%;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,79,160,.1);}
+.form-group textarea{resize:none;}
+.form-submit{background:var(--blue);color:#fff;border:none;padding:14px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s;margin-top:4px;}
+.form-submit:hover{background:var(--blue2);transform:scale(1.03);}
+.msg-result{display:flex;flex-direction:column;gap:18px;}
+.msg-header{display:flex;align-items:center;gap:14px;}
+.msg-icon{font-size:2rem;}
+.msg-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--text);letter-spacing:1px;}
+.msg-sub{font-size:.82rem;color:var(--muted);}
+.msg-preview{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:18px;font-size:.88rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:260px;overflow-y:auto;}
+.msg-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-back{background:var(--bg);color:var(--muted);border:1.5px solid var(--border);padding:11px 20px;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;flex:1;transition:all .2s;}
+.btn-copy{background:var(--bg);color:var(--blue);border:1.5px solid var(--blue);padding:11px 20px;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;flex:1;transition:all .2s;}
+.btn-send{background:#25D366;color:#fff;border:none;padding:11px 24px;border-radius:50px;font-weight:700;font-size:.9rem;cursor:pointer;flex:2;transition:all .2s;}
+.btn-back:hover{border-color:var(--blue);color:var(--blue);}
+.btn-copy:hover{background:var(--blue);color:#fff;}
+.btn-send:hover{background:#1da851;transform:scale(1.04);}
+@media(max-width:500px){.form-row{grid-template-columns:1fr;}}
 
-    /* VEHICLE PANELS */
-    .battle-panel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;position:relative;}
-    .battle-panel.left{border-radius:20px 0 0 20px;border-right:none;}
-    .battle-panel.right{border-radius:0 20px 20px 0;border-left:none;}
-    .bp-img{width:100%;height:220px;object-fit:cover;display:block;filter:brightness(.8);}
-    .bp-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#fff;padding:14px 18px 4px;letter-spacing:1px;}
-    .bp-tag{display:inline-block;margin:0 18px 12px;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:50px;background:rgba(74,144,217,.2);color:#4A90D9;border:1px solid rgba(74,144,217,.3);}
-    .bp-stats{padding:0 0 8px;}
-    .bp-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 18px;border-top:1px solid rgba(255,255,255,.05);}
-    .bp-stat-lbl{font-size:.72rem;color:#6a85b0;text-transform:uppercase;letter-spacing:.5px;}
-    .bp-stat-val{font-size:.88rem;font-weight:700;color:#fff;transition:all .5s;}
-    .bp-stat-val.win{color:#39ff14;text-shadow:0 0 10px #39ff14,0 0 20px #39ff14;font-size:1rem;}
-    .bp-stat-val.win::before{content:'+ ';}
-    .bp-stat-val.lose{color:#ff073a;text-shadow:0 0 8px #ff073a;text-decoration:line-through;opacity:.7;}
-    .bp-stat-val.lose::before{content:'- ';}
+/* CONTACT */
+#contact{background:var(--bg);}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:46px;}
+.cinfo{display:flex;flex-direction:column;gap:13px;}
+.citem{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:12px;padding:17px;transition:all .2s;}
+.citem:hover{border-color:var(--blue);transform:translateX(6px) scale(1.02);}
+.cicon{font-size:1.3rem;min-width:34px;text-align:center;}
+.ctxt strong{display:block;font-size:.91rem;color:var(--text);margin-bottom:3px;}
+.ctxt span,.ctxt a{color:var(--muted);font-size:.85rem;text-decoration:none;}
+.ctxt a:hover{color:var(--blue);}
+.mapwrap{border-radius:16px;overflow:hidden;height:400px;border:1px solid var(--border);}
+.mapwrap iframe{width:100%;height:100%;border:none;}
 
-    /* MIDDLE BEAM */
-    .battle-middle{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:10;}
-    .battle-vs{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#fff;letter-spacing:4px;text-shadow:0 0 30px rgba(74,144,217,.8);}
-    .beam-container{position:relative;width:100%;flex:1;display:flex;align-items:center;justify-content:center;}
-    .beam{width:4px;height:0;background:linear-gradient(to bottom,#ff073a,#ffff00,#39ff14);border-radius:4px;transition:height .1s;box-shadow:0 0 12px #4A90D9,0 0 24px #4A90D9;display:none;}
-    .beam.active{display:block;}
-    .beam-explosion{position:absolute;font-size:3rem;opacity:0;transition:all .3s;pointer-events:none;}
+/* FOOTER */
+footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;text-align:center;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;letter-spacing:3px;transition:text-shadow .3s;display:inline-block;}
+.footer-logo:hover{text-shadow:0 0 30px rgba(74,144,217,.6);}
+.footer-logo span{color:var(--sky);}
+.footer-tag{font-size:.8rem;color:#6a85b0;margin:8px 0 20px;}
+.footer-links{display:flex;justify-content:center;gap:22px;list-style:none;flex-wrap:wrap;margin-bottom:18px;}
+.footer-links a{color:#6a85b0;text-decoration:none;font-size:.82rem;transition:all .2s;display:inline-block;}
+.footer-links a:hover{color:var(--sky);transform:translateY(-2px);}
+.footer-copy{font-size:.74rem;color:#3a4f6e;}
 
-    /* WINNER BADGE */
-    .winner-banner{display:none;text-align:center;margin-top:20px;animation:winnerPop .5s cubic-bezier(.34,1.56,.64,1);}
-    @keyframes winnerPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
-    .winner-banner.show{display:block;}
-    .winner-badge{display:inline-block;background:linear-gradient(135deg,#ff9500,#ffcc00);color:#000;font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;padding:12px 36px;border-radius:50px;box-shadow:0 0 40px rgba(255,204,0,.6),0 0 80px rgba(255,204,0,.3);}
-    .winner-sub{color:#a8bcd4;font-size:.9rem;margin-top:10px;}
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:26px;right:26px;z-index:200;background:#25D366;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;font-size:1.4rem;transition:transform .2s;animation:waBounce 2s ease 3s infinite;}
+@keyframes waBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.wa-float:hover{transform:scale(1.15)!important;animation:none;}
 
-    /* COUNTDOWN */
-    .battle-countdown{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:#fff;text-align:center;text-shadow:0 0 40px #4A90D9;opacity:0;transition:opacity .3s;line-height:1;}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
+.reveal.visible{opacity:1;transform:none;}
 
-    /* PARTICLES */
-    .particle{position:absolute;pointer-events:none;font-size:1.2rem;animation:particleFly 1s ease forwards;}
-    @keyframes particleFly{from{opacity:1;transform:translate(0,0) scale(1)}to{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
+/* SATISFACTION COUNTERS */
+.satisfaction-row{display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap;}
+.sat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--blue);line-height:1;}
+.sat-stars{color:#f59e0b;font-size:1.2rem;letter-spacing:2px;}
+.sat-info{font-size:.78rem;color:var(--muted);}
+.sat-stats{display:flex;gap:20px;flex-wrap:wrap;}
+.sat-stat{text-align:center;}
+.sat-stat-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;}
+.sat-stat-lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
 
-    @media(max-width:860px){.battle-grid{grid-template-columns:1fr;}.battle-panel.left,.battle-panel.right{border-radius:16px;border:1px solid rgba(255,255,255,.08);}.battle-middle{flex-direction:row;padding:16px 0;gap:16px;}.beam{display:none!important;}}
-    @media(max-width:700px){.comp-selects{grid-template-columns:1fr;}}
-
-    /* UTILS */
-    .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
-    .reveal.visible{opacity:1;transform:none;}
-    .wa-float{position:fixed;bottom:26px;right:26px;z-index:200;background:#25D366;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;font-size:1.4rem;transition:transform .2s;}
-    .wa-float:hover{transform:scale(1.12);}
-    @media(max-width:860px){nav{padding:10px 16px;}.nav-links{display:none;}.about-grid,.cgrid{grid-template-columns:1fr;gap:28px;}.about-img{height:250px;}}
-    @media(max-width:500px){.hero-cta{flex-direction:column;}.btn-primary,.btn-outline{width:100%;text-align:center;}}
-  </style>
+@media(max-width:860px){nav{padding:10px 16px;}.nav-links{display:none;}.about-grid,.cgrid{grid-template-columns:1fr;gap:28px;}.about-img{height:250px;}}
+@media(max-width:500px){.hero-cta{flex-direction:column;}.btn-primary,.btn-outline{width:100%;text-align:center;}}
+</style>
 </head>
 <body>
 
+<div id="scroll-bar"></div>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <!-- BANNER -->
 <div id="banner-overlay">
   <div class="banner-box">
-    <img class="banner-img" src="fachada.jpg" alt="Aleks Rent Lloret de Mar"/>
+    <img class="banner-img" src="fachada.jpg" alt="Aleks Rent"/>
     <div class="banner-content">
       <h2>Aleks <span>Rent</span></h2>
-      <p data-t="banner_sub">Alquiler de motos, scooters, quads y bicicletas · Lloret de Mar</p>
-      <button class="banner-btn" onclick="document.getElementById('banner-overlay').style.display='none'" data-t="banner_btn">¡Explorar ahora!</button>
+      <p>Alquiler de motos, scooters, quads y bicicletas · Lloret de Mar</p>
+      <button class="banner-btn" id="banner-close-btn">¡Explorar ahora!</button>
     </div>
   </div>
 </div>
@@ -374,18 +304,18 @@
 <nav>
   <a class="nav-logo" href="#hero">ALEKS RENT</a>
   <ul class="nav-links">
-    <li><a href="#about" data-t="nav_about">Nosotros</a></li>
-    <li><a href="#prices" data-t="nav_prices">Precios</a></li>
-    <li><a href="#comparador">Comparar</a></li>
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#prices">Precios</a></li>
+    <li><a href="#comparador">⚔️ Batalla</a></li>
     <li><a href="#reviews">Reseñas ⭐</a></li>
-    <li><a href="#contact" data-t="nav_contact">Contacto</a></li>
+    <li><a href="#contact">Contacto</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-selector">
-      <button class="lang-btn active" onclick="setLang('es',this)" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="ES"/></button>
-      <button class="lang-btn" onclick="setLang('en',this)" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN"/></button>
-      <button class="lang-btn" onclick="setLang('fr',this)" title="Français"><img src="https://flagcdn.com/w40/fr.png" alt="FR"/></button>
-      <button class="lang-btn" onclick="setLang('ru',this)" title="Русский"><img src="https://flagcdn.com/w40/ru.png" alt="RU"/></button>
+      <button class="lang-btn active" id="lang-es" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="ES"/></button>
+      <button class="lang-btn" id="lang-en" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN"/></button>
+      <button class="lang-btn" id="lang-fr" title="Français"><img src="https://flagcdn.com/w40/fr.png" alt="FR"/></button>
+      <button class="lang-btn" id="lang-ru" title="Русский"><img src="https://flagcdn.com/w40/ru.png" alt="RU"/></button>
     </div>
     <a class="nav-phone" href="tel:+34641459907">📞 +34 641 459 907</a>
   </div>
@@ -396,12 +326,12 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge" data-t="hero_badge">🏍️ Lloret de Mar · Costa Brava</div>
+    <div class="hero-badge">🏍️ Lloret de Mar · Costa Brava</div>
     <h1 class="hero-title">ALEKS<br/><span>RENT</span></h1>
-    <p class="hero-sub" data-t="hero_sub">Vive la Costa Brava a tu manera.</p>
+    <p class="hero-sub">Vive la Costa Brava a tu manera. Alquila motos, scooters, quads y bicicletas con total libertad.</p>
     <div class="hero-cta">
-      <a class="btn-primary" href="#prices" data-t="btn_prices">Ver precios</a>
-      <a class="btn-outline" href="#contact" data-t="btn_map">Cómo llegar</a>
+      <a class="btn-primary" href="#prices">Ver precios</a>
+      <a class="btn-outline" href="#contact">Cómo llegar</a>
     </div>
   </div>
 </section>
@@ -410,19 +340,19 @@
 <section id="about">
   <div class="container">
     <div class="reveal">
-      <div class="section-label" data-t="about_lbl">Sobre nosotros</div>
-      <h2 class="section-title" data-t="about_title">Fundada por Gevorg Avdalyan</h2>
+      <div class="section-label">Sobre nosotros</div>
+      <h2 class="section-title">Fundada por Gevorg Avdalyan</h2>
     </div>
     <div class="about-grid">
       <div class="reveal"><img class="about-img" src="interior.jpg" alt="Interior Aleks Rent"/></div>
       <div class="about-text reveal">
-        <p data-t="about_desc1">Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar.</p>
-        <p data-t="about_desc2">Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava.</p>
+        <p>Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.</p>
+        <p>Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!</p>
         <div class="about-stats">
-          <div class="stat-card"><div class="stat-num">10+</div><div class="stat-lbl" data-t="s1">Años de experiencia</div></div>
-          <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl" data-t="s2">Idiomas atendidos</div></div>
-          <div class="stat-card"><div class="stat-num">★4.8</div><div class="stat-lbl" data-t="s3">Valoración media</div></div>
-          <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl" data-t="s4">Revisión diaria</div></div>
+          <div class="stat-card"><div class="stat-num" id="cnt-exp">0+</div><div class="stat-lbl">Años de experiencia</div></div>
+          <div class="stat-card"><div class="stat-num" id="cnt-lang">0</div><div class="stat-lbl">Idiomas atendidos</div></div>
+          <div class="stat-card"><div class="stat-num" id="cnt-rating">0</div><div class="stat-lbl">Valoración media</div></div>
+          <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl">Revisión diaria</div></div>
         </div>
       </div>
     </div>
@@ -433,242 +363,36 @@
 <section id="prices">
   <div class="container">
     <div class="reveal">
-      <div class="section-label" data-t="prices_lbl">Tarifas 2025</div>
-      <h2 class="section-title" data-t="prices_title">Nuestros Vehículos</h2>
-      <p class="section-desc" data-t="prices_desc">Vehículos con carnet, sin carnet y salidas en grupo.</p>
+      <div class="section-label">Tarifas 2025</div>
+      <h2 class="section-title">Nuestros Vehículos</h2>
+      <p class="section-desc">Vehículos con carnet, sin carnet y salidas en grupo.</p>
     </div>
     <div class="filter-tabs reveal">
-      <button class="ftab active" onclick="filterVehicles('all',this)">🚗 <span data-t="f_all">Todos</span></button>
-      <button class="ftab" onclick="filterVehicles('nocarnet',this)">✅ <span data-t="f_nocarnet">Sin carnet</span></button>
-      <button class="ftab" onclick="filterVehicles('carnet',this)">🪪 <span data-t="f_carnet">Requiere carnet</span></button>
-      <button class="ftab" onclick="filterVehicles('grupo',this)">👥 <span data-t="f_grupo">Salidas en grupo</span></button>
+      <button class="ftab active" onclick="filterV('all',this)">🚗 Todos</button>
+      <button class="ftab" onclick="filterV('nocarnet',this)">✅ Sin carnet</button>
+      <button class="ftab" onclick="filterV('carnet',this)">🪪 Requiere carnet</button>
+      <button class="ftab" onclick="filterV('grupo',this)">👥 Salidas en grupo</button>
     </div>
     <div class="vgrid">
-
-      <div class="vcard reveal" data-cat="carnet">
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/Vitality_50.jpg" alt="KYMCO Vitality 50cc"/>
-        <div class="vbody">
-          <div class="vtag">Carnet AM</div>
-          <div class="vname">KYMCO Vitality 50cc</div>
-          <table class="ptable">
-            <tr><td>1–3 <span data-t="xdays">días</span></td><td>45€/<span data-t="xday">día</span></td></tr>
-            <tr><td>3–7 <span data-t="xdays">días</span></td><td>40€/<span data-t="xday">día</span></td></tr>
-            <tr><td>7–28 <span data-t="xdays">días</span></td><td>35€/<span data-t="xday">día</span></td></tr>
-          </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
-        </div>
-      </div>
-
-      <div class="vcard reveal" data-cat="carnet">
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg" alt="KYMCO Agility City 125cc"/>
-        <div class="vbody">
-          <div class="vtag" data-t="lic_a1">Carnet A1</div>
-          <div class="vname">KYMCO Agility City 125cc</div>
-          <table class="ptable">
-            <tr><td>1–3 <span data-t="xdays">días</span></td><td>50€/<span data-t="xday">día</span></td></tr>
-            <tr><td>3–7 <span data-t="xdays">días</span></td><td>45€/<span data-t="xday">día</span></td></tr>
-            <tr><td>7–28 <span data-t="xdays">días</span></td><td>40€/<span data-t="xday">día</span></td></tr>
-          </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
-        </div>
-      </div>
-
-      <div class="vcard reveal" data-cat="carnet">
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="KYMCO MXU Reserve 50cc"/>
-        <div class="vbody">
-          <div class="vtag">Carnet AM / B</div>
-          <div class="vname">KYMCO MXU Reserve 50cc</div>
-          <table class="ptable">
-            <tr><td data-t="h2">2 horas (mín.)</td><td>60€</td></tr>
-            <tr><td data-t="extra">Hora extra</td><td>20€</td></tr>
-          </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
-        </div>
-      </div>
-
-      <div class="vcard reveal" data-cat="carnet">
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg" alt="KYMCO MXU 150cc"/>
-        <div class="vbody">
-          <div class="vtag" data-t="lic_b">Carnet B</div>
-          <div class="vname">KYMCO MXU 150cc</div>
-          <table class="ptable">
-            <tr><td data-t="h1">1 hora</td><td>60€</td></tr>
-            <tr><td data-t="h2">2 horas</td><td>110€</td></tr>
-            <tr><td data-t="extra">Hora extra</td><td>30€</td></tr>
-          </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 100€</span>
-        </div>
-      </div>
-
-      <div class="vcard reveal" data-cat="carnet grupo">
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg" alt="KYMCO MXU 300cc"/>
-        <div class="vbody">
-          <div class="vtag" data-t="lic_b">Carnet B</div>
-          <div class="vname">KYMCO MXU 300cc</div>
-          <table class="ptable">
-            <tr><td data-t="h1">1 hora</td><td>80€</td></tr>
-            <tr><td data-t="h2">2 horas</td><td>160€</td></tr>
-            <tr><td data-t="extra">Hora extra</td><td>50€</td></tr>
-          </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 300€</span>
-        </div>
-      </div>
-
-      <div class="vcard featured reveal" data-cat="carnet grupo">
-        <div class="featured-badge">⭐ TOP</div>
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/c-force-450.jpg" alt="CFMoto C-Force 450cc"/>
-        <div class="vbody">
-          <div class="vtag" data-t="lic_b">Carnet B</div>
-          <div class="vname">CFMoto C-Force 450cc</div>
-          <table class="ptable">
-            <tr><td data-t="h1">1 hora</td><td>100€</td></tr>
-            <tr><td data-t="h2">2 horas</td><td>180€</td></tr>
-            <tr><td data-t="extra">Hora extra</td><td>50€</td></tr>
-          </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 400€</span>
-        </div>
-      </div>
-
-      <div class="vcard reveal" data-cat="nocarnet grupo">
-        <img class="vimg" src="https://aleksrent.es/img-vehiculos/city-bike.jpg" alt="Bicicleta Normal"/>
-        <div class="vbody">
-          <div class="vtag" data-t="no_lic">Sin carnet</div>
-          <div class="vname">Bicicleta Normal</div>
-          <table class="ptable">
-            <tr><td>1–3 <span data-t="xdays">días</span></td><td>20€/<span data-t="xday">día</span></td></tr>
-            <tr><td>3–7 <span data-t="xdays">días</span></td><td>15€/<span data-t="xday">día</span></td></tr>
-            <tr><td>7–28 <span data-t="xdays">días</span></td><td>10€/<span data-t="xday">día</span></td></tr>
-          </table>
-          <span class="bail-tag"><span data-t="bail">Fianza</span>: 50€</span>
-        </div>
-      </div>
-
+      <div class="vcard reveal" data-cat="carnet"><img class="vimg" src="https://aleksrent.es/img-vehiculos/Vitality_50.jpg" alt="KYMCO Vitality 50cc"/><div class="vbody"><div class="vtag">Carnet AM</div><div class="vname">KYMCO Vitality 50cc</div><table class="ptable"><tr><td>1–3 días</td><td>45€/día</td></tr><tr><td>3–7 días</td><td>40€/día</td></tr><tr><td>7–28 días</td><td>35€/día</td></tr></table><span class="bail-tag">Fianza: 100€</span></div></div>
+      <div class="vcard reveal" data-cat="carnet"><img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg" alt="KYMCO Agility 125cc"/><div class="vbody"><div class="vtag">Carnet A1 / B</div><div class="vname">KYMCO Agility City 125cc</div><table class="ptable"><tr><td>1–3 días</td><td>50€/día</td></tr><tr><td>3–7 días</td><td>45€/día</td></tr><tr><td>7–28 días</td><td>40€/día</td></tr></table><span class="bail-tag">Fianza: 100€</span></div></div>
+      <div class="vcard reveal" data-cat="carnet"><img class="vimg" src="https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg" alt="KYMCO MXU 50cc"/><div class="vbody"><div class="vtag">Carnet AM / B</div><div class="vname">KYMCO MXU Reserve 50cc</div><table class="ptable"><tr><td>2 horas (mín.)</td><td>60€</td></tr><tr><td>Hora extra</td><td>20€</td></tr></table><span class="bail-tag">Fianza: 100€</span></div></div>
+      <div class="vcard reveal" data-cat="carnet"><img class="vimg" src="https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg" alt="KYMCO MXU 150cc"/><div class="vbody"><div class="vtag">Carnet B</div><div class="vname">KYMCO MXU 150cc</div><table class="ptable"><tr><td>1 hora</td><td>60€</td></tr><tr><td>2 horas</td><td>110€</td></tr><tr><td>Hora extra</td><td>30€</td></tr></table><span class="bail-tag">Fianza: 100€</span></div></div>
+      <div class="vcard reveal" data-cat="carnet grupo"><img class="vimg" src="https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg" alt="KYMCO MXU 300cc"/><div class="vbody"><div class="vtag">Carnet B</div><div class="vname">KYMCO MXU 300cc</div><table class="ptable"><tr><td>1 hora</td><td>80€</td></tr><tr><td>2 horas</td><td>160€</td></tr><tr><td>Hora extra</td><td>50€</td></tr></table><span class="bail-tag">Fianza: 300€</span></div></div>
+      <div class="vcard featured reveal" data-cat="carnet grupo"><div class="featured-badge">⭐ TOP</div><img class="vimg" src="https://aleksrent.es/img-vehiculos/c-force-450.jpg" alt="CFMoto C-Force 450cc"/><div class="vbody"><div class="vtag">Carnet B</div><div class="vname">CFMoto C-Force 450cc</div><table class="ptable"><tr><td>1 hora</td><td>100€</td></tr><tr><td>2 horas</td><td>180€</td></tr><tr><td>Hora extra</td><td>50€</td></tr></table><span class="bail-tag">Fianza: 400€</span></div></div>
+      <div class="vcard reveal" data-cat="nocarnet grupo"><img class="vimg" src="https://aleksrent.es/img-vehiculos/city-bike.jpg" alt="Bicicleta Normal"/><div class="vbody"><div class="vtag">Sin carnet</div><div class="vname">Bicicleta Normal</div><table class="ptable"><tr><td>1–3 días</td><td>20€/día</td></tr><tr><td>3–7 días</td><td>15€/día</td></tr><tr><td>7–28 días</td><td>10€/día</td></tr></table><span class="bail-tag">Fianza: 50€</span></div></div>
     </div>
-
-    <div class="grupo-banner reveal">
+    <div class="grupo-banner reveal" id="grupo-banner">
       <div class="grupo-content">
         <div class="grupo-icon">👥</div>
-        <div>
-          <h3 data-t="grupo_title">Excursiones en Grupo por la Costa Brava</h3>
-          <p data-t="grupo_desc">Organiza tu excursión en quad o moto por los paisajes más espectaculares.</p>
-        </div>
-        <button class="grupo-btn" onclick="openModal()" data-t="grupo_btn">Reservar grupo</button>
+        <div><h3>Excursiones en Grupo por la Costa Brava</h3><p>Organiza tu excursión en quad o moto. Rutas guiadas desde 4 personas. ¡Contacta para presupuesto especial!</p></div>
+        <button class="grupo-btn" id="open-modal-btn">Reservar grupo</button>
       </div>
     </div>
-
-    <!-- RESERVATION MODAL -->
-    <div id="reserva-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(13,27,62,.88);align-items:center;justify-content:center;animation:fadeIn .3s ease;">
-      <div class="modal-box">
-        <button class="modal-close" onclick="closeModal()">✕</button>
-        <div class="modal-header">
-          <div class="modal-icon">📋</div>
-          <h2 class="modal-title" data-t="modal_title">Reservar Vehículo</h2>
-          <p class="modal-sub" data-t="modal_sub">Rellena el formulario y te contactamos en menos de 1 hora</p>
-        </div>
-        <!-- STEP 1: FORM -->
-        <div id="modal-step1">
-        <form class="modal-form" onsubmit="generateMessage(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>👤 Nombre completo</label>
-              <input type="text" id="f-name" placeholder="Tu nombre" required/>
-            </div>
-            <div class="form-group">
-              <label>🌍 Idioma del mensaje</label>
-              <select id="f-lang">
-                <option value="es">🇪🇸 Español</option>
-                <option value="en">🇬🇧 English</option>
-                <option value="fr">🇫🇷 Français</option>
-                <option value="ru">🇷🇺 Русский</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>🚗 Vehículo</label>
-              <select id="f-vehicle" required>
-                <option value="">-- Selecciona --</option>
-                <optgroup label="🏍️ Motos">
-                  <option>KYMCO Vitality 50cc — 45€/día</option>
-                  <option>KYMCO Agility City 125cc — 50€/día</option>
-                </optgroup>
-                <optgroup label="🏎️ Quads">
-                  <option>KYMCO MXU Reserve 50cc — 60€/2h</option>
-                  <option>KYMCO MXU 150cc — 60€/h</option>
-                  <option>KYMCO MXU 300cc — 80€/h</option>
-                  <option>CFMoto C-Force 450cc — 100€/h</option>
-                </optgroup>
-                <optgroup label="🚲 Bicicletas">
-                  <option>Bicicleta Normal — 20€/día</option>
-                </optgroup>
-                <optgroup label="👥 Grupo">
-                  <option>Excursión en grupo — Quads</option>
-                  <option>Excursión en grupo — Motos</option>
-                  <option>Excursión mixta — Motos + Quads</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>👥 Nº de personas</label>
-              <input type="number" id="f-people" value="1" min="1" max="30"/>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>📅 Fecha de inicio</label>
-              <input type="date" id="f-date" required/>
-            </div>
-            <div class="form-group">
-              <label>⏱️ Duración</label>
-              <select id="f-duration">
-                <option>1 hora</option>
-                <option>2 horas</option>
-                <option>Medio día</option>
-                <option>1 día</option>
-                <option>2–3 días</option>
-                <option>1 semana</option>
-                <option>Más de 1 semana</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>💬 Notas extra (hotel, preguntas...)</label>
-            <textarea id="f-msg" rows="2" placeholder="Ej: Estaremos en el Hotel Santa Marta, llegamos el día anterior..."></textarea>
-          </div>
-          <button type="submit" class="form-submit" id="gen-btn">
-            <span id="gen-btn-text">✨ Generar mensaje con IA</span>
-            <span id="gen-btn-loading" style="display:none">⏳ Generando...</span>
-          </button>
-        </form>
-        </div>
-
-        <!-- STEP 2: GENERATED MESSAGE -->
-        <div id="modal-step2" style="display:none;">
-          <div class="msg-result">
-            <div class="msg-header">
-              <span class="msg-icon">✅</span>
-              <div>
-                <div class="msg-title">Mensaje generado</div>
-                <div class="msg-sub">Revísalo y envíalo por WhatsApp</div>
-              </div>
-            </div>
-            <div id="msg-preview" class="msg-preview"></div>
-            <div class="msg-actions">
-              <button class="btn-back" onclick="backToForm()">← Editar</button>
-              <button class="btn-copy" onclick="copyMsg()">📋 Copiar</button>
-              <button class="btn-send" onclick="sendWhatsApp()">WhatsApp 💬</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-
-
-<!-- COMPARADOR -->
+<!-- BATALLA -->
 <section id="comparador">
   <div class="container">
     <div class="reveal">
@@ -691,7 +415,7 @@
         </select>
       </div>
       <div class="comp-vs-btn">
-        <button onclick="startBattle()">⚡ BATALLAR</button>
+        <button id="battle-btn">⚡ BATALLAR</button>
       </div>
       <div class="comp-select-box">
         <label>🔵 Vehículo B</label>
@@ -707,17 +431,14 @@
         </select>
       </div>
     </div>
-
     <div class="battle-arena" id="battle-arena">
       <div class="battle-countdown" id="battle-countdown"></div>
-      <div class="battle-grid" id="battle-grid">
+      <div class="battle-grid">
         <div class="battle-panel left" id="panel-a"></div>
         <div class="battle-middle">
-          <div class="battle-vs">VS</div>
-          <div class="beam-container">
-            <div class="beam" id="beam"></div>
-            <div class="beam-explosion" id="explosion">💥</div>
-          </div>
+          <div class="battle-vs-txt">VS</div>
+          <div id="beam"></div>
+          <div id="explosion" style="font-size:0;text-align:center;"></div>
         </div>
         <div class="battle-panel right" id="panel-b"></div>
       </div>
@@ -730,189 +451,42 @@
 </section>
 
 <!-- REVIEWS -->
-<section id="reviews" style="background:#fff;padding:88px 0;">
+<section id="reviews">
   <div class="container">
-    <div class="reveal" style="margin-bottom:40px;">
+    <div class="reveal">
       <div class="section-label">Opiniones reales</div>
       <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      <div style="display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:baseline;gap:8px;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--blue);line-height:1;">4.4</span>
-          <div>
-            <div style="color:#f59e0b;font-size:1.2rem;letter-spacing:2px;">★★★★★</div>
-            <div style="font-size:.78rem;color:var(--muted);">500+ reseñas en Google</div>
-          </div>
-        </div>
+      <div class="satisfaction-row">
+        <div><div class="sat-num">4.4</div><div class="sat-stars">★★★★½</div><div class="sat-info">500+ reseñas en Google</div></div>
         <div style="height:50px;width:1px;background:var(--border);"></div>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;">
-          <div style="text-align:center;">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);" id="cnt-total">0</div>
-            <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Reseñas totales</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#22c55e;" id="cnt-satisfied">0</div>
-            <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Clientes satisfechos</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);" id="cnt-pct">0%</div>
-            <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Índice satisfacción</div>
-          </div>
+        <div class="sat-stats">
+          <div class="sat-stat"><div class="sat-stat-num" id="cnt-total" style="color:var(--blue);">0+</div><div class="sat-stat-lbl">Reseñas totales</div></div>
+          <div class="sat-stat"><div class="sat-stat-num" id="cnt-satisfied" style="color:#22c55e;">0+</div><div class="sat-stat-lbl">Clientes satisfechos</div></div>
+          <div class="sat-stat"><div class="sat-stat-num" id="cnt-pct" style="color:var(--blue);">0%</div><div class="sat-stat-lbl">Índice satisfacción</div></div>
         </div>
-        <a href="https://www.tripadvisor.com/Attraction_Review-g494960-d10002889-Reviews-Aleks_Rent-Lloret_de_Mar_Costa_Brava_Province_of_Girona_Catalonia.html" target="_blank" style="margin-left:auto;background:var(--bg);border:1.5px solid var(--border);color:var(--blue);padding:9px 18px;border-radius:50px;text-decoration:none;font-size:.8rem;font-weight:700;white-space:nowrap;">Ver todas en TripAdvisor ↗</a>
+        <a href="https://www.tripadvisor.com/Attraction_Review-g494960-d10002889-Reviews-Aleks_Rent-Lloret_de_Mar_Costa_Brava_Province_of_Girona_Catalonia.html" target="_blank" style="margin-left:auto;background:var(--bg);border:1.5px solid var(--border);color:var(--blue);padding:9px 18px;border-radius:50px;text-decoration:none;font-size:.8rem;font-weight:700;white-space:nowrap;transition:all .2s;">Ver en TripAdvisor ↗</a>
       </div>
     </div>
-
     <div class="reviews-layout reveal">
-      <!-- LEFT: scrollable reviews panel -->
       <div class="reviews-panel">
         <div class="reviews-scroll" id="reviews-scroll">
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar">K</div>
-              <div>
-                <div class="rv-name">Kimmaz</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">TripAdvisor</div>
-            </div>
-            <p class="rv-text">"Myself and three friends were visiting Lloret de Mar for a week and we checked every quad bike rental place which were all very rude... but then we came across Aleks Rent who were very good to us with excellent service. They offered us only the best with great smiles. Amazing rental. Go there definitely."</p>
-            <div class="rv-tag">🏎️ Quad</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#22c55e;">F</div>
-              <div>
-                <div class="rv-name">Fabio & Marcia</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">Google</div>
-            </div>
-            <p class="rv-text">"Mi experiencia fue muy positiva, el personal fue respetuoso y amable, todo salió bien, el depósito me fue devuelto tranquilamente. Sin duda puedo recomendarlo a cualquiera que quiera un vehículo en Lloret de Mar. ¡Saludos!"</p>
-            <div class="rv-tag">🏍️ Moto</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#8b5cf6;">M</div>
-              <div>
-                <div class="rv-name">Morgana</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">Google</div>
-            </div>
-            <p class="rv-text">"La gente es muy amable y te ayudarán si no sabes algo. Los ciclomotores también son de buena calidad y se conducen perfectamente como deberían. Muy recomendable 😊"</p>
-            <div class="rv-tag">🛵 Scooter</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#f59e0b;">N</div>
-              <div>
-                <div class="rv-name">Niraj</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">Google</div>
-            </div>
-            <p class="rv-text">"Persona muy amable que ayuda con los lugares y el proceso de alquiler de scooter también es muy fácil. 100% recomendado para explorar Lloret de Mar."</p>
-            <div class="rv-tag">🛵 Scooter</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#ef4444;">A</div>
-              <div>
-                <div class="rv-name">Alex T.</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">TripAdvisor</div>
-            </div>
-            <p class="rv-text">"Really good experience here, this has been our 3rd time renting a quad bike from this shop and have really enjoyed every moment of it! The customer service is very good and really polite workers, would really recommend this company!"</p>
-            <div class="rv-tag">🏎️ Quad</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#0ea5e9;">S</div>
-              <div>
-                <div class="rv-name">Santiago R.</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">Google</div>
-            </div>
-            <p class="rv-text">"El mejor negocio para alquilar motos y quads. Muy buen servicio y atención al cliente las 24h. ¡Vendremos todos los años!!"</p>
-            <div class="rv-tag">🏍️ Moto</div>
-          </div>
-
-          <div class="review-card" data-stars="4">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#64748b;">P</div>
-              <div>
-                <div class="rv-name">Pavel K.</div>
-                <div class="rv-stars" style="color:#f59e0b;">★★★★☆</div>
-              </div>
-              <div class="rv-source">TripAdvisor</div>
-            </div>
-            <p class="rv-text">"We rented some 125cc scooters several times, we had no issues. Shop is working late, very reasonable and helpful staff. Definitely recommend and will use in future."</p>
-            <div class="rv-tag">🛵 125cc</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#10b981;">J</div>
-              <div>
-                <div class="rv-name">Jean-Pierre</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">Google</div>
-            </div>
-            <p class="rv-text">"Super, un régal! Une balade en quad avec notre super guide. On a découvert Lloret de Mar et ses hauteurs. Je recommande vivement à tous les touristes!"</p>
-            <div class="rv-tag">🏎️ Excursión</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#f97316;">E</div>
-              <div>
-                <div class="rv-name">Emma W.</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">TripAdvisor</div>
-            </div>
-            <p class="rv-text">"We rented a scooter and did a quad tour with a group. That was a really nice experience! The service is great! If we would come back to Lloret de Mar then we will come back again!"</p>
-            <div class="rv-tag">👥 Grupo</div>
-          </div>
-
-          <div class="review-card" data-stars="5">
-            <div class="rv-header">
-              <div class="rv-avatar" style="background:#6366f1;">U</div>
-              <div>
-                <div class="rv-name">Un servicio excelente</div>
-                <div class="rv-stars">★★★★★</div>
-              </div>
-              <div class="rv-source">Google</div>
-            </div>
-            <p class="rv-text">"Sobretodo me gustó el monopatín nuevo con ruedas con suspensión… también es muy potente, he podido subir a las montañas de Lloret. Lo recomiendo 100%!"</p>
-            <div class="rv-tag">🛴 Patinete</div>
-          </div>
-
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar">K</div><div><div class="rv-name">Kimmaz</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">TripAdvisor</div></div><p class="rv-text">"Myself and three friends visited Lloret de Mar and we checked every quad bike rental place which were all very rude... but then we came across Aleks Rent with excellent service and great smiles. Amazing rental. Go there definitely."</p><span class="rv-tag">🏎️ Quad</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#22c55e;">F</div><div><div class="rv-name">Fabio & Marcia</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">Google</div></div><p class="rv-text">"Mi experiencia fue muy positiva, el personal fue respetuoso y amable. El depósito me fue devuelto tranquilamente. Sin duda lo recomiendo a cualquiera que quiera un vehículo en Lloret de Mar."</p><span class="rv-tag">🏍️ Moto</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#8b5cf6;">M</div><div><div class="rv-name">Morgana</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">Google</div></div><p class="rv-text">"La gente es muy amable y te ayudarán si no sabes algo. Los ciclomotores son de buena calidad y se conducen perfectamente. Muy recomendable 😊"</p><span class="rv-tag">🛵 Scooter</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#f59e0b;">N</div><div><div class="rv-name">Niraj</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">Google</div></div><p class="rv-text">"Persona muy amable que ayuda con los lugares y el proceso de alquiler de scooter es muy fácil. 100% recomendado para explorar Lloret de Mar."</p><span class="rv-tag">🛵 Scooter</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#ef4444;">A</div><div><div class="rv-name">Alex T.</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">TripAdvisor</div></div><p class="rv-text">"Really good experience, this has been our 3rd time renting a quad bike from this shop! The customer service is very good and really polite workers. Would really recommend!"</p><span class="rv-tag">🏎️ Quad</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#0ea5e9;">S</div><div><div class="rv-name">Santiago R.</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">Google</div></div><p class="rv-text">"El mejor negocio para alquilar motos y quads. Muy buen servicio y atención al cliente las 24h. ¡Vendremos todos los años!!"</p><span class="rv-tag">🏍️ Moto</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#64748b;">P</div><div><div class="rv-name">Pavel K.</div><div class="rv-stars" style="color:#f59e0b;">★★★★☆</div></div><div class="rv-source">TripAdvisor</div></div><p class="rv-text">"We rented 125cc scooters several times with no issues. Shop works late, very reasonable and helpful staff. Definitely recommend and will use in future."</p><span class="rv-tag">🛵 125cc</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#10b981;">J</div><div><div class="rv-name">Jean-Pierre</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">Google</div></div><p class="rv-text">"Super, un régal! Une balade en quad avec notre super guide. On a découvert Lloret de Mar et ses hauteurs. Je recommande vivement!"</p><span class="rv-tag">🏎️ Excursión</span></div>
+          <div class="review-card"><div class="rv-header"><div class="rv-avatar" style="background:#f97316;">E</div><div><div class="rv-name">Emma W.</div><div class="rv-stars">★★★★★</div></div><div class="rv-source">TripAdvisor</div></div><p class="rv-text">"We rented a scooter and did a quad tour with a group. That was a really nice experience! Great service. If we come back to Lloret de Mar we will come back again!"</p><span class="rv-tag">👥 Grupo</span></div>
         </div>
-        <div class="reviews-fade-bottom"></div>
+        <div class="reviews-fade"></div>
       </div>
-
-      <!-- RIGHT: featured review -->
-      <div class="review-featured reveal">
+      <div class="review-featured">
         <div class="rf-badge">⭐ Destacada</div>
         <div class="rf-stars">★★★★★</div>
-        <blockquote class="rf-quote">"Aleks rentals were amazing — we tried the electric scooters, quad biking and motorbikes on different days. Great service and prices! Would do again, very helpful with places where to go! Definitely the best rental in Lloret de Mar."</blockquote>
-        <div class="rf-author">
-          <div class="rf-avatar">D</div>
-          <div>
-            <div class="rf-name">David M.</div>
-            <div class="rf-origin">🇬🇧 Reino Unido · TripAdvisor</div>
-          </div>
-        </div>
+        <blockquote class="rf-quote">"Aleks rentals were amazing — we tried the electric scooters, quad biking and motorbikes on different days. Great service and prices! Very helpful with places where to go! Definitely the best rental in Lloret de Mar."</blockquote>
+        <div class="rf-author"><div class="rf-avatar">D</div><div><div class="rf-name">David M.</div><div class="rf-origin">🇬🇧 Reino Unido · TripAdvisor</div></div></div>
         <div class="rf-divider"></div>
         <div class="rf-stats">
           <div class="rf-stat"><span>🏆</span><div><strong>+500</strong><small>reseñas Google</small></div></div>
@@ -925,740 +499,316 @@
   </div>
 </section>
 
+<!-- MODAL RESERVA -->
+<div id="reserva-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close-btn">✕</button>
+    <div class="modal-header"><div class="modal-icon">📋</div><div class="modal-title">Reservar Vehículo</div><div class="modal-sub">La IA generará un mensaje personalizado en tu idioma</div></div>
+    <div id="modal-step1">
+      <div class="modal-form">
+        <div class="form-row">
+          <div class="form-group"><label>👤 Nombre</label><input type="text" id="f-name" placeholder="Tu nombre"/></div>
+          <div class="form-group"><label>🌍 Idioma del mensaje</label><select id="f-lang"><option value="es">🇪🇸 Español</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option><option value="ru">🇷🇺 Русский</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>🚗 Vehículo</label><select id="f-vehicle"><option value="">-- Selecciona --</option><optgroup label="🏍️ Motos"><option>KYMCO Vitality 50cc — 45€/día</option><option>KYMCO Agility City 125cc — 50€/día</option></optgroup><optgroup label="🏎️ Quads"><option>KYMCO MXU Reserve 50cc — 60€/2h</option><option>KYMCO MXU 150cc — 60€/h</option><option>KYMCO MXU 300cc — 80€/h</option><option>CFMoto C-Force 450cc — 100€/h</option></optgroup><optgroup label="🚲 Bicicletas"><option>Bicicleta Normal — 20€/día</option></optgroup><optgroup label="👥 Grupo"><option>Excursión en grupo — Quads</option><option>Excursión en grupo — Motos</option><option>Excursión mixta — Motos + Quads</option></optgroup></select></div>
+          <div class="form-group"><label>👥 Personas</label><input type="number" id="f-people" value="1" min="1" max="30"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>📅 Fecha</label><input type="date" id="f-date"/></div>
+          <div class="form-group"><label>⏱️ Duración</label><select id="f-duration"><option>1 hora</option><option>2 horas</option><option>Medio día</option><option>1 día</option><option>2–3 días</option><option>1 semana</option><option>Más de 1 semana</option></select></div>
+        </div>
+        <div class="form-group"><label>💬 Notas (hotel, dudas...)</label><textarea id="f-msg" rows="2" placeholder="Ej: Estaremos en el Hotel Santa Marta..."></textarea></div>
+        <button class="form-submit" id="gen-btn">✨ Generar mensaje con IA</button>
+      </div>
+    </div>
+    <div id="modal-step2" style="display:none;">
+      <div class="msg-result">
+        <div class="msg-header"><div class="msg-icon">✅</div><div><div class="msg-title">Mensaje generado</div><div class="msg-sub">Revísalo y envíalo por WhatsApp</div></div></div>
+        <div id="msg-preview" class="msg-preview"></div>
+        <div class="msg-actions">
+          <button class="btn-back" id="back-btn">← Editar</button>
+          <button class="btn-copy" id="copy-btn">📋 Copiar</button>
+          <button class="btn-send" id="send-btn">WhatsApp 💬</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label" data-t="contact_lbl">Encuéntranos</div>
-      <h2 class="section-title" data-t="contact_title">Dónde Estamos</h2>
-    </div>
+    <div class="reveal"><div class="section-label">Encuéntranos</div><h2 class="section-title">Dónde Estamos</h2></div>
     <div class="cgrid">
       <div class="cinfo reveal">
-        <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong data-t="c_addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div></div>
-        <div class="citem"><div class="cicon">📞</div><div class="ctxt"><strong data-t="c_phone">Teléfono</strong><a href="tel:+34641459907">+34 641 459 907</a></div></div>
-        <div class="citem"><div class="cicon">✉️</div><div class="ctxt"><strong data-t="c_email">Email</strong><a href="mailto:aleksrent1@gmail.com">aleksrent1@gmail.com</a></div></div>
-        <div class="citem"><div class="cicon">🌐</div><div class="ctxt"><strong data-t="c_web">Web oficial</strong><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></div></div>
-        <div class="citem"><div class="cicon">🕘</div><div class="ctxt"><strong data-t="c_sched">Horario</strong><span data-t="c_sched_val">Lunes a Domingo: 09:00 – 21:00</span></div></div>
-        <div class="citem"><div class="cicon">💬</div><div class="ctxt"><strong data-t="c_wa">WhatsApp</strong><a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" data-t="c_wa_val">Escríbenos ahora</a></div></div>
+        <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong>Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div></div>
+        <div class="citem"><div class="cicon">📞</div><div class="ctxt"><strong>Teléfono</strong><a href="tel:+34641459907">+34 641 459 907</a></div></div>
+        <div class="citem"><div class="cicon">✉️</div><div class="ctxt"><strong>Email</strong><a href="mailto:aleksrent1@gmail.com">aleksrent1@gmail.com</a></div></div>
+        <div class="citem"><div class="cicon">🌐</div><div class="ctxt"><strong>Web oficial</strong><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></div></div>
+        <div class="citem"><div class="cicon">🕘</div><div class="ctxt"><strong>Horario</strong><span>Lunes a Domingo: 09:00 – 21:00</span></div></div>
+        <div class="citem"><div class="cicon">💬</div><div class="ctxt"><strong>WhatsApp</strong><a href="https://api.whatsapp.com/send?phone=34641459907" target="_blank">Escríbenos ahora</a></div></div>
       </div>
-      <div class="mapwrap reveal">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d748.1!2d2.8408!3d41.6998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v1716900000000" allowfullscreen loading="lazy" title="Aleks Rent"></iframe>
-      </div>
+      <div class="mapwrap reveal"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d748.1!2d2.8408!3d41.6998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v1716900000000" allowfullscreen loading="lazy" title="Aleks Rent"></iframe></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">ALEKS <span>RENT</span></div>
-  <p class="footer-tag" data-t="ftag">Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan</p>
+  <p class="footer-tag">Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan</p>
   <ul class="footer-links">
-    <li><a href="#about" data-t="nav_about">Nosotros</a></li>
-    <li><a href="#prices" data-t="nav_prices">Precios</a></li>
-    <li><a href="#comparador">Comparar</a></li>
-    <li><a href="#reviews">Reseñas ⭐</a></li>
-    <li><a href="#contact" data-t="nav_contact">Contacto</a></li>
-    <li><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></li>
+    <li><a href="#about">Nosotros</a></li><li><a href="#prices">Precios</a></li>
+    <li><a href="#comparador">Batalla</a></li><li><a href="#reviews">Reseñas</a></li>
+    <li><a href="#contact">Contacto</a></li><li><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></li>
   </ul>
-  <p class="footer-copy" data-t="fcopy">© 2025 Aleks Rent S.L. — Todos los derechos reservados.</p>
+  <p class="footer-copy">© 2025 Aleks Rent S.L. — Todos los derechos reservados.</p>
 </footer>
 
-<div id="scroll-bar"></div>
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">↑</button>
-<a class="wa-float" href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" title="WhatsApp">💬</a>
-
-
-
+<a class="wa-float" href="https://api.whatsapp.com/send?phone=34641459907" target="_blank">💬</a>
 
 <script>
-var T={
-  es:{
-    banner_sub:"Alquiler de motos, scooters, quads y bicicletas · Lloret de Mar",banner_btn:"¡Explorar ahora!",
-    nav_about:"Nosotros",nav_prices:"Precios",nav_contact:"Contacto",
-    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
-    hero_sub:"Vive la Costa Brava a tu manera. Alquila motos, scooters, quads y bicicletas con total libertad.",
-    btn_prices:"Ver precios",btn_map:"Cómo llegar",
-    about_lbl:"Sobre nosotros",about_title:"Fundada por Gevorg Avdalyan",
-    about_desc1:"Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.",
-    about_desc2:"Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!",
-    s1:"Años de experiencia",s2:"Idiomas atendidos",s3:"Valoración media",s4:"Revisión diaria",
-    prices_lbl:"Tarifas 2025",prices_title:"Nuestros Vehículos",prices_desc:"Vehículos con carnet, sin carnet y salidas en grupo.",
-    f_all:"Todos",f_nocarnet:"Sin carnet",f_carnet:"Requiere carnet",f_grupo:"Salidas en grupo",
-    bail:"Fianza",h1:"1 hora",h2:"2 horas",extra:"Hora extra",xday:"día",xdays:"días",
-    no_lic:"Sin carnet",lic_a1:"Carnet A1",lic_b:"Carnet B",
-    grupo_title:"Excursiones en Grupo por la Costa Brava",
-    grupo_desc:"Organiza tu excursión en quad o moto por los paisajes más espectaculares. Rutas guiadas desde 4 personas. ¡Contacta para presupuesto especial!",
-    grupo_btn:"Reservar grupo",
-    contact_lbl:"Encuéntranos",contact_title:"Dónde Estamos",
-    c_addr:"Dirección",c_phone:"Teléfono",c_email:"Email",c_web:"Web oficial",
-    c_sched:"Horario",c_sched_val:"Lunes a Domingo: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Escríbenos ahora",
-    ftag:"Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan",
-    modal_title:'Reservar Vehículo',modal_sub:'Rellena el formulario y te contactamos en menos de 1 hora',form_name:'Nombre completo',form_phone:'Teléfono / WhatsApp',form_vehicle:'Vehículo',form_people:'Nº de personas',form_date:'Fecha de inicio',form_days:'Duración',form_msg:'Mensaje adicional (opcional)',form_submit:'Enviar por WhatsApp 💬',
-    fcopy:"© 2025 Aleks Rent S.L. — Todos los derechos reservados."
-  },
-  en:{
-    banner_sub:"Motorbike, scooter, quad & bicycle rental · Lloret de Mar",banner_btn:"Explore now!",
-    nav_about:"About",nav_prices:"Prices",nav_contact:"Contact",
-    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
-    hero_sub:"Explore the Costa Brava your way. Rent motorbikes, scooters, quads and bicycles with total freedom.",
-    btn_prices:"See prices",btn_map:"Find us",
-    about_lbl:"About us",about_title:"Founded by Gevorg Avdalyan",
-    about_desc1:"Aleks Rent is the leading vehicle rental in Lloret de Mar. Our team speaks Spanish, Russian, English and French, and we inspect every vehicle every morning to ensure your safety.",
-    about_desc2:"We offer delivery to hotels across the Costa Brava and to Girona Airport. Come visit us — we will take great care of you!",
-    s1:"Years of experience",s2:"Languages spoken",s3:"Average rating",s4:"Daily inspection",
-    prices_lbl:"2025 Rates",prices_title:"Our Vehicles",prices_desc:"Vehicles with license, without license and group tours.",
-    f_all:"All",f_nocarnet:"No license",f_carnet:"License required",f_grupo:"Group tours",
-    bail:"Deposit",h1:"1 hour",h2:"2 hours",extra:"Extra hour",xday:"day",xdays:"days",
-    no_lic:"No license",lic_a1:"A1 license",lic_b:"B license",
-    grupo_title:"Group Excursions along the Costa Brava",
-    grupo_desc:"Organize your quad or motorbike excursion. Guided routes from 4 people. Contact us for a special quote!",
-    grupo_btn:"Book group",
-    contact_lbl:"Find us",contact_title:"Where We Are",
-    c_addr:"Address",c_phone:"Phone",c_email:"Email",c_web:"Official website",
-    c_sched:"Hours",c_sched_val:"Monday to Sunday: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Message us now",
-    ftag:"Lloret de Mar · Costa Brava · Founded by Gevorg Avdalyan",
-    modal_title:'Reserve Vehicle',modal_sub:'Fill the form and we will contact you in less than 1 hour',form_name:'Full name',form_phone:'Phone / WhatsApp',form_vehicle:'Vehicle',form_people:'No. of people',form_date:'Start date',form_days:'Duration',form_msg:'Additional message (optional)',form_submit:'Send via WhatsApp 💬',
-    fcopy:"© 2025 Aleks Rent S.L. — All rights reserved."
-  },
-  fr:{
-    banner_sub:"Location de motos, scooters, quads et velos · Lloret de Mar",banner_btn:"Explorer maintenant!",
-    nav_about:"A propos",nav_prices:"Tarifs",nav_contact:"Contact",
-    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
-    hero_sub:"Explorez la Costa Brava. Louez motos, scooters, quads et velos en toute liberte.",
-    btn_prices:"Voir les tarifs",btn_map:"Nous trouver",
-    about_lbl:"A propos",about_title:"Fondee par Gevorg Avdalyan",
-    about_desc1:"Aleks Rent est la reference de la location a Lloret de Mar. Notre equipe parle espagnol, russe, anglais et francais.",
-    about_desc2:"Livraison dans les hotels de toute la Costa Brava et a laeroport de Gerone. Venez nous voir!",
-    s1:"Ans experience",s2:"Langues parlees",s3:"Note moyenne",s4:"Inspection quotidienne",
-    prices_lbl:"Tarifs 2025",prices_title:"Nos Vehicules",prices_desc:"Vehicules avec permis, sans permis et sorties en groupe.",
-    f_all:"Tous",f_nocarnet:"Sans permis",f_carnet:"Permis requis",f_grupo:"Sorties en groupe",
-    bail:"Caution",h1:"1 heure",h2:"2 heures",extra:"Heure sup.",xday:"jour",xdays:"jours",
-    no_lic:"Sans permis",lic_a1:"Permis A1",lic_b:"Permis B",
-    grupo_title:"Excursions en Groupe sur la Costa Brava",
-    grupo_desc:"Organisez votre excursion en quad ou moto. Circuits guides a partir de 4 personnes.",
-    grupo_btn:"Reserver groupe",
-    modal_title:"Reserver un Vehicule",modal_sub:"Remplissez le formulaire, nous vous contacterons sous 1 heure",
-    form_name:"Nom complet",form_phone:"Telephone / WhatsApp",form_vehicle:"Vehicule",
-    form_people:"Nb. de personnes",form_date:"Date de debut",form_days:"Duree",
-    form_msg:"Message supplementaire",form_submit:"Envoyer via WhatsApp 💬",
-    contact_lbl:"Nous trouver",contact_title:"Ou Nous Sommes",
-    c_addr:"Adresse",c_phone:"Telephone",c_email:"Email",c_web:"Site officiel",
-    c_sched:"Horaires",c_sched_val:"Lundi au Dimanche: 09h - 21h",c_wa:"WhatsApp",c_wa_val:"Ecrivez-nous",
-    ftag:"Lloret de Mar · Costa Brava · Fondee par Gevorg Avdalyan",
-    fcopy:"© 2025 Aleks Rent S.L. — Tous droits reserves."
-  },
-    ru:{
-    banner_sub:"Аренда мотоциклов, скутеров, квадроциклов и велосипедов · Льорет-де-Мар",banner_btn:"Начать!",
-    nav_about:"О нас",nav_prices:"Цены",nav_contact:"Контакты",
-    hero_badge:"🏍️ Льорет-де-Мар · Коста-Брава",
-    hero_sub:"Исследуйте Коста-Браву по-своему. Арендуйте мотоциклы, скутеры, квадроциклы и велосипеды.",
-    btn_prices:"Смотреть цены",btn_map:"Как нас найти",
-    about_lbl:"О нас",about_title:"Основана Геворгом Авдалян",
-    about_desc1:"Aleks Rent — ведущая компания по аренде в Льорет-де-Мар. Наша команда говорит на испанском, русском, английском и французском языках.",
-    about_desc2:"Доставка в отели по всей Коста-Браве и в аэропорт Жироны. Приходите к нам!",
-    s1:"Лет опыта",s2:"Языков",s3:"Рейтинг",s4:"Ежедн. проверка",
-    prices_lbl:"Тарифы 2025",prices_title:"Наши Транспортные Средства",prices_desc:"Транспорт с правами, без прав и групповые туры.",
-    f_all:"Все",f_nocarnet:"Без прав",f_carnet:"Нужны права",f_grupo:"Групповые туры",
-    bail:"Залог",h1:"1 час",h2:"2 часа",extra:"Доп. час",xday:"день",xdays:"дней",
-    no_lic:"Без прав",lic_a1:"Права A1",lic_b:"Права B",
-    grupo_title:"Групповые экскурсии по Коста-Браве",
-    grupo_desc:"Организуйте экскурсию на квадроцикле или мотоцикле. Маршруты от 4 человек. Свяжитесь с нами!",
-    grupo_btn:"Забронировать группу",
-    contact_lbl:"Найти нас",contact_title:"Где Мы Находимся",
-    c_addr:"Адрес",c_phone:"Телефон",c_email:"Email",c_web:"Официальный сайт",
-    c_sched:"Расписание",c_sched_val:"Пн – Вс: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Написать нам",
-    ftag:"Льорет-де-Мар · Коста-Брава · Основана Геворгом Авдалян",
-    modal_title:'Забронировать',modal_sub:'Заполните форму и мы свяжемся с вами менее чем за 1 час',form_name:'Полное имя',form_phone:'Телефон / WhatsApp',form_vehicle:'Транспорт',form_people:'Кол-во человек',form_date:'Дата начала',form_days:'Продолжительность',form_msg:'Дополнительное сообщение (необязательно)',form_submit:'Отправить через WhatsApp 💬',
-    fcopy:"© 2025 Aleks Rent S.L. — Все права защищены."
-  }
+// ── DATA ─────────────────────────────────────────────────────────────────
+var VEHICLES = {
+  vitality:{name:"KYMCO Vitality 50cc",img:"https://aleksrent.es/img-vehiculos/Vitality_50.jpg",tipo:"Scooter",carnet:"Carnet AM",precio:45,fianza:100,cilindrada:50,plazas:2,velocidad:45},
+  agility:{name:"KYMCO Agility 125cc",img:"https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg",tipo:"Moto",carnet:"Carnet A1/B",precio:50,fianza:100,cilindrada:125,plazas:2,velocidad:100},
+  mxu50:{name:"KYMCO MXU 50cc",img:"https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg",tipo:"Quad",carnet:"Carnet AM/B",precio:60,fianza:100,cilindrada:50,plazas:1,velocidad:45},
+  mxu150:{name:"KYMCO MXU 150cc",img:"https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg",tipo:"Quad",carnet:"Carnet B",precio:60,fianza:100,cilindrada:150,plazas:2,velocidad:70},
+  mxu300:{name:"KYMCO MXU 300cc",img:"https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg",tipo:"Quad",carnet:"Carnet B",precio:80,fianza:300,cilindrada:300,plazas:2,velocidad:90},
+  cforce:{name:"CFMoto C-Force 450cc",img:"https://aleksrent.es/img-vehiculos/c-force-450.jpg",tipo:"Quad Premium",carnet:"Carnet B",precio:100,fianza:400,cilindrada:450,plazas:2,velocidad:110},
+  bike:{name:"Bicicleta Normal",img:"https://aleksrent.es/img-vehiculos/city-bike.jpg",tipo:"Bicicleta",carnet:"Sin carnet",precio:20,fianza:50,cilindrada:0,plazas:1,velocidad:25}
 };
-var lang='es';
-function setLang(l,btn){
-  lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+var STATS = [
+  {key:"velocidad",label:"Velocidad max.",unit:"km/h",higher:true},
+  {key:"cilindrada",label:"Cilindrada",unit:"cc",higher:true},
+  {key:"plazas",label:"Plazas",unit:"",higher:true},
+  {key:"precio",label:"Precio/hora",unit:"€",higher:false},
+  {key:"fianza",label:"Fianza",unit:"€",higher:false}
+];
+var generatedMsg = "";
 
-  // Animated counters
-  function animateCounter(el, target, suffix, duration) {
-    var start = 0;
-    var isFloat = target % 1 !== 0;
-    var step = target / (duration / 16);
-    var timer = setInterval(() => {
-      start += step;
-      if (start >= target) { start = target; clearInterval(timer); }
-      el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
-    }, 16);
-  }
-  var counters = [
-    { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
-    { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
-    { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
-    { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
-  ];
-  var countersStarted = false;
-  var counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !countersStarted) {
-        countersStarted = true;
-        counters.forEach(c => {
-          var el = document.querySelector(c.sel);
-          if (el) animateCounter(el, c.val, c.suffix, 1800);
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  var statsEl = document.querySelector('.about-stats');
-  if (statsEl) counterObs.observe(statsEl);
-
-  // Scroll progress bar
-  window.addEventListener('scroll', () => {
-    var scrolled = window.scrollY;
-    var total = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
-    // Back to top
-    var btn = document.getElementById('back-top');
-    if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
-  }, { passive: true });
-
-  // Parallax hero on scroll
-  window.addEventListener('scroll', () => {
-    var hero = document.querySelector('.hero-bg');
-    if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
-  }, { passive: true });
-
-  // Stagger reveal for vgrid cards
-  var gridObs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        gridObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
-
-  document.querySelectorAll('[data-t]').forEach(el=>{var v=T[lang][el.dataset.t];if(v)el.textContent=v;});
-}
-function filterVehicles(cat,btn){
-  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.vcard').forEach(card=>{
-    var cats=card.dataset.cat||'';
-    (cat==='all'||cats.includes(cat))?card.classList.remove('hidden'):card.classList.add('hidden');
-  });
-  var banner=document.querySelector('.grupo-banner');
-  if(banner) banner.style.display=(cat==='all'||cat==='grupo')?'':'none';
+// ── UTILS ────────────────────────────────────────────────────────────────
+function animCounter(el, target, suffix, dur) {
+  var start = 0, step = target / (dur/16);
+  var isFloat = target % 1 !== 0;
+  var t = setInterval(function(){
+    start += step;
+    if (start >= target) { start = target; clearInterval(t); }
+    el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
+  }, 16);
 }
 
-  var generatedMsg = '';
+// ── INIT (runs after DOM ready) ──────────────────────────────────────────
+window.addEventListener("load", function() {
 
-  function openModal(){
-    var m = document.getElementById('reserva-modal');
-    m.style.display='flex';
-    document.body.style.overflow='hidden';
-    document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
-    // Set modal lang selector to match current page lang
-    document.getElementById('f-lang').value = lang;
-  }
-  function closeModal(){
-    document.getElementById('reserva-modal').style.display='none';
-    document.body.style.overflow='';
-  }
-  document.getElementById('reserva-modal').addEventListener('click', function(e){
-    if(e.target===this) closeModal();
+  // Banner close
+  document.getElementById("banner-close-btn").addEventListener("click", function(){
+    var o = document.getElementById("banner-overlay");
+    o.style.transition = "opacity .4s";
+    o.style.opacity = "0";
+    setTimeout(function(){ o.style.display = "none"; document.body.style.overflow = ""; }, 400);
+    document.body.style.overflow = "";
   });
-  function backToForm(){
-    document.getElementById('modal-step1').style.display='';
-    document.getElementById('modal-step2').style.display='none';
-  }
-  function copyMsg(){
-    navigator.clipboard.writeText(generatedMsg).then(()=>{
-      var btn = document.querySelector('.btn-copy');
-      btn.textContent='✅ Copiado!';
-      setTimeout(()=>btn.textContent='📋 Copiar',2000);
+  document.body.style.overflow = "hidden";
+
+  // Scroll progress + back to top
+  window.addEventListener("scroll", function(){
+    var s = window.scrollY, total = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById("scroll-bar").style.width = (s/total*100) + "%";
+    var btn = document.getElementById("back-top");
+    s > 400 ? btn.classList.add("visible") : btn.classList.remove("visible");
+    // Parallax hero
+    var hbg = document.querySelector(".hero-bg");
+    if (hbg) hbg.style.transform = "translateY(" + (s*0.3) + "px)";
+  }, {passive:true});
+
+  // Reveal on scroll
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target); }
     });
+  }, {threshold:0.1});
+  document.querySelectorAll(".reveal").forEach(function(el){ obs.observe(el); });
+
+  // Counters
+  var cntObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){
+        animCounter(document.getElementById("cnt-exp"), 10, "+", 1600);
+        animCounter(document.getElementById("cnt-lang"), 4, "", 1200);
+        animCounter(document.getElementById("cnt-rating"), 4.8, "", 1800);
+        cntObs.disconnect();
+      }
+    });
+  }, {threshold:0.5});
+  var statsEl = document.querySelector(".about-stats");
+  if (statsEl) cntObs.observe(statsEl);
+
+  // Review counters
+  var rvObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){
+        animCounter(document.getElementById("cnt-total"), 500, "+", 1600);
+        animCounter(document.getElementById("cnt-satisfied"), 447, "+", 1800);
+        setTimeout(function(){ animCounter(document.getElementById("cnt-pct"), 89, "%", 1400); }, 300);
+        rvObs.disconnect();
+      }
+    });
+  }, {threshold:0.3});
+  var rvEl = document.getElementById("reviews");
+  if (rvEl) rvObs.observe(rvEl);
+
+  // Auto-scroll reviews
+  var sc = document.getElementById("reviews-scroll");
+  if (sc) {
+    var dir = 1, paused = false;
+    sc.addEventListener("mouseenter", function(){ paused = true; });
+    sc.addEventListener("mouseleave", function(){ paused = false; });
+    setInterval(function(){
+      if (paused) return;
+      sc.scrollTop += dir;
+      if (sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 2) dir = -1;
+      if (sc.scrollTop <= 0) dir = 1;
+    }, 30);
   }
-  function sendWhatsApp(){
-    var encoded = encodeURIComponent(generatedMsg);
-    window.open('https://api.whatsapp.com/send?phone=34641459907&text='+encoded,'_blank');
+
+  // Filter vehicles
+  window.filterV = function(cat, btn) {
+    document.querySelectorAll(".ftab").forEach(function(b){ b.classList.remove("active"); });
+    btn.classList.add("active");
+    document.querySelectorAll(".vcard").forEach(function(c){
+      var cats = c.getAttribute("data-cat") || "";
+      (cat === "all" || cats.indexOf(cat) > -1) ? c.classList.remove("hidden") : c.classList.add("hidden");
+    });
+    var gb = document.getElementById("grupo-banner");
+    if (gb) gb.style.display = (cat === "all" || cat === "grupo") ? "" : "none";
+  };
+
+  // Modal
+  function openModal() {
+    document.getElementById("reserva-modal").classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("f-date").min = new Date().toISOString().split("T")[0];
+    document.getElementById("modal-step1").style.display = "";
+    document.getElementById("modal-step2").style.display = "none";
   }
-
-  async function generateMessage(e){
-    e.preventDefault();
-    var name     = document.getElementById('f-name').value;
-    var msgLang  = document.getElementById('f-lang').value;
-    var vehicle  = document.getElementById('f-vehicle').value;
-    var people   = document.getElementById('f-people').value || 1;
-    var date     = document.getElementById('f-date').value;
-    var duration = document.getElementById('f-duration').value;
-    var notes    = document.getElementById('f-msg').value;
-
-    // Show loading
-    document.getElementById('gen-btn-text').style.display='none';
-    document.getElementById('gen-btn-loading').style.display='inline';
-    document.getElementById('gen-btn').disabled=true;
-
-    var langNames = {es:'español',en:'English',fr:'français',ru:'русский'};
-    var prompt = `Eres un asistente de reservas para Aleks Rent, una empresa de alquiler de vehículos en Lloret de Mar, Costa Brava (España). 
-Genera un mensaje de WhatsApp profesional, amigable y natural en ${langNames[msgLang]} para reservar un vehículo.
-El mensaje debe incluir estos datos de forma natural y conversacional (no como lista):
-- Nombre del cliente: ${name}
-- Vehículo deseado: ${vehicle}
-- Número de personas: ${people}
-- Fecha: ${date}
-- Duración: ${duration}
-${notes ? '- Notas adicionales: '+notes : ''}
-El mensaje debe empezar con un saludo, mencionar que quiere hacer una reserva en Aleks Rent, incluir todos los datos y terminar con una despedida amigable.
-Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
-
+  function closeModal() {
+    document.getElementById("reserva-modal").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("open-modal-btn").addEventListener("click", openModal);
+  document.getElementById("modal-close-btn").addEventListener("click", closeModal);
+  document.getElementById("reserva-modal").addEventListener("click", function(e){ if (e.target === this) closeModal(); });
+  document.getElementById("back-btn").addEventListener("click", function(){
+    document.getElementById("modal-step1").style.display = "";
+    document.getElementById("modal-step2").style.display = "none";
+  });
+  document.getElementById("copy-btn").addEventListener("click", function(){
+    navigator.clipboard.writeText(generatedMsg);
+    this.textContent = "✅ Copiado!";
+    var self = this;
+    setTimeout(function(){ self.textContent = "📋 Copiar"; }, 2000);
+  });
+  document.getElementById("send-btn").addEventListener("click", function(){
+    window.open("https://api.whatsapp.com/send?phone=34641459907&text=" + encodeURIComponent(generatedMsg), "_blank");
+  });
+  document.getElementById("gen-btn").addEventListener("click", async function(){
+    var name = document.getElementById("f-name").value;
+    var msgLang = document.getElementById("f-lang").value;
+    var vehicle = document.getElementById("f-vehicle").value;
+    var people = document.getElementById("f-people").value || 1;
+    var date = document.getElementById("f-date").value;
+    var duration = document.getElementById("f-duration").value;
+    var notes = document.getElementById("f-msg").value;
+    if (!name || !vehicle || !date) { alert("Por favor rellena nombre, vehículo y fecha"); return; }
+    this.textContent = "⏳ Generando...";
+    this.disabled = true;
+    var langNames = {es:"español",en:"English",fr:"français",ru:"русский"};
+    var prompt = "Genera un mensaje de WhatsApp natural y amigable en " + langNames[msgLang] + " para reservar en Aleks Rent (alquiler de vehículos en Lloret de Mar). Datos: Nombre: " + name + ", Vehículo: " + vehicle + ", Personas: " + people + ", Fecha: " + date + ", Duración: " + duration + (notes ? ", Notas: " + notes : "") + ". Incluye emojis. Solo el mensaje, nada más.";
     try {
-      var res = await fetch('https://api.anthropic.com/v1/messages', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({
-          model:'claude-sonnet-4-20250514',
-          max_tokens:1000,
-          messages:[{role:'user',content:prompt}]
-        })
+      var res = await fetch("https://api.anthropic.com/v1/messages", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:500,messages:[{role:"user",content:prompt}]})
       });
       var data = await res.json();
       generatedMsg = data.content[0].text;
-
-      // Show result
-      document.getElementById('msg-preview').textContent = generatedMsg;
-      document.getElementById('modal-step1').style.display='none';
-      document.getElementById('modal-step2').style.display='';
-    } catch(err) {
-      // Fallback: generate basic message without AI
+    } catch(e) {
       var fallbacks = {
-        es:`¡Hola! Soy ${name} y me gustaría hacer una reserva en Aleks Rent 🏍️\n\nVehículo: ${vehicle}\nPersonas: ${people}\nFecha: ${date}\nDuración: ${duration}${notes?'\nNotas: '+notes:''}\n\n¡Muchas gracias!`,
-        en:`Hello! I'm ${name} and I'd like to make a booking at Aleks Rent 🏍️\n\nVehicle: ${vehicle}\nPeople: ${people}\nDate: ${date}\nDuration: ${duration}${notes?'\nNotes: '+notes:''}\n\nThank you!`,
-        fr:`Bonjour! Je suis ${name} et je voudrais faire une réservation chez Aleks Rent 🏍️\n\nVéhicule: ${vehicle}\nPersonnes: ${people}\nDate: ${date}\nDurée: ${duration}${notes?'\nNotes: '+notes:''}\n\nMerci beaucoup!`,
-        ru:`Здравствуйте! Меня зовут ${name}, хотел бы забронировать в Aleks Rent 🏍️\n\nТранспорт: ${vehicle}\nЧеловек: ${people}\nДата: ${date}\nПродолжительность: ${duration}${notes?'\nПримечания: '+notes:''}\n\nСпасибо!`
+        es:"Hola! Soy " + name + " y quiero reservar en Aleks Rent 🏍️\n\nVehículo: " + vehicle + "\nPersonas: " + people + "\nFecha: " + date + "\nDuración: " + duration + (notes ? "\nNotas: " + notes : "") + "\n\nMuchas gracias!",
+        en:"Hello! I'm " + name + " and I'd like to book at Aleks Rent 🏍️\n\nVehicle: " + vehicle + "\nPeople: " + people + "\nDate: " + date + "\nDuration: " + duration + "\n\nThank you!",
+        fr:"Bonjour! Je suis " + name + " et je voudrais réserver chez Aleks Rent 🏍️\n\nVéhicule: " + vehicle + "\nPersonnes: " + people + "\nDate: " + date + "\nDurée: " + duration + "\n\nMerci!",
+        ru:"Здравствуйте! Я " + name + ", хочу забронировать в Aleks Rent 🏍️\n\nТранспорт: " + vehicle + "\nЧеловек: " + people + "\nДата: " + date + "\nПродолжительность: " + duration + "\n\nСпасибо!"
       };
       generatedMsg = fallbacks[msgLang] || fallbacks.es;
-      document.getElementById('msg-preview').textContent = generatedMsg;
-      document.getElementById('modal-step1').style.display='none';
-      document.getElementById('modal-step2').style.display='';
     }
+    document.getElementById("msg-preview").textContent = generatedMsg;
+    document.getElementById("modal-step1").style.display = "none";
+    document.getElementById("modal-step2").style.display = "";
+    this.textContent = "✨ Generar mensaje con IA";
+    this.disabled = false;
+  });
 
-    // Reset button
-    document.getElementById('gen-btn-text').style.display='inline';
-    document.getElementById('gen-btn-loading').style.display='none';
-    document.getElementById('gen-btn').disabled=false;
+  // Lang buttons
+  document.getElementById("lang-es").addEventListener("click", function(){ setActiveLang("es"); this.classList.add("active"); });
+  document.getElementById("lang-en").addEventListener("click", function(){ setActiveLang("en"); });
+  document.getElementById("lang-fr").addEventListener("click", function(){ setActiveLang("fr"); });
+  document.getElementById("lang-ru").addEventListener("click", function(){ setActiveLang("ru"); });
+  function setActiveLang(l) {
+    document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.remove("active"); });
+    document.getElementById("lang-" + l).classList.add("active");
   }
 
+  // ── BATALLA ──────────────────────────────────────────────────────────
+  document.getElementById("battle-btn").addEventListener("click", function(){
+    var aKey = document.getElementById("comp-a").value;
+    var bKey = document.getElementById("comp-b").value;
+    if (!aKey || !bKey) { alert("Selecciona los dos vehículos primero"); return; }
+    if (aKey === bKey) { alert("Selecciona vehículos diferentes"); return; }
+    startBattle(VEHICLES[aKey], VEHICLES[bKey]);
+  });
 
-  // Reviews counter animation
-  var reviewData = { total: 500, satisfied: 447, pct: 89 };
-  var reviewCountersStarted = false;
-  var reviewObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !reviewCountersStarted) {
-        reviewCountersStarted = true;
-        animateCounter(document.getElementById('cnt-total'), reviewData.total, '+', 1600);
-        animateCounter(document.getElementById('cnt-satisfied'), reviewData.satisfied, '+', 1800);
-        setTimeout(() => {
-          animateCounter(document.getElementById('cnt-pct'), reviewData.pct, '%', 1400);
-        }, 300);
-      }
-    });
-  }, { threshold: 0.3 });
-  var reviewsEl = document.getElementById('reviews');
-  if (reviewsEl) reviewObs.observe(reviewsEl);
-
-  // Auto-scroll reviews panel slowly
-  var scrollEl = document.getElementById('reviews-scroll');
-  if (scrollEl) {
-    var scrollDir = 1, scrollPaused = false;
-    scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
-    scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
-    setInterval(() => {
-      if (scrollPaused) return;
-      scrollEl.scrollTop += scrollDir;
-      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 2) scrollDir = -1;
-      if (scrollEl.scrollTop <= 0) scrollDir = 1;
-    }, 30);
-  }
-
-// Animated counters
-  function animateCounter(el, target, suffix, duration) {
-    var start = 0;
-    var isFloat = target % 1 !== 0;
-    var step = target / (duration / 16);
-    var timer = setInterval(() => {
-      start += step;
-      if (start >= target) { start = target; clearInterval(timer); }
-      el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
-    }, 16);
-  }
-  var counters = [
-    { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
-    { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
-    { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
-    { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
-  ];
-  var countersStarted = false;
-  var counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !countersStarted) {
-        countersStarted = true;
-        counters.forEach(c => {
-          var el = document.querySelector(c.sel);
-          if (el) animateCounter(el, c.val, c.suffix, 1800);
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  var statsEl = document.querySelector('.about-stats');
-  if (statsEl) counterObs.observe(statsEl);
-
-  // Scroll progress bar
-  window.addEventListener('scroll', () => {
-    var scrolled = window.scrollY;
-    var total = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
-    // Back to top
-    var btn = document.getElementById('back-top');
-    if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
-  }, { passive: true });
-
-  // Parallax hero on scroll
-  window.addEventListener('scroll', () => {
-    var hero = document.querySelector('.hero-bg');
-    if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
-  }, { passive: true });
-
-  // Stagger reveal for vgrid cards
-  var gridObs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        gridObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
-
-  document.querySelectorAll('[data-t]').forEach(el=>{var v=T[lang][el.dataset.t];if(v)el.textContent=v;});
-  var obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-  // Reviews counter animation
-  var reviewData = { total: 500, satisfied: 447, pct: 89 };
-  var reviewCountersStarted = false;
-  var reviewObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !reviewCountersStarted) {
-        reviewCountersStarted = true;
-        animateCounter(document.getElementById('cnt-total'), reviewData.total, '+', 1600);
-        animateCounter(document.getElementById('cnt-satisfied'), reviewData.satisfied, '+', 1800);
-        setTimeout(() => {
-          animateCounter(document.getElementById('cnt-pct'), reviewData.pct, '%', 1400);
-        }, 300);
-      }
-    });
-  }, { threshold: 0.3 });
-  var reviewsEl = document.getElementById('reviews');
-  if (reviewsEl) reviewObs.observe(reviewsEl);
-
-  // Auto-scroll reviews panel slowly
-  var scrollEl = document.getElementById('reviews-scroll');
-  if (scrollEl) {
-    var scrollDir = 1, scrollPaused = false;
-    scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
-    scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
-    setInterval(() => {
-      if (scrollPaused) return;
-      scrollEl.scrollTop += scrollDir;
-      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 2) scrollDir = -1;
-      if (scrollEl.scrollTop <= 0) scrollDir = 1;
-    }, 30);
-  }
-
-// Animated counters
-  function animateCounter(el, target, suffix, duration) {
-    var start = 0;
-    var isFloat = target % 1 !== 0;
-    var step = target / (duration / 16);
-    var timer = setInterval(() => {
-      start += step;
-      if (start >= target) { start = target; clearInterval(timer); }
-      el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
-    }, 16);
-  }
-  var counters = [
-    { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
-    { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
-    { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
-    { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
-  ];
-  var countersStarted = false;
-  var counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !countersStarted) {
-        countersStarted = true;
-        counters.forEach(c => {
-          var el = document.querySelector(c.sel);
-          if (el) animateCounter(el, c.val, c.suffix, 1800);
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  var statsEl = document.querySelector('.about-stats');
-  if (statsEl) counterObs.observe(statsEl);
-
-  // Scroll progress bar
-  window.addEventListener('scroll', () => {
-    var scrolled = window.scrollY;
-    var total = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
-    // Back to top
-    var btn = document.getElementById('back-top');
-    if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
-  }, { passive: true });
-
-  // Parallax hero on scroll
-  window.addEventListener('scroll', () => {
-    var hero = document.querySelector('.hero-bg');
-    if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
-  }, { passive: true });
-
-  // Stagger reveal for vgrid cards
-  var gridObs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        gridObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
-
-  document.querySelectorAll('[data-t]').forEach(el=>{var v=T[lang][el.dataset.t];if(v)el.textContent=v;});
-  var obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-  // Vehicle data for comparator
-  var VEHICLES = {
-    vitality: {
-      name: "KYMCO Vitality 50cc",
-      img: "https://aleksrent.es/img-vehiculos/Vitality_50.jpg",
-      tipo: "🛵 Scooter",
-      carnet: "Carnet AM",
-      carnet_class: "carnet",
-      precio_hora: "-",
-      precio_dia: "45€",
-      fianza: "100€",
-      cilindrada: "50cc",
-      plazas: "2",
-      velocidad: "45 km/h",
-      ideal: "Ciudad y paseos"
-    },
-    agility: {
-      name: "KYMCO Agility City 125cc",
-      img: "https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg",
-      tipo: "🏍️ Moto",
-      carnet: "Carnet A1 / B",
-      carnet_class: "carnet",
-      precio_hora: "50€",
-      precio_dia: "50€",
-      fianza: "100€",
-      cilindrada: "125cc",
-      plazas: "2",
-      velocidad: "100 km/h",
-      ideal: "Carretera y ciudad"
-    },
-    mxu50: {
-      name: "KYMCO MXU Reserve 50cc",
-      img: "https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg",
-      tipo: "🏎️ Quad",
-      carnet: "Carnet AM / B",
-      carnet_class: "carnet",
-      precio_hora: "60€ (2h mín.)",
-      precio_dia: "-",
-      fianza: "100€",
-      cilindrada: "50cc",
-      plazas: "1",
-      velocidad: "45 km/h",
-      ideal: "Principiantes"
-    },
-    mxu150: {
-      name: "KYMCO MXU 150cc",
-      img: "https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg",
-      tipo: "🏎️ Quad",
-      carnet: "Carnet B",
-      carnet_class: "carnet",
-      precio_hora: "60€",
-      precio_dia: "-",
-      fianza: "100€",
-      cilindrada: "150cc",
-      plazas: "2",
-      velocidad: "70 km/h",
-      ideal: "Rutas de montaña"
-    },
-    mxu300: {
-      name: "KYMCO MXU 300cc",
-      img: "https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg",
-      tipo: "🏎️ Quad",
-      carnet: "Carnet B",
-      carnet_class: "carnet",
-      precio_hora: "80€",
-      precio_dia: "-",
-      fianza: "300€",
-      cilindrada: "300cc",
-      plazas: "2",
-      velocidad: "90 km/h",
-      ideal: "Excursiones grupo"
-    },
-    cforce: {
-      name: "CFMoto C-Force 450cc",
-      img: "https://aleksrent.es/img-vehiculos/c-force-450.jpg",
-      tipo: "🏎️ Quad Premium",
-      carnet: "Carnet B",
-      carnet_class: "carnet",
-      precio_hora: "100€",
-      precio_dia: "-",
-      fianza: "400€",
-      cilindrada: "450cc",
-      plazas: "2",
-      velocidad: "110 km/h",
-      ideal: "Máxima aventura"
-    },
-    bike: {
-      name: "Bicicleta Normal",
-      img: "https://aleksrent.es/img-vehiculos/city-bike.jpg",
-      tipo: "🚲 Bicicleta",
-      carnet: "Sin carnet",
-      carnet_class: "nocarnet",
-      precio_hora: "-",
-      precio_dia: "20€",
-      fianza: "50€",
-      cilindrada: "-",
-      plazas: "1",
-      velocidad: "25 km/h",
-      ideal: "Ciudad y playa"
-    }
-  };
-
-  function updateComparator() {
-    var a = VEHICLES[document.getElementById('comp-a').value];
-    var b = VEHICLES[document.getElementById('comp-b').value];
-    var result = document.getElementById('comp-result');
-    if (!a || !b) {
-      result.innerHTML = '<div class="comp-empty">Selecciona dos vehiculos para compararlos</div>';
-      return;
-    }
-    var rows = [
-      {label:'Tipo',key:'tipo'},
-      {label:'Carnet',key:'carnet'},
-      {label:'Precio / hora',key:'precio_hora'},
-      {label:'Precio / dia',key:'precio_dia'},
-      {label:'Fianza',key:'fianza'},
-      {label:'Cilindrada',key:'cilindrada'},
-      {label:'Plazas',key:'plazas'},
-      {label:'Vel. max.',key:'velocidad'},
-      {label:'Ideal para',key:'ideal'}
-    ];
-    function priceVal(p){ return p==='-'?Infinity:parseFloat(p.replace(/[^0-9]/g,'')); }
-    var rowsA='', rowsB='';
-    rows.forEach(function(r){
-      var va=a[r.key], vb=b[r.key];
-      var classA='', classB='';
-      if(['precio_hora','precio_dia','fianza'].indexOf(r.key)>-1){
-        var na=priceVal(va), nb=priceVal(vb);
-        if(na!==nb&&na!==Infinity&&nb!==Infinity){classA=na<nb?'best':'worst';classB=nb<na?'best':'worst';}
-      }
-      rowsA += '<div class="comp-row"><span class="comp-row-label">'+r.label+'</span><span class="comp-row-val '+classA+'">'+va+'</span></div>';
-      rowsB += '<div class="comp-row"><span class="comp-row-label">'+r.label+'</span><span class="comp-row-val '+classB+'">'+vb+'</span></div>';
-    });
-    result.innerHTML =
-      '<div class="comp-col">'+
-        '<img class="comp-img" src="'+a.img+'" alt="'+a.name+'"/>'+
-        '<div class="comp-name">'+a.name+'</div>'+
-        '<span class="comp-tag '+a.carnet_class+'">'+a.carnet+'</span>'+
-        '<div class="comp-rows">'+rowsA+'</div>'+
-      '</div>'+
-      '<div class="comp-col right">'+
-        '<img class="comp-img" src="'+b.img+'" alt="'+b.name+'"/>'+
-        '<div class="comp-name">'+b.name+'</div>'+
-        '<span class="comp-tag '+b.carnet_class+'">'+b.carnet+'</span>'+
-        '<div class="comp-rows">'+rowsB+'</div>'+
-      '</div>';
-  }
-
-
-  var VEHICLES = {
-    vitality:{name:"KYMCO Vitality 50cc",img:"https://aleksrent.es/img-vehiculos/Vitality_50.jpg",tipo:"Scooter",carnet:"Carnet AM",carnet_class:"carnet",precio:45,fianza:100,cilindrada:50,plazas:2,velocidad:45},
-    agility:{name:"KYMCO Agility 125cc",img:"https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg",tipo:"Moto",carnet:"Carnet A1/B",carnet_class:"carnet",precio:50,fianza:100,cilindrada:125,plazas:2,velocidad:100},
-    mxu50:{name:"KYMCO MXU 50cc",img:"https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg",tipo:"Quad",carnet:"Carnet AM/B",carnet_class:"carnet",precio:60,fianza:100,cilindrada:50,plazas:1,velocidad:45},
-    mxu150:{name:"KYMCO MXU 150cc",img:"https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg",tipo:"Quad",carnet:"Carnet B",carnet_class:"carnet",precio:60,fianza:100,cilindrada:150,plazas:2,velocidad:70},
-    mxu300:{name:"KYMCO MXU 300cc",img:"https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg",tipo:"Quad",carnet:"Carnet B",carnet_class:"carnet",precio:80,fianza:300,cilindrada:300,plazas:2,velocidad:90},
-    cforce:{name:"CFMoto C-Force 450cc",img:"https://aleksrent.es/img-vehiculos/c-force-450.jpg",tipo:"Quad Premium",carnet:"Carnet B",carnet_class:"carnet",precio:100,fianza:400,cilindrada:450,plazas:2,velocidad:110},
-    bike:{name:"Bicicleta Normal",img:"https://aleksrent.es/img-vehiculos/city-bike.jpg",tipo:"Bicicleta",carnet:"Sin carnet",carnet_class:"nocarnet",precio:20,fianza:50,cilindrada:0,plazas:1,velocidad:25}
-  };
-
-  var STAT_LABELS = [
-    {key:'velocidad',label:'Velocidad max.',higher:true,unit:'km/h'},
-    {key:'cilindrada',label:'Cilindrada',higher:true,unit:'cc'},
-    {key:'plazas',label:'Plazas',higher:true,unit:''},
-    {key:'precio',label:'Precio/hora',higher:false,unit:'€'},
-    {key:'fianza',label:'Fianza',higher:false,unit:'€'}
-  ];
-
-  function buildPanel(v, side) {
-    var borderColor = side==='left' ? 'rgba(255,7,58,.4)' : 'rgba(57,255,20,.4)';
-    var html = '<img class="bp-img" src="'+v.img+'" alt="'+v.name+'"/>';
-    html += '<div class="bp-name">'+v.name+'</div>';
-    html += '<span class="bp-tag">'+v.tipo+' &nbsp;|&nbsp; '+v.carnet+'</span>';
-    html += '<div class="bp-stats" id="stats-'+side+'">';
-    STAT_LABELS.forEach(function(s){
+  function buildPanel(v) {
+    var html = '<img class="bp-img" src="' + v.img + '" alt="' + v.name + '"/>';
+    html += '<div class="bp-name">' + v.name + '</div>';
+    html += '<span class="bp-tag">' + v.tipo + ' &nbsp;|&nbsp; ' + v.carnet + '</span>';
+    STATS.forEach(function(s){
       var val = v[s.key];
-      var display = s.key==='cilindrada'&&val===0 ? '-' : val+s.unit;
-      html += '<div class="bp-stat"><span class="bp-stat-lbl">'+s.label+'</span><span class="bp-stat-val" id="sv-'+side+'-'+s.key+'">'+display+'</span></div>';
+      var display = (s.key === "cilindrada" && val === 0) ? "-" : val + s.unit;
+      html += '<div class="bp-stat"><span class="bp-stat-lbl">' + s.label + '</span><span class="bp-stat-val" id="sv-' + s.key + '-' + (v === window._battleA ? 'a' : 'b') + '">' + display + '</span></div>';
     });
-    html += '</div>';
     return html;
   }
 
-  function startBattle() {
-    var aKey = document.getElementById('comp-a').value;
-    var bKey = document.getElementById('comp-b').value;
-    if (!aKey || !bKey) { alert('Selecciona los dos vehiculos primero'); return; }
-    if (aKey === bKey) { alert('Selecciona vehiculos diferentes'); return; }
+  function startBattle(a, b) {
+    window._battleA = a; window._battleB = b;
+    var arena = document.getElementById("battle-arena");
+    var countdown = document.getElementById("battle-countdown");
+    document.getElementById("winner-banner").classList.remove("show");
+    arena.classList.add("active");
+    document.getElementById("panel-a").innerHTML = buildPanel(a);
+    document.getElementById("panel-b").innerHTML = buildPanel(b);
 
-    var a = VEHICLES[aKey], b = VEHICLES[bKey];
-    var arena = document.getElementById('battle-arena');
-    var countdown = document.getElementById('battle-countdown');
-    var winner = document.getElementById('winner-banner');
+    // Fix IDs after render - panels use 'a' and 'b' side indicators
+    STATS.forEach(function(s){
+      var els = document.querySelectorAll('[id^="sv-' + s.key + '-"]');
+      if (els[0]) els[0].id = "sv-" + s.key + "-a";
+      if (els[1]) els[1].id = "sv-" + s.key + "-b";
+    });
 
-    // Reset
-    winner.classList.remove('show');
-    arena.classList.add('active');
-    document.getElementById('panel-a').innerHTML = buildPanel(a, 'left');
-    document.getElementById('panel-b').innerHTML = buildPanel(b, 'right');
-    document.getElementById('panel-a').style.border = '1px solid rgba(255,7,58,.4)';
-    document.getElementById('panel-b').style.border = '1px solid rgba(57,255,20,.4)';
+    document.getElementById("panel-a").style.borderColor = "rgba(255,7,58,.5)";
+    document.getElementById("panel-b").style.borderColor = "rgba(57,255,20,.5)";
+    document.getElementById("panel-a").style.boxShadow = "";
+    document.getElementById("panel-b").style.boxShadow = "";
+    setTimeout(function(){ arena.scrollIntoView({behavior:"smooth",block:"center"}); }, 100);
 
-    // Scroll to arena
-    setTimeout(function(){ arena.scrollIntoView({behavior:'smooth', block:'center'}); }, 100);
-
-    // Countdown 5..4..3..2..1
     var count = 5;
-    countdown.style.opacity = '1';
-    var emojis = ['5','4','3','2','1'];
-    var colors = ['#ff073a','#ff6600','#ffcc00','#39ff14','#00cfff'];
-    
-    function tick() {
-      if (count <= 0) {
-        countdown.style.opacity = '0';
-        fireBeam(a, b);
-        return;
-      }
-      countdown.textContent = emojis[5-count];
+    var colors = ["#ff073a","#ff6600","#ffcc00","#39ff14","#00cfff"];
+    countdown.style.opacity = "1";
+    function tick(){
+      if (count <= 0){ countdown.textContent = ""; countdown.style.opacity = "0"; fireBeam(a, b); return; }
+      countdown.textContent = count;
       countdown.style.color = colors[5-count];
-      countdown.style.textShadow = '0 0 40px '+colors[5-count];
-      countdown.style.opacity = '1';
+      countdown.style.textShadow = "0 0 50px " + colors[5-count] + ", 0 0 100px " + colors[5-count];
       count--;
       setTimeout(tick, 900);
     }
@@ -1666,104 +816,73 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   }
 
   function fireBeam(a, b) {
-    var beam = document.getElementById('beam');
-    var explosion = document.getElementById('explosion');
-    beam.classList.add('active');
-    
-    // Animate beam growing
+    var beam = document.getElementById("beam");
+    var expl = document.getElementById("explosion");
     var h = 0;
     var grow = setInterval(function(){
-      h += 8;
-      beam.style.height = h + 'px';
-      if (h >= 160) {
+      h += 10; beam.style.height = h + "px";
+      if (h >= 140){
         clearInterval(grow);
-        // Explosion
-        explosion.style.opacity = '1';
-        explosion.style.fontSize = '4rem';
+        expl.style.fontSize = "4rem"; expl.textContent = "💥";
         setTimeout(function(){
-          explosion.style.opacity = '0';
-          beam.classList.remove('active');
-          beam.style.height = '0';
-          showResults(a, b);
-        }, 600);
+          expl.style.fontSize = "0"; expl.textContent = "";
+          beam.style.height = "0";
+          revealStats(a, b);
+        }, 500);
       }
     }, 16);
   }
 
-  function showResults(a, b) {
+  function revealStats(a, b) {
     var aScore = 0, bScore = 0;
-
-    // Animate stats one by one with delay
-    STAT_LABELS.forEach(function(s, idx){
+    STATS.forEach(function(s, idx){
       setTimeout(function(){
         var va = a[s.key], vb = b[s.key];
-        var elA = document.getElementById('sv-left-'+s.key);
-        var elB = document.getElementById('sv-right-'+s.key);
+        var elA = document.getElementById("sv-" + s.key + "-a");
+        var elB = document.getElementById("sv-" + s.key + "-b");
         if (!elA || !elB) return;
-
-        if (s.key==='cilindrada' && (va===0||vb===0)) return;
-
-        var tie = (va === vb);
-        if (!tie) {
+        if (s.key === "cilindrada" && (va === 0 || vb === 0)) return;
+        if (va !== vb) {
           var aWins = s.higher ? (va > vb) : (va < vb);
-          if (aWins) {
-            elA.classList.add('win');
-            elB.classList.add('lose');
-            aScore++;
-          } else {
-            elB.classList.add('win');
-            elA.classList.add('lose');
-            bScore++;
-          }
+          if (aWins){ elA.classList.add("win"); elB.classList.add("lose"); aScore++; }
+          else      { elB.classList.add("win"); elA.classList.add("lose"); bScore++; }
         }
-
-        // After last stat, show winner
-        if (idx === STAT_LABELS.length - 1) {
+        if (idx === STATS.length - 1) {
           setTimeout(function(){
-            var banner = document.getElementById('winner-banner');
-            var badge  = document.getElementById('winner-badge');
-            var sub    = document.getElementById('winner-sub');
-
-            if (aScore > bScore) {
-              document.getElementById('panel-a').style.boxShadow = '0 0 60px rgba(255,204,0,.7)';
-              badge.textContent = '🏆 GANADOR: ' + a.name;
-            } else if (bScore > aScore) {
-              document.getElementById('panel-b').style.boxShadow = '0 0 60px rgba(255,204,0,.7)';
-              badge.textContent = '🏆 GANADOR: ' + b.name;
+            var badge = document.getElementById("winner-badge");
+            var sub   = document.getElementById("winner-sub");
+            var banner= document.getElementById("winner-banner");
+            if (aScore > bScore){
+              badge.textContent = "🏆 GANADOR: " + a.name;
+              document.getElementById("panel-a").style.boxShadow = "0 0 60px rgba(255,204,0,.7)";
+            } else if (bScore > aScore){
+              badge.textContent = "🏆 GANADOR: " + b.name;
+              document.getElementById("panel-b").style.boxShadow = "0 0 60px rgba(255,204,0,.7)";
             } else {
-              badge.textContent = '🤝 EMPATE';
-              sub.textContent = 'Los dos vehiculos estan igualados';
-              banner.classList.add('show');
-              return;
+              badge.textContent = "🤝 EMPATE";
             }
-            sub.textContent = 'Gana en ' + Math.max(aScore,bScore) + ' de ' + STAT_LABELS.length + ' categorias';
-            banner.classList.add('show');
-            for (var i=0; i<16; i++) { setTimeout(spawnParticle, i*80); }
-          }, 600);
+            sub.textContent = "Gana en " + Math.max(aScore,bScore) + " de " + STATS.length + " categorías";
+            banner.classList.add("show");
+            for (var i = 0; i < 16; i++) { setTimeout(spawnParticle, i * 60); }
+          }, 500);
         }
-      }, idx * 300); // each stat reveals 300ms apart
+      }, idx * 350);
     });
   }
 
-  function spawnParticle() {
-    var emojis = ['⭐','✨','🏆','🔥','💥','🎉'];
-    var el = document.createElement('div');
-    el.className = 'particle';
-    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    var tx = (Math.random()-0.5)*300;
-    var ty = -(Math.random()*200+50);
-    el.style.setProperty('--tx', tx+'px');
-    el.style.setProperty('--ty', ty+'px');
-    el.style.left = (30+Math.random()*40)+'%';
-    el.style.top = '60%';
-    el.style.position = 'absolute';
-    var arena = document.getElementById('battle-arena');
-    if (arena) { arena.appendChild(el); setTimeout(function(){ el.remove(); }, 1000); }
+  function spawnParticle(){
+    var emojis = ["⭐","✨","🏆","🔥","💥","🎉","🌟"];
+    var el = document.createElement("div");
+    el.className = "particle";
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    var tx = (Math.random() - 0.5) * 400;
+    var ty = -(Math.random() * 250 + 50);
+    el.style.cssText = "--tx:" + tx + "px;--ty:" + ty + "px;left:" + (20 + Math.random() * 60) + "%;bottom:20%;position:absolute;z-index:10;";
+    var arena = document.getElementById("battle-arena");
+    if (arena){ arena.appendChild(el); setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); }, 1000); }
   }
 
-document.addEventListener("DOMContentLoaded", function() {
-
-});
+}); // end window.load
 </script>
 </body>
 </html>
