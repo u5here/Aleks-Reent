@@ -1691,59 +1691,56 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   function showResults(a, b) {
     var aScore = 0, bScore = 0;
 
-    STAT_LABELS.forEach(function(s){
-      var va = a[s.key], vb = b[s.key];
-      var elA = document.getElementById('sv-left-'+s.key);
-      var elB = document.getElementById('sv-right-'+s.key);
-      if (!elA || !elB) return;
+    // Animate stats one by one with delay
+    STAT_LABELS.forEach(function(s, idx){
+      setTimeout(function(){
+        var va = a[s.key], vb = b[s.key];
+        var elA = document.getElementById('sv-left-'+s.key);
+        var elB = document.getElementById('sv-right-'+s.key);
+        if (!elA || !elB) return;
 
-      var aWins;
-      if (s.key==='cilindrada' && (va===0||vb===0)) { return; }
-      aWins = s.higher ? (va > vb) : (va < vb);
-      var tie = (va === vb);
+        if (s.key==='cilindrada' && (va===0||vb===0)) return;
 
-      if (!tie) {
-        if (aWins) {
-          elA.classList.add('win');
-          elB.classList.add('lose');
-          aScore++;
-        } else {
-          elB.classList.add('win');
-          elA.classList.add('lose');
-          bScore++;
+        var tie = (va === vb);
+        if (!tie) {
+          var aWins = s.higher ? (va > vb) : (va < vb);
+          if (aWins) {
+            elA.classList.add('win');
+            elB.classList.add('lose');
+            aScore++;
+          } else {
+            elB.classList.add('win');
+            elA.classList.add('lose');
+            bScore++;
+          }
         }
-      }
+
+        // After last stat, show winner
+        if (idx === STAT_LABELS.length - 1) {
+          setTimeout(function(){
+            var banner = document.getElementById('winner-banner');
+            var badge  = document.getElementById('winner-badge');
+            var sub    = document.getElementById('winner-sub');
+
+            if (aScore > bScore) {
+              document.getElementById('panel-a').style.boxShadow = '0 0 60px rgba(255,204,0,.7)';
+              badge.textContent = '🏆 GANADOR: ' + a.name;
+            } else if (bScore > aScore) {
+              document.getElementById('panel-b').style.boxShadow = '0 0 60px rgba(255,204,0,.7)';
+              badge.textContent = '🏆 GANADOR: ' + b.name;
+            } else {
+              badge.textContent = '🤝 EMPATE';
+              sub.textContent = 'Los dos vehiculos estan igualados';
+              banner.classList.add('show');
+              return;
+            }
+            sub.textContent = 'Gana en ' + Math.max(aScore,bScore) + ' de ' + STAT_LABELS.length + ' categorias';
+            banner.classList.add('show');
+            for (var i=0; i<16; i++) { setTimeout(spawnParticle, i*80); }
+          }, 600);
+        }
+      }, idx * 300); // each stat reveals 300ms apart
     });
-
-    // Show winner
-    setTimeout(function(){
-      var banner = document.getElementById('winner-banner');
-      var badge = document.getElementById('winner-badge');
-      var sub = document.getElementById('winner-sub');
-      var winnerName, loserName;
-
-      if (aScore > bScore) {
-        winnerName = a.name; loserName = b.name;
-        document.getElementById('panel-a').style.boxShadow = '0 0 40px rgba(255,204,0,.5)';
-      } else if (bScore > aScore) {
-        winnerName = b.name; loserName = a.name;
-        document.getElementById('panel-b').style.boxShadow = '0 0 40px rgba(255,204,0,.5)';
-      } else {
-        badge.textContent = '🤝 EMPATE';
-        sub.textContent = 'Los dos vehiculos estan igualados';
-        banner.classList.add('show');
-        return;
-      }
-
-      badge.textContent = '🏆 GANADOR: ' + winnerName;
-      sub.textContent = 'Gana en ' + Math.max(aScore,bScore) + ' de ' + STAT_LABELS.length + ' categorias';
-      banner.classList.add('show');
-
-      // Particles
-      for (var i=0; i<12; i++) {
-        spawnParticle();
-      }
-    }, 400);
   }
 
   function spawnParticle() {
