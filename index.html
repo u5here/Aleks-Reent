@@ -508,7 +508,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 <div id="reserva-modal">
   <div class="modal-box">
     <button class="modal-close" id="modal-close-btn">✕</button>
-    <div class="modal-header"><div class="modal-icon">📋</div><div class="modal-title">Reservar Vehículo</div><div class="modal-sub">La IA generará un mensaje personalizado en tu idioma</div></div>
+    <div class="modal-header"><div class="modal-icon">📋</div><div class="modal-title" data-t="modal_title">Reservar Vehículo</div><div class="modal-sub" data-t="modal_sub">La IA generará un mensaje personalizado en tu idioma</div></div>
     <div id="modal-step1">
       <div class="modal-form">
         <div class="form-row">
@@ -524,12 +524,12 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
           <div class="form-group"><label>⏱️ Duración</label><select id="f-duration"><option>1 hora</option><option>2 horas</option><option>Medio día</option><option>1 día</option><option>2–3 días</option><option>1 semana</option><option>Más de 1 semana</option></select></div>
         </div>
         <div class="form-group"><label>💬 Notas (hotel, dudas...)</label><textarea id="f-msg" rows="2" placeholder="Ej: Estaremos en el Hotel Santa Marta..."></textarea></div>
-        <button class="form-submit" id="gen-btn">✨ Generar mensaje con IA</button>
+        <button class="form-submit" id="gen-btn" data-t="form_submit">✨ Generar mensaje con IA</button>
       </div>
     </div>
     <div id="modal-step2" style="display:none;">
       <div class="msg-result">
-        <div class="msg-header"><div class="msg-icon">✅</div><div><div class="msg-title">Mensaje generado</div><div class="msg-sub">Revísalo y envíalo por WhatsApp</div></div></div>
+        <div class="msg-header"><div class="msg-icon">✅</div><div><div class="msg-title" data-t="modal_title">Mensaje generado</div><div class="msg-sub" data-t="modal_sub">Revísalo y envíalo por WhatsApp</div></div></div>
         <div id="msg-preview" class="msg-preview"></div>
         <div class="msg-actions">
           <button class="btn-back" id="back-btn">← Editar</button>
@@ -610,7 +610,16 @@ var T={
     reviews_cta:"Leer todas las reseñas ↗",
     reviews_google:"500+ reseñas en Google",
     contact_lbl:"Encuéntranos",
-    contact_title:"Dónde Estamos"
+    contact_title:"Dónde Estamos",
+    modal_title:"Reservar Vehículo",
+    modal_sub:"La IA generará un mensaje personalizado en tu idioma",
+    form_name:"Nombre",
+    form_vehicle:"Vehículo",
+    form_people:"Personas",
+    form_date:"Fecha",
+    form_days:"Duración",
+    form_msg:"Notas (hotel, dudas...)",
+    form_submit:"✨ Generar mensaje con IA"
   },
   en:{
     banner_sub:"Motorbike, scooter, quad and bicycle rental in Lloret de Mar",banner_btn:"Explore now",
@@ -647,7 +656,16 @@ var T={
     reviews_cta:"Read all reviews ↗",
     reviews_google:"500+ Google reviews",
     contact_lbl:"Find us",
-    contact_title:"Where We Are"
+    contact_title:"Where We Are",
+    modal_title:"Reserve Vehicle",
+    modal_sub:"AI will generate a personalised message in your language",
+    form_name:"Name",
+    form_vehicle:"Vehicle",
+    form_people:"People",
+    form_date:"Date",
+    form_days:"Duration",
+    form_msg:"Notes (hotel, questions...)",
+    form_submit:"✨ Generate AI message"
   },
   fr:{
     banner_sub:"Location de motos, scooters, quads et velos a Lloret de Mar",banner_btn:"Explorer maintenant",
@@ -684,7 +702,16 @@ var T={
     reviews_cta:"Lire tous les avis ↗",
     reviews_google:"500+ avis Google",
     contact_lbl:"Nous trouver",
-    contact_title:"Où Nous Sommes"
+    contact_title:"Où Nous Sommes",
+    modal_title:"Réserver un Véhicule",
+    modal_sub:"Notre IA génèrera un message personnalisé dans votre langue",
+    form_name:"Nom",
+    form_vehicle:"Véhicule",
+    form_people:"Personnes",
+    form_date:"Date",
+    form_days:"Durée",
+    form_msg:"Notes (hôtel, questions...)",
+    form_submit:"✨ Générer un message IA"
   },
   ru:{
     banner_sub:"Arenda motociklov, skuterov, kvadrociklov i velosipedov v Lloret de Mar",banner_btn:"Nachat",
@@ -721,7 +748,16 @@ var T={
     reviews_cta:"Читать все отзывы ↗",
     reviews_google:"500+ отзывов Google",
     contact_lbl:"Найти нас",
-    contact_title:"Где Мы Находимся"
+    contact_title:"Где Мы Находимся",
+    modal_title:"Забронировать",
+    modal_sub:"ИИ создаст персонализированное сообщение на вашем языке",
+    form_name:"Имя",
+    form_vehicle:"Транспорт",
+    form_people:"Человек",
+    form_date:"Дата",
+    form_days:"Продолжительность",
+    form_msg:"Примечания (отель, вопросы...)",
+    form_submit:"✨ Создать сообщение ИИ"
   },
   ma:{
     banner_sub:"كراء الدراجات والسكوتيرات والكواد بلويريت دي مار",banner_btn:"استكشف الآن",
@@ -758,7 +794,16 @@ var T={
     reviews_cta:"قرا كل التقييمات ↗",
     reviews_google:"500+ تقييم على Google",
     contact_lbl:"اين نتواجدون",
-    contact_title:"العنوان ديالنا"
+    contact_title:"العنوان ديالنا",
+    modal_title:"احجز الآن",
+    modal_sub:"الذكاء الاصطناعي غيولد رسالة شخصية بلغتك",
+    form_name:"الاسم",
+    form_vehicle:"السيارة",
+    form_people:"عدد الأشخاص",
+    form_date:"التاريخ",
+    form_days:"المدة",
+    form_msg:"ملاحظات (فندق، أسئلة...)",
+    form_submit:"✨ توليد رسالة بالذكاء الاصطناعي"
   }
 };
 var currentLang="es";
