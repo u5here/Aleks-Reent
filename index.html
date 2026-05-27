@@ -1167,106 +1167,89 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   // HISTORIA
   var HIST = [
-    {year:2012,title:"El comienzo",desc:"Gevorg Avdalyan funda Aleks Rent en Lloret de Mar con una pequeña flota de scooters. El sueño: que cada turista descubra la Costa Brava sobre dos ruedas.",badge:"Fundación",
-     ms:[{t:"Primera tienda en C/ Josep de Togores 17",s:"El local original, 60m²"},{t:"Flota inicial de 5 scooters 50cc",s:"KYMCO Vitality, los primeros"},{t:"Primeros clientes: turistas rusos y españoles",s:"Boca a boca desde el primer día"}],
-     stats:[{n:"5",l:"Vehículos"},{n:"1",l:"Empleados"},{n:"60m²",l:"Local"}],
-     fleet:[{l:"Scooters",v:100},{l:"Quads",v:0},{l:"Bicis",v:0}],
-     photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img/3.jpg","https://aleksrent.es/img-vehiculos/Vitality_50.jpg"]},
-    {year:2015,title:"Crecimiento y quads",desc:"La demanda crece. Se amplía la flota con los primeros quads KYMCO MXU. Los turistas empiezan a llegar de toda Europa atraídos por las rutas de montaña.",badge:"Expansión",
-     ms:[{t:"Incorporación de quads 50cc y 150cc",s:"Gran éxito entre los turistas"},{t:"Primer servicio de entrega en hoteles",s:"Una novedad en la Costa Brava"},{t:"Llegada de clientes franceses y alemanes",s:"Reseñas en TripAdvisor"}],
-     stats:[{n:"20",l:"Vehículos"},{n:"3",l:"Empleados"},{n:"150+",l:"Reseñas"}],
-     fleet:[{l:"Scooters",v:60},{l:"Quads",v:35},{l:"Bicis",v:5}],
-     photos:["https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg","https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg","https://aleksrent.es/img/1.jpg"]},
-    {year:2018,title:"Flota completa",desc:"Aleks Rent se consolida como el referente del alquiler en Lloret de Mar. Se incorporan los quads más potentes y la atención se amplía a 4 idiomas.",badge:"Consolidación",
-     ms:[{t:"CFMoto C-Force 450cc — el rey de la flota",s:"El quad más demandado"},{t:"Atención en 4 idiomas: ES, EN, FR, RU",s:"Equipo internacional"},{t:"Web propia aleksrent.es",s:"Reservas online"}],
-     stats:[{n:"40",l:"Vehículos"},{n:"5",l:"Empleados"},{n:"4",l:"Idiomas"}],
-     fleet:[{l:"Scooters",v:45},{l:"Quads",v:45},{l:"Bicis",v:10}],
-     photos:["https://aleksrent.es/img-vehiculos/c-force-450.jpg","https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg","https://aleksrent.es/img/3.jpg"]},
-    {year:2020,title:"Resistencia",desc:"La pandemia golpea el turismo. Aleks Rent adapta protocolos, mantiene el equipo y emerge más fuerte. La comunidad local y los clientes fieles sostienen el negocio.",badge:"Resiliencia",
-     ms:[{t:"Protocolos de higiene y seguridad",s:"Desinfección de cada vehículo"},{t:"Servicio a clientes locales",s:"Apoyo a la comunidad"},{t:"Verano 2020: record de reservas locales",s:"Los españoles descubren la Costa Brava"}],
-     stats:[{n:"35",l:"Vehículos"},{n:"4.2",l:"Media Google"},{n:"300+",l:"Reseñas"}],
-     fleet:[{l:"Scooters",v:50},{l:"Quads",v:40},{l:"Bicis",v:10}],
-     photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img-vehiculos/Vitality_50.jpg","https://aleksrent.es/img/3.jpg"]},
-    {year:2022,title:"Boom post-pandemia",desc:"El turismo explota. Aleks Rent registra sus mejores temporadas. Se añaden bicicletas eléctricas. El boca a boca y las redes sociales disparan las reservas.",badge:"Mejor temporada",
-     ms:[{t:"Incorporación de bicicletas eléctricas",s:"Turismo sostenible"},{t:"Más de 400 reseñas en Google",s:"Media 4.3 estrellas"},{t:"Excursiones guiadas en grupo",s:"Nueva modalidad muy demandada"}],
-     stats:[{n:"50+",l:"Vehículos"},{n:"400+",l:"Reseñas"},{n:"4.3",l:"Media"}],
-     fleet:[{l:"Scooters",v:35},{l:"Quads",v:40},{l:"Bicis",v:25}],
-     photos:["https://aleksrent.es/img-vehiculos/bicicleta-electrica.jpg","https://aleksrent.es/img-vehiculos/c-force-450.jpg","https://aleksrent.es/img/3.jpg"]},
-    {year:2025,title:"Hoy y el futuro",desc:"Aleks Rent es hoy el alquiler de referencia en la Costa Brava. 500+ reseñas, 4.3 estrellas, flota renovada y atención en 5 idiomas. El proyecto de Gevorg sigue creciendo.",badge:"Presente",
-     ms:[{t:"500+ reseñas en Google con media 4.3",s:"El mejor valorado de Lloret"},{t:"Atención en 5 idiomas incluyendo árabe",s:"Equipo multicultural"},{t:"Nueva web y sistema de reservas con IA",s:"Innovación constante"}],
-     stats:[{n:"500+",l:"Reseñas"},{n:"4.3",l:"Media"},{n:"5",l:"Idiomas"}],
-     fleet:[{l:"Scooters",v:30},{l:"Quads",v:45},{l:"Bicis",v:25}],
-     photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img/3.jpg","https://aleksrent.es/img-vehiculos/c-force-450.jpg"]}
+    {year:2012,title:"El comienzo",badge:"Fundación",desc:"Gevorg Avdalyan funda Aleks Rent en Lloret de Mar con 5 scooters y un local de 60m². El sueño: que cada turista descubra la Costa Brava sobre dos ruedas.",hero:"https://aleksrent.es/img/3.jpg",quote:{text:"Empezamos con poco pero con mucha ilusión. Lloret merecía un alquiler diferente.",attr:"— Gevorg Avdalyan, fundador"},photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img/3.jpg","https://aleksrent.es/img-vehiculos/Vitality_50.jpg"],ms:[{icon:"ti-building",t:"Apertura en C/ Josep de Togores 17",s:"Local de 60m² en el centro de Lloret"},{icon:"ti-motorbike",t:"5 scooters KYMCO Vitality 50cc",s:"La flota original, pequeña pero fiable"},{icon:"ti-users",t:"Primeros clientes rusos y españoles",s:"El boca a boca funciona desde el día 1"}],stats:[{n:"5",l:"Vehículos"},{n:"1",l:"Empleado"},{n:"60m²",l:"Local"}],fleet:[{l:"Scooters",v:100},{l:"Quads",v:0},{l:"Bicis",v:0}]},
+    {year:2015,title:"Primeros quads",badge:"Expansión",desc:"La demanda crece y llegan los primeros quads KYMCO MXU. Los turistas de toda Europa descubren las rutas de montaña de la Costa Brava. Comienza el servicio de entrega en hoteles.",hero:"https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg",quote:{text:"El primer quad que alquilamos volvió con un cliente enamorado de la ruta a Tossa de Mar.",attr:"— Equipo Aleks Rent, 2015"},photos:["https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg","https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg","https://aleksrent.es/img/1.jpg"],ms:[{icon:"ti-steering-wheel",t:"Primeros quads KYMCO MXU 50cc y 150cc",s:"Gran éxito entre los turistas aventureros"},{icon:"ti-truck-delivery",t:"Servicio de entrega en hoteles",s:"Una novedad en la Costa Brava"},{icon:"ti-world",t:"Clientes de Francia, Alemania y UK",s:"Primeras reseñas en TripAdvisor"}],stats:[{n:"20",l:"Vehículos"},{n:"3",l:"Empleados"},{n:"150+",l:"Reseñas"}],fleet:[{l:"Scooters",v:60},{l:"Quads",v:35},{l:"Bicis",v:5}]},
+    {year:2018,title:"Consolidación",badge:"Liderazgo",desc:"Aleks Rent se convierte en el referente de alquiler en Lloret. Llega el CFMoto C-Force 450cc y se amplía la atención a 4 idiomas.",hero:"https://aleksrent.es/img-vehiculos/c-force-450.jpg",quote:{text:"Con el C-Force 450cc abrimos un mercado nuevo: los amantes de la adrenalina real.",attr:"— Equipo Aleks Rent, 2018"},photos:["https://aleksrent.es/img-vehiculos/c-force-450.jpg","https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg","https://aleksrent.es/img/3.jpg"],ms:[{icon:"ti-bolt",t:"CFMoto C-Force 450cc — el rey de la flota",s:"110 km/h · El quad más solicitado"},{icon:"ti-language",t:"Atención en ES, EN, FR, RU",s:"Equipo multicultural y formado"},{icon:"ti-globe",t:"Lanzamiento de aleksrent.es",s:"Reservas online y visibilidad digital"}],stats:[{n:"40",l:"Vehículos"},{n:"5",l:"Empleados"},{n:"4",l:"Idiomas"}],fleet:[{l:"Scooters",v:45},{l:"Quads",v:45},{l:"Bicis",v:10}]},
+    {year:2020,title:"Resistencia",badge:"Resiliencia",desc:"La pandemia paraliza el turismo mundial. Aleks Rent adapta protocolos, mantiene al equipo y emerge más fuerte. Los clientes locales descubren la Costa Brava.",hero:"https://aleksrent.es/img/1.jpg",quote:{text:"Fue el año más duro, pero también el que más nos unió como equipo.",attr:"— Gevorg Avdalyan, 2020"},photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img-vehiculos/Vitality_50.jpg","https://aleksrent.es/img/3.jpg"],ms:[{icon:"ti-shield-check",t:"Protocolos Covid: desinfección total",s:"Cada vehículo limpio entre alquiler y alquiler"},{icon:"ti-heart",t:"Servicio a clientes locales de Lloret",s:"Apoyo a la comunidad durante el confinamiento"},{icon:"ti-trending-up",t:"Verano 2020: record de reservas locales",s:"Los españoles redescubren su país"}],stats:[{n:"35",l:"Activos"},{n:"4.2",l:"Google"},{n:"300+",l:"Reseñas"}],fleet:[{l:"Scooters",v:50},{l:"Quads",v:40},{l:"Bicis",v:10}]},
+    {year:2022,title:"Boom turístico",badge:"Mejor temporada",desc:"El turismo explota tras la pandemia. Aleks Rent vive su mejor temporada histórica. Llegan las bicicletas eléctricas y las excursiones guiadas en grupo.",hero:"https://aleksrent.es/img-vehiculos/bicicleta-electrica.jpg",quote:{text:"En verano de 2022 tuvimos días con lista de espera. Nunca habíamos visto algo así.",attr:"— Equipo Aleks Rent, 2022"},photos:["https://aleksrent.es/img-vehiculos/bicicleta-electrica.jpg","https://aleksrent.es/img-vehiculos/c-force-450.jpg","https://aleksrent.es/img/3.jpg"],ms:[{icon:"ti-bike",t:"Incorporación de bicicletas eléctricas",s:"Turismo sostenible y silencioso"},{icon:"ti-users-group",t:"Excursiones guiadas en grupo",s:"Rutas por la Costa Brava con guía local"},{icon:"ti-star",t:"400+ reseñas · Media 4.3 en Google",s:"El mejor valorado de Lloret de Mar"}],stats:[{n:"50+",l:"Vehículos"},{n:"400+",l:"Reseñas"},{n:"4.3",l:"Google"}],fleet:[{l:"Scooters",v:35},{l:"Quads",v:40},{l:"Bicis",v:25}]},
+    {year:2025,title:"El presente",badge:"Hoy",desc:"Aleks Rent es hoy el referente del alquiler en la Costa Brava. 500+ reseñas, flota renovada, atención en 5 idiomas y reservas con inteligencia artificial.",hero:"https://aleksrent.es/img/3.jpg",quote:{text:"De 5 scooters a ser el número uno de Lloret. Este es solo el comienzo.",attr:"— Gevorg Avdalyan, 2025"},photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img/3.jpg","https://aleksrent.es/img-vehiculos/c-force-450.jpg"],ms:[{icon:"ti-trophy",t:"500+ reseñas · Media 4.3 — el mejor de Lloret",s:"Verificado en Google y TripAdvisor"},{icon:"ti-language",t:"5 idiomas: ES, EN, FR, RU, árabe",s:"El equipo más diverso de la Costa Brava"},{icon:"ti-robot",t:"Reservas con IA en tu idioma",s:"Tecnología al servicio del turista"}],stats:[{n:"500+",l:"Reseñas"},{n:"4.3",l:"Media"},{n:"5",l:"Idiomas"}],fleet:[{l:"Scooters",v:30},{l:"Quads",v:45},{l:"Bicis",v:25}]}
   ];
   var histIdx = 0;
 
   function histRender(idx) {
-    var d = HIST[idx];
-    var total = HIST.length;
-    document.getElementById("hist-prog").style.width = ((idx+1)/total*100)+"%";
-    document.getElementById("hist-navlbl").textContent = (idx+1)+" / "+total;
+    var d = HIST[idx], N = HIST.length;
+    document.getElementById("hist-prog").style.width = ((idx+1)/N*100)+"%";
+    document.getElementById("hist-navlbl").textContent = (idx+1)+" / "+N;
     document.getElementById("hist-prev").disabled = idx===0;
-    document.getElementById("hist-next").disabled = idx===total-1;
+    document.getElementById("hist-next").disabled = idx===N-1;
 
     var ynav = document.getElementById("hist-ynav");
     ynav.innerHTML = "";
     HIST.forEach(function(y,i){
-      var b = document.createElement("button");
-      b.className = "hist-ybtn"+(i===idx?" active":"");
-      b.textContent = y.year;
-      b.onclick = function(){ histIdx=i; histRender(i); };
+      var b=document.createElement("button");
+      b.className="hist-ybtn"+(i===idx?" active":"");
+      b.textContent=y.year;
+      b.onclick=function(){histIdx=i;histRender(i);};
       ynav.appendChild(b);
     });
 
-    var photos = d.photos.map(function(src){
-      return '<div class="hist-photo"><img src="'+src+'" alt="'+d.year+'" loading="lazy"/></div>';
+    var photos=d.photos.map(function(src){
+      return '<div class="hist-photo" onclick="document.getElementById('hist-lb-img').src=''+src+'';document.getElementById('hist-lb').style.display='flex';"><img src="'+src+'" alt="'+d.year+'" loading="lazy"/></div>';
     }).join("");
 
-    var ms = d.ms.map(function(m){
-      return '<div class="hist-ms"><div class="hist-msdot"></div><div><div class="hist-mstext">'+m.t+'</div><div class="hist-mssub">'+m.s+'</div></div></div>';
+    var ms=d.ms.map(function(m){
+      return '<div class="hist-ms"><i class="ti '+m.icon+'" style="font-size:16px;color:var(--blue);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i><div><div class="hist-mstext">'+m.t+'</div><div class="hist-mssub">'+m.s+'</div></div></div>';
     }).join("");
 
-    var stats = d.stats.map(function(s){
+    var stats=d.stats.map(function(s){
       return '<div class="hist-stat"><div class="hist-statn">'+s.n+'</div><div class="hist-statl">'+s.l+'</div></div>';
     }).join("");
 
-    var fleet = d.fleet.map(function(f){
+    var fleet=d.fleet.map(function(f){
       return '<div class="hist-fbar"><span class="hist-flbl">'+f.l+'</span><div class="hist-ftrack"><div class="hist-ffill" style="width:0" data-w="'+f.v+'%"></div></div><span style="font-size:.72rem;color:var(--muted);min-width:32px;text-align:right;">'+f.v+'%</span></div>';
     }).join("");
 
     document.getElementById("hist-content").innerHTML =
-      '<div class="hist-grid">'+
-        '<div class="hist-card full">'+
-          '<div class="hist-yhero">'+
-            '<div class="hist-ynum">'+d.year+'</div>'+
-            '<div><div class="hist-ytitle">'+d.title+'</div>'+
-            '<p class="hist-ydesc">'+d.desc+'</p>'+
-            '<span class="hist-badge">'+d.badge+'</span></div>'+
-          '</div>'+
+      '<div class="hist-hero-card">'+
+        '<img class="hist-hero-img" src="'+d.hero+'" alt="'+d.year+'"/>'+
+        '<div class="hist-hero-ov"></div>'+
+        '<div class="hist-hero-body">'+
+          '<div class="hist-hero-year">'+d.year+'</div>'+
+          '<div class="hist-hero-title">'+d.title+'</div>'+
+          '<p class="hist-hero-desc">'+d.desc+'</p>'+
+          '<span class="hist-badge">'+d.badge+'</span>'+
         '</div>'+
-        '<div class="hist-card"><div class="hist-clbl">Fotos del año</div><div class="hist-photos">'+photos+'</div></div>'+
-        '<div class="hist-card"><div class="hist-clbl">Hitos del año</div><div class="hist-milestones">'+ms+'</div></div>'+
+      '</div>'+
+      '<div class="hist-grid">'+
         '<div class="hist-card">'+
-          '<div class="hist-clbl">En cifras</div>'+
+          '<div class="hist-clbl"><i class="ti ti-camera" aria-hidden="true"></i> Fotos del año</div>'+
+          '<div class="hist-photos">'+photos+'</div>'+
+        '</div>'+
+        '<div class="hist-card">'+
+          '<div class="hist-clbl"><i class="ti ti-flag" aria-hidden="true"></i> Hitos del año</div>'+
+          ms+
+          '<div class="hist-quote">'+d.quote.text+'<div class="hist-quote-attr">'+d.quote.attr+'</div></div>'+
+        '</div>'+
+        '<div class="hist-card">'+
+          '<div class="hist-clbl"><i class="ti ti-chart-bar" aria-hidden="true"></i> En cifras</div>'+
           '<div class="hist-stats">'+stats+'</div>'+
-          '<div class="hist-clbl">Composición flota</div>'+
+          '<div class="hist-clbl" style="margin-top:10px;"><i class="ti ti-list" aria-hidden="true"></i> Composición flota</div>'+
           '<div class="hist-fleet">'+fleet+'</div>'+
         '</div>'+
         '<div class="hist-card">'+
-          '<div class="hist-clbl">Localización — Lloret de Mar, Costa Brava</div>'+
-          '<div class="hist-mapwrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d748.1!2d2.8408!3d41.6998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v1716900000000" allowfullscreen loading="lazy" title="Aleks Rent"></iframe></div>'+
+          '<div class="hist-clbl"><i class="ti ti-map-pin" aria-hidden="true"></i> Ubicación</div>'+
+          '<div class="hist-mapwrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d748.1!2d2.8408!3d41.6998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v'+idx+'" allowfullscreen loading="lazy" title="Aleks Rent Lloret de Mar"></iframe></div>'+
+          '<div style="font-size:.75rem;color:var(--muted);margin-top:8px;">C/ Josep de Togores 17 · Lloret de Mar</div>'+
         '</div>'+
       '</div>';
 
     setTimeout(function(){
-      document.querySelectorAll(".hist-ffill").forEach(function(el){
-        el.style.width = el.getAttribute("data-w");
-      });
-    }, 100);
+      document.querySelectorAll(".hist-ffill").forEach(function(el){el.style.width=el.getAttribute("data-w");});
+    },100);
   }
 
-  document.getElementById("hist-prev").addEventListener("click",function(){ if(histIdx>0){histIdx--;histRender(histIdx);} });
-  document.getElementById("hist-next").addEventListener("click",function(){ if(histIdx<HIST.length-1){histIdx++;histRender(histIdx);} });
+  document.getElementById("hist-prev").addEventListener("click",function(){if(histIdx>0){histIdx--;histRender(histIdx);}});
+  document.getElementById("hist-next").addEventListener("click",function(){if(histIdx<HIST.length-1){histIdx++;histRender(histIdx);}});
   histRender(0);
 
   // IDIOMAS
@@ -1284,4 +1267,51 @@ document.addEventListener("DOMContentLoaded", function() {
 }); // end window.load
 </script>
 </body>
-</html>
+</html>    /* HISTORIA */
+    #historia{background:#fff;padding:88px 0;}
+    .hist-hero-card{position:relative;border-radius:16px;overflow:hidden;margin-bottom:16px;height:240px;}
+    .hist-hero-img{width:100%;height:100%;object-fit:cover;display:block;}
+    .hist-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 40%,rgba(0,0,0,.1));}
+    .hist-hero-body{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;}
+    .hist-hero-year{font-family:Bebas Neue,sans-serif;font-size:3.5rem;color:rgba(255,255,255,.9);line-height:1;}
+    .hist-hero-title{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px;}
+    .hist-hero-desc{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.6;max-width:500px;}
+    .hist-badge{display:inline-block;margin-top:8px;font-size:.68rem;font-weight:700;padding:3px 12px;border-radius:50px;background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.35);}
+    .hist-progress{height:3px;background:var(--border);border-radius:2px;margin-bottom:1.5rem;overflow:hidden;}
+    .hist-progress-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .5s ease;}
+    .hist-ynav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .hist-ybtn{border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.8rem;padding:5px 14px;border-radius:50px;cursor:pointer;font-family:Outfit,sans-serif;transition:all .2s;}
+    .hist-ybtn:hover{border-color:var(--blue);color:var(--blue);}
+    .hist-ybtn.active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700;}
+    .hist-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .hist-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px;}
+    .hist-clbl{font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+    .hist-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+    .hist-photo{aspect-ratio:4/3;border-radius:10px;overflow:hidden;border:1px solid var(--border);cursor:zoom-in;transition:transform .2s;}
+    .hist-photo:hover{transform:scale(1.04);}
+    .hist-photo img{width:100%;height:100%;object-fit:cover;display:block;background:var(--bg);}
+    .hist-ms{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+    .hist-ms:last-child{border-bottom:none;}
+    .hist-mstext{font-size:.85rem;color:var(--text);font-weight:600;line-height:1.4;}
+    .hist-mssub{font-size:.75rem;color:var(--muted);margin-top:2px;}
+    .hist-quote{border-left:2px solid var(--blue);padding:10px 14px;background:#fff;border-radius:0 10px 10px 0;font-size:.84rem;color:var(--muted);font-style:italic;line-height:1.6;margin-top:12px;}
+    .hist-quote-attr{font-size:.75rem;color:var(--blue);margin-top:5px;font-style:normal;font-weight:600;}
+    .hist-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+    .hist-stat{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+    .hist-statn{font-family:Bebas Neue,sans-serif;font-size:1.5rem;color:var(--blue);}
+    .hist-statl{font-size:.72rem;color:var(--muted);margin-top:2px;}
+    .hist-fbar{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+    .hist-flbl{font-size:.78rem;color:var(--muted);min-width:68px;}
+    .hist-ftrack{flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;}
+    .hist-ffill{height:100%;background:var(--blue);border-radius:4px;transition:width .7s ease;}
+    .hist-mapwrap{height:200px;border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+    .hist-mapwrap iframe{width:100%;height:100%;border:none;}
+    .hist-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+    .hist-arrow{background:#fff;border:1.5px solid var(--border);color:var(--text);padding:9px 20px;border-radius:50px;cursor:pointer;font-size:.85rem;font-family:Outfit,sans-serif;font-weight:600;transition:all .2s;}
+    .hist-arrow:hover{border-color:var(--blue);color:var(--blue);}
+    .hist-arrow:disabled{opacity:.35;cursor:default;}
+    #hist-lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;align-items:center;justify-content:center;cursor:zoom-out;}
+    #hist-lb.open{display:flex;}
+    #hist-lb img{max-width:90vw;max-height:85vh;border-radius:14px;object-fit:contain;}
+    @media(max-width:700px){.hist-grid{grid-template-columns:1fr;}.hist-hero-card{height:180px;}}
+
