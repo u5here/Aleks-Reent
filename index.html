@@ -12,7 +12,7 @@
 :root{--blue:#1A4FA0;--blue2:#1565C0;--sky:#4A90D9;--dark:#0D1B3E;--bg:#F0F4FA;--card:#fff;--text:#0D1B3E;--muted:#607090;--border:rgba(26,79,160,0.13);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;visibility:hidden;}
 
 /* SCROLL BAR */
 #scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--blue));z-index:9998;width:0%;transition:width .1s;}
@@ -285,6 +285,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 @media(max-width:860px){nav{padding:10px 16px;}.nav-links{display:none;}.about-grid,.cgrid{grid-template-columns:1fr;gap:28px;}.about-img{height:250px;}}
 @media(max-width:500px){.hero-cta{flex-direction:column;}.btn-primary,.btn-outline{width:100%;text-align:center;}}
 </style>
+<noscript><style>body{visibility:visible!important}</style></noscript>
 </head>
 <body>
 
@@ -765,6 +766,7 @@ function buildBattlePanel(v,side){
 
 // ── INIT (runs after DOM ready) ──────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", function() {
+  document.body.style.visibility = "visible";
 
   // Banner close
   document.getElementById("banner-close-btn").addEventListener("click", function(){
