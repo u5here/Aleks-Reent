@@ -512,18 +512,18 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
     <div id="modal-step1">
       <div class="modal-form">
         <div class="form-row">
-          <div class="form-group"><label>👤 Nombre</label><input type="text" id="f-name" placeholder="Tu nombre"/></div>
+          <div class="form-group"><label data-t="form_name">👤 Nombre</label><input type="text" id="f-name" placeholder="Tu nombre"/></div>
           <div class="form-group"><label>🌍 Idioma del mensaje</label><select id="f-lang"><option value="es">🇪🇸 Español</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option><option value="ru">🇷🇺 Русский</option></select></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>🚗 Vehículo</label><select id="f-vehicle"><option value="">-- Selecciona --</option><optgroup label="🏍️ Motos"><option>KYMCO Vitality 50cc — 45€/día</option><option>KYMCO Agility City 125cc — 50€/día</option></optgroup><optgroup label="🏎️ Quads"><option>KYMCO MXU Reserve 50cc — 60€/2h</option><option>KYMCO MXU 150cc — 60€/h</option><option>KYMCO MXU 300cc — 80€/h</option><option>CFMoto C-Force 450cc — 100€/h</option></optgroup><optgroup label="🚲 Bicicletas"><option>Bicicleta Normal — 20€/día</option></optgroup><optgroup label="👥 Grupo"><option>Excursión en grupo — Quads</option><option>Excursión en grupo — Motos</option><option>Excursión mixta — Motos + Quads</option></optgroup></select></div>
-          <div class="form-group"><label>👥 Personas</label><input type="number" id="f-people" value="1" min="1" max="30"/></div>
+          <div class="form-group"><label data-t="form_vehicle">🚗 Vehículo</label><select id="f-vehicle"><option value="">-- Selecciona --</option><optgroup label="🏍️ Motos"><option>KYMCO Vitality 50cc — 45€/día</option><option>KYMCO Agility City 125cc — 50€/día</option></optgroup><optgroup label="🏎️ Quads"><option>KYMCO MXU Reserve 50cc — 60€/2h</option><option>KYMCO MXU 150cc — 60€/h</option><option>KYMCO MXU 300cc — 80€/h</option><option>CFMoto C-Force 450cc — 100€/h</option></optgroup><optgroup label="🚲 Bicicletas"><option>Bicicleta Normal — 20€/día</option></optgroup><optgroup label="👥 Grupo"><option>Excursión en grupo — Quads</option><option>Excursión en grupo — Motos</option><option>Excursión mixta — Motos + Quads</option></optgroup></select></div>
+          <div class="form-group"><label data-t="form_people">👥 Personas</label><input type="number" id="f-people" value="1" min="1" max="30"/></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>📅 Fecha</label><input type="date" id="f-date"/></div>
-          <div class="form-group"><label>⏱️ Duración</label><select id="f-duration"><option>1 hora</option><option>2 horas</option><option>Medio día</option><option>1 día</option><option>2–3 días</option><option>1 semana</option><option>Más de 1 semana</option></select></div>
+          <div class="form-group"><label data-t="form_date">📅 Fecha</label><input type="date" id="f-date"/></div>
+          <div class="form-group"><label data-t="form_days">⏱️ Duración</label><select id="f-duration"><option>1 hora</option><option>2 horas</option><option>Medio día</option><option>1 día</option><option>2–3 días</option><option>1 semana</option><option>Más de 1 semana</option></select></div>
         </div>
-        <div class="form-group"><label>💬 Notas (hotel, dudas...)</label><textarea id="f-msg" rows="2" placeholder="Ej: Estaremos en el Hotel Santa Marta..."></textarea></div>
+        <div class="form-group"><label data-t="form_msg">💬 Notas (hotel, dudas...)</label><textarea id="f-msg" rows="2" placeholder="Ej: Estaremos en el Hotel Santa Marta..."></textarea></div>
         <button class="form-submit" id="gen-btn" data-t="form_submit">✨ Generar mensaje con IA</button>
       </div>
     </div>
