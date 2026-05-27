@@ -571,31 +571,33 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 // ── DATA ─────────────────────────────────────────────────────────────────
 var VEHICLES = {
   vitality:{name:"KYMCO Vitality 50cc",img:"https://aleksrent.es/img-vehiculos/Vitality_50.jpg",tipo:"Scooter",carnet:"Carnet AM",precio:45,fianza:100,cilindrada:50,plazas:2,velocidad:45},
-  agility:{name:"KYMCO Agility 125cc",img:"https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg",tipo:"Moto",carnet:"Carnet A1/B",precio:50,fianza:100,cilindrada:125,plazas:2,velocidad:100},
-  mxu50:{name:"KYMCO MXU 50cc",img:"https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg",tipo:"Quad",carnet:"Carnet AM/B",precio:60,fianza:100,cilindrada:50,plazas:1,velocidad:45},
-  mxu150:{name:"KYMCO MXU 150cc",img:"https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg",tipo:"Quad",carnet:"Carnet B",precio:60,fianza:100,cilindrada:150,plazas:2,velocidad:70},
-  mxu300:{name:"KYMCO MXU 300cc",img:"https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg",tipo:"Quad",carnet:"Carnet B",precio:80,fianza:300,cilindrada:300,plazas:2,velocidad:90},
-  cforce:{name:"CFMoto C-Force 450cc",img:"https://aleksrent.es/img-vehiculos/c-force-450.jpg",tipo:"Quad Premium",carnet:"Carnet B",precio:100,fianza:400,cilindrada:450,plazas:2,velocidad:110},
+  agility:{name:"KYMCO Agility 125cc",img:"https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg",tipo:"Moto",carnet:"A1/B",precio:50,fianza:100,cilindrada:125,plazas:2,velocidad:100},
+  mxu50:{name:"KYMCO MXU 50cc",img:"https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg",tipo:"Quad",carnet:"AM/B",precio:60,fianza:100,cilindrada:50,plazas:1,velocidad:45},
+  mxu150:{name:"KYMCO MXU 150cc",img:"https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg",tipo:"Quad",carnet:"B",precio:60,fianza:100,cilindrada:150,plazas:2,velocidad:70},
+  mxu300:{name:"KYMCO MXU 300cc",img:"https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg",tipo:"Quad",carnet:"B",precio:80,fianza:300,cilindrada:300,plazas:2,velocidad:90},
+  cforce:{name:"CFMoto C-Force 450cc",img:"https://aleksrent.es/img-vehiculos/c-force-450.jpg",tipo:"Quad Premium",carnet:"B",precio:100,fianza:400,cilindrada:450,plazas:2,velocidad:110},
   bike:{name:"Bicicleta Normal",img:"https://aleksrent.es/img-vehiculos/city-bike.jpg",tipo:"Bicicleta",carnet:"Sin carnet",precio:20,fianza:50,cilindrada:0,plazas:1,velocidad:25}
 };
-var STATS = [
-  {key:"velocidad",label:"Velocidad max.",unit:"km/h",higher:true},
+var STATS=[
+  {key:"velocidad",label:"Velocidad máx.",unit:"km/h",higher:true},
   {key:"cilindrada",label:"Cilindrada",unit:"cc",higher:true},
   {key:"plazas",label:"Plazas",unit:"",higher:true},
   {key:"precio",label:"Precio/hora",unit:"€",higher:false},
   {key:"fianza",label:"Fianza",unit:"€",higher:false}
 ];
-var generatedMsg = "";
+var countColors=["#ff073a","#ff6600","#ffcc00","#39ff14","#00cfff"];
+var currentBattleA, currentBattleB;
 
-// ── UTILS ────────────────────────────────────────────────────────────────
-function animCounter(el, target, suffix, dur) {
-  var start = 0, step = target / (dur/16);
-  var isFloat = target % 1 !== 0;
-  var t = setInterval(function(){
-    start += step;
-    if (start >= target) { start = target; clearInterval(t); }
-    el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
-  }, 16);
+function buildBattlePanel(v,side){
+  var h='<img src="'+v.img+'" alt="'+v.name+'" onerror="this.style.background='#1a2a4a';this.style.display='block'" style="width:100%;height:160px;object-fit:cover;display:block;">';
+  h+='<div style="font-family:Bebas Neue,sans-serif;font-size:16px;color:#fff;padding:8px 12px 3px;letter-spacing:1px;">'+v.name+'</div>';
+  h+='<div style="display:inline-block;margin:0 12px 8px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;background:rgba(74,144,217,.15);color:#4A90D9;border:1px solid rgba(74,144,217,.3);">'+v.tipo+' | '+v.carnet+'</div>';
+  STATS.forEach(function(s){
+    var val=v[s.key];
+    var disp=(s.key==='cilindrada'&&val===0)?'-':val+s.unit;
+    h+='<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-top:1px solid rgba(255,255,255,.06);"><span style="font-size:10px;color:#6a85b0;text-transform:uppercase;letter-spacing:.5px;">'+s.label+'</span><span class="bsv" id="bsv-'+s.key+'-'+side+'" style="font-size:12px;font-weight:700;color:#bbb;transition:all .4s;">'+disp+'</span></div>';
+  });
+  return h;
 }
 
 // ── INIT (runs after DOM ready) ──────────────────────────────────────────
@@ -759,127 +761,106 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // ── BATALLA ──────────────────────────────────────────────────────────
+  // ── BATALLA ──────────────────────────────────────────────────────
   document.getElementById("battle-btn").addEventListener("click", function(){
-    var aKey = document.getElementById("comp-a").value;
-    var bKey = document.getElementById("comp-b").value;
-    if (!aKey || !bKey) { alert("Selecciona los dos vehículos primero"); return; }
-    if (aKey === bKey) { alert("Selecciona vehículos diferentes"); return; }
-    startBattle(VEHICLES[aKey], VEHICLES[bKey]);
+    var ak = document.getElementById("comp-a").value;
+    var bk = document.getElementById("comp-b").value;
+    if (!ak || !bk) { alert("Selecciona los dos vehículos"); return; }
+    if (ak === bk) { alert("Selecciona vehículos diferentes"); return; }
+    currentBattleA = VEHICLES[ak];
+    currentBattleB = VEHICLES[bk];
+    runBattleSequence();
   });
 
-  function buildPanel(v) {
-    var html = '<img class="bp-img" src="' + v.img + '" alt="' + v.name + '"/>';
-    html += '<div class="bp-name">' + v.name + '</div>';
-    html += '<span class="bp-tag">' + v.tipo + ' &nbsp;|&nbsp; ' + v.carnet + '</span>';
-    STATS.forEach(function(s){
-      var val = v[s.key];
-      var display = (s.key === "cilindrada" && val === 0) ? "-" : val + s.unit;
-      html += '<div class="bp-stat"><span class="bp-stat-lbl">' + s.label + '</span><span class="bp-stat-val" id="sv-' + s.key + '-' + (v === window._battleA ? 'a' : 'b') + '">' + display + '</span></div>';
-    });
-    return html;
-  }
-
-  function startBattle(a, b) {
-    window._battleA = a; window._battleB = b;
+  function runBattleSequence(){
     var arena = document.getElementById("battle-arena");
-    var countdown = document.getElementById("battle-countdown");
-    document.getElementById("winner-banner").classList.remove("show");
     arena.classList.add("active");
-    document.getElementById("panel-a").innerHTML = buildPanel(a);
-    document.getElementById("panel-b").innerHTML = buildPanel(b);
-
-    // Fix IDs after render - panels use 'a' and 'b' side indicators
-    STATS.forEach(function(s){
-      var els = document.querySelectorAll('[id^="sv-' + s.key + '-"]');
-      if (els[0]) els[0].id = "sv-" + s.key + "-a";
-      if (els[1]) els[1].id = "sv-" + s.key + "-b";
-    });
-
-    document.getElementById("panel-a").style.borderColor = "rgba(255,7,58,.5)";
-    document.getElementById("panel-b").style.borderColor = "rgba(57,255,20,.5)";
+    document.getElementById("winner-banner").classList.remove("show");
+    document.getElementById("panel-a").innerHTML = buildBattlePanel(currentBattleA,"a");
+    document.getElementById("panel-b").innerHTML = buildBattlePanel(currentBattleB,"b");
     document.getElementById("panel-a").style.boxShadow = "";
     document.getElementById("panel-b").style.boxShadow = "";
     setTimeout(function(){ arena.scrollIntoView({behavior:"smooth",block:"center"}); }, 100);
-
-    var count = 5;
-    var colors = ["#ff073a","#ff6600","#ffcc00","#39ff14","#00cfff"];
-    countdown.style.opacity = "1";
+    var n=5;
+    var cd=document.getElementById("battle-countdown");
+    cd.style.opacity="1";
     function tick(){
-      if (count <= 0){ countdown.textContent = ""; countdown.style.opacity = "0"; fireBeam(a, b); return; }
-      countdown.textContent = count;
-      countdown.style.color = colors[5-count];
-      countdown.style.textShadow = "0 0 50px " + colors[5-count] + ", 0 0 100px " + colors[5-count];
-      count--;
-      setTimeout(tick, 900);
+      if(n<=0){cd.textContent="";cd.style.opacity="0";doBeam();return;}
+      cd.textContent=n;
+      cd.style.color=countColors[5-n];
+      cd.style.textShadow="0 0 50px "+countColors[5-n]+",0 0 100px "+countColors[5-n];
+      n--; setTimeout(tick,900);
     }
     tick();
   }
 
-  function fireBeam(a, b) {
-    var beam = document.getElementById("beam");
-    var expl = document.getElementById("explosion");
-    var h = 0;
-    var grow = setInterval(function(){
-      h += 10; beam.style.height = h + "px";
-      if (h >= 140){
-        clearInterval(grow);
-        expl.style.fontSize = "4rem"; expl.textContent = "💥";
-        setTimeout(function(){
-          expl.style.fontSize = "0"; expl.textContent = "";
-          beam.style.height = "0";
-          revealStats(a, b);
-        }, 500);
+  function doBeam(){
+    var beam=document.getElementById("beam");
+    var expl=document.getElementById("explosion");
+    var h=0;
+    var t=setInterval(function(){
+      h+=10; beam.style.height=h+"px";
+      if(h>=140){
+        clearInterval(t);
+        expl.style.fontSize="4rem"; expl.textContent="💥";
+        setTimeout(function(){ expl.style.fontSize="0"; expl.textContent=""; beam.style.height="0"; doReveal(); },500);
       }
-    }, 16);
+    },16);
   }
 
-  function revealStats(a, b) {
-    var aScore = 0, bScore = 0;
-    STATS.forEach(function(s, idx){
+  function doReveal(){
+    var sa=0,sb=0;
+    STATS.forEach(function(s,idx){
       setTimeout(function(){
-        var va = a[s.key], vb = b[s.key];
-        var elA = document.getElementById("sv-" + s.key + "-a");
-        var elB = document.getElementById("sv-" + s.key + "-b");
-        if (!elA || !elB) return;
-        if (s.key === "cilindrada" && (va === 0 || vb === 0)) return;
-        if (va !== vb) {
-          var aWins = s.higher ? (va > vb) : (va < vb);
-          if (aWins){ elA.classList.add("win"); elB.classList.add("lose"); aScore++; }
-          else      { elB.classList.add("win"); elA.classList.add("lose"); bScore++; }
+        var va=currentBattleA[s.key], vb=currentBattleB[s.key];
+        var elA=document.getElementById("bsv-"+s.key+"-a");
+        var elB=document.getElementById("bsv-"+s.key+"-b");
+        if(!elA||!elB) return;
+        if(s.key==="cilindrada"&&(va===0||vb===0)) return;
+        if(va!==vb){
+          var aWins=s.higher?(va>vb):(va<vb);
+          if(aWins){
+            elA.style.color="#39ff14"; elA.style.textShadow="0 0 10px #39ff14,0 0 22px #39ff14"; elA.style.fontSize="15px"; elA.textContent="+ "+va+s.unit;
+            elB.style.color="#ff073a"; elB.style.textShadow="0 0 6px #ff073a"; elB.style.textDecoration="line-through"; elB.style.opacity=".6"; elB.textContent="- "+vb+s.unit;
+            sa++;
+          } else {
+            elB.style.color="#39ff14"; elB.style.textShadow="0 0 10px #39ff14,0 0 22px #39ff14"; elB.style.fontSize="15px"; elB.textContent="+ "+vb+s.unit;
+            elA.style.color="#ff073a"; elA.style.textShadow="0 0 6px #ff073a"; elA.style.textDecoration="line-through"; elA.style.opacity=".6"; elA.textContent="- "+va+s.unit;
+            sb++;
+          }
         }
-        if (idx === STATS.length - 1) {
-          setTimeout(function(){
-            var badge = document.getElementById("winner-badge");
-            var sub   = document.getElementById("winner-sub");
-            var banner= document.getElementById("winner-banner");
-            if (aScore > bScore){
-              badge.textContent = "🏆 GANADOR: " + a.name;
-              document.getElementById("panel-a").style.boxShadow = "0 0 60px rgba(255,204,0,.7)";
-            } else if (bScore > aScore){
-              badge.textContent = "🏆 GANADOR: " + b.name;
-              document.getElementById("panel-b").style.boxShadow = "0 0 60px rgba(255,204,0,.7)";
-            } else {
-              badge.textContent = "🤝 EMPATE";
-            }
-            sub.textContent = "Gana en " + Math.max(aScore,bScore) + " de " + STATS.length + " categorías";
-            banner.classList.add("show");
-            for (var i = 0; i < 16; i++) { setTimeout(spawnParticle, i * 60); }
-          }, 500);
+        if(idx===STATS.length-1){
+          setTimeout(function(){ doWinner(sa,sb); },500);
         }
-      }, idx * 350);
+      },idx*350);
     });
   }
 
-  function spawnParticle(){
-    var emojis = ["⭐","✨","🏆","🔥","💥","🎉","🌟"];
-    var el = document.createElement("div");
-    el.className = "particle";
-    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    var tx = (Math.random() - 0.5) * 400;
-    var ty = -(Math.random() * 250 + 50);
-    el.style.cssText = "--tx:" + tx + "px;--ty:" + ty + "px;left:" + (20 + Math.random() * 60) + "%;bottom:20%;position:absolute;z-index:10;";
-    var arena = document.getElementById("battle-arena");
-    if (arena){ arena.appendChild(el); setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); }, 1000); }
+  function doWinner(sa,sb){
+    var badge=document.getElementById("winner-badge");
+    var sub=document.getElementById("winner-sub");
+    var banner=document.getElementById("winner-banner");
+    if(sa>sb){
+      badge.textContent="🏆 GANADOR: "+currentBattleA.name;
+      document.getElementById("panel-a").style.boxShadow="0 0 60px rgba(255,204,0,.7)";
+    } else if(sb>sa){
+      badge.textContent="🏆 GANADOR: "+currentBattleB.name;
+      document.getElementById("panel-b").style.boxShadow="0 0 60px rgba(255,204,0,.7)";
+    } else { badge.textContent="🤝 EMPATE"; }
+    sub.textContent="Gana en "+Math.max(sa,sb)+" de "+STATS.length+" categorías";
+    banner.classList.add("show");
+    for(var i=0;i<16;i++){ (function(d){ setTimeout(function(){ spawnBattleParticle(); },d); })(i*65); }
+  }
+
+  function spawnBattleParticle(){
+    var emojis=["⭐","✨","🏆","🔥","💥","🎉","🌟"];
+    var el=document.createElement("div");
+    el.className="particle";
+    el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    var tx=(Math.random()-.5)*400, ty=-(50+Math.random()*250);
+    el.style.cssText="--tx:"+tx+"px;--ty:"+ty+"px;left:"+(20+Math.random()*60)+"%;bottom:20%;position:absolute;z-index:10;";
+    var arena=document.getElementById("battle-arena");
+    if(arena){ arena.appendChild(el); setTimeout(function(){ if(el.parentNode)el.parentNode.removeChild(el); },1000); }
   }
 
 }); // end window.load
