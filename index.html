@@ -765,7 +765,22 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("lang-" + l).classList.add("active");
   }
 
+  // UTILS
+  function animCounter(el, target, suffix, dur) {
+    if (!el) return;
+    var start = 0;
+    var isFloat = target % 1 !== 0;
+    var step = target / (dur / 16);
+    el.textContent = "0" + suffix;
+    var t = setInterval(function() {
+      start += step;
+      if (start >= target) { start = target; clearInterval(t); }
+      el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
+    }, 16);
+  }
+
   // BATALLA
+
   var BV={
     vitality:{name:"KYMCO Vitality 50cc",img:"https://aleksrent.es/img-vehiculos/Vitality_50.jpg",tag:"Scooter · AM",precio:45,fianza:100,cc:50,plazas:2,vel:45},
     agility:{name:"KYMCO Agility 125cc",img:"https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg",tag:"Moto · A1/B",precio:50,fianza:100,cc:125,plazas:2,vel:100},
