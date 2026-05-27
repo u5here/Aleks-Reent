@@ -572,6 +572,163 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 <a class="wa-float" href="https://api.whatsapp.com/send?phone=34641459907" target="_blank">💬</a>
 
 <script>
+
+var T={
+  es:{
+    banner_sub:"Alquiler de motos, scooters, quads y bicicletas en Lloret de Mar",banner_btn:"Explorar ahora",
+    nav_about:"Nosotros",nav_prices:"Precios",nav_contact:"Contacto",
+    hero_badge:"Lloret de Mar - Costa Brava",
+    hero_sub:"Vive la Costa Brava a tu manera. Alquila motos, scooters, quads y bicicletas con total libertad.",
+    btn_prices:"Ver precios",btn_map:"Como llegar",
+    about_lbl:"Sobre nosotros",about_title:"Fundada por Gevorg Avdalyan",
+    about_desc1:"Aleks Rent es el punto de referencia para el alquiler de vehiculos en Lloret de Mar. Nuestro equipo habla espanol, ruso, ingles y frances.",
+    about_desc2:"Servicio de entrega en hoteles de toda la Costa Brava y en el aeropuerto de Girona. Visitanos!",
+    s1:"Anos de experiencia",s2:"Idiomas atendidos",s3:"Valoracion media",s4:"Revision diaria",
+    prices_lbl:"Tarifas 2025",prices_title:"Nuestros Vehiculos",prices_desc:"Vehiculos con carnet, sin carnet y salidas en grupo.",
+    f_all:"Todos",f_nocarnet:"Sin carnet",f_carnet:"Requiere carnet",f_grupo:"Salidas en grupo",
+    bail:"Fianza",h1:"1 hora",h2:"2 horas",extra:"Hora extra",xday:"dia",xdays:"dias",
+    no_lic:"Sin carnet",lic_a1:"Carnet A1",lic_b:"Carnet B",
+    grupo_title:"Excursiones en Grupo por la Costa Brava",
+    grupo_desc:"Organiza tu excursion en quad o moto. Rutas guiadas desde 4 personas.",
+    grupo_btn:"Reservar grupo",
+    modal_title:"Reservar Vehiculo",modal_sub:"Rellena el formulario y te contactamos en menos de 1 hora",
+    form_name:"Nombre completo",form_phone:"Telefono / WhatsApp",form_vehicle:"Vehiculo",
+    form_people:"Num de personas",form_date:"Fecha de inicio",form_days:"Duracion",
+    form_msg:"Notas extra",form_submit:"Enviar por WhatsApp",
+    contact_lbl:"Encuentranos",contact_title:"Donde Estamos",
+    c_addr:"Direccion",c_phone:"Telefono",c_email:"Email",c_web:"Web oficial",
+    c_sched:"Horario",c_sched_val:"Lunes a Domingo: 09:00 - 21:00",c_wa:"WhatsApp",c_wa_val:"Escribenos ahora",
+    ftag:"Lloret de Mar - Costa Brava - Fundada por Gevorg Avdalyan",
+    fcopy:"2025 Aleks Rent S.L. Todos los derechos reservados."
+  },
+  en:{
+    banner_sub:"Motorbike, scooter, quad and bicycle rental in Lloret de Mar",banner_btn:"Explore now",
+    nav_about:"About",nav_prices:"Prices",nav_contact:"Contact",
+    hero_badge:"Lloret de Mar - Costa Brava",
+    hero_sub:"Explore the Costa Brava your way. Rent motorbikes, scooters, quads and bicycles with total freedom.",
+    btn_prices:"See prices",btn_map:"Find us",
+    about_lbl:"About us",about_title:"Founded by Gevorg Avdalyan",
+    about_desc1:"Aleks Rent is the leading vehicle rental in Lloret de Mar. Our team speaks Spanish, Russian, English and French.",
+    about_desc2:"Delivery to hotels across the Costa Brava and Girona Airport. Come visit us!",
+    s1:"Years of experience",s2:"Languages spoken",s3:"Average rating",s4:"Daily inspection",
+    prices_lbl:"2025 Rates",prices_title:"Our Vehicles",prices_desc:"Vehicles with license, without license and group tours.",
+    f_all:"All",f_nocarnet:"No license",f_carnet:"License required",f_grupo:"Group tours",
+    bail:"Deposit",h1:"1 hour",h2:"2 hours",extra:"Extra hour",xday:"day",xdays:"days",
+    no_lic:"No license",lic_a1:"A1 license",lic_b:"B license",
+    grupo_title:"Group Excursions along the Costa Brava",
+    grupo_desc:"Organize your quad or motorbike excursion. Guided routes from 4 people.",
+    grupo_btn:"Book group",
+    modal_title:"Reserve Vehicle",modal_sub:"Fill the form and we will contact you within 1 hour",
+    form_name:"Full name",form_phone:"Phone / WhatsApp",form_vehicle:"Vehicle",
+    form_people:"No. of people",form_date:"Start date",form_days:"Duration",
+    form_msg:"Additional notes",form_submit:"Send via WhatsApp",
+    contact_lbl:"Find us",contact_title:"Where We Are",
+    c_addr:"Address",c_phone:"Phone",c_email:"Email",c_web:"Official website",
+    c_sched:"Hours",c_sched_val:"Monday to Sunday: 09:00 - 21:00",c_wa:"WhatsApp",c_wa_val:"Message us now",
+    ftag:"Lloret de Mar - Costa Brava - Founded by Gevorg Avdalyan",
+    fcopy:"2025 Aleks Rent S.L. All rights reserved."
+  },
+  fr:{
+    banner_sub:"Location de motos, scooters, quads et velos a Lloret de Mar",banner_btn:"Explorer maintenant",
+    nav_about:"A propos",nav_prices:"Tarifs",nav_contact:"Contact",
+    hero_badge:"Lloret de Mar - Costa Brava",
+    hero_sub:"Explorez la Costa Brava a votre facon. Louez motos, scooters, quads et velos en toute liberte.",
+    btn_prices:"Voir les tarifs",btn_map:"Nous trouver",
+    about_lbl:"A propos",about_title:"Fondee par Gevorg Avdalyan",
+    about_desc1:"Aleks Rent est la reference de la location a Lloret de Mar. Notre equipe parle espagnol, russe, anglais et francais.",
+    about_desc2:"Livraison dans les hotels de toute la Costa Brava et a laeroport de Gerone. Venez nous voir!",
+    s1:"Ans experience",s2:"Langues parlees",s3:"Note moyenne",s4:"Inspection quotidienne",
+    prices_lbl:"Tarifs 2025",prices_title:"Nos Vehicules",prices_desc:"Vehicules avec permis, sans permis et sorties en groupe.",
+    f_all:"Tous",f_nocarnet:"Sans permis",f_carnet:"Permis requis",f_grupo:"Sorties en groupe",
+    bail:"Caution",h1:"1 heure",h2:"2 heures",extra:"Heure sup.",xday:"jour",xdays:"jours",
+    no_lic:"Sans permis",lic_a1:"Permis A1",lic_b:"Permis B",
+    grupo_title:"Excursions en Groupe sur la Costa Brava",
+    grupo_desc:"Organisez votre excursion en quad ou moto. Circuits guides a partir de 4 personnes.",
+    grupo_btn:"Reserver groupe",
+    modal_title:"Reserver un Vehicule",modal_sub:"Remplissez le formulaire, nous vous contacterons sous 1 heure",
+    form_name:"Nom complet",form_phone:"Telephone / WhatsApp",form_vehicle:"Vehicule",
+    form_people:"Nb. de personnes",form_date:"Date de debut",form_days:"Duree",
+    form_msg:"Message supplementaire",form_submit:"Envoyer via WhatsApp",
+    contact_lbl:"Nous trouver",contact_title:"Ou Nous Sommes",
+    c_addr:"Adresse",c_phone:"Telephone",c_email:"Email",c_web:"Site officiel",
+    c_sched:"Horaires",c_sched_val:"Lundi au Dimanche: 09h - 21h",c_wa:"WhatsApp",c_wa_val:"Ecrivez-nous",
+    ftag:"Lloret de Mar - Costa Brava - Fondee par Gevorg Avdalyan",
+    fcopy:"2025 Aleks Rent S.L. Tous droits reserves."
+  },
+  ru:{
+    banner_sub:"Arenda motociklov, skuterov, kvadrociklov i velosipedov v Lloret de Mar",banner_btn:"Nachat",
+    nav_about:"O nas",nav_prices:"Ceny",nav_contact:"Kontakty",
+    hero_badge:"Lloret de Mar - Kosta Brava",
+    hero_sub:"Issledujte Kostu Bravu po-svojemu. Arendujte motocikly, skutery, kvadrocikly i velosipedy.",
+    btn_prices:"Smotret ceny",btn_map:"Kak nas najti",
+    about_lbl:"O nas",about_title:"Osnovana Gevorgo Avdalyan",
+    about_desc1:"Aleks Rent - vedushchaya kompaniya po arende transporta v Lloret de Mar. Nasha komanda govorit na ispanskom, russkom, anglijskom i francuzskom.",
+    about_desc2:"Dostavka v oteli po vsej Koste Brava i v aeroport Zhirony. Prichodite k nam!",
+    s1:"Let opyta",s2:"Yazykov",s3:"Rejting",s4:"Ezhednevnaya proverka",
+    prices_lbl:"Tariify 2025",prices_title:"Nashi Transportnye Sredstva",prices_desc:"Transport s pravami, bez prav i gruppovye tury.",
+    f_all:"Vse",f_nocarnet:"Bez prav",f_carnet:"Nuzhny prava",f_grupo:"Gruppovye tury",
+    bail:"Zalog",h1:"1 chas",h2:"2 chasa",extra:"Dop. chas",xday:"den",xdays:"dnej",
+    no_lic:"Bez prav",lic_a1:"Prava A1",lic_b:"Prava B",
+    grupo_title:"Gruppovye ekskursii po Koste Brava",
+    grupo_desc:"Organizujte ekskursiyu na kvadrocikle ili motocikle. Marshruty ot 4 chelovek.",
+    grupo_btn:"Zabronirovat gruppu",
+    modal_title:"Zabronirovat",modal_sub:"Zapolnite formu i my svyazhemsya s vami menee chem za chas",
+    form_name:"Polnoe imya",form_phone:"Telefon / WhatsApp",form_vehicle:"Transport",
+    form_people:"Kolichestvo chelovek",form_date:"Data nachala",form_days:"Prodolzhitelnost",
+    form_msg:"Dopolnitelnoe soobshchenie",form_submit:"Otpravit cherez WhatsApp",
+    contact_lbl:"Najti nas",contact_title:"Gde My Nakhodimsya",
+    c_addr:"Adres",c_phone:"Telefon",c_email:"Email",c_web:"Oficialnyj sajt",
+    c_sched:"Raspisanie",c_sched_val:"Pn - Vs: 09:00 - 21:00",c_wa:"WhatsApp",c_wa_val:"Napisat nam",
+    ftag:"Lloret de Mar - Kosta Brava - Osnovana Georgom Avdalyan",
+    fcopy:"2025 Aleks Rent S.L. Vse prava zashchishcheny."
+  },
+  ma:{
+    banner_sub:"كراء الدراجات والسكوتيرات والكواد بلويريت دي مار",banner_btn:"استكشف الآن",
+    nav_about:"من نحن",nav_prices:"الأسعار",nav_contact:"اتصل بنا",
+    hero_badge:"لويريت دي مار - كوستا برافا",
+    hero_sub:"عيش تجربة كوستا برافا بطريقتك. كري موتو، سكوتر، كواد أو دراجة بكل حرية.",
+    btn_prices:"شوف الأسعار",btn_map:"كيفاش توصل لينا",
+    about_lbl:"من نحن",about_title:"مؤسسة من طرف جيفورج أفدالان",
+    about_desc1:"Aleks Rent هي المرجع في كراء الدراجات بلويريت دي مار. الفريق ديالنا كيتكلم العربية والإسبانية والروسية والإنجليزية والفرنسية.",
+    about_desc2:"عندنا خدمة التوصيل للفنادق فكوستا برافا وفمطار جيرونا. زورونا!",
+    s1:"سنوات الخبرة",s2:"اللغات",s3:"التقييم",s4:"فحص يومي",
+    prices_lbl:"أسعار 2025",prices_title:"السيارات ديالنا",prices_desc:"كراء مع أو بلا permis ورحلات جماعية.",
+    f_all:"الكل",f_nocarnet:"بلا permis",f_carnet:"مع permis",f_grupo:"رحلات جماعية",
+    bail:"الكوتيزيون",h1:"ساعة",h2:"ساعتين",extra:"ساعة إضافية",xday:"يوم",xdays:"أيام",
+    no_lic:"بلا permis",lic_a1:"permis A1",lic_b:"permis B",
+    grupo_title:"رحلات جماعية فكوستا برافا",
+    grupo_desc:"دبر الرحلة ديالك بالكواد أو الموتو من 4 أشخاص.",
+    grupo_btn:"احجز رحلة جماعية",
+    modal_title:"احجز الآن",modal_sub:"عمر الفورم وغانتصلو بيك فأقل من ساعة",
+    form_name:"الاسم الكامل",form_phone:"التيليفون / واتساب",form_vehicle:"السيارة",
+    form_people:"عدد الأشخاص",form_date:"تاريخ البداية",form_days:"المدة",
+    form_msg:"ملاحظات إضافية",form_submit:"إرسال عبر واتساب",
+    contact_lbl:"اين نتواجدون",contact_title:"العنوان ديالنا",
+    c_addr:"العنوان",c_phone:"التيليفون",c_email:"الإيميل",c_web:"الموقع الرسمي",
+    c_sched:"أوقات العمل",c_sched_val:"من الاثنين للأحد: 09:00 - 21:00",c_wa:"واتساب",c_wa_val:"راسلنا دابا",
+    ftag:"لويريت دي مار - كوستا برافا - مؤسسة من طرف جيفورج أفدالان",
+    fcopy:"2025 Aleks Rent S.L. جميع الحقوق محفوظة"
+  }
+};
+var currentLang="es";
+
+function setLang(l) {
+  currentLang = l;
+  document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.remove("active"); });
+  var btn = document.getElementById("lang-"+l);
+  if (btn) btn.classList.add("active");
+  document.querySelectorAll("[data-t]").forEach(function(el){
+    var v = T[l][el.getAttribute("data-t")];
+    if (v) el.textContent = v;
+  });
+  if (l === "ma") {
+    document.body.style.direction = "rtl";
+  } else {
+    document.body.style.direction = "ltr";
+  }
+}
+
+
 // ── DATA ─────────────────────────────────────────────────────────────────
 var VEHICLES = {
   vitality:{name:"KYMCO Vitality 50cc",img:"https://aleksrent.es/img-vehiculos/Vitality_50.jpg",tipo:"Scooter",carnet:"Carnet AM",precio:45,fianza:100,cilindrada:50,plazas:2,velocidad:45},
