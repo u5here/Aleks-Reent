@@ -1419,7 +1419,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
         if (lowerBetter) { classA = na<nb?'best':'worst'; classB = nb<na?'best':'worst'; }
         else             { classA = na>nb?'best':'worst'; classB = nb>na?'best':'worst'; }
       }
-      return \`<div class="comp-row"><span class="comp-row-label">\${label}</span></div>\`; // placeholder
+      return `<div class="comp-row"><span class="comp-row-label">\${label}</span></div>`; // placeholder
     }
 
     let rowsA = '', rowsB = '';
@@ -1430,11 +1430,11 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
         const na=priceVal(va), nb=priceVal(vb);
         if(na!==nb&&na!==Infinity&&nb!==Infinity){classA=na<nb?'best':'worst';classB=nb<na?'best':'worst';}
       }
-      rowsA += \`<div class="comp-row"><span class="comp-row-label">\${r.label}</span><span class="comp-row-val \${classA}">\${va}</span></div>\`;
-      rowsB += \`<div class="comp-row"><span class="comp-row-label">\${r.label}</span><span class="comp-row-val \${classB}">\${vb}</span></div>\`;
+      rowsA += `<div class="comp-row"><span class="comp-row-label">\${r.label}</span><span class="comp-row-val \${classA}">\${va}</span></div>`;
+      rowsB += `<div class="comp-row"><span class="comp-row-label">\${r.label}</span><span class="comp-row-val \${classB}">\${vb}</span></div>`;
     });
 
-    result.innerHTML = \`
+    result.innerHTML = `
       <div class="comp-col">
         <img class="comp-img" src="\${a.img}" alt="\${a.name}" onerror="this.style.background='#eef4fb';this.style.height='200px'"/>
         <div class="comp-name">\${a.name}</div>
@@ -1447,7 +1447,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
         <span class="comp-tag \${b.carnet_class}">\${b.carnet}</span>
         <div class="comp-rows">\${rowsB}</div>
       </div>
-    \`;
+    `;
   }
 
 </script>
