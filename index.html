@@ -310,6 +310,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
   <ul class="nav-links">
     <li><a href="#about" data-t="nav_about" data-t="nav_about">Nosotros</a></li>
     <li><a href="#prices" data-t="nav_prices" data-t="nav_prices">Precios</a></li>
+    <li><a href="#historia">Historia</a></li>
     <li><a href="#comparador">⚔️ Batalla</a></li>
     <li><a href="#reviews">Reseñas ⭐</a></li>
     <li><a href="#contact" data-t="nav_contact">Contacto</a></li>
@@ -541,6 +542,25 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
   </div>
 </div>
 
+<!-- HISTORIA -->
+<section id="historia">
+  <div class="container">
+    <div class="hist-header reveal">
+      <div class="section-label">Nuestra trayectoria</div>
+      <h2 class="section-title">Historia de Aleks Rent</h2>
+      <p class="section-desc">Más de una década recorriendo la Costa Brava. Selecciona un año para ver cómo hemos crecido.</p>
+    </div>
+    <div class="hist-progress"><div class="hist-progress-fill" id="hist-prog" style="width:16.6%"></div></div>
+    <div class="hist-ynav" id="hist-ynav"></div>
+    <div id="hist-content"></div>
+    <div class="hist-nav">
+      <button class="hist-arrow" id="hist-prev">← Anterior</button>
+      <span id="hist-navlbl" style="font-size:.82rem;color:var(--muted);"></span>
+      <button class="hist-arrow" id="hist-next">Siguiente →</button>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -564,6 +584,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
   <p class="footer-tag" data-t="ftag">Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan</p>
   <ul class="footer-links">
     <li><a href="#about">Nosotros</a></li><li><a href="#prices">Precios</a></li>
+    <li><a href="#historia">Historia</a></li>
     <li><a href="#comparador">Batalla</a></li><li><a href="#reviews">Reseñas</a></li>
     <li><a href="#contact">Contacto</a></li><li><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></li>
   </ul>
@@ -1144,6 +1165,110 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("battle-arena").style.display="none";
     document.getElementById("battle-btn").disabled=false;
   });
+  // HISTORIA
+  var HIST = [
+    {year:2012,title:"El comienzo",desc:"Gevorg Avdalyan funda Aleks Rent en Lloret de Mar con una pequeña flota de scooters. El sueño: que cada turista descubra la Costa Brava sobre dos ruedas.",badge:"Fundación",
+     ms:[{t:"Primera tienda en C/ Josep de Togores 17",s:"El local original, 60m²"},{t:"Flota inicial de 5 scooters 50cc",s:"KYMCO Vitality, los primeros"},{t:"Primeros clientes: turistas rusos y españoles",s:"Boca a boca desde el primer día"}],
+     stats:[{n:"5",l:"Vehículos"},{n:"1",l:"Empleados"},{n:"60m²",l:"Local"}],
+     fleet:[{l:"Scooters",v:100},{l:"Quads",v:0},{l:"Bicis",v:0}],
+     photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img/3.jpg","https://aleksrent.es/img-vehiculos/Vitality_50.jpg"]},
+    {year:2015,title:"Crecimiento y quads",desc:"La demanda crece. Se amplía la flota con los primeros quads KYMCO MXU. Los turistas empiezan a llegar de toda Europa atraídos por las rutas de montaña.",badge:"Expansión",
+     ms:[{t:"Incorporación de quads 50cc y 150cc",s:"Gran éxito entre los turistas"},{t:"Primer servicio de entrega en hoteles",s:"Una novedad en la Costa Brava"},{t:"Llegada de clientes franceses y alemanes",s:"Reseñas en TripAdvisor"}],
+     stats:[{n:"20",l:"Vehículos"},{n:"3",l:"Empleados"},{n:"150+",l:"Reseñas"}],
+     fleet:[{l:"Scooters",v:60},{l:"Quads",v:35},{l:"Bicis",v:5}],
+     photos:["https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg","https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg","https://aleksrent.es/img/1.jpg"]},
+    {year:2018,title:"Flota completa",desc:"Aleks Rent se consolida como el referente del alquiler en Lloret de Mar. Se incorporan los quads más potentes y la atención se amplía a 4 idiomas.",badge:"Consolidación",
+     ms:[{t:"CFMoto C-Force 450cc — el rey de la flota",s:"El quad más demandado"},{t:"Atención en 4 idiomas: ES, EN, FR, RU",s:"Equipo internacional"},{t:"Web propia aleksrent.es",s:"Reservas online"}],
+     stats:[{n:"40",l:"Vehículos"},{n:"5",l:"Empleados"},{n:"4",l:"Idiomas"}],
+     fleet:[{l:"Scooters",v:45},{l:"Quads",v:45},{l:"Bicis",v:10}],
+     photos:["https://aleksrent.es/img-vehiculos/c-force-450.jpg","https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg","https://aleksrent.es/img/3.jpg"]},
+    {year:2020,title:"Resistencia",desc:"La pandemia golpea el turismo. Aleks Rent adapta protocolos, mantiene el equipo y emerge más fuerte. La comunidad local y los clientes fieles sostienen el negocio.",badge:"Resiliencia",
+     ms:[{t:"Protocolos de higiene y seguridad",s:"Desinfección de cada vehículo"},{t:"Servicio a clientes locales",s:"Apoyo a la comunidad"},{t:"Verano 2020: record de reservas locales",s:"Los españoles descubren la Costa Brava"}],
+     stats:[{n:"35",l:"Vehículos"},{n:"4.2",l:"Media Google"},{n:"300+",l:"Reseñas"}],
+     fleet:[{l:"Scooters",v:50},{l:"Quads",v:40},{l:"Bicis",v:10}],
+     photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img-vehiculos/Vitality_50.jpg","https://aleksrent.es/img/3.jpg"]},
+    {year:2022,title:"Boom post-pandemia",desc:"El turismo explota. Aleks Rent registra sus mejores temporadas. Se añaden bicicletas eléctricas. El boca a boca y las redes sociales disparan las reservas.",badge:"Mejor temporada",
+     ms:[{t:"Incorporación de bicicletas eléctricas",s:"Turismo sostenible"},{t:"Más de 400 reseñas en Google",s:"Media 4.3 estrellas"},{t:"Excursiones guiadas en grupo",s:"Nueva modalidad muy demandada"}],
+     stats:[{n:"50+",l:"Vehículos"},{n:"400+",l:"Reseñas"},{n:"4.3",l:"Media"}],
+     fleet:[{l:"Scooters",v:35},{l:"Quads",v:40},{l:"Bicis",v:25}],
+     photos:["https://aleksrent.es/img-vehiculos/bicicleta-electrica.jpg","https://aleksrent.es/img-vehiculos/c-force-450.jpg","https://aleksrent.es/img/3.jpg"]},
+    {year:2025,title:"Hoy y el futuro",desc:"Aleks Rent es hoy el alquiler de referencia en la Costa Brava. 500+ reseñas, 4.3 estrellas, flota renovada y atención en 5 idiomas. El proyecto de Gevorg sigue creciendo.",badge:"Presente",
+     ms:[{t:"500+ reseñas en Google con media 4.3",s:"El mejor valorado de Lloret"},{t:"Atención en 5 idiomas incluyendo árabe",s:"Equipo multicultural"},{t:"Nueva web y sistema de reservas con IA",s:"Innovación constante"}],
+     stats:[{n:"500+",l:"Reseñas"},{n:"4.3",l:"Media"},{n:"5",l:"Idiomas"}],
+     fleet:[{l:"Scooters",v:30},{l:"Quads",v:45},{l:"Bicis",v:25}],
+     photos:["https://aleksrent.es/img/1.jpg","https://aleksrent.es/img/3.jpg","https://aleksrent.es/img-vehiculos/c-force-450.jpg"]}
+  ];
+  var histIdx = 0;
+
+  function histRender(idx) {
+    var d = HIST[idx];
+    var total = HIST.length;
+    document.getElementById("hist-prog").style.width = ((idx+1)/total*100)+"%";
+    document.getElementById("hist-navlbl").textContent = (idx+1)+" / "+total;
+    document.getElementById("hist-prev").disabled = idx===0;
+    document.getElementById("hist-next").disabled = idx===total-1;
+
+    var ynav = document.getElementById("hist-ynav");
+    ynav.innerHTML = "";
+    HIST.forEach(function(y,i){
+      var b = document.createElement("button");
+      b.className = "hist-ybtn"+(i===idx?" active":"");
+      b.textContent = y.year;
+      b.onclick = function(){ histIdx=i; histRender(i); };
+      ynav.appendChild(b);
+    });
+
+    var photos = d.photos.map(function(src){
+      return '<div class="hist-photo"><img src="'+src+'" alt="'+d.year+'" loading="lazy"/></div>';
+    }).join("");
+
+    var ms = d.ms.map(function(m){
+      return '<div class="hist-ms"><div class="hist-msdot"></div><div><div class="hist-mstext">'+m.t+'</div><div class="hist-mssub">'+m.s+'</div></div></div>';
+    }).join("");
+
+    var stats = d.stats.map(function(s){
+      return '<div class="hist-stat"><div class="hist-statn">'+s.n+'</div><div class="hist-statl">'+s.l+'</div></div>';
+    }).join("");
+
+    var fleet = d.fleet.map(function(f){
+      return '<div class="hist-fbar"><span class="hist-flbl">'+f.l+'</span><div class="hist-ftrack"><div class="hist-ffill" style="width:0" data-w="'+f.v+'%"></div></div><span style="font-size:.72rem;color:var(--muted);min-width:32px;text-align:right;">'+f.v+'%</span></div>';
+    }).join("");
+
+    document.getElementById("hist-content").innerHTML =
+      '<div class="hist-grid">'+
+        '<div class="hist-card full">'+
+          '<div class="hist-yhero">'+
+            '<div class="hist-ynum">'+d.year+'</div>'+
+            '<div><div class="hist-ytitle">'+d.title+'</div>'+
+            '<p class="hist-ydesc">'+d.desc+'</p>'+
+            '<span class="hist-badge">'+d.badge+'</span></div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="hist-card"><div class="hist-clbl">Fotos del año</div><div class="hist-photos">'+photos+'</div></div>'+
+        '<div class="hist-card"><div class="hist-clbl">Hitos del año</div><div class="hist-milestones">'+ms+'</div></div>'+
+        '<div class="hist-card">'+
+          '<div class="hist-clbl">En cifras</div>'+
+          '<div class="hist-stats">'+stats+'</div>'+
+          '<div class="hist-clbl">Composición flota</div>'+
+          '<div class="hist-fleet">'+fleet+'</div>'+
+        '</div>'+
+        '<div class="hist-card">'+
+          '<div class="hist-clbl">Localización — Lloret de Mar, Costa Brava</div>'+
+          '<div class="hist-mapwrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d748.1!2d2.8408!3d41.6998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12baf7e7d1a02e1b%3A0x51bed1e9e96d1a4d!2sAleks%20Rent!5e0!3m2!1ses!2ses!4v1716900000000" allowfullscreen loading="lazy" title="Aleks Rent"></iframe></div>'+
+        '</div>'+
+      '</div>';
+
+    setTimeout(function(){
+      document.querySelectorAll(".hist-ffill").forEach(function(el){
+        el.style.width = el.getAttribute("data-w");
+      });
+    }, 100);
+  }
+
+  document.getElementById("hist-prev").addEventListener("click",function(){ if(histIdx>0){histIdx--;histRender(histIdx);} });
+  document.getElementById("hist-next").addEventListener("click",function(){ if(histIdx<HIST.length-1){histIdx++;histRender(histIdx);} });
+  histRender(0);
+
   // IDIOMAS
   ["es","en","fr","ru","ma"].forEach(function(l){
     var btn = document.getElementById("lang-"+l);
