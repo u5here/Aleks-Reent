@@ -1248,9 +1248,9 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
 
 
   // Reviews counter animation
-  const reviewData = { total: 500, satisfied: 447, pct: 89 };
-  let reviewCountersStarted = false;
-  const reviewObs = new IntersectionObserver(entries => {
+  var reviewData = { total: 500, satisfied: 447, pct: 89 };
+  var reviewCountersStarted = false;
+  var reviewObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting && !reviewCountersStarted) {
         reviewCountersStarted = true;
@@ -1266,7 +1266,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   if (reviewsEl) reviewObs.observe(reviewsEl);
 
   // Auto-scroll reviews panel slowly
-  const scrollEl = document.getElementById('reviews-scroll');
+  var scrollEl = document.getElementById('reviews-scroll');
   if (scrollEl) {
     let scrollDir = 1, scrollPaused = false;
     scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
@@ -1343,9 +1343,9 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
   // Reviews counter animation
-  const reviewData = { total: 500, satisfied: 447, pct: 89 };
-  let reviewCountersStarted = false;
-  const reviewObs = new IntersectionObserver(entries => {
+  var reviewData = { total: 500, satisfied: 447, pct: 89 };
+  var reviewCountersStarted = false;
+  var reviewObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting && !reviewCountersStarted) {
         reviewCountersStarted = true;
@@ -1361,7 +1361,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   if (reviewsEl) reviewObs.observe(reviewsEl);
 
   // Auto-scroll reviews panel slowly
-  const scrollEl = document.getElementById('reviews-scroll');
+  var scrollEl = document.getElementById('reviews-scroll');
   if (scrollEl) {
     let scrollDir = 1, scrollPaused = false;
     scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
