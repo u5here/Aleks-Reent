@@ -292,318 +292,7 @@
   </style>
 </head>
 <body>
-<script>
-const T={
-  es:{
-    banner_sub:"Alquiler de motos, scooters, quads y bicicletas · Lloret de Mar",banner_btn:"¡Explorar ahora!",
-    nav_about:"Nosotros",nav_prices:"Precios",nav_contact:"Contacto",
-    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
-    hero_sub:"Vive la Costa Brava a tu manera. Alquila motos, scooters, quads y bicicletas con total libertad.",
-    btn_prices:"Ver precios",btn_map:"Cómo llegar",
-    about_lbl:"Sobre nosotros",about_title:"Fundada por Gevorg Avdalyan",
-    about_desc1:"Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.",
-    about_desc2:"Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!",
-    s1:"Años de experiencia",s2:"Idiomas atendidos",s3:"Valoración media",s4:"Revisión diaria",
-    prices_lbl:"Tarifas 2025",prices_title:"Nuestros Vehículos",prices_desc:"Vehículos con carnet, sin carnet y salidas en grupo.",
-    f_all:"Todos",f_nocarnet:"Sin carnet",f_carnet:"Requiere carnet",f_grupo:"Salidas en grupo",
-    bail:"Fianza",h1:"1 hora",h2:"2 horas",extra:"Hora extra",xday:"día",xdays:"días",
-    no_lic:"Sin carnet",lic_a1:"Carnet A1",lic_b:"Carnet B",
-    grupo_title:"Excursiones en Grupo por la Costa Brava",
-    grupo_desc:"Organiza tu excursión en quad o moto por los paisajes más espectaculares. Rutas guiadas desde 4 personas. ¡Contacta para presupuesto especial!",
-    grupo_btn:"Reservar grupo",
-    contact_lbl:"Encuéntranos",contact_title:"Dónde Estamos",
-    c_addr:"Dirección",c_phone:"Teléfono",c_email:"Email",c_web:"Web oficial",
-    c_sched:"Horario",c_sched_val:"Lunes a Domingo: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Escríbenos ahora",
-    ftag:"Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan",
-    modal_title:'Reservar Vehículo',modal_sub:'Rellena el formulario y te contactamos en menos de 1 hora',form_name:'Nombre completo',form_phone:'Teléfono / WhatsApp',form_vehicle:'Vehículo',form_people:'Nº de personas',form_date:'Fecha de inicio',form_days:'Duración',form_msg:'Mensaje adicional (opcional)',form_submit:'Enviar por WhatsApp 💬',
-    fcopy:"© 2025 Aleks Rent S.L. — Todos los derechos reservados."
-  },
-  en:{
-    banner_sub:"Motorbike, scooter, quad & bicycle rental · Lloret de Mar",banner_btn:"Explore now!",
-    nav_about:"About",nav_prices:"Prices",nav_contact:"Contact",
-    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
-    hero_sub:"Explore the Costa Brava your way. Rent motorbikes, scooters, quads and bicycles with total freedom.",
-    btn_prices:"See prices",btn_map:"Find us",
-    about_lbl:"About us",about_title:"Founded by Gevorg Avdalyan",
-    about_desc1:"Aleks Rent is the leading vehicle rental in Lloret de Mar. Our team speaks Spanish, Russian, English and French, and we inspect every vehicle every morning to ensure your safety.",
-    about_desc2:"We offer delivery to hotels across the Costa Brava and to Girona Airport. Come visit us — we will take great care of you!",
-    s1:"Years of experience",s2:"Languages spoken",s3:"Average rating",s4:"Daily inspection",
-    prices_lbl:"2025 Rates",prices_title:"Our Vehicles",prices_desc:"Vehicles with license, without license and group tours.",
-    f_all:"All",f_nocarnet:"No license",f_carnet:"License required",f_grupo:"Group tours",
-    bail:"Deposit",h1:"1 hour",h2:"2 hours",extra:"Extra hour",xday:"day",xdays:"days",
-    no_lic:"No license",lic_a1:"A1 license",lic_b:"B license",
-    grupo_title:"Group Excursions along the Costa Brava",
-    grupo_desc:"Organize your quad or motorbike excursion. Guided routes from 4 people. Contact us for a special quote!",
-    grupo_btn:"Book group",
-    contact_lbl:"Find us",contact_title:"Where We Are",
-    c_addr:"Address",c_phone:"Phone",c_email:"Email",c_web:"Official website",
-    c_sched:"Hours",c_sched_val:"Monday to Sunday: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Message us now",
-    ftag:"Lloret de Mar · Costa Brava · Founded by Gevorg Avdalyan",
-    modal_title:'Reserve Vehicle',modal_sub:'Fill the form and we will contact you in less than 1 hour',form_name:'Full name',form_phone:'Phone / WhatsApp',form_vehicle:'Vehicle',form_people:'No. of people',form_date:'Start date',form_days:'Duration',form_msg:'Additional message (optional)',form_submit:'Send via WhatsApp 💬',
-    fcopy:"© 2025 Aleks Rent S.L. — All rights reserved."
-  },
-  fr:{
-    banner_sub:"Location de motos, scooters, quads et velos · Lloret de Mar",banner_btn:"Explorer maintenant!",
-    nav_about:"A propos",nav_prices:"Tarifs",nav_contact:"Contact",
-    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
-    hero_sub:"Explorez la Costa Brava. Louez motos, scooters, quads et velos en toute liberte.",
-    btn_prices:"Voir les tarifs",btn_map:"Nous trouver",
-    about_lbl:"A propos",about_title:"Fondee par Gevorg Avdalyan",
-    about_desc1:"Aleks Rent est la reference de la location a Lloret de Mar. Notre equipe parle espagnol, russe, anglais et francais.",
-    about_desc2:"Livraison dans les hotels de toute la Costa Brava et a laeroport de Gerone. Venez nous voir!",
-    s1:"Ans experience",s2:"Langues parlees",s3:"Note moyenne",s4:"Inspection quotidienne",
-    prices_lbl:"Tarifs 2025",prices_title:"Nos Vehicules",prices_desc:"Vehicules avec permis, sans permis et sorties en groupe.",
-    f_all:"Tous",f_nocarnet:"Sans permis",f_carnet:"Permis requis",f_grupo:"Sorties en groupe",
-    bail:"Caution",h1:"1 heure",h2:"2 heures",extra:"Heure sup.",xday:"jour",xdays:"jours",
-    no_lic:"Sans permis",lic_a1:"Permis A1",lic_b:"Permis B",
-    grupo_title:"Excursions en Groupe sur la Costa Brava",
-    grupo_desc:"Organisez votre excursion en quad ou moto. Circuits guides a partir de 4 personnes.",
-    grupo_btn:"Reserver groupe",
-    modal_title:"Reserver un Vehicule",modal_sub:"Remplissez le formulaire, nous vous contacterons sous 1 heure",
-    form_name:"Nom complet",form_phone:"Telephone / WhatsApp",form_vehicle:"Vehicule",
-    form_people:"Nb. de personnes",form_date:"Date de debut",form_days:"Duree",
-    form_msg:"Message supplementaire",form_submit:"Envoyer via WhatsApp 💬",
-    contact_lbl:"Nous trouver",contact_title:"Ou Nous Sommes",
-    c_addr:"Adresse",c_phone:"Telephone",c_email:"Email",c_web:"Site officiel",
-    c_sched:"Horaires",c_sched_val:"Lundi au Dimanche: 09h - 21h",c_wa:"WhatsApp",c_wa_val:"Ecrivez-nous",
-    ftag:"Lloret de Mar · Costa Brava · Fondee par Gevorg Avdalyan",
-    fcopy:"© 2025 Aleks Rent S.L. — Tous droits reserves."
-  },
-    ru:{
-    banner_sub:"Аренда мотоциклов, скутеров, квадроциклов и велосипедов · Льорет-де-Мар",banner_btn:"Начать!",
-    nav_about:"О нас",nav_prices:"Цены",nav_contact:"Контакты",
-    hero_badge:"🏍️ Льорет-де-Мар · Коста-Брава",
-    hero_sub:"Исследуйте Коста-Браву по-своему. Арендуйте мотоциклы, скутеры, квадроциклы и велосипеды.",
-    btn_prices:"Смотреть цены",btn_map:"Как нас найти",
-    about_lbl:"О нас",about_title:"Основана Геворгом Авдалян",
-    about_desc1:"Aleks Rent — ведущая компания по аренде в Льорет-де-Мар. Наша команда говорит на испанском, русском, английском и французском языках.",
-    about_desc2:"Доставка в отели по всей Коста-Браве и в аэропорт Жироны. Приходите к нам!",
-    s1:"Лет опыта",s2:"Языков",s3:"Рейтинг",s4:"Ежедн. проверка",
-    prices_lbl:"Тарифы 2025",prices_title:"Наши Транспортные Средства",prices_desc:"Транспорт с правами, без прав и групповые туры.",
-    f_all:"Все",f_nocarnet:"Без прав",f_carnet:"Нужны права",f_grupo:"Групповые туры",
-    bail:"Залог",h1:"1 час",h2:"2 часа",extra:"Доп. час",xday:"день",xdays:"дней",
-    no_lic:"Без прав",lic_a1:"Права A1",lic_b:"Права B",
-    grupo_title:"Групповые экскурсии по Коста-Браве",
-    grupo_desc:"Организуйте экскурсию на квадроцикле или мотоцикле. Маршруты от 4 человек. Свяжитесь с нами!",
-    grupo_btn:"Забронировать группу",
-    contact_lbl:"Найти нас",contact_title:"Где Мы Находимся",
-    c_addr:"Адрес",c_phone:"Телефон",c_email:"Email",c_web:"Официальный сайт",
-    c_sched:"Расписание",c_sched_val:"Пн – Вс: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Написать нам",
-    ftag:"Льорет-де-Мар · Коста-Брава · Основана Геворгом Авдалян",
-    modal_title:'Забронировать',modal_sub:'Заполните форму и мы свяжемся с вами менее чем за 1 час',form_name:'Полное имя',form_phone:'Телефон / WhatsApp',form_vehicle:'Транспорт',form_people:'Кол-во человек',form_date:'Дата начала',form_days:'Продолжительность',form_msg:'Дополнительное сообщение (необязательно)',form_submit:'Отправить через WhatsApp 💬',
-    fcopy:"© 2025 Aleks Rent S.L. — Все права защищены."
-  }
-};
-let lang='es';
-function setLang(l,btn){
-  lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
 
-  // Animated counters
-  function animateCounter(el, target, suffix, duration) {
-    let start = 0;
-    const isFloat = target % 1 !== 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { start = target; clearInterval(timer); }
-      el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
-    }, 16);
-  }
-  const counters = [
-    { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
-    { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
-    { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
-    { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
-  ];
-  let countersStarted = false;
-  const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !countersStarted) {
-        countersStarted = true;
-        counters.forEach(c => {
-          const el = document.querySelector(c.sel);
-          if (el) animateCounter(el, c.val, c.suffix, 1800);
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  const statsEl = document.querySelector('.about-stats');
-  if (statsEl) counterObs.observe(statsEl);
-
-  // Scroll progress bar
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
-    // Back to top
-    const btn = document.getElementById('back-top');
-    if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
-  }, { passive: true });
-
-  // Parallax hero on scroll
-  window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero-bg');
-    if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
-  }, { passive: true });
-
-  // Stagger reveal for vgrid cards
-  const gridObs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        gridObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
-
-  document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
-}
-function filterVehicles(cat,btn){
-  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.vcard').forEach(card=>{
-    const cats=card.dataset.cat||'';
-    (cat==='all'||cats.includes(cat))?card.classList.remove('hidden'):card.classList.add('hidden');
-  });
-  const banner=document.querySelector('.grupo-banner');
-  if(banner) banner.style.display=(cat==='all'||cat==='grupo')?'':'none';
-}
-
-  let generatedMsg = '';
-
-  function openModal(){
-    const m = document.getElementById('reserva-modal');
-    m.style.display='flex';
-    document.body.style.overflow='hidden';
-    document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
-    // Set modal lang selector to match current page lang
-    document.getElementById('f-lang').value = lang;
-  }
-  function closeModal(){
-    document.getElementById('reserva-modal').style.display='none';
-    document.body.style.overflow='';
-  }
-  document.getElementById('reserva-modal').addEventListener('click', function(e){
-    if(e.target===this) closeModal();
-  });
-  function backToForm(){
-    document.getElementById('modal-step1').style.display='';
-    document.getElementById('modal-step2').style.display='none';
-  }
-  function copyMsg(){
-    navigator.clipboard.writeText(generatedMsg).then(()=>{
-      const btn = document.querySelector('.btn-copy');
-      btn.textContent='✅ Copiado!';
-      setTimeout(()=>btn.textContent='📋 Copiar',2000);
-    });
-  }
-  function sendWhatsApp(){
-    const encoded = encodeURIComponent(generatedMsg);
-    window.open('https://api.whatsapp.com/send?phone=34641459907&text='+encoded,'_blank');
-  }
-
-  async function generateMessage(e){
-    e.preventDefault();
-    const name     = document.getElementById('f-name').value;
-    const msgLang  = document.getElementById('f-lang').value;
-    const vehicle  = document.getElementById('f-vehicle').value;
-    const people   = document.getElementById('f-people').value || 1;
-    const date     = document.getElementById('f-date').value;
-    const duration = document.getElementById('f-duration').value;
-    const notes    = document.getElementById('f-msg').value;
-
-    // Show loading
-    document.getElementById('gen-btn-text').style.display='none';
-    document.getElementById('gen-btn-loading').style.display='inline';
-    document.getElementById('gen-btn').disabled=true;
-
-    const langNames = {es:'español',en:'English',fr:'français',ru:'русский'};
-    const prompt = `Eres un asistente de reservas para Aleks Rent, una empresa de alquiler de vehículos en Lloret de Mar, Costa Brava (España). 
-Genera un mensaje de WhatsApp profesional, amigable y natural en ${langNames[msgLang]} para reservar un vehículo.
-El mensaje debe incluir estos datos de forma natural y conversacional (no como lista):
-- Nombre del cliente: ${name}
-- Vehículo deseado: ${vehicle}
-- Número de personas: ${people}
-- Fecha: ${date}
-- Duración: ${duration}
-${notes ? '- Notas adicionales: '+notes : ''}
-El mensaje debe empezar con un saludo, mencionar que quiere hacer una reserva en Aleks Rent, incluir todos los datos y terminar con una despedida amigable.
-Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
-
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({
-          model:'claude-sonnet-4-20250514',
-          max_tokens:1000,
-          messages:[{role:'user',content:prompt}]
-        })
-      });
-      const data = await res.json();
-      generatedMsg = data.content[0].text;
-
-      // Show result
-      document.getElementById('msg-preview').textContent = generatedMsg;
-      document.getElementById('modal-step1').style.display='none';
-      document.getElementById('modal-step2').style.display='';
-    } catch(err) {
-      // Fallback: generate basic message without AI
-      const fallbacks = {
-        es:`¡Hola! Soy ${name} y me gustaría hacer una reserva en Aleks Rent 🏍️\n\nVehículo: ${vehicle}\nPersonas: ${people}\nFecha: ${date}\nDuración: ${duration}${notes?'\nNotas: '+notes:''}\n\n¡Muchas gracias!`,
-        en:`Hello! I'm ${name} and I'd like to make a booking at Aleks Rent 🏍️\n\nVehicle: ${vehicle}\nPeople: ${people}\nDate: ${date}\nDuration: ${duration}${notes?'\nNotes: '+notes:''}\n\nThank you!`,
-        fr:`Bonjour! Je suis ${name} et je voudrais faire une réservation chez Aleks Rent 🏍️\n\nVéhicule: ${vehicle}\nPersonnes: ${people}\nDate: ${date}\nDurée: ${duration}${notes?'\nNotes: '+notes:''}\n\nMerci beaucoup!`,
-        ru:`Здравствуйте! Меня зовут ${name}, хотел бы забронировать в Aleks Rent 🏍️\n\nТранспорт: ${vehicle}\nЧеловек: ${people}\nДата: ${date}\nПродолжительность: ${duration}${notes?'\nПримечания: '+notes:''}\n\nСпасибо!`
-      };
-      generatedMsg = fallbacks[msgLang] || fallbacks.es;
-      document.getElementById('msg-preview').textContent = generatedMsg;
-      document.getElementById('modal-step1').style.display='none';
-      document.getElementById('modal-step2').style.display='';
-    }
-
-    // Reset button
-    document.getElementById('gen-btn-text').style.display='inline';
-    document.getElementById('gen-btn-loading').style.display='none';
-    document.getElementById('gen-btn').disabled=false;
-  }
-
-
-  // Reviews counter animation
-  const reviewData = { total: 500, satisfied: 447, pct: 89 };
-  let reviewCountersStarted = false;
-  const reviewObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !reviewCountersStarted) {
-        reviewCountersStarted = true;
-        animateCounter(document.getElementById('cnt-total'), reviewData.total, '+', 1600);
-        animateCounter(document.getElementById('cnt-satisfied'), reviewData.satisfied, '+', 1800);
-        setTimeout(() => {
-          animateCounter(document.getElementById('cnt-pct'), reviewData.pct, '%', 1400);
-        }, 300);
-      }
-    });
-  }, { threshold: 0.3 });
-  const reviewsEl = document.getElementById('reviews');
-  if (reviewsEl) reviewObs.observe(reviewsEl);
-
-  // Auto-scroll reviews panel slowly
-  const scrollEl = document.getElementById('reviews-scroll');
-  if (scrollEl) {
-    let scrollDir = 1, scrollPaused = false;
-    scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
-    scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
-    setInterval(() => {
-      if (scrollPaused) return;
-      scrollEl.scrollTop += scrollDir;
-      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 2) scrollDir = -1;
-      if (scrollEl.scrollTop <= 0) scrollDir = 1;
-    }, 30);
-  }
-
-</script>
 
 <!-- BANNER -->
 <div id="banner-overlay">
@@ -1150,7 +839,114 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">↑</button>
 <a class="wa-float" href="https://api.whatsapp.com/send?phone=34641459907" target="_blank" title="WhatsApp">💬</a>
 
+
 <script>
+const T={
+  es:{
+    banner_sub:"Alquiler de motos, scooters, quads y bicicletas · Lloret de Mar",banner_btn:"¡Explorar ahora!",
+    nav_about:"Nosotros",nav_prices:"Precios",nav_contact:"Contacto",
+    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
+    hero_sub:"Vive la Costa Brava a tu manera. Alquila motos, scooters, quads y bicicletas con total libertad.",
+    btn_prices:"Ver precios",btn_map:"Cómo llegar",
+    about_lbl:"Sobre nosotros",about_title:"Fundada por Gevorg Avdalyan",
+    about_desc1:"Aleks Rent es el punto de referencia para el alquiler de vehículos en Lloret de Mar. Nuestro equipo habla español, ruso, inglés y francés, y revisamos cada vehículo cada mañana para garantizar tu seguridad.",
+    about_desc2:"Disponemos de servicio de entrega directamente en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡Visítanos y te atenderemos con la máxima cordialidad!",
+    s1:"Años de experiencia",s2:"Idiomas atendidos",s3:"Valoración media",s4:"Revisión diaria",
+    prices_lbl:"Tarifas 2025",prices_title:"Nuestros Vehículos",prices_desc:"Vehículos con carnet, sin carnet y salidas en grupo.",
+    f_all:"Todos",f_nocarnet:"Sin carnet",f_carnet:"Requiere carnet",f_grupo:"Salidas en grupo",
+    bail:"Fianza",h1:"1 hora",h2:"2 horas",extra:"Hora extra",xday:"día",xdays:"días",
+    no_lic:"Sin carnet",lic_a1:"Carnet A1",lic_b:"Carnet B",
+    grupo_title:"Excursiones en Grupo por la Costa Brava",
+    grupo_desc:"Organiza tu excursión en quad o moto por los paisajes más espectaculares. Rutas guiadas desde 4 personas. ¡Contacta para presupuesto especial!",
+    grupo_btn:"Reservar grupo",
+    contact_lbl:"Encuéntranos",contact_title:"Dónde Estamos",
+    c_addr:"Dirección",c_phone:"Teléfono",c_email:"Email",c_web:"Web oficial",
+    c_sched:"Horario",c_sched_val:"Lunes a Domingo: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Escríbenos ahora",
+    ftag:"Lloret de Mar · Costa Brava · Fundada por Gevorg Avdalyan",
+    modal_title:'Reservar Vehículo',modal_sub:'Rellena el formulario y te contactamos en menos de 1 hora',form_name:'Nombre completo',form_phone:'Teléfono / WhatsApp',form_vehicle:'Vehículo',form_people:'Nº de personas',form_date:'Fecha de inicio',form_days:'Duración',form_msg:'Mensaje adicional (opcional)',form_submit:'Enviar por WhatsApp 💬',
+    fcopy:"© 2025 Aleks Rent S.L. — Todos los derechos reservados."
+  },
+  en:{
+    banner_sub:"Motorbike, scooter, quad & bicycle rental · Lloret de Mar",banner_btn:"Explore now!",
+    nav_about:"About",nav_prices:"Prices",nav_contact:"Contact",
+    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
+    hero_sub:"Explore the Costa Brava your way. Rent motorbikes, scooters, quads and bicycles with total freedom.",
+    btn_prices:"See prices",btn_map:"Find us",
+    about_lbl:"About us",about_title:"Founded by Gevorg Avdalyan",
+    about_desc1:"Aleks Rent is the leading vehicle rental in Lloret de Mar. Our team speaks Spanish, Russian, English and French, and we inspect every vehicle every morning to ensure your safety.",
+    about_desc2:"We offer delivery to hotels across the Costa Brava and to Girona Airport. Come visit us — we will take great care of you!",
+    s1:"Years of experience",s2:"Languages spoken",s3:"Average rating",s4:"Daily inspection",
+    prices_lbl:"2025 Rates",prices_title:"Our Vehicles",prices_desc:"Vehicles with license, without license and group tours.",
+    f_all:"All",f_nocarnet:"No license",f_carnet:"License required",f_grupo:"Group tours",
+    bail:"Deposit",h1:"1 hour",h2:"2 hours",extra:"Extra hour",xday:"day",xdays:"days",
+    no_lic:"No license",lic_a1:"A1 license",lic_b:"B license",
+    grupo_title:"Group Excursions along the Costa Brava",
+    grupo_desc:"Organize your quad or motorbike excursion. Guided routes from 4 people. Contact us for a special quote!",
+    grupo_btn:"Book group",
+    contact_lbl:"Find us",contact_title:"Where We Are",
+    c_addr:"Address",c_phone:"Phone",c_email:"Email",c_web:"Official website",
+    c_sched:"Hours",c_sched_val:"Monday to Sunday: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Message us now",
+    ftag:"Lloret de Mar · Costa Brava · Founded by Gevorg Avdalyan",
+    modal_title:'Reserve Vehicle',modal_sub:'Fill the form and we will contact you in less than 1 hour',form_name:'Full name',form_phone:'Phone / WhatsApp',form_vehicle:'Vehicle',form_people:'No. of people',form_date:'Start date',form_days:'Duration',form_msg:'Additional message (optional)',form_submit:'Send via WhatsApp 💬',
+    fcopy:"© 2025 Aleks Rent S.L. — All rights reserved."
+  },
+  fr:{
+    banner_sub:"Location de motos, scooters, quads et velos · Lloret de Mar",banner_btn:"Explorer maintenant!",
+    nav_about:"A propos",nav_prices:"Tarifs",nav_contact:"Contact",
+    hero_badge:"🏍️ Lloret de Mar · Costa Brava",
+    hero_sub:"Explorez la Costa Brava. Louez motos, scooters, quads et velos en toute liberte.",
+    btn_prices:"Voir les tarifs",btn_map:"Nous trouver",
+    about_lbl:"A propos",about_title:"Fondee par Gevorg Avdalyan",
+    about_desc1:"Aleks Rent est la reference de la location a Lloret de Mar. Notre equipe parle espagnol, russe, anglais et francais.",
+    about_desc2:"Livraison dans les hotels de toute la Costa Brava et a laeroport de Gerone. Venez nous voir!",
+    s1:"Ans experience",s2:"Langues parlees",s3:"Note moyenne",s4:"Inspection quotidienne",
+    prices_lbl:"Tarifs 2025",prices_title:"Nos Vehicules",prices_desc:"Vehicules avec permis, sans permis et sorties en groupe.",
+    f_all:"Tous",f_nocarnet:"Sans permis",f_carnet:"Permis requis",f_grupo:"Sorties en groupe",
+    bail:"Caution",h1:"1 heure",h2:"2 heures",extra:"Heure sup.",xday:"jour",xdays:"jours",
+    no_lic:"Sans permis",lic_a1:"Permis A1",lic_b:"Permis B",
+    grupo_title:"Excursions en Groupe sur la Costa Brava",
+    grupo_desc:"Organisez votre excursion en quad ou moto. Circuits guides a partir de 4 personnes.",
+    grupo_btn:"Reserver groupe",
+    modal_title:"Reserver un Vehicule",modal_sub:"Remplissez le formulaire, nous vous contacterons sous 1 heure",
+    form_name:"Nom complet",form_phone:"Telephone / WhatsApp",form_vehicle:"Vehicule",
+    form_people:"Nb. de personnes",form_date:"Date de debut",form_days:"Duree",
+    form_msg:"Message supplementaire",form_submit:"Envoyer via WhatsApp 💬",
+    contact_lbl:"Nous trouver",contact_title:"Ou Nous Sommes",
+    c_addr:"Adresse",c_phone:"Telephone",c_email:"Email",c_web:"Site officiel",
+    c_sched:"Horaires",c_sched_val:"Lundi au Dimanche: 09h - 21h",c_wa:"WhatsApp",c_wa_val:"Ecrivez-nous",
+    ftag:"Lloret de Mar · Costa Brava · Fondee par Gevorg Avdalyan",
+    fcopy:"© 2025 Aleks Rent S.L. — Tous droits reserves."
+  },
+    ru:{
+    banner_sub:"Аренда мотоциклов, скутеров, квадроциклов и велосипедов · Льорет-де-Мар",banner_btn:"Начать!",
+    nav_about:"О нас",nav_prices:"Цены",nav_contact:"Контакты",
+    hero_badge:"🏍️ Льорет-де-Мар · Коста-Брава",
+    hero_sub:"Исследуйте Коста-Браву по-своему. Арендуйте мотоциклы, скутеры, квадроциклы и велосипеды.",
+    btn_prices:"Смотреть цены",btn_map:"Как нас найти",
+    about_lbl:"О нас",about_title:"Основана Геворгом Авдалян",
+    about_desc1:"Aleks Rent — ведущая компания по аренде в Льорет-де-Мар. Наша команда говорит на испанском, русском, английском и французском языках.",
+    about_desc2:"Доставка в отели по всей Коста-Браве и в аэропорт Жироны. Приходите к нам!",
+    s1:"Лет опыта",s2:"Языков",s3:"Рейтинг",s4:"Ежедн. проверка",
+    prices_lbl:"Тарифы 2025",prices_title:"Наши Транспортные Средства",prices_desc:"Транспорт с правами, без прав и групповые туры.",
+    f_all:"Все",f_nocarnet:"Без прав",f_carnet:"Нужны права",f_grupo:"Групповые туры",
+    bail:"Залог",h1:"1 час",h2:"2 часа",extra:"Доп. час",xday:"день",xdays:"дней",
+    no_lic:"Без прав",lic_a1:"Права A1",lic_b:"Права B",
+    grupo_title:"Групповые экскурсии по Коста-Браве",
+    grupo_desc:"Организуйте экскурсию на квадроцикле или мотоцикле. Маршруты от 4 человек. Свяжитесь с нами!",
+    grupo_btn:"Забронировать группу",
+    contact_lbl:"Найти нас",contact_title:"Где Мы Находимся",
+    c_addr:"Адрес",c_phone:"Телефон",c_email:"Email",c_web:"Официальный сайт",
+    c_sched:"Расписание",c_sched_val:"Пн – Вс: 09:00 – 21:00",c_wa:"WhatsApp",c_wa_val:"Написать нам",
+    ftag:"Льорет-де-Мар · Коста-Брава · Основана Геворгом Авдалян",
+    modal_title:'Забронировать',modal_sub:'Заполните форму и мы свяжемся с вами менее чем за 1 час',form_name:'Полное имя',form_phone:'Телефон / WhatsApp',form_vehicle:'Транспорт',form_people:'Кол-во человек',form_date:'Дата начала',form_days:'Продолжительность',form_msg:'Дополнительное сообщение (необязательно)',form_submit:'Отправить через WhatsApp 💬',
+    fcopy:"© 2025 Aleks Rent S.L. — Все права защищены."
+  }
+};
+let lang='es';
+function setLang(l,btn){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
 
   // Animated counters
   function animateCounter(el, target, suffix, duration) {
@@ -1212,8 +1008,17 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
 
   document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
-  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+function filterVehicles(cat,btn){
+  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.vcard').forEach(card=>{
+    const cats=card.dataset.cat||'';
+    (cat==='all'||cats.includes(cat))?card.classList.remove('hidden'):card.classList.add('hidden');
+  });
+  const banner=document.querySelector('.grupo-banner');
+  if(banner) banner.style.display=(cat==='all'||cat==='grupo')?'':'none';
+}
 
   let generatedMsg = '';
 
@@ -1346,6 +1151,68 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
     }, 30);
   }
 
+// Animated counters
+  function animateCounter(el, target, suffix, duration) {
+    let start = 0;
+    const isFloat = target % 1 !== 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { start = target; clearInterval(timer); }
+      el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
+    }, 16);
+  }
+  const counters = [
+    { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
+    { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
+    { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
+    { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
+  ];
+  let countersStarted = false;
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !countersStarted) {
+        countersStarted = true;
+        counters.forEach(c => {
+          const el = document.querySelector(c.sel);
+          if (el) animateCounter(el, c.val, c.suffix, 1800);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsEl = document.querySelector('.about-stats');
+  if (statsEl) counterObs.observe(statsEl);
+
+  // Scroll progress bar
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
+    // Back to top
+    const btn = document.getElementById('back-top');
+    if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
+  }, { passive: true });
+
+  // Parallax hero on scroll
+  window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero-bg');
+    if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+  }, { passive: true });
+
+  // Stagger reveal for vgrid cards
+  const gridObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        gridObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
+
+  document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
