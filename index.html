@@ -459,15 +459,15 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 <section id="reviews">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Opiniones reales</div>
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <div class="section-label" data-t="reviews_lbl">Opiniones reales</div>
+      <h2 class="section-title" data-t="reviews_title">Lo que dicen nuestros clientes</h2>
       <div class="satisfaction-row">
-        <div><div class="sat-num">4.3</div><div class="sat-stars">★★★★¼</div><div class="sat-info">500+ reseñas en Google</div></div>
+        <div><div class="sat-num">4.3</div><div class="sat-stars">★★★★¼</div><div class="sat-info" data-t="reviews_google">500+ reseñas en Google</div></div>
         <div style="height:50px;width:1px;background:var(--border);"></div>
         <div class="sat-stats">
-          <div class="sat-stat"><div class="sat-stat-num" id="cnt-total" style="color:var(--blue);">0+</div><div class="sat-stat-lbl">Reseñas totales</div></div>
-          <div class="sat-stat"><div class="sat-stat-num" id="cnt-satisfied" style="color:#22c55e;">0+</div><div class="sat-stat-lbl">Clientes satisfechos</div></div>
-          <div class="sat-stat"><div class="sat-stat-num" id="cnt-pct" style="color:var(--blue);">0%</div><div class="sat-stat-lbl">Índice satisfacción</div></div>
+          <div class="sat-stat"><div class="sat-stat-num" id="cnt-total" style="color:var(--blue);">0+</div><div class="sat-stat-lbl" data-t="reviews_total">Reseñas totales</div></div>
+          <div class="sat-stat"><div class="sat-stat-num" id="cnt-satisfied" style="color:#22c55e;">0+</div><div class="sat-stat-lbl" data-t="reviews_satisfied">Clientes satisfechos</div></div>
+          <div class="sat-stat"><div class="sat-stat-num" id="cnt-pct" style="color:var(--blue);">0%</div><div class="sat-stat-lbl" data-t="reviews_pct">Índice satisfacción</div></div>
         </div>
         <a href="https://www.tripadvisor.com/Attraction_Review-g494960-d10002889-Reviews-Aleks_Rent-Lloret_de_Mar_Costa_Brava_Province_of_Girona_Catalonia.html" target="_blank" style="margin-left:auto;background:var(--bg);border:1.5px solid var(--border);color:var(--blue);padding:9px 18px;border-radius:50px;text-decoration:none;font-size:.8rem;font-weight:700;white-space:nowrap;transition:all .2s;">Ver en TripAdvisor ↗</a>
       </div>
@@ -488,7 +488,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
         <div class="reviews-fade"></div>
       </div>
       <div class="review-featured">
-        <div class="rf-badge">⭐ Destacada</div>
+        <div class="rf-badge" data-t="reviews_featured">⭐ Destacada</div>
         <div class="rf-stars">★★★★★</div>
         <blockquote class="rf-quote">"Aleks rentals were amazing — we tried the electric scooters, quad biking and motorbikes on different days. Great service and prices! Very helpful with places where to go! Definitely the best rental in Lloret de Mar."</blockquote>
         <div class="rf-author"><div class="rf-avatar">D</div><div><div class="rf-name">David M.</div><div class="rf-origin">🇬🇧 Reino Unido · TripAdvisor</div></div></div>
@@ -498,7 +498,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
           <div class="rf-stat"><span>⭐</span><div><strong>4.3/5</strong><small>valoración media</small></div></div>
           <div class="rf-stat"><span>🔁</span><div><strong>3ª vez</strong><small>clientes repetidores</small></div></div>
         </div>
-        <a href="https://www.tripadvisor.com/Attraction_Review-g494960-d10002889-Reviews-Aleks_Rent-Lloret_de_Mar_Costa_Brava_Province_of_Girona_Catalonia.html" target="_blank" class="rf-cta">Leer todas las reseñas ↗</a>
+        <a href="https://www.tripadvisor.com/Attraction_Review-g494960-d10002889-Reviews-Aleks_Rent-Lloret_de_Mar_Costa_Brava_Province_of_Girona_Catalonia.html" target="_blank" class="rf-cta" data-t="reviews_cta">Leer todas las reseñas ↗</a>
       </div>
     </div>
   </div>
@@ -544,7 +544,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="reveal"><div class="section-label" data-t="contact_lbl">Encuéntranos</div><h2 class="section-title" data-t="contact_title">Dónde Estamos</h2></div>
+    <div class="reveal"><div class="section-label" data-t="contact_lbl" data-t="contact_lbl">Encuéntranos</div><h2 class="section-title" data-t="contact_title" data-t="contact_title">Dónde Estamos</h2></div>
     <div class="cgrid">
       <div class="cinfo reveal">
         <div class="citem"><div class="cicon">📍</div><div class="ctxt"><strong data-t="c_addr">Dirección</strong><span>C/ Josep de Togores 17, 17310 Lloret de Mar, Girona</span></div></div>
@@ -600,7 +600,17 @@ var T={
     c_addr:"Direccion",c_phone:"Telefono",c_email:"Email",c_web:"Web oficial",
     c_sched:"Horario",c_sched_val:"Lunes a Domingo: 09:00 - 21:00",c_wa:"WhatsApp",c_wa_val:"Escribenos ahora",
     ftag:"Lloret de Mar - Costa Brava - Fundada por Gevorg Avdalyan",
-    fcopy:"2025 Aleks Rent S.L. Todos los derechos reservados."
+    fcopy:"2025 Aleks Rent S.L. Todos los derechos reservados.",
+    reviews_lbl:"Opiniones reales",
+    reviews_title:"Lo que dicen nuestros clientes",
+    reviews_total:"Reseñas totales",
+    reviews_satisfied:"Clientes satisfechos",
+    reviews_pct:"Índice satisfacción",
+    reviews_featured:"⭐ Destacada",
+    reviews_cta:"Leer todas las reseñas ↗",
+    reviews_google:"500+ reseñas en Google",
+    contact_lbl:"Encuéntranos",
+    contact_title:"Dónde Estamos"
   },
   en:{
     banner_sub:"Motorbike, scooter, quad and bicycle rental in Lloret de Mar",banner_btn:"Explore now",
@@ -627,7 +637,17 @@ var T={
     c_addr:"Address",c_phone:"Phone",c_email:"Email",c_web:"Official website",
     c_sched:"Hours",c_sched_val:"Monday to Sunday: 09:00 - 21:00",c_wa:"WhatsApp",c_wa_val:"Message us now",
     ftag:"Lloret de Mar - Costa Brava - Founded by Gevorg Avdalyan",
-    fcopy:"2025 Aleks Rent S.L. All rights reserved."
+    fcopy:"2025 Aleks Rent S.L. All rights reserved.",
+    reviews_lbl:"Real reviews",
+    reviews_title:"What our customers say",
+    reviews_total:"Total reviews",
+    reviews_satisfied:"Satisfied customers",
+    reviews_pct:"Satisfaction rate",
+    reviews_featured:"⭐ Featured",
+    reviews_cta:"Read all reviews ↗",
+    reviews_google:"500+ Google reviews",
+    contact_lbl:"Find us",
+    contact_title:"Where We Are"
   },
   fr:{
     banner_sub:"Location de motos, scooters, quads et velos a Lloret de Mar",banner_btn:"Explorer maintenant",
@@ -654,7 +674,17 @@ var T={
     c_addr:"Adresse",c_phone:"Telephone",c_email:"Email",c_web:"Site officiel",
     c_sched:"Horaires",c_sched_val:"Lundi au Dimanche: 09h - 21h",c_wa:"WhatsApp",c_wa_val:"Ecrivez-nous",
     ftag:"Lloret de Mar - Costa Brava - Fondee par Gevorg Avdalyan",
-    fcopy:"2025 Aleks Rent S.L. Tous droits reserves."
+    fcopy:"2025 Aleks Rent S.L. Tous droits reserves.",
+    reviews_lbl:"Avis réels",
+    reviews_title:"Ce que disent nos clients",
+    reviews_total:"Avis totaux",
+    reviews_satisfied:"Clients satisfaits",
+    reviews_pct:"Taux de satisfaction",
+    reviews_featured:"⭐ À la une",
+    reviews_cta:"Lire tous les avis ↗",
+    reviews_google:"500+ avis Google",
+    contact_lbl:"Nous trouver",
+    contact_title:"Où Nous Sommes"
   },
   ru:{
     banner_sub:"Arenda motociklov, skuterov, kvadrociklov i velosipedov v Lloret de Mar",banner_btn:"Nachat",
@@ -681,7 +711,17 @@ var T={
     c_addr:"Adres",c_phone:"Telefon",c_email:"Email",c_web:"Oficialnyj sajt",
     c_sched:"Raspisanie",c_sched_val:"Pn - Vs: 09:00 - 21:00",c_wa:"WhatsApp",c_wa_val:"Napisat nam",
     ftag:"Lloret de Mar - Kosta Brava - Osnovana Georgom Avdalyan",
-    fcopy:"2025 Aleks Rent S.L. Vse prava zashchishcheny."
+    fcopy:"2025 Aleks Rent S.L. Vse prava zashchishcheny.",
+    reviews_lbl:"Реальные отзывы",
+    reviews_title:"Что говорят наши клиенты",
+    reviews_total:"Всего отзывов",
+    reviews_satisfied:"Довольных клиентов",
+    reviews_pct:"Индекс удовлетворённости",
+    reviews_featured:"⭐ Избранный",
+    reviews_cta:"Читать все отзывы ↗",
+    reviews_google:"500+ отзывов Google",
+    contact_lbl:"Найти нас",
+    contact_title:"Где Мы Находимся"
   },
   ma:{
     banner_sub:"كراء الدراجات والسكوتيرات والكواد بلويريت دي مار",banner_btn:"استكشف الآن",
@@ -708,7 +748,17 @@ var T={
     c_addr:"العنوان",c_phone:"التيليفون",c_email:"الإيميل",c_web:"الموقع الرسمي",
     c_sched:"أوقات العمل",c_sched_val:"من الاثنين للأحد: 09:00 - 21:00",c_wa:"واتساب",c_wa_val:"راسلنا دابا",
     ftag:"لويريت دي مار - كوستا برافا - مؤسسة من طرف جيفورج أفدالان",
-    fcopy:"2025 Aleks Rent S.L. جميع الحقوق محفوظة"
+    fcopy:"2025 Aleks Rent S.L. جميع الحقوق محفوظة",
+    reviews_lbl:"آراء حقيقية",
+    reviews_title:"شنو كيقولو ليا العملاء",
+    reviews_total:"مجموع التقييمات",
+    reviews_satisfied:"عملاء راضين",
+    reviews_pct:"نسبة الرضا",
+    reviews_featured:"⭐ مميز",
+    reviews_cta:"قرا كل التقييمات ↗",
+    reviews_google:"500+ تقييم على Google",
+    contact_lbl:"اين نتواجدون",
+    contact_title:"العنوان ديالنا"
   }
 };
 var currentLang="es";
