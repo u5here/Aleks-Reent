@@ -1047,6 +1047,18 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("battle-arena").style.display="none";
     document.getElementById("battle-btn").disabled=false;
   });
+  // IDIOMAS
+  ["es","en","fr","ru","ma"].forEach(function(l){
+    var btn = document.getElementById("lang-"+l);
+    if (btn) {
+      btn.addEventListener("click", function(){
+        setLang(l);
+      });
+    }
+  });
+  // Apply Spanish on load
+  setLang("es");
+
 }); // end window.load
 </script>
 </body>
