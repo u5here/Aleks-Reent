@@ -1388,66 +1388,49 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   };
 
   function updateComparator() {
-    const a = VEHICLES[document.getElementById('comp-a').value];
-    const b = VEHICLES[document.getElementById('comp-b').value];
-    const result = document.getElementById('comp-result');
-
+    var a = VEHICLES[document.getElementById('comp-a').value];
+    var b = VEHICLES[document.getElementById('comp-b').value];
+    var result = document.getElementById('comp-result');
     if (!a || !b) {
-      result.innerHTML = '<div class="comp-empty">👆 Selecciona dos vehículos para compararlos</div>';
+      result.innerHTML = '<div class="comp-empty">Selecciona dos vehiculos para compararlos</div>';
       return;
     }
-
-    const rows = [
-      { label: 'Tipo', key: 'tipo' },
-      { label: 'Carnet', key: 'carnet' },
-      { label: 'Precio / hora', key: 'precio_hora' },
-      { label: 'Precio / día', key: 'precio_dia' },
-      { label: 'Fianza', key: 'fianza' },
-      { label: 'Cilindrada', key: 'cilindrada' },
-      { label: 'Plazas', key: 'plazas' },
-      { label: 'Vel. máx.', key: 'velocidad' },
-      { label: 'Ideal para', key: 'ideal' },
+    var rows = [
+      {label:'Tipo',key:'tipo'},
+      {label:'Carnet',key:'carnet'},
+      {label:'Precio / hora',key:'precio_hora'},
+      {label:'Precio / dia',key:'precio_dia'},
+      {label:'Fianza',key:'fianza'},
+      {label:'Cilindrada',key:'cilindrada'},
+      {label:'Plazas',key:'plazas'},
+      {label:'Vel. max.',key:'velocidad'},
+      {label:'Ideal para',key:'ideal'}
     ];
-
-    // Determine best price (lower = better) for hora and dia
-    function priceVal(p) { return p === '-' ? Infinity : parseFloat(p.replace(/[^0-9]/g,'')); }
-
-    function rowHTML(label, va, vb, lowerBetter=true) {
-      let classA='', classB='';
-      const na = priceVal(va), nb = priceVal(vb);
-      if (na !== nb && na !== Infinity && nb !== Infinity) {
-        if (lowerBetter) { classA = na<nb?'best':'worst'; classB = nb<na?'best':'worst'; }
-        else             { classA = na>nb?'best':'worst'; classB = nb>na?'best':'worst'; }
-      }
-      return `<div class="comp-row"><span class="comp-row-label">\${label}</span></div>`; // placeholder
-    }
-
-    let rowsA = '', rowsB = '';
-    rows.forEach(r => {
-      const va = a[r.key], vb = b[r.key];
-      let classA='', classB='';
-      if (['precio_hora','precio_dia','fianza'].includes(r.key)) {
-        const na=priceVal(va), nb=priceVal(vb);
+    function priceVal(p){ return p==='-'?Infinity:parseFloat(p.replace(/[^0-9]/g,'')); }
+    var rowsA='', rowsB='';
+    rows.forEach(function(r){
+      var va=a[r.key], vb=b[r.key];
+      var classA='', classB='';
+      if(['precio_hora','precio_dia','fianza'].indexOf(r.key)>-1){
+        var na=priceVal(va), nb=priceVal(vb);
         if(na!==nb&&na!==Infinity&&nb!==Infinity){classA=na<nb?'best':'worst';classB=nb<na?'best':'worst';}
       }
-      rowsA += `<div class="comp-row"><span class="comp-row-label">\${r.label}</span><span class="comp-row-val \${classA}">\${va}</span></div>`;
-      rowsB += `<div class="comp-row"><span class="comp-row-label">\${r.label}</span><span class="comp-row-val \${classB}">\${vb}</span></div>`;
+      rowsA += '<div class="comp-row"><span class="comp-row-label">'+r.label+'</span><span class="comp-row-val '+classA+'">'+va+'</span></div>';
+      rowsB += '<div class="comp-row"><span class="comp-row-label">'+r.label+'</span><span class="comp-row-val '+classB+'">'+vb+'</span></div>';
     });
-
-    result.innerHTML = `
-      <div class="comp-col">
-        <img class="comp-img" src="\${a.img}" alt="\${a.name}" onerror="this.style.background='#eef4fb';this.style.height='200px'"/>
-        <div class="comp-name">\${a.name}</div>
-        <span class="comp-tag \${a.carnet_class}">\${a.carnet}</span>
-        <div class="comp-rows">\${rowsA}</div>
-      </div>
-      <div class="comp-col right">
-        <img class="comp-img" src="\${b.img}" alt="\${b.name}" onerror="this.style.background='#eef4fb';this.style.height='200px'"/>
-        <div class="comp-name">\${b.name}</div>
-        <span class="comp-tag \${b.carnet_class}">\${b.carnet}</span>
-        <div class="comp-rows">\${rowsB}</div>
-      </div>
-    `;
+    result.innerHTML =
+      '<div class="comp-col">'+
+        '<img class="comp-img" src="'+a.img+'" alt="'+a.name+'"/>'+
+        '<div class="comp-name">'+a.name+'</div>'+
+        '<span class="comp-tag '+a.carnet_class+'">'+a.carnet+'</span>'+
+        '<div class="comp-rows">'+rowsA+'</div>'+
+      '</div>'+
+      '<div class="comp-col right">'+
+        '<img class="comp-img" src="'+b.img+'" alt="'+b.name+'"/>'+
+        '<div class="comp-name">'+b.name+'</div>'+
+        '<span class="comp-tag '+b.carnet_class+'">'+b.carnet+'</span>'+
+        '<div class="comp-rows">'+rowsB+'</div>'+
+      '</div>';
   }
 
 </script>
