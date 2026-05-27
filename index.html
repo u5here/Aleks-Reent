@@ -969,7 +969,7 @@
 
 
 <script>
-const T={
+var T={
   es:{
     banner_sub:"Alquiler de motos, scooters, quads y bicicletas · Lloret de Mar",banner_btn:"¡Explorar ahora!",
     nav_about:"Nosotros",nav_prices:"Precios",nav_contact:"Contacto",
@@ -1070,7 +1070,7 @@ const T={
     fcopy:"© 2025 Aleks Rent S.L. — Все права защищены."
   }
 };
-let lang='es';
+var lang='es';
 function setLang(l,btn){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
@@ -1078,54 +1078,54 @@ function setLang(l,btn){
 
   // Animated counters
   function animateCounter(el, target, suffix, duration) {
-    let start = 0;
-    const isFloat = target % 1 !== 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
+    var start = 0;
+    var isFloat = target % 1 !== 0;
+    var step = target / (duration / 16);
+    var timer = setInterval(() => {
       start += step;
       if (start >= target) { start = target; clearInterval(timer); }
       el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
     }, 16);
   }
-  const counters = [
+  var counters = [
     { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
     { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
     { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
     { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
   ];
-  let countersStarted = false;
-  const counterObs = new IntersectionObserver(entries => {
+  var countersStarted = false;
+  var counterObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting && !countersStarted) {
         countersStarted = true;
         counters.forEach(c => {
-          const el = document.querySelector(c.sel);
+          var el = document.querySelector(c.sel);
           if (el) animateCounter(el, c.val, c.suffix, 1800);
         });
       }
     });
   }, { threshold: 0.5 });
-  const statsEl = document.querySelector('.about-stats');
+  var statsEl = document.querySelector('.about-stats');
   if (statsEl) counterObs.observe(statsEl);
 
   // Scroll progress bar
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
+    var scrolled = window.scrollY;
+    var total = document.documentElement.scrollHeight - window.innerHeight;
     document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
     // Back to top
-    const btn = document.getElementById('back-top');
+    var btn = document.getElementById('back-top');
     if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
   }, { passive: true });
 
   // Parallax hero on scroll
   window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero-bg');
+    var hero = document.querySelector('.hero-bg');
     if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
   }, { passive: true });
 
   // Stagger reveal for vgrid cards
-  const gridObs = new IntersectionObserver(entries => {
+  var gridObs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
         setTimeout(() => e.target.classList.add('visible'), i * 80);
@@ -1135,23 +1135,23 @@ function setLang(l,btn){
   }, { threshold: 0.1 });
   document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
 
-  document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
+  document.querySelectorAll('[data-t]').forEach(el=>{var v=T[lang][el.dataset.t];if(v)el.textContent=v;});
 }
 function filterVehicles(cat,btn){
   document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.vcard').forEach(card=>{
-    const cats=card.dataset.cat||'';
+    var cats=card.dataset.cat||'';
     (cat==='all'||cats.includes(cat))?card.classList.remove('hidden'):card.classList.add('hidden');
   });
-  const banner=document.querySelector('.grupo-banner');
+  var banner=document.querySelector('.grupo-banner');
   if(banner) banner.style.display=(cat==='all'||cat==='grupo')?'':'none';
 }
 
-  let generatedMsg = '';
+  var generatedMsg = '';
 
   function openModal(){
-    const m = document.getElementById('reserva-modal');
+    var m = document.getElementById('reserva-modal');
     m.style.display='flex';
     document.body.style.overflow='hidden';
     document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
@@ -1171,33 +1171,33 @@ function filterVehicles(cat,btn){
   }
   function copyMsg(){
     navigator.clipboard.writeText(generatedMsg).then(()=>{
-      const btn = document.querySelector('.btn-copy');
+      var btn = document.querySelector('.btn-copy');
       btn.textContent='✅ Copiado!';
       setTimeout(()=>btn.textContent='📋 Copiar',2000);
     });
   }
   function sendWhatsApp(){
-    const encoded = encodeURIComponent(generatedMsg);
+    var encoded = encodeURIComponent(generatedMsg);
     window.open('https://api.whatsapp.com/send?phone=34641459907&text='+encoded,'_blank');
   }
 
   async function generateMessage(e){
     e.preventDefault();
-    const name     = document.getElementById('f-name').value;
-    const msgLang  = document.getElementById('f-lang').value;
-    const vehicle  = document.getElementById('f-vehicle').value;
-    const people   = document.getElementById('f-people').value || 1;
-    const date     = document.getElementById('f-date').value;
-    const duration = document.getElementById('f-duration').value;
-    const notes    = document.getElementById('f-msg').value;
+    var name     = document.getElementById('f-name').value;
+    var msgLang  = document.getElementById('f-lang').value;
+    var vehicle  = document.getElementById('f-vehicle').value;
+    var people   = document.getElementById('f-people').value || 1;
+    var date     = document.getElementById('f-date').value;
+    var duration = document.getElementById('f-duration').value;
+    var notes    = document.getElementById('f-msg').value;
 
     // Show loading
     document.getElementById('gen-btn-text').style.display='none';
     document.getElementById('gen-btn-loading').style.display='inline';
     document.getElementById('gen-btn').disabled=true;
 
-    const langNames = {es:'español',en:'English',fr:'français',ru:'русский'};
-    const prompt = `Eres un asistente de reservas para Aleks Rent, una empresa de alquiler de vehículos en Lloret de Mar, Costa Brava (España). 
+    var langNames = {es:'español',en:'English',fr:'français',ru:'русский'};
+    var prompt = `Eres un asistente de reservas para Aleks Rent, una empresa de alquiler de vehículos en Lloret de Mar, Costa Brava (España). 
 Genera un mensaje de WhatsApp profesional, amigable y natural en ${langNames[msgLang]} para reservar un vehículo.
 El mensaje debe incluir estos datos de forma natural y conversacional (no como lista):
 - Nombre del cliente: ${name}
@@ -1210,7 +1210,7 @@ El mensaje debe empezar con un saludo, mencionar que quiere hacer una reserva en
 Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
 
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      var res = await fetch('https://api.anthropic.com/v1/messages', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify({
@@ -1219,7 +1219,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
           messages:[{role:'user',content:prompt}]
         })
       });
-      const data = await res.json();
+      var data = await res.json();
       generatedMsg = data.content[0].text;
 
       // Show result
@@ -1228,7 +1228,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
       document.getElementById('modal-step2').style.display='';
     } catch(err) {
       // Fallback: generate basic message without AI
-      const fallbacks = {
+      var fallbacks = {
         es:`¡Hola! Soy ${name} y me gustaría hacer una reserva en Aleks Rent 🏍️\n\nVehículo: ${vehicle}\nPersonas: ${people}\nFecha: ${date}\nDuración: ${duration}${notes?'\nNotas: '+notes:''}\n\n¡Muchas gracias!`,
         en:`Hello! I'm ${name} and I'd like to make a booking at Aleks Rent 🏍️\n\nVehicle: ${vehicle}\nPeople: ${people}\nDate: ${date}\nDuration: ${duration}${notes?'\nNotes: '+notes:''}\n\nThank you!`,
         fr:`Bonjour! Je suis ${name} et je voudrais faire une réservation chez Aleks Rent 🏍️\n\nVéhicule: ${vehicle}\nPersonnes: ${people}\nDate: ${date}\nDurée: ${duration}${notes?'\nNotes: '+notes:''}\n\nMerci beaucoup!`,
@@ -1262,13 +1262,13 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
       }
     });
   }, { threshold: 0.3 });
-  const reviewsEl = document.getElementById('reviews');
+  var reviewsEl = document.getElementById('reviews');
   if (reviewsEl) reviewObs.observe(reviewsEl);
 
   // Auto-scroll reviews panel slowly
   var scrollEl = document.getElementById('reviews-scroll');
   if (scrollEl) {
-    let scrollDir = 1, scrollPaused = false;
+    var scrollDir = 1, scrollPaused = false;
     scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
     scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
     setInterval(() => {
@@ -1281,54 +1281,54 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
 
 // Animated counters
   function animateCounter(el, target, suffix, duration) {
-    let start = 0;
-    const isFloat = target % 1 !== 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
+    var start = 0;
+    var isFloat = target % 1 !== 0;
+    var step = target / (duration / 16);
+    var timer = setInterval(() => {
       start += step;
       if (start >= target) { start = target; clearInterval(timer); }
       el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
     }, 16);
   }
-  const counters = [
+  var counters = [
     { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
     { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
     { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
     { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
   ];
-  let countersStarted = false;
-  const counterObs = new IntersectionObserver(entries => {
+  var countersStarted = false;
+  var counterObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting && !countersStarted) {
         countersStarted = true;
         counters.forEach(c => {
-          const el = document.querySelector(c.sel);
+          var el = document.querySelector(c.sel);
           if (el) animateCounter(el, c.val, c.suffix, 1800);
         });
       }
     });
   }, { threshold: 0.5 });
-  const statsEl = document.querySelector('.about-stats');
+  var statsEl = document.querySelector('.about-stats');
   if (statsEl) counterObs.observe(statsEl);
 
   // Scroll progress bar
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
+    var scrolled = window.scrollY;
+    var total = document.documentElement.scrollHeight - window.innerHeight;
     document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
     // Back to top
-    const btn = document.getElementById('back-top');
+    var btn = document.getElementById('back-top');
     if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
   }, { passive: true });
 
   // Parallax hero on scroll
   window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero-bg');
+    var hero = document.querySelector('.hero-bg');
     if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
   }, { passive: true });
 
   // Stagger reveal for vgrid cards
-  const gridObs = new IntersectionObserver(entries => {
+  var gridObs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
         setTimeout(() => e.target.classList.add('visible'), i * 80);
@@ -1338,8 +1338,8 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   }, { threshold: 0.1 });
   document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
 
-  document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
-  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('[data-t]').forEach(el=>{var v=T[lang][el.dataset.t];if(v)el.textContent=v;});
+  var obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
   // Reviews counter animation
@@ -1357,13 +1357,13 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
       }
     });
   }, { threshold: 0.3 });
-  const reviewsEl = document.getElementById('reviews');
+  var reviewsEl = document.getElementById('reviews');
   if (reviewsEl) reviewObs.observe(reviewsEl);
 
   // Auto-scroll reviews panel slowly
   var scrollEl = document.getElementById('reviews-scroll');
   if (scrollEl) {
-    let scrollDir = 1, scrollPaused = false;
+    var scrollDir = 1, scrollPaused = false;
     scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
     scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
     setInterval(() => {
@@ -1376,54 +1376,54 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
 
 // Animated counters
   function animateCounter(el, target, suffix, duration) {
-    let start = 0;
-    const isFloat = target % 1 !== 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
+    var start = 0;
+    var isFloat = target % 1 !== 0;
+    var step = target / (duration / 16);
+    var timer = setInterval(() => {
       start += step;
       if (start >= target) { start = target; clearInterval(timer); }
       el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
     }, 16);
   }
-  const counters = [
+  var counters = [
     { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
     { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
     { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
     { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
   ];
-  let countersStarted = false;
-  const counterObs = new IntersectionObserver(entries => {
+  var countersStarted = false;
+  var counterObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting && !countersStarted) {
         countersStarted = true;
         counters.forEach(c => {
-          const el = document.querySelector(c.sel);
+          var el = document.querySelector(c.sel);
           if (el) animateCounter(el, c.val, c.suffix, 1800);
         });
       }
     });
   }, { threshold: 0.5 });
-  const statsEl = document.querySelector('.about-stats');
+  var statsEl = document.querySelector('.about-stats');
   if (statsEl) counterObs.observe(statsEl);
 
   // Scroll progress bar
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
+    var scrolled = window.scrollY;
+    var total = document.documentElement.scrollHeight - window.innerHeight;
     document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
     // Back to top
-    const btn = document.getElementById('back-top');
+    var btn = document.getElementById('back-top');
     if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
   }, { passive: true });
 
   // Parallax hero on scroll
   window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero-bg');
+    var hero = document.querySelector('.hero-bg');
     if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
   }, { passive: true });
 
   // Stagger reveal for vgrid cards
-  const gridObs = new IntersectionObserver(entries => {
+  var gridObs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
         setTimeout(() => e.target.classList.add('visible'), i * 80);
@@ -1433,12 +1433,12 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   }, { threshold: 0.1 });
   document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
 
-  document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
-  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('[data-t]').forEach(el=>{var v=T[lang][el.dataset.t];if(v)el.textContent=v;});
+  var obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
   // Vehicle data for comparator
-  const VEHICLES = {
+  var VEHICLES = {
     vitality: {
       name: "KYMCO Vitality 50cc",
       img: "https://aleksrent.es/img-vehiculos/Vitality_50.jpg",
