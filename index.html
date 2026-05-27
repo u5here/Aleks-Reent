@@ -12,7 +12,7 @@
 :root{--blue:#1A4FA0;--blue2:#1565C0;--sky:#4A90D9;--dark:#0D1B3E;--bg:#F0F4FA;--card:#fff;--text:#0D1B3E;--muted:#607090;--border:rgba(26,79,160,0.13);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;visibility:hidden;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
 /* SCROLL BAR */
 #scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--blue));z-index:9998;width:0%;transition:width .1s;}
@@ -287,7 +287,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 </style>
 <noscript><style>body{visibility:visible!important}</style></noscript>
 </head>
-<body>
+<body style="visibility:hidden;">
 
 <div id="scroll-bar"></div>
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
