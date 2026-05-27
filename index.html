@@ -283,29 +283,68 @@
     @media(max-width:900px){.reviews-layout{grid-template-columns:1fr;}.review-featured{position:static;}}
 
 
-    /* COMPARADOR */
-    #comparador{background:var(--bg);padding:88px 0;}
-    .comp-selects{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin:36px 0;}
-    .comp-select-box{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;}
-    .comp-select-box label{display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
-    .comp-select-box select{width:100%;border:none;outline:none;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:var(--text);background:transparent;cursor:pointer;}
-    .comp-vs{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--muted);text-align:center;}
-    .comp-result{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:16px;overflow:hidden;border:1px solid var(--border);}
-    .comp-col{background:#fff;padding:0;}
-    .comp-col.right{background:#f8faff;}
-    .comp-img{width:100%;height:200px;object-fit:cover;display:block;}
-    .comp-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;padding:16px 20px 4px;letter-spacing:1px;}
-    .comp-rows{}
-    .comp-row{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-top:1px solid var(--border);}
-    .comp-row-label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
-    .comp-row-val{font-size:.9rem;font-weight:700;color:var(--text);}
-    .comp-row-val.best{color:#22c55e;}
-    .comp-row-val.worst{color:#ef4444;}
-    .comp-tag{display:inline-block;margin:0 20px 16px;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;}
-    .comp-tag.nocarnet{background:rgba(34,197,94,.1);color:#22c55e;}
-    .comp-tag.carnet{background:rgba(26,79,160,.1);color:var(--blue);}
-    .comp-empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-size:.95rem;}
-    @media(max-width:700px){.comp-selects{grid-template-columns:1fr;}.comp-vs{display:none;}.comp-result{grid-template-columns:1fr;}}
+
+    /* COMPARADOR BATALLA */
+    #comparador{background:#050510;padding:88px 0;overflow:hidden;position:relative;}
+    #comparador::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(26,79,160,.15) 0%,transparent 70%);}
+    #comparador .section-label{color:#4A90D9;}
+    #comparador .section-title{color:#fff;}
+    #comparador .section-desc{color:#6a85b0;}
+    .comp-selects{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin:36px 0 20px;}
+    .comp-select-box{background:rgba(255,255,255,.05);border:1.5px solid rgba(74,144,217,.3);border-radius:16px;padding:18px;transition:border-color .2s;}
+    .comp-select-box:hover{border-color:rgba(74,144,217,.7);}
+    .comp-select-box label{display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4A90D9;margin-bottom:10px;}
+    .comp-select-box select{width:100%;border:none;outline:none;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;background:transparent;cursor:pointer;}
+    .comp-select-box select option{background:#0a0a20;color:#fff;}
+    .comp-vs-btn{text-align:center;}
+    .comp-vs-btn button{background:linear-gradient(135deg,#1A4FA0,#4A90D9);color:#fff;border:none;padding:14px 28px;border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;cursor:pointer;box-shadow:0 4px 24px rgba(74,144,217,.4);transition:all .2s;}
+    .comp-vs-btn button:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(74,144,217,.6);}
+
+    /* BATTLE ARENA */
+    .battle-arena{position:relative;display:none;margin-top:10px;}
+    .battle-arena.active{display:block;}
+    .battle-grid{display:grid;grid-template-columns:1fr 180px 1fr;gap:0;align-items:stretch;min-height:520px;}
+
+    /* VEHICLE PANELS */
+    .battle-panel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;position:relative;}
+    .battle-panel.left{border-radius:20px 0 0 20px;border-right:none;}
+    .battle-panel.right{border-radius:0 20px 20px 0;border-left:none;}
+    .bp-img{width:100%;height:220px;object-fit:cover;display:block;filter:brightness(.8);}
+    .bp-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#fff;padding:14px 18px 4px;letter-spacing:1px;}
+    .bp-tag{display:inline-block;margin:0 18px 12px;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:50px;background:rgba(74,144,217,.2);color:#4A90D9;border:1px solid rgba(74,144,217,.3);}
+    .bp-stats{padding:0 0 8px;}
+    .bp-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 18px;border-top:1px solid rgba(255,255,255,.05);}
+    .bp-stat-lbl{font-size:.72rem;color:#6a85b0;text-transform:uppercase;letter-spacing:.5px;}
+    .bp-stat-val{font-size:.88rem;font-weight:700;color:#fff;transition:all .5s;}
+    .bp-stat-val.win{color:#39ff14;text-shadow:0 0 10px #39ff14,0 0 20px #39ff14;font-size:1rem;}
+    .bp-stat-val.win::before{content:'+ ';}
+    .bp-stat-val.lose{color:#ff073a;text-shadow:0 0 8px #ff073a;text-decoration:line-through;opacity:.7;}
+    .bp-stat-val.lose::before{content:'- ';}
+
+    /* MIDDLE BEAM */
+    .battle-middle{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:10;}
+    .battle-vs{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#fff;letter-spacing:4px;text-shadow:0 0 30px rgba(74,144,217,.8);}
+    .beam-container{position:relative;width:100%;flex:1;display:flex;align-items:center;justify-content:center;}
+    .beam{width:4px;height:0;background:linear-gradient(to bottom,#ff073a,#ffff00,#39ff14);border-radius:4px;transition:height .1s;box-shadow:0 0 12px #4A90D9,0 0 24px #4A90D9;display:none;}
+    .beam.active{display:block;}
+    .beam-explosion{position:absolute;font-size:3rem;opacity:0;transition:all .3s;pointer-events:none;}
+
+    /* WINNER BADGE */
+    .winner-banner{display:none;text-align:center;margin-top:20px;animation:winnerPop .5s cubic-bezier(.34,1.56,.64,1);}
+    @keyframes winnerPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+    .winner-banner.show{display:block;}
+    .winner-badge{display:inline-block;background:linear-gradient(135deg,#ff9500,#ffcc00);color:#000;font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;padding:12px 36px;border-radius:50px;box-shadow:0 0 40px rgba(255,204,0,.6),0 0 80px rgba(255,204,0,.3);}
+    .winner-sub{color:#a8bcd4;font-size:.9rem;margin-top:10px;}
+
+    /* COUNTDOWN */
+    .battle-countdown{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:#fff;text-align:center;text-shadow:0 0 40px #4A90D9;opacity:0;transition:opacity .3s;line-height:1;}
+
+    /* PARTICLES */
+    .particle{position:absolute;pointer-events:none;font-size:1.2rem;animation:particleFly 1s ease forwards;}
+    @keyframes particleFly{from{opacity:1;transform:translate(0,0) scale(1)}to{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
+
+    @media(max-width:860px){.battle-grid{grid-template-columns:1fr;}.battle-panel.left,.battle-panel.right{border-radius:16px;border:1px solid rgba(255,255,255,.08);}.battle-middle{flex-direction:row;padding:16px 0;gap:16px;}.beam{display:none!important;}}
+    @media(max-width:700px){.comp-selects{grid-template-columns:1fr;}}
 
     /* UTILS */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
@@ -633,14 +672,14 @@
 <section id="comparador">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Herramienta</div>
-      <h2 class="section-title">Comparador de Vehículos</h2>
-      <p class="section-desc">Selecciona dos vehículos para comparar precios, carnet necesario y características.</p>
+      <div class="section-label">Elige tu vehículo</div>
+      <h2 class="section-title">⚔️ Batalla de Vehículos</h2>
+      <p class="section-desc">Selecciona dos vehículos y descubre cuál gana la batalla.</p>
     </div>
     <div class="comp-selects reveal">
       <div class="comp-select-box">
-        <label>🚗 Vehículo A</label>
-        <select id="comp-a" onchange="updateComparator()">
+        <label>🔴 Vehículo A</label>
+        <select id="comp-a">
           <option value="">-- Selecciona --</option>
           <option value="vitality">KYMCO Vitality 50cc</option>
           <option value="agility">KYMCO Agility City 125cc</option>
@@ -651,10 +690,12 @@
           <option value="bike">Bicicleta Normal</option>
         </select>
       </div>
-      <div class="comp-vs">VS</div>
+      <div class="comp-vs-btn">
+        <button onclick="startBattle()">⚡ BATALLAR</button>
+      </div>
       <div class="comp-select-box">
-        <label>🚗 Vehículo B</label>
-        <select id="comp-b" onchange="updateComparator()">
+        <label>🔵 Vehículo B</label>
+        <select id="comp-b">
           <option value="">-- Selecciona --</option>
           <option value="vitality">KYMCO Vitality 50cc</option>
           <option value="agility">KYMCO Agility City 125cc</option>
@@ -666,8 +707,24 @@
         </select>
       </div>
     </div>
-    <div class="comp-result reveal" id="comp-result">
-      <div class="comp-empty">👆 Selecciona dos vehículos para compararlos</div>
+
+    <div class="battle-arena" id="battle-arena">
+      <div class="battle-countdown" id="battle-countdown"></div>
+      <div class="battle-grid" id="battle-grid">
+        <div class="battle-panel left" id="panel-a"></div>
+        <div class="battle-middle">
+          <div class="battle-vs">VS</div>
+          <div class="beam-container">
+            <div class="beam" id="beam"></div>
+            <div class="beam-explosion" id="explosion">💥</div>
+          </div>
+        </div>
+        <div class="battle-panel right" id="panel-b"></div>
+      </div>
+      <div class="winner-banner" id="winner-banner">
+        <div class="winner-badge" id="winner-badge"></div>
+        <div class="winner-sub" id="winner-sub"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1285,6 +1342,101 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
+  // Reviews counter animation
+  const reviewData = { total: 500, satisfied: 447, pct: 89 };
+  let reviewCountersStarted = false;
+  const reviewObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !reviewCountersStarted) {
+        reviewCountersStarted = true;
+        animateCounter(document.getElementById('cnt-total'), reviewData.total, '+', 1600);
+        animateCounter(document.getElementById('cnt-satisfied'), reviewData.satisfied, '+', 1800);
+        setTimeout(() => {
+          animateCounter(document.getElementById('cnt-pct'), reviewData.pct, '%', 1400);
+        }, 300);
+      }
+    });
+  }, { threshold: 0.3 });
+  const reviewsEl = document.getElementById('reviews');
+  if (reviewsEl) reviewObs.observe(reviewsEl);
+
+  // Auto-scroll reviews panel slowly
+  const scrollEl = document.getElementById('reviews-scroll');
+  if (scrollEl) {
+    let scrollDir = 1, scrollPaused = false;
+    scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
+    scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
+    setInterval(() => {
+      if (scrollPaused) return;
+      scrollEl.scrollTop += scrollDir;
+      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 2) scrollDir = -1;
+      if (scrollEl.scrollTop <= 0) scrollDir = 1;
+    }, 30);
+  }
+
+// Animated counters
+  function animateCounter(el, target, suffix, duration) {
+    let start = 0;
+    const isFloat = target % 1 !== 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { start = target; clearInterval(timer); }
+      el.textContent = (isFloat ? start.toFixed(1) : Math.floor(start)) + suffix;
+    }, 16);
+  }
+  const counters = [
+    { sel: '.stat-card:nth-child(1) .stat-num', val: 10, suffix: '+' },
+    { sel: '.stat-card:nth-child(2) .stat-num', val: 4,  suffix: '' },
+    { sel: '.stat-card:nth-child(3) .stat-num', val: 4.8, suffix: '' },
+    { sel: '.stat-card:nth-child(4) .stat-num', val: 100, suffix: '%' },
+  ];
+  let countersStarted = false;
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !countersStarted) {
+        countersStarted = true;
+        counters.forEach(c => {
+          const el = document.querySelector(c.sel);
+          if (el) animateCounter(el, c.val, c.suffix, 1800);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsEl = document.querySelector('.about-stats');
+  if (statsEl) counterObs.observe(statsEl);
+
+  // Scroll progress bar
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('scroll-bar').style.width = (scrolled / total * 100) + '%';
+    // Back to top
+    const btn = document.getElementById('back-top');
+    if (btn) scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
+  }, { passive: true });
+
+  // Parallax hero on scroll
+  window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero-bg');
+    if (hero) hero.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+  }, { passive: true });
+
+  // Stagger reveal for vgrid cards
+  const gridObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        gridObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.vgrid .vcard').forEach(el => gridObs.observe(el));
+
+  document.querySelectorAll('[data-t]').forEach(el=>{const v=T[lang][el.dataset.t];if(v)el.textContent=v;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
   // Vehicle data for comparator
   const VEHICLES = {
     vitality: {
@@ -1431,6 +1583,183 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
         '<span class="comp-tag '+b.carnet_class+'">'+b.carnet+'</span>'+
         '<div class="comp-rows">'+rowsB+'</div>'+
       '</div>';
+  }
+
+
+  var VEHICLES = {
+    vitality:{name:"KYMCO Vitality 50cc",img:"https://aleksrent.es/img-vehiculos/Vitality_50.jpg",tipo:"Scooter",carnet:"Carnet AM",carnet_class:"carnet",precio:45,fianza:100,cilindrada:50,plazas:2,velocidad:45},
+    agility:{name:"KYMCO Agility 125cc",img:"https://aleksrent.es/img-vehiculos/kymco_agility-125cc.jpg",tipo:"Moto",carnet:"Carnet A1/B",carnet_class:"carnet",precio:50,fianza:100,cilindrada:125,plazas:2,velocidad:100},
+    mxu50:{name:"KYMCO MXU 50cc",img:"https://aleksrent.es/img-vehiculos/kymco-mxu-reverse-50cc.jpg",tipo:"Quad",carnet:"Carnet AM/B",carnet_class:"carnet",precio:60,fianza:100,cilindrada:50,plazas:1,velocidad:45},
+    mxu150:{name:"KYMCO MXU 150cc",img:"https://aleksrent.es/img-vehiculos/kimco-mxu-150cc.jpg",tipo:"Quad",carnet:"Carnet B",carnet_class:"carnet",precio:60,fianza:100,cilindrada:150,plazas:2,velocidad:70},
+    mxu300:{name:"KYMCO MXU 300cc",img:"https://aleksrent.es/img-vehiculos/Kymco-mxu-300cc.jpg",tipo:"Quad",carnet:"Carnet B",carnet_class:"carnet",precio:80,fianza:300,cilindrada:300,plazas:2,velocidad:90},
+    cforce:{name:"CFMoto C-Force 450cc",img:"https://aleksrent.es/img-vehiculos/c-force-450.jpg",tipo:"Quad Premium",carnet:"Carnet B",carnet_class:"carnet",precio:100,fianza:400,cilindrada:450,plazas:2,velocidad:110},
+    bike:{name:"Bicicleta Normal",img:"https://aleksrent.es/img-vehiculos/city-bike.jpg",tipo:"Bicicleta",carnet:"Sin carnet",carnet_class:"nocarnet",precio:20,fianza:50,cilindrada:0,plazas:1,velocidad:25}
+  };
+
+  var STAT_LABELS = [
+    {key:'velocidad',label:'Velocidad max.',higher:true,unit:'km/h'},
+    {key:'cilindrada',label:'Cilindrada',higher:true,unit:'cc'},
+    {key:'plazas',label:'Plazas',higher:true,unit:''},
+    {key:'precio',label:'Precio/hora',higher:false,unit:'€'},
+    {key:'fianza',label:'Fianza',higher:false,unit:'€'}
+  ];
+
+  function buildPanel(v, side) {
+    var borderColor = side==='left' ? 'rgba(255,7,58,.4)' : 'rgba(57,255,20,.4)';
+    var html = '<img class="bp-img" src="'+v.img+'" alt="'+v.name+'"/>';
+    html += '<div class="bp-name">'+v.name+'</div>';
+    html += '<span class="bp-tag">'+v.tipo+' &nbsp;|&nbsp; '+v.carnet+'</span>';
+    html += '<div class="bp-stats" id="stats-'+side+'">';
+    STAT_LABELS.forEach(function(s){
+      var val = v[s.key];
+      var display = s.key==='cilindrada'&&val===0 ? '-' : val+s.unit;
+      html += '<div class="bp-stat"><span class="bp-stat-lbl">'+s.label+'</span><span class="bp-stat-val" id="sv-'+side+'-'+s.key+'">'+display+'</span></div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function startBattle() {
+    var aKey = document.getElementById('comp-a').value;
+    var bKey = document.getElementById('comp-b').value;
+    if (!aKey || !bKey) { alert('Selecciona los dos vehiculos primero'); return; }
+    if (aKey === bKey) { alert('Selecciona vehiculos diferentes'); return; }
+
+    var a = VEHICLES[aKey], b = VEHICLES[bKey];
+    var arena = document.getElementById('battle-arena');
+    var countdown = document.getElementById('battle-countdown');
+    var winner = document.getElementById('winner-banner');
+
+    // Reset
+    winner.classList.remove('show');
+    arena.classList.add('active');
+    document.getElementById('panel-a').innerHTML = buildPanel(a, 'left');
+    document.getElementById('panel-b').innerHTML = buildPanel(b, 'right');
+    document.getElementById('panel-a').style.border = '1px solid rgba(255,7,58,.4)';
+    document.getElementById('panel-b').style.border = '1px solid rgba(57,255,20,.4)';
+
+    // Scroll to arena
+    setTimeout(function(){ arena.scrollIntoView({behavior:'smooth', block:'center'}); }, 100);
+
+    // Countdown 5..4..3..2..1
+    var count = 5;
+    countdown.style.opacity = '1';
+    var emojis = ['5','4','3','2','1'];
+    var colors = ['#ff073a','#ff6600','#ffcc00','#39ff14','#00cfff'];
+    
+    function tick() {
+      if (count <= 0) {
+        countdown.style.opacity = '0';
+        fireBeam(a, b);
+        return;
+      }
+      countdown.textContent = emojis[5-count];
+      countdown.style.color = colors[5-count];
+      countdown.style.textShadow = '0 0 40px '+colors[5-count];
+      countdown.style.opacity = '1';
+      count--;
+      setTimeout(tick, 900);
+    }
+    tick();
+  }
+
+  function fireBeam(a, b) {
+    var beam = document.getElementById('beam');
+    var explosion = document.getElementById('explosion');
+    beam.classList.add('active');
+    
+    // Animate beam growing
+    var h = 0;
+    var grow = setInterval(function(){
+      h += 8;
+      beam.style.height = h + 'px';
+      if (h >= 160) {
+        clearInterval(grow);
+        // Explosion
+        explosion.style.opacity = '1';
+        explosion.style.fontSize = '4rem';
+        setTimeout(function(){
+          explosion.style.opacity = '0';
+          beam.classList.remove('active');
+          beam.style.height = '0';
+          showResults(a, b);
+        }, 600);
+      }
+    }, 16);
+  }
+
+  function showResults(a, b) {
+    var aScore = 0, bScore = 0;
+
+    STAT_LABELS.forEach(function(s){
+      var va = a[s.key], vb = b[s.key];
+      var elA = document.getElementById('sv-left-'+s.key);
+      var elB = document.getElementById('sv-right-'+s.key);
+      if (!elA || !elB) return;
+
+      var aWins;
+      if (s.key==='cilindrada' && (va===0||vb===0)) { return; }
+      aWins = s.higher ? (va > vb) : (va < vb);
+      var tie = (va === vb);
+
+      if (!tie) {
+        if (aWins) {
+          elA.classList.add('win');
+          elB.classList.add('lose');
+          aScore++;
+        } else {
+          elB.classList.add('win');
+          elA.classList.add('lose');
+          bScore++;
+        }
+      }
+    });
+
+    // Show winner
+    setTimeout(function(){
+      var banner = document.getElementById('winner-banner');
+      var badge = document.getElementById('winner-badge');
+      var sub = document.getElementById('winner-sub');
+      var winnerName, loserName;
+
+      if (aScore > bScore) {
+        winnerName = a.name; loserName = b.name;
+        document.getElementById('panel-a').style.boxShadow = '0 0 40px rgba(255,204,0,.5)';
+      } else if (bScore > aScore) {
+        winnerName = b.name; loserName = a.name;
+        document.getElementById('panel-b').style.boxShadow = '0 0 40px rgba(255,204,0,.5)';
+      } else {
+        badge.textContent = '🤝 EMPATE';
+        sub.textContent = 'Los dos vehiculos estan igualados';
+        banner.classList.add('show');
+        return;
+      }
+
+      badge.textContent = '🏆 GANADOR: ' + winnerName;
+      sub.textContent = 'Gana en ' + Math.max(aScore,bScore) + ' de ' + STAT_LABELS.length + ' categorias';
+      banner.classList.add('show');
+
+      // Particles
+      for (var i=0; i<12; i++) {
+        spawnParticle();
+      }
+    }, 400);
+  }
+
+  function spawnParticle() {
+    var emojis = ['⭐','✨','🏆','🔥','💥','🎉'];
+    var el = document.createElement('div');
+    el.className = 'particle';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    var tx = (Math.random()-0.5)*300;
+    var ty = -(Math.random()*200+50);
+    el.style.setProperty('--tx', tx+'px');
+    el.style.setProperty('--ty', ty+'px');
+    el.style.left = (30+Math.random()*40)+'%';
+    el.style.top = '60%';
+    el.style.position = 'absolute';
+    var arena = document.getElementById('battle-arena');
+    if (arena) { arena.appendChild(el); setTimeout(function(){ el.remove(); }, 1000); }
   }
 
 </script>
