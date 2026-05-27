@@ -246,6 +246,42 @@
     .typing-dot:nth-child(2){animation-delay:.2s;}
     .typing-dot:nth-child(3){animation-delay:.4s;}
 
+
+    /* REVIEWS */
+    .reviews-layout{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start;margin-top:8px;}
+    .reviews-panel{position:relative;}
+    .reviews-scroll{display:flex;flex-direction:column;gap:14px;max-height:620px;overflow-y:auto;padding-right:8px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+    .reviews-scroll::-webkit-scrollbar{width:4px;}
+    .reviews-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+    .reviews-fade-bottom{position:absolute;bottom:0;left:0;right:8px;height:60px;background:linear-gradient(to top,#fff,transparent);pointer-events:none;}
+    .review-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all .25s cubic-bezier(.34,1.56,.64,1);cursor:default;}
+    .review-card:hover{transform:translateX(6px) scale(1.01);border-color:var(--blue);box-shadow:0 4px 20px rgba(26,79,160,.1);}
+    .rv-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+    .rv-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .rv-name{font-weight:700;font-size:.9rem;color:var(--text);}
+    .rv-stars{color:#f59e0b;font-size:.85rem;letter-spacing:1px;}
+    .rv-source{margin-left:auto;font-size:.68rem;font-weight:700;color:var(--muted);background:var(--border);padding:3px 8px;border-radius:50px;letter-spacing:.5px;}
+    .rv-text{font-size:.84rem;color:var(--muted);line-height:1.6;font-style:italic;}
+    .rv-tag{display:inline-block;margin-top:10px;background:rgba(26,79,160,.07);color:var(--blue);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;}
+    /* FEATURED */
+    .review-featured{background:var(--dark);border-radius:20px;padding:32px;position:sticky;top:90px;}
+    .rf-badge{display:inline-block;background:rgba(245,158,11,.15);color:#f59e0b;font-size:.72rem;font-weight:700;letter-spacing:2px;padding:4px 12px;border-radius:50px;margin-bottom:14px;}
+    .rf-stars{color:#f59e0b;font-size:1.3rem;letter-spacing:3px;margin-bottom:16px;}
+    .rf-quote{font-size:1rem;color:#e2e8f0;line-height:1.75;font-style:italic;border-left:3px solid var(--sky);padding-left:16px;margin-bottom:20px;}
+    .rf-author{display:flex;align-items:center;gap:12px;}
+    .rf-avatar{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;display:flex;align-items:center;justify-content:center;}
+    .rf-name{font-weight:700;color:#fff;font-size:.95rem;}
+    .rf-origin{font-size:.78rem;color:#6a85b0;margin-top:2px;}
+    .rf-divider{height:1px;background:rgba(255,255,255,.08);margin:20px 0;}
+    .rf-stats{display:flex;gap:16px;margin-bottom:20px;}
+    .rf-stat{display:flex;align-items:center;gap:8px;flex:1;}
+    .rf-stat span{font-size:1.3rem;}
+    .rf-stat strong{display:block;color:#fff;font-size:.9rem;}
+    .rf-stat small{color:#6a85b0;font-size:.72rem;}
+    .rf-cta{display:block;text-align:center;background:var(--blue);color:#fff;text-decoration:none;padding:12px;border-radius:50px;font-weight:700;font-size:.88rem;transition:all .2s;}
+    .rf-cta:hover{background:var(--sky);}
+    @media(max-width:900px){.reviews-layout{grid-template-columns:1fr;}.review-featured{position:static;}}
+
     /* UTILS */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
     .reveal.visible{opacity:1;transform:none;}
@@ -531,6 +567,39 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
     document.getElementById('gen-btn').disabled=false;
   }
 
+
+  // Reviews counter animation
+  const reviewData = { total: 500, satisfied: 447, pct: 89 };
+  let reviewCountersStarted = false;
+  const reviewObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !reviewCountersStarted) {
+        reviewCountersStarted = true;
+        animateCounter(document.getElementById('cnt-total'), reviewData.total, '+', 1600);
+        animateCounter(document.getElementById('cnt-satisfied'), reviewData.satisfied, '+', 1800);
+        setTimeout(() => {
+          animateCounter(document.getElementById('cnt-pct'), reviewData.pct, '%', 1400);
+        }, 300);
+      }
+    });
+  }, { threshold: 0.3 });
+  const reviewsEl = document.getElementById('reviews');
+  if (reviewsEl) reviewObs.observe(reviewsEl);
+
+  // Auto-scroll reviews panel slowly
+  const scrollEl = document.getElementById('reviews-scroll');
+  if (scrollEl) {
+    let scrollDir = 1, scrollPaused = false;
+    scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
+    scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
+    setInterval(() => {
+      if (scrollPaused) return;
+      scrollEl.scrollTop += scrollDir;
+      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 2) scrollDir = -1;
+      if (scrollEl.scrollTop <= 0) scrollDir = 1;
+    }, 30);
+  }
+
 </script>
 
 <!-- BANNER -->
@@ -551,6 +620,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   <ul class="nav-links">
     <li><a href="#about" data-t="nav_about">Nosotros</a></li>
     <li><a href="#prices" data-t="nav_prices">Precios</a></li>
+    <li><a href="#reviews">Reseñas ⭐</a></li>
     <li><a href="#contact" data-t="nav_contact">Contacto</a></li>
   </ul>
   <div class="nav-right">
@@ -839,6 +909,203 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   </div>
 </section>
 
+
+<!-- REVIEWS -->
+<section id="reviews" style="background:#fff;padding:88px 0;">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:40px;">
+      <div class="section-label">Opiniones reales</div>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <div style="display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--blue);line-height:1;">4.4</span>
+          <div>
+            <div style="color:#f59e0b;font-size:1.2rem;letter-spacing:2px;">★★★★★</div>
+            <div style="font-size:.78rem;color:var(--muted);">500+ reseñas en Google</div>
+          </div>
+        </div>
+        <div style="height:50px;width:1px;background:var(--border);"></div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);" id="cnt-total">0</div>
+            <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Reseñas totales</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#22c55e;" id="cnt-satisfied">0</div>
+            <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Clientes satisfechos</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);" id="cnt-pct">0%</div>
+            <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Índice satisfacción</div>
+          </div>
+        </div>
+        <a href="https://www.tripadvisor.com/Attraction_Review-g494960-d10002889-Reviews-Aleks_Rent-Lloret_de_Mar_Costa_Brava_Province_of_Girona_Catalonia.html" target="_blank" style="margin-left:auto;background:var(--bg);border:1.5px solid var(--border);color:var(--blue);padding:9px 18px;border-radius:50px;text-decoration:none;font-size:.8rem;font-weight:700;white-space:nowrap;">Ver todas en TripAdvisor ↗</a>
+      </div>
+    </div>
+
+    <div class="reviews-layout reveal">
+      <!-- LEFT: scrollable reviews panel -->
+      <div class="reviews-panel">
+        <div class="reviews-scroll" id="reviews-scroll">
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar">K</div>
+              <div>
+                <div class="rv-name">Kimmaz</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">TripAdvisor</div>
+            </div>
+            <p class="rv-text">"Myself and three friends were visiting Lloret de Mar for a week and we checked every quad bike rental place which were all very rude... but then we came across Aleks Rent who were very good to us with excellent service. They offered us only the best with great smiles. Amazing rental. Go there definitely."</p>
+            <div class="rv-tag">🏎️ Quad</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#22c55e;">F</div>
+              <div>
+                <div class="rv-name">Fabio & Marcia</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">Google</div>
+            </div>
+            <p class="rv-text">"Mi experiencia fue muy positiva, el personal fue respetuoso y amable, todo salió bien, el depósito me fue devuelto tranquilamente. Sin duda puedo recomendarlo a cualquiera que quiera un vehículo en Lloret de Mar. ¡Saludos!"</p>
+            <div class="rv-tag">🏍️ Moto</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#8b5cf6;">M</div>
+              <div>
+                <div class="rv-name">Morgana</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">Google</div>
+            </div>
+            <p class="rv-text">"La gente es muy amable y te ayudarán si no sabes algo. Los ciclomotores también son de buena calidad y se conducen perfectamente como deberían. Muy recomendable 😊"</p>
+            <div class="rv-tag">🛵 Scooter</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#f59e0b;">N</div>
+              <div>
+                <div class="rv-name">Niraj</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">Google</div>
+            </div>
+            <p class="rv-text">"Persona muy amable que ayuda con los lugares y el proceso de alquiler de scooter también es muy fácil. 100% recomendado para explorar Lloret de Mar."</p>
+            <div class="rv-tag">🛵 Scooter</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#ef4444;">A</div>
+              <div>
+                <div class="rv-name">Alex T.</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">TripAdvisor</div>
+            </div>
+            <p class="rv-text">"Really good experience here, this has been our 3rd time renting a quad bike from this shop and have really enjoyed every moment of it! The customer service is very good and really polite workers, would really recommend this company!"</p>
+            <div class="rv-tag">🏎️ Quad</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#0ea5e9;">S</div>
+              <div>
+                <div class="rv-name">Santiago R.</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">Google</div>
+            </div>
+            <p class="rv-text">"El mejor negocio para alquilar motos y quads. Muy buen servicio y atención al cliente las 24h. ¡Vendremos todos los años!!"</p>
+            <div class="rv-tag">🏍️ Moto</div>
+          </div>
+
+          <div class="review-card" data-stars="4">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#64748b;">P</div>
+              <div>
+                <div class="rv-name">Pavel K.</div>
+                <div class="rv-stars" style="color:#f59e0b;">★★★★☆</div>
+              </div>
+              <div class="rv-source">TripAdvisor</div>
+            </div>
+            <p class="rv-text">"We rented some 125cc scooters several times, we had no issues. Shop is working late, very reasonable and helpful staff. Definitely recommend and will use in future."</p>
+            <div class="rv-tag">🛵 125cc</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#10b981;">J</div>
+              <div>
+                <div class="rv-name">Jean-Pierre</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">Google</div>
+            </div>
+            <p class="rv-text">"Super, un régal! Une balade en quad avec notre super guide. On a découvert Lloret de Mar et ses hauteurs. Je recommande vivement à tous les touristes!"</p>
+            <div class="rv-tag">🏎️ Excursión</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#f97316;">E</div>
+              <div>
+                <div class="rv-name">Emma W.</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">TripAdvisor</div>
+            </div>
+            <p class="rv-text">"We rented a scooter and did a quad tour with a group. That was a really nice experience! The service is great! If we would come back to Lloret de Mar then we will come back again!"</p>
+            <div class="rv-tag">👥 Grupo</div>
+          </div>
+
+          <div class="review-card" data-stars="5">
+            <div class="rv-header">
+              <div class="rv-avatar" style="background:#6366f1;">U</div>
+              <div>
+                <div class="rv-name">Un servicio excelente</div>
+                <div class="rv-stars">★★★★★</div>
+              </div>
+              <div class="rv-source">Google</div>
+            </div>
+            <p class="rv-text">"Sobretodo me gustó el monopatín nuevo con ruedas con suspensión… también es muy potente, he podido subir a las montañas de Lloret. Lo recomiendo 100%!"</p>
+            <div class="rv-tag">🛴 Patinete</div>
+          </div>
+
+        </div>
+        <div class="reviews-fade-bottom"></div>
+      </div>
+
+      <!-- RIGHT: featured review -->
+      <div class="review-featured reveal">
+        <div class="rf-badge">⭐ Destacada</div>
+        <div class="rf-stars">★★★★★</div>
+        <blockquote class="rf-quote">"Aleks rentals were amazing — we tried the electric scooters, quad biking and motorbikes on different days. Great service and prices! Would do again, very helpful with places where to go! Definitely the best rental in Lloret de Mar."</blockquote>
+        <div class="rf-author">
+          <div class="rf-avatar">D</div>
+          <div>
+            <div class="rf-name">David M.</div>
+            <div class="rf-origin">🇬🇧 Reino Unido · TripAdvisor</div>
+          </div>
+        </div>
+        <div class="rf-divider"></div>
+        <div class="rf-stats">
+          <div class="rf-stat"><span>🏆</span><div><strong>+500</strong><small>reseñas Google</small></div></div>
+          <div class="rf-stat"><span>⭐</span><div><strong>4.4/5</strong><small>valoración media</small></div></div>
+          <div class="rf-stat"><span>🔁</span><div><strong>3ª vez</strong><small>clientes repetidores</small></div></div>
+        </div>
+        <a href="https://www.tripadvisor.com/Attraction_Review-g494960-d10002889-Reviews-Aleks_Rent-Lloret_de_Mar_Costa_Brava_Province_of_Girona_Catalonia.html" target="_blank" class="rf-cta">Leer todas las reseñas ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -869,6 +1136,7 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
   <ul class="footer-links">
     <li><a href="#about" data-t="nav_about">Nosotros</a></li>
     <li><a href="#prices" data-t="nav_prices">Precios</a></li>
+    <li><a href="#reviews">Reseñas ⭐</a></li>
     <li><a href="#contact" data-t="nav_contact">Contacto</a></li>
     <li><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></li>
   </ul>
@@ -1040,6 +1308,39 @@ Usa emojis apropiados. Solo devuelve el mensaje, nada más.`;
     document.getElementById('gen-btn-text').style.display='inline';
     document.getElementById('gen-btn-loading').style.display='none';
     document.getElementById('gen-btn').disabled=false;
+  }
+
+
+  // Reviews counter animation
+  const reviewData = { total: 500, satisfied: 447, pct: 89 };
+  let reviewCountersStarted = false;
+  const reviewObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !reviewCountersStarted) {
+        reviewCountersStarted = true;
+        animateCounter(document.getElementById('cnt-total'), reviewData.total, '+', 1600);
+        animateCounter(document.getElementById('cnt-satisfied'), reviewData.satisfied, '+', 1800);
+        setTimeout(() => {
+          animateCounter(document.getElementById('cnt-pct'), reviewData.pct, '%', 1400);
+        }, 300);
+      }
+    });
+  }, { threshold: 0.3 });
+  const reviewsEl = document.getElementById('reviews');
+  if (reviewsEl) reviewObs.observe(reviewsEl);
+
+  // Auto-scroll reviews panel slowly
+  const scrollEl = document.getElementById('reviews-scroll');
+  if (scrollEl) {
+    let scrollDir = 1, scrollPaused = false;
+    scrollEl.addEventListener('mouseenter', () => scrollPaused = true);
+    scrollEl.addEventListener('mouseleave', () => scrollPaused = false);
+    setInterval(() => {
+      if (scrollPaused) return;
+      scrollEl.scrollTop += scrollDir;
+      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 2) scrollDir = -1;
+      if (scrollEl.scrollTop <= 0) scrollDir = 1;
+    }, 30);
   }
 
 </script>
