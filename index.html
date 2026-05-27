@@ -319,6 +319,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
       <button class="lang-btn" id="lang-en" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN"/></button>
       <button class="lang-btn" id="lang-fr" title="Français"><img src="https://flagcdn.com/w40/fr.png" alt="FR"/></button>
       <button class="lang-btn" id="lang-ru" title="Русский"><img src="https://flagcdn.com/w40/ru.png" alt="RU"/></button>
+      <button class="lang-btn" id="lang-ma" title="العربية المغربية"><img src="https://flagcdn.com/w40/ma.png" alt="MA"/></button>
     </div>
     <a class="nav-phone" href="tel:+34641459907">📞 +34 641 459 907</a>
   </div>
@@ -760,9 +761,15 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("lang-en").addEventListener("click", function(){ setActiveLang("en"); });
   document.getElementById("lang-fr").addEventListener("click", function(){ setActiveLang("fr"); });
   document.getElementById("lang-ru").addEventListener("click", function(){ setActiveLang("ru"); });
+  document.getElementById("lang-ma").addEventListener("click", function(){ setActiveLang("ma"); });
   function setActiveLang(l) {
     document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.remove("active"); });
     document.getElementById("lang-" + l).classList.add("active");
+    if (l === "ma") {
+      document.body.classList.add("rtl");
+    } else {
+      document.body.classList.remove("rtl");
+    }
   }
 
   // UTILS
