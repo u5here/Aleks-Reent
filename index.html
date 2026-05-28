@@ -691,12 +691,12 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
       <p class="section-desc" data-t="faq_desc">Resolvemos las dudas más comunes antes de tu alquiler.</p>
     </div>
     <div class="faq-grid reveal">
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Necesito carnet para alquilar?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Depende del vehículo. Los scooters 50cc requieren carnet AM (desde 15 años), las motos 125cc requieren A1 o B, y los quads 150cc+ requieren carnet B. La bicicleta no necesita ningún carnet. Consúltanos y te orientamos.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué incluye el alquiler?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>El alquiler incluye el casco homologado, seguro básico, revisión completa del vehículo antes de la entrega y asistencia en caso de avería. Entregamos el vehículo con el depósito lleno y lo recibimos igual.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Puedo pagar con tarjeta?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Sí, aceptamos tarjeta de crédito y débito (Visa, Mastercard) así como efectivo. La fianza se puede dejar en efectivo o con tarjeta y se devuelve íntegramente al retornar el vehículo en buen estado.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué pasa si tengo un accidente?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Todos los vehículos tienen seguro obligatorio incluido. En caso de accidente debes contactarnos de inmediato. La fianza cubre posibles daños menores. Disponemos de asistencia 24h durante el período de alquiler.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Hacéis entregas en hoteles?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Sí, ofrecemos servicio de entrega y recogida en hoteles de toda la Costa Brava y en el aeropuerto de Girona. Consúltanos disponibilidad y coste según ubicación. ¡No te muevas del hotel, nosotros vamos a ti!</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cuál es la edad mínima?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Para scooters 50cc y quads 50cc la edad mínima es 15 años con carnet AM. Para motos y quads de mayor cilindrada se requiere el carnet correspondiente y la edad legal para obtenerlo (16-18 años según el tipo).</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text" data-t="faq_q1">¿Necesito carnet para alquilar?</span><span class="faq-icon">+</span></div><div class="faq-a"><p data-t="faq_a1">Depende del vehículo. Los scooters 50cc requieren carnet AM (desde 15 años), las motos 125cc requieren A1 o B, y los quads 150cc+ requieren carnet B. La bicicleta no necesita ningún carnet.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text" data-t="faq_q2">¿Qué incluye el alquiler?</span><span class="faq-icon">+</span></div><div class="faq-a"><p data-t="faq_a2">El alquiler incluye el casco homologado, seguro básico, revisión completa del vehículo antes de la entrega y asistencia en caso de avería. Entregamos el vehículo con el depósito lleno.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text" data-t="faq_q3">¿Puedo pagar con tarjeta?</span><span class="faq-icon">+</span></div><div class="faq-a"><p data-t="faq_a3">Sí, aceptamos tarjeta de crédito y débito (Visa, Mastercard) así como efectivo. La fianza se devuelve íntegramente al retornar el vehículo en buen estado.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text" data-t="faq_q4">¿Qué pasa si tengo un accidente?</span><span class="faq-icon">+</span></div><div class="faq-a"><p data-t="faq_a4">Todos los vehículos tienen seguro obligatorio incluido. En caso de accidente contáctanos de inmediato. Disponemos de asistencia 24h durante el período de alquiler.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text" data-t="faq_q5">¿Hacéis entregas en hoteles?</span><span class="faq-icon">+</span></div><div class="faq-a"><p data-t="faq_a5">Sí, ofrecemos entrega y recogida en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡No te muevas del hotel, nosotros vamos a ti!</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text" data-t="faq_q6">¿Cuál es la edad mínima?</span><span class="faq-icon">+</span></div><div class="faq-a"><p data-t="faq_a6">Para scooters y quads 50cc la edad mínima es 15 años con carnet AM. Para motos y quads de mayor cilindrada se requiere el carnet correspondiente.</p></div></div>
     </div>
   </div>
 </section>
@@ -803,7 +803,19 @@ var T={
     calc_est:"Precio estimado",
     faq_lbl:"Preguntas frecuentes",
     faq_title:"Todo lo que necesitas saber",
-    faq_desc:"Resolvemos las dudas más comunes antes de tu alquiler."
+    faq_desc:"Resolvemos las dudas más comunes antes de tu alquiler.",
+    faq_q1:"¿Necesito carnet para alquilar?",
+    faq_a1:"Depende del vehículo. Los scooters 50cc requieren carnet AM (desde 15 años), las motos 125cc requieren A1 o B, y los quads 150cc+ requieren carnet B. La bicicleta no necesita carnet.",
+    faq_q2:"¿Qué incluye el alquiler?",
+    faq_a2:"El alquiler incluye el casco homologado, seguro básico, revisión completa del vehículo y asistencia en caso de avería. Entregamos el vehículo con el depósito lleno.",
+    faq_q3:"¿Puedo pagar con tarjeta?",
+    faq_a3:"Sí, aceptamos tarjeta de crédito y débito (Visa, Mastercard) así como efectivo. La fianza se devuelve íntegramente al retornar el vehículo en buen estado.",
+    faq_q4:"¿Qué pasa si tengo un accidente?",
+    faq_a4:"Todos los vehículos tienen seguro obligatorio incluido. En caso de accidente contáctanos de inmediato. Disponemos de asistencia 24h durante el alquiler.",
+    faq_q5:"¿Hacéis entregas en hoteles?",
+    faq_a5:"Sí, entregamos y recogemos en hoteles de toda la Costa Brava y en el aeropuerto de Girona. ¡No te muevas del hotel, nosotros vamos a ti!",
+    faq_q6:"¿Cuál es la edad mínima?",
+    faq_a6:"Para scooters y quads 50cc la edad mínima es 15 años con carnet AM. Para motos y quads de mayor cilindrada se requiere el carnet correspondiente."
   },
   en:{
     banner_sub:"Motorbike, scooter, quad and bicycle rental in Lloret de Mar",banner_btn:"Explore now",
@@ -868,7 +880,19 @@ var T={
     calc_est:"Estimated price",
     faq_lbl:"Frequently asked questions",
     faq_title:"Everything you need to know",
-    faq_desc:"We answer the most common questions before your rental."
+    faq_desc:"We answer the most common questions before your rental.",
+    faq_q1:"Do I need a licence to rent?",
+    faq_a1:"It depends on the vehicle. 50cc scooters require AM licence (from age 15), 125cc motorbikes require A1 or B, and quads 150cc+ require B licence. Bicycles need no licence.",
+    faq_q2:"What is included in the rental?",
+    faq_a2:"Rental includes a certified helmet, basic insurance, full vehicle inspection before delivery and roadside assistance. We deliver and receive the vehicle with a full tank.",
+    faq_q3:"Can I pay by card?",
+    faq_a3:"Yes, we accept credit and debit cards (Visa, Mastercard) as well as cash. The deposit is fully refunded when the vehicle is returned in good condition.",
+    faq_q4:"What happens if I have an accident?",
+    faq_a4:"All vehicles include mandatory insurance. In case of accident, contact us immediately. We provide 24h assistance throughout the rental period.",
+    faq_q5:"Do you deliver to hotels?",
+    faq_a5:"Yes, we deliver and collect at hotels across the Costa Brava and at Girona Airport. Stay at your hotel — we come to you!",
+    faq_q6:"What is the minimum age?",
+    faq_a6:"For 50cc scooters and quads the minimum age is 15 with AM licence. For higher-displacement vehicles the corresponding licence and legal age are required."
   },
   fr:{
     banner_sub:"Location de motos, scooters, quads et velos a Lloret de Mar",banner_btn:"Explorer maintenant",
@@ -933,7 +957,19 @@ var T={
     calc_est:"Prix estimé",
     faq_lbl:"Questions fréquentes",
     faq_title:"Tout ce que vous devez savoir",
-    faq_desc:"Nous répondons aux questions les plus fréquentes avant votre location."
+    faq_desc:"Nous répondons aux questions les plus fréquentes avant votre location.",
+    faq_q1:"Ai-je besoin d un permis pour louer?",
+    faq_a1:"Cela dépend du véhicule. Les scooters 50cc nécessitent le permis AM (dès 15 ans), les motos 125cc nécessitent A1 ou B, et les quads 150cc+ nécessitent le permis B.",
+    faq_q2:"Que comprend la location?",
+    faq_a2:"La location comprend le casque homologué, assurance de base, révision complète et assistance en cas de panne. Nous livrons le véhicule avec le plein.",
+    faq_q3:"Puis-je payer par carte?",
+    faq_a3:"Oui, nous acceptons les cartes de crédit et débit (Visa, Mastercard) ainsi que les espèces. La caution est remboursée intégralement au retour du véhicule.",
+    faq_q4:"Que se passe-t-il en cas d accident?",
+    faq_a4:"Tous les véhicules incluent une assurance obligatoire. En cas d accident, contactez-nous immédiatement. Nous offrons une assistance 24h.",
+    faq_q5:"Livrez-vous aux hôtels?",
+    faq_a5:"Oui, nous livrons et récupérons dans les hôtels de toute la Costa Brava et à l aéroport de Gérone. Restez à l hôtel, nous venons à vous!",
+    faq_q6:"Quel est l âge minimum?",
+    faq_a6:"Pour les scooters et quads 50cc l âge minimum est 15 ans avec le permis AM. Pour les véhicules plus puissants le permis correspondant est requis."
   },
   ru:{
     banner_sub:"Arenda motociklov, skuterov, kvadrociklov i velosipedov v Lloret de Mar",banner_btn:"Nachat",
@@ -998,7 +1034,19 @@ var T={
     calc_est:"Примерная цена",
     faq_lbl:"Частые вопросы",
     faq_title:"Всё что нужно знать",
-    faq_desc:"Отвечаем на самые частые вопросы перед арендой."
+    faq_desc:"Отвечаем на самые частые вопросы перед арендой.",
+    faq_q1:"Нужны ли права для аренды?",
+    faq_a1:"Зависит от транспортного средства. Для скутеров 50cc нужны права AM (с 15 лет), для мотоциклов 125cc — A1 или B, для квадроциклов 150cc+ — права B. Велосипед не требует прав.",
+    faq_q2:"Что входит в аренду?",
+    faq_a2:"Аренда включает шлем, базовую страховку, полную проверку транспортного средства и помощь в случае поломки. Выдаём с полным баком.",
+    faq_q3:"Можно ли платить картой?",
+    faq_a3:"Да, принимаем кредитные и дебетовые карты (Visa, Mastercard), а также наличные. Залог возвращается полностью при возврате в хорошем состоянии.",
+    faq_q4:"Что делать при аварии?",
+    faq_a4:"Все транспортные средства имеют обязательную страховку. В случае аварии немедленно свяжитесь с нами. Работаем 24 часа в сутки.",
+    faq_q5:"Доставляете ли в отели?",
+    faq_a5:"Да, доставляем и забираем в отелях по всей Коста-Браве и в аэропорту Жироны. Оставайтесь в отеле — мы приедем к вам!",
+    faq_q6:"Каков минимальный возраст?",
+    faq_a6:"Для скутеров и квадроциклов 50cc — 15 лет с правами AM. Для транспортных средств с большим объёмом двигателя необходимы соответствующие права."
   },
   ma:{
     banner_sub:"كراء الدراجات والسكوتيرات والكواد بلويريت دي مار",banner_btn:"استكشف الآن",
@@ -1063,7 +1111,19 @@ var T={
     calc_est:"السعر التقريبي",
     faq_lbl:"أسئلة شائعة",
     faq_title:"كل ما تحتاج معرفته",
-    faq_desc:"نجاوب على أكثر الأسئلة الشائعة قبل الكراء."
+    faq_desc:"نجاوب على أكثر الأسئلة الشائعة قبل الكراء.",
+    faq_q1:"واش خاصني permis باش نكري؟",
+    faq_a1:"حسب السيارة. السكوتر 50cc خاصو permis AM (من 15 سنة)، الموتو 125cc خاصو A1 أو B، والكواد 150cc+ خاصو permis B. الدراجة ما خاصهاش شي.",
+    faq_q2:"شنو كيتضمن الكراء؟",
+    faq_a2:"الكراء كيتضمن الخوذة، التأمين الأساسي، فحص كامل للسيارة والمساعدة في حالة الأعطال. كنسلمو السيارة بالخزان كامل.",
+    faq_q3:"واش يمكن نخلص بالكارطة؟",
+    faq_a3:"إيه، كنقبلو الكارطة (Visa, Mastercard) والكاش. الكوتيزيون كيرجع كامل عند إرجاع السيارة بحال.",
+    faq_q4:"شنو يوقع إلا عندي حادثة؟",
+    faq_a4:"جميع السيارات عندها تأمين إجباري. في حالة الحادثة تواصل معانا فورا. عندنا مساعدة 24 ساعة.",
+    faq_q5:"واش كتوصلو للفنادق؟",
+    faq_a5:"إيه، كنوصلو ونجيو نأخدو من الفنادق فكوستا برافا وفمطار جيرونا. ابقى فالفندق وغنجيو ليك!",
+    faq_q6:"شنو هو السن الأدنى؟",
+    faq_a6:"للسكوتر والكواد 50cc السن الأدنى هو 15 سنة مع permis AM. للسيارات الأقوى خاص الـpermis المناسب."
   }
 };
 var currentLang="es";
