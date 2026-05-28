@@ -361,6 +361,8 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
     <li><a href="#historia">Historia</a></li>
     <li><a href="#comparador">⚔️ Batalla</a></li>
     <li><a href="#reviews">Reseñas ⭐</a></li>
+    <li><a href="#calculadora">Precio</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" data-t="nav_contact">Contacto</a></li>
   </ul>
   <div class="nav-right">
@@ -504,6 +506,19 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
   </div>
 </section>
 
+<!-- COUNTER STRIP -->
+<div class="counter-strip">
+  <div class="container">
+    <div class="counter-strip-inner">
+      <div class="cs-item"><div class="cs-num" id="cs-years">0</div><div class="cs-lbl">Años de experiencia</div></div>
+      <div class="cs-item"><div class="cs-num" id="cs-clients">0</div><div class="cs-lbl">Clientes satisfechos</div></div>
+      <div class="cs-item"><div class="cs-num" id="cs-vehicles">0</div><div class="cs-lbl">Vehículos en flota</div></div>
+      <div class="cs-item"><div class="cs-num" id="cs-reviews">0</div><div class="cs-lbl">Reseñas Google</div></div>
+      <div class="cs-item"><div class="cs-num" id="cs-langs">0</div><div class="cs-lbl">Idiomas atendidos</div></div>
+    </div>
+  </div>
+</div>
+
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="container">
@@ -609,6 +624,83 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
   </div>
 </section>
 
+<!-- CALCULADORA -->
+<section id="calculadora">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Presupuesto al instante</div>
+      <h2 class="section-title">Calcula tu precio</h2>
+      <p class="section-desc">Selecciona el vehículo y el tiempo — te calculamos el precio al momento.</p>
+    </div>
+    <div class="calc-grid reveal">
+      <div class="calc-form">
+        <div class="calc-field">
+          <label>🏍️ Vehículo</label>
+          <select id="calc-veh" onchange="calcPrecio()">
+            <option value="vitality">KYMCO Vitality 50cc — desde 35€/día</option>
+            <option value="agility">KYMCO Agility City 125cc — desde 40€/día</option>
+            <option value="mxu50">KYMCO MXU Reserve 50cc — 60€/2h</option>
+            <option value="mxu150">KYMCO MXU 150cc — 60€/h</option>
+            <option value="mxu300">KYMCO MXU 300cc — 80€/h</option>
+            <option value="cforce">CFMoto C-Force 450cc — 100€/h</option>
+            <option value="bike">Bicicleta Normal — desde 10€/día</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label>⏱️ Tipo de alquiler</label>
+          <select id="calc-tipo" onchange="calcPrecio()">
+            <option value="hora">Por horas</option>
+            <option value="dia">Por días</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label id="calc-cant-lbl">🔢 Cantidad</label>
+          <div class="calc-duration">
+            <input type="number" id="calc-cant" value="2" min="1" max="30" oninput="calcPrecio()"/>
+            <select id="calc-personas" onchange="calcPrecio()">
+              <option value="1">1 persona</option>
+              <option value="2">2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+              <option value="5+">5+ personas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="calc-result" id="calc-result">
+        <div class="calc-result-row"><span class="calc-result-lbl">Vehículo</span><span class="calc-result-val" id="cr-veh">—</span></div>
+        <div class="calc-result-row"><span class="calc-result-lbl">Duración</span><span class="calc-result-val" id="cr-dur">—</span></div>
+        <div class="calc-result-row"><span class="calc-result-lbl">Personas</span><span class="calc-result-val" id="cr-per">—</span></div>
+        <div class="calc-result-row"><span class="calc-result-lbl">Fianza (reembolsable)</span><span class="calc-result-val" id="cr-fian">—</span></div>
+        <div class="calc-total">
+          <div class="calc-total-lbl">Precio estimado</div>
+          <div class="calc-total-num" id="cr-total"><span>—</span></div>
+        </div>
+        <button class="calc-book-btn" id="calc-book-btn">Reservar ahora →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Preguntas frecuentes</div>
+      <h2 class="section-title">Todo lo que necesitas saber</h2>
+      <p class="section-desc">Resolvemos las dudas más comunes antes de tu alquiler.</p>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Necesito carnet para alquilar?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Depende del vehículo. Los scooters 50cc requieren carnet AM (desde 15 años), las motos 125cc requieren A1 o B, y los quads 150cc+ requieren carnet B. La bicicleta no necesita ningún carnet. Consúltanos y te orientamos.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué incluye el alquiler?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>El alquiler incluye el casco homologado, seguro básico, revisión completa del vehículo antes de la entrega y asistencia en caso de avería. Entregamos el vehículo con el depósito lleno y lo recibimos igual.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Puedo pagar con tarjeta?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Sí, aceptamos tarjeta de crédito y débito (Visa, Mastercard) así como efectivo. La fianza se puede dejar en efectivo o con tarjeta y se devuelve íntegramente al retornar el vehículo en buen estado.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué pasa si tengo un accidente?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Todos los vehículos tienen seguro obligatorio incluido. En caso de accidente debes contactarnos de inmediato. La fianza cubre posibles daños menores. Disponemos de asistencia 24h durante el período de alquiler.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Hacéis entregas en hoteles?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Sí, ofrecemos servicio de entrega y recogida en hoteles de toda la Costa Brava y en el aeropuerto de Girona. Consúltanos disponibilidad y coste según ubicación. ¡No te muevas del hotel, nosotros vamos a ti!</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cuál es la edad mínima?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Para scooters 50cc y quads 50cc la edad mínima es 15 años con carnet AM. Para motos y quads de mayor cilindrada se requiere el carnet correspondiente y la edad legal para obtenerlo (16-18 años según el tipo).</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -634,11 +726,15 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
     <li><a href="#about">Nosotros</a></li><li><a href="#prices" data-t="nav_prices">Precios</a></li>
     <li><a href="#historia">Historia</a></li>
     <li><a href="#comparador">Batalla</a></li><li><a href="#reviews">Reseñas</a></li>
+    <li><a href="#calculadora">Precio</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contacto</a></li><li><a href="https://aleksrent.es" target="_blank">aleksrent.es</a></li>
   </ul>
   <p class="footer-copy" data-t="fcopy">© 2025 Aleks Rent S.L. — Todos los derechos reservados.</p>
 </footer>
 
+<div class="cursor-glow" id="cursor-glow"></div>
+<a class="mobile-call" href="tel:+34641459907" title="Llamar">📞</a>
 <a class="wa-float" href="https://api.whatsapp.com/send?phone=34641459907" target="_blank">💬</a>
 
 <script>
@@ -1470,6 +1566,95 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   histRender(0);
 
+  // ── CALCULADORA ──────────────────────────────────────────────────────
+  var CALC_DATA = {
+    vitality: {name:"KYMCO Vitality 50cc", hora:null, dia:[45,40,35], fianza:100, minHoras:null},
+    agility:  {name:"KYMCO Agility 125cc", hora:null, dia:[50,45,40], fianza:100, minHoras:null},
+    mxu50:    {name:"KYMCO MXU Reserve 50cc", hora:60, dia:null, fianza:100, minHoras:2},
+    mxu150:   {name:"KYMCO MXU 150cc", hora:60, dia:null, fianza:100, minHoras:1},
+    mxu300:   {name:"KYMCO MXU 300cc", hora:80, dia:null, fianza:300, minHoras:1},
+    cforce:   {name:"CFMoto C-Force 450cc", hora:100, dia:null, fianza:400, minHoras:1},
+    bike:     {name:"Bicicleta Normal", hora:null, dia:[20,15,10], fianza:50, minHoras:null}
+  };
+
+  window.calcPrecio = function() {
+    var vehKey = document.getElementById("calc-veh").value;
+    var tipo = document.getElementById("calc-tipo").value;
+    var cant = parseInt(document.getElementById("calc-cant").value) || 1;
+    var personas = document.getElementById("calc-personas").value;
+    var v = CALC_DATA[vehKey];
+    if (!v) return;
+
+    document.getElementById("calc-cant-lbl").textContent = tipo === "hora" ? "🔢 Horas" : "🔢 Días";
+
+    var precio = 0;
+    var durTxt = "";
+
+    if (tipo === "hora") {
+      if (!v.hora) {
+        document.getElementById("cr-total").innerHTML = "<span>Solo por días</span>";
+        document.getElementById("cr-dur").textContent = "No disponible por horas";
+        document.getElementById("cr-veh").textContent = v.name;
+        document.getElementById("cr-per").textContent = personas === "5+" ? "5 o más" : personas + " persona" + (personas > 1 ? "s" : "");
+        document.getElementById("cr-fian").textContent = v.fianza + "€";
+        return;
+      }
+      var horas = Math.max(cant, v.minHoras || 1);
+      precio = v.hora * horas;
+      durTxt = horas + " hora" + (horas > 1 ? "s" : "") + (v.minHoras ? " (mín. " + v.minHoras + "h)" : "");
+    } else {
+      if (!v.dia) {
+        document.getElementById("cr-total").innerHTML = "<span>Solo por horas</span>";
+        document.getElementById("cr-dur").textContent = "No disponible por días";
+        document.getElementById("cr-veh").textContent = v.name;
+        document.getElementById("cr-per").textContent = personas === "5+" ? "5 o más" : personas + " persona" + (personas > 1 ? "s" : "");
+        document.getElementById("cr-fian").textContent = v.fianza + "€";
+        return;
+      }
+      var dias = Math.max(cant, 1);
+      var tarifa = dias <= 3 ? v.dia[0] : dias <= 7 ? v.dia[1] : v.dia[2];
+      precio = tarifa * dias;
+      durTxt = dias + " día" + (dias > 1 ? "s" : "") + " × " + tarifa + "€/día";
+    }
+
+    document.getElementById("cr-veh").textContent = v.name;
+    document.getElementById("cr-dur").textContent = durTxt;
+    document.getElementById("cr-per").textContent = personas === "5+" ? "5 o más personas" : personas + " persona" + (parseInt(personas) > 1 ? "s" : "");
+    document.getElementById("cr-fian").textContent = v.fianza + "€ (reembolsable)";
+    document.getElementById("cr-total").innerHTML = precio + "<span>€</span>";
+
+    document.getElementById("calc-book-btn").onclick = function() {
+      document.getElementById("open-modal-btn").click();
+    };
+  };
+
+  // Init calculator
+  calcPrecio();
+
+  // ── FAQ ───────────────────────────────────────────────────────────────
+  window.toggleFaq = function(btn) {
+    var item = btn.parentElement;
+    var isOpen = item.classList.contains("open");
+    document.querySelectorAll(".faq-item.open").forEach(function(el){ el.classList.remove("open"); });
+    if (!isOpen) item.classList.add("open");
+  };
+
+  // ── COUNTER STRIP ─────────────────────────────────────────────────────
+  var csObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        animCounter(document.getElementById("cs-years"),    13,  "+", 1400);
+        animCounter(document.getElementById("cs-clients"),  430, "+", 1800);
+        animCounter(document.getElementById("cs-vehicles"), 50,  "+", 1600);
+        animCounter(document.getElementById("cs-reviews"),  500, "+", 2000);
+        animCounter(document.getElementById("cs-langs"),    5,   "",  1000);
+        csObs.disconnect();
+      }
+    });
+  }, {threshold: 0.4});
+  var csEl = document.querySelector(".counter-strip");
+  if (csEl) csObs.observe(csEl);
+
   // IDIOMAS
   ["es","en","fr","ru","ma"].forEach(function(l){
     var btn = document.getElementById("lang-"+l);
@@ -1484,6 +1669,17 @@ document.addEventListener("DOMContentLoaded", function() {
   setLang("es");
   // Re-apply translations whenever dynamic sections render
   setTimeout(function(){ applyTranslations("es"); }, 500);
+
+  // Cursor glow
+  var cgEl = document.getElementById("cursor-glow");
+  if (cgEl) {
+    document.addEventListener("mousemove", function(e) {
+      cgEl.style.opacity = "1";
+      cgEl.style.left = e.clientX + "px";
+      cgEl.style.top = e.clientY + "px";
+    }, {passive:true});
+    document.addEventListener("mouseleave", function() { cgEl.style.opacity = "0"; });
+  }
 
 }); // end window.load
 </script>
