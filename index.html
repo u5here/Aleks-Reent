@@ -450,13 +450,13 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 <section id="comparador" style="padding:88px 0;background:var(--bg);">
   <div class="container">
     <div class="reveal">
-      <div class="section-label" data-t="prices_lbl">Elige tu vehículo</div>
-      <h2 class="section-title" data-t="prices_title">Batalla de Vehículos</h2>
-      <p class="section-desc" data-t="prices_desc" data-t="prices_desc">Selecciona dos vehículos. Las stats se revelan una a una — verde el ganador, rojo el perdedor.</p>
+      <div class="section-label" data-t="prices_lbl" data-t="battle_lbl">Elige tu vehículo</div>
+      <h2 class="section-title" data-t="prices_title" data-t="battle_title">Batalla de Vehículos</h2>
+      <p class="section-desc" data-t="prices_desc" data-t="prices_desc" data-t="battle_desc">Selecciona dos vehículos. Las stats se revelan una a una — verde el ganador, rojo el perdedor.</p>
     </div>
     <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:end;margin:36px 0 0;" class="reveal">
       <div>
-        <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Vehículo A</label>
+        <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;" data-t="battle_a">Vehículo A</label>
         <select id="comp-a" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;font-family:Outfit,sans-serif;font-size:.95rem;color:var(--text);background:#fff;outline:none;cursor:pointer;appearance:auto;">
           <option value="">— elegir —</option>
           <option value="vitality">KYMCO Vitality 50cc</option>
@@ -470,10 +470,10 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
       </div>
       <div style="text-align:center;padding-bottom:4px;">
         <div style="font-size:.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;letter-spacing:1px;">VS</div>
-        <button id="battle-btn" style="background:var(--blue);color:#fff;border:none;padding:13px 26px;border-radius:50px;font-family:Outfit,sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;white-space:nowrap;transition:all .2s;box-shadow:0 4px 16px rgba(26,79,160,.25);">⚡ Pelear</button>
+        <button id="battle-btn" style="background:var(--blue);color:#fff;border:none;padding:13px 26px;border-radius:50px;font-family:Outfit,sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;white-space:nowrap;transition:all .2s;box-shadow:0 4px 16px rgba(26,79,160,.25);" data-t="battle_btn">⚡ Pelear</button>
       </div>
       <div>
-        <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Vehículo B</label>
+        <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;" data-t="battle_b">Vehículo B</label>
         <select id="comp-b" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;font-family:Outfit,sans-serif;font-size:.95rem;color:var(--text);background:#fff;outline:none;cursor:pointer;appearance:auto;">
           <option value="">— elegir —</option>
           <option value="vitality">KYMCO Vitality 50cc</option>
@@ -498,7 +498,7 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
       <div id="winner-box" style="display:none;text-align:center;margin-top:20px;padding:22px 24px;background:#fff;border:1.5px solid var(--border);border-radius:16px;box-shadow:0 2px 12px rgba(26,79,160,.06);">
         <div id="winner-title" style="font-family:Bebas Neue,sans-serif;font-size:2rem;color:var(--blue);letter-spacing:2px;margin-bottom:4px;"></div>
         <div id="winner-sub" style="font-size:.87rem;color:var(--muted);margin-bottom:16px;"></div>
-        <button id="repeat-btn" style="background:var(--blue);color:#fff;border:none;padding:11px 28px;border-radius:50px;font-family:Outfit,sans-serif;font-weight:700;cursor:pointer;font-size:.9rem;margin-right:8px;">↺ Repetir</button>
+        <button id="repeat-btn" style="background:var(--blue);color:#fff;border:none;padding:11px 28px;border-radius:50px;font-family:Outfit,sans-serif;font-weight:700;cursor:pointer;font-size:.9rem;margin-right:8px;" data-t="battle_repeat">↺ Repetir</button>
       </div>
     </div>
   </div>
@@ -689,7 +689,18 @@ var T={
     form_days:"Duración",
     form_msg:"Notas (hotel, dudas...)",
     form_submit:"✨ Generar mensaje con IA",
-    lic_am:"Carnet AM",lic_amb:"Carnet AM / B"
+    lic_am:"Carnet AM",lic_amb:"Carnet AM / B",
+    battle_lbl:"Elige tu vehículo",
+    battle_title:"Batalla de Vehículos",
+    battle_desc:"Selecciona dos vehículos. Las stats se revelan una a una — verde el ganador, rojo el perdedor.",
+    battle_a:"Vehículo A",
+    battle_b:"Vehículo B",
+    battle_btn:"⚡ Pelear",
+    battle_repeat:"↺ Repetir",
+    battle_winner:"Ganador",
+    battle_tie:"Empate",
+    battle_result:"Resultado",
+    battle_pick:"Selecciona los dos vehículos"
   },
   en:{
     banner_sub:"Motorbike, scooter, quad and bicycle rental in Lloret de Mar",banner_btn:"Explore now",
@@ -736,7 +747,18 @@ var T={
     form_days:"Duration",
     form_msg:"Notes (hotel, questions...)",
     form_submit:"✨ Generate AI message",
-    lic_am:"AM license",lic_amb:"AM / B license"
+    lic_am:"AM license",lic_amb:"AM / B license",
+    battle_lbl:"Choose your vehicle",
+    battle_title:"Vehicle Battle",
+    battle_desc:"Select two vehicles. Stats are revealed one by one — green wins, red loses.",
+    battle_a:"Vehicle A",
+    battle_b:"Vehicle B",
+    battle_btn:"⚡ Fight",
+    battle_repeat:"↺ Repeat",
+    battle_winner:"Winner",
+    battle_tie:"Draw",
+    battle_result:"Result",
+    battle_pick:"Select both vehicles"
   },
   fr:{
     banner_sub:"Location de motos, scooters, quads et velos a Lloret de Mar",banner_btn:"Explorer maintenant",
@@ -783,7 +805,18 @@ var T={
     form_days:"Durée",
     form_msg:"Notes (hôtel, questions...)",
     form_submit:"✨ Générer un message IA",
-    lic_am:"Permis AM",lic_amb:"Permis AM / B"
+    lic_am:"Permis AM",lic_amb:"Permis AM / B",
+    battle_lbl:"Choisissez votre véhicule",
+    battle_title:"Bataille de Véhicules",
+    battle_desc:"Sélectionnez deux véhicules. Les stats se révèlent une par une — vert gagne, rouge perd.",
+    battle_a:"Véhicule A",
+    battle_b:"Véhicule B",
+    battle_btn:"⚡ Combattre",
+    battle_repeat:"↺ Répéter",
+    battle_winner:"Gagnant",
+    battle_tie:"Égalité",
+    battle_result:"Résultat",
+    battle_pick:"Sélectionnez les deux véhicules"
   },
   ru:{
     banner_sub:"Arenda motociklov, skuterov, kvadrociklov i velosipedov v Lloret de Mar",banner_btn:"Nachat",
@@ -830,7 +863,18 @@ var T={
     form_days:"Продолжительность",
     form_msg:"Примечания (отель, вопросы...)",
     form_submit:"✨ Создать сообщение ИИ",
-    lic_am:"Prava AM",lic_amb:"Prava AM / B"
+    lic_am:"Prava AM",lic_amb:"Prava AM / B",
+    battle_lbl:"Выберите транспорт",
+    battle_title:"Битва транспортных средств",
+    battle_desc:"Выберите два транспортных средства. Характеристики раскрываются одна за другой.",
+    battle_a:"Транспорт A",
+    battle_b:"Транспорт B",
+    battle_btn:"⚡ Битва",
+    battle_repeat:"↺ Повтор",
+    battle_winner:"Победитель",
+    battle_tie:"Ничья",
+    battle_result:"Результат",
+    battle_pick:"Выберите оба транспортных средства"
   },
   ma:{
     banner_sub:"كراء الدراجات والسكوتيرات والكواد بلويريت دي مار",banner_btn:"استكشف الآن",
@@ -877,7 +921,18 @@ var T={
     form_days:"المدة",
     form_msg:"ملاحظات (فندق، أسئلة...)",
     form_submit:"✨ توليد رسالة بالذكاء الاصطناعي",
-    lic_am:"permis AM",lic_amb:"permis AM / B"
+    lic_am:"permis AM",lic_amb:"permis AM / B",
+    battle_lbl:"اختر السيارة",
+    battle_title:"معركة السيارات",
+    battle_desc:"اختر سيارتين. تظهر الإحصائيات واحدة تلو الأخرى — الأخضر يفوز، الأحمر يخسر.",
+    battle_a:"السيارة A",
+    battle_b:"السيارة B",
+    battle_btn:"⚡ قاتل",
+    battle_repeat:"↺ كرر",
+    battle_winner:"الفائز",
+    battle_tie:"تعادل",
+    battle_result:"النتيجة",
+    battle_pick:"اختر السيارتين"
   }
 };
 var currentLang="es";
@@ -1157,7 +1212,7 @@ document.addEventListener("DOMContentLoaded", function() {
   function bFight(){
     var ak=document.getElementById("comp-a").value;
     var bk=document.getElementById("comp-b").value;
-    if(!ak||!bk){alert("Selecciona los dos vehiculos");return;}
+    if(!ak||!bk){alert(T[currentLang].battle_pick||"Selecciona los dos vehiculos");return;}
     if(ak===bk){alert("Elige vehiculos distintos");return;}
     var a=BV[ak],b=BV[bk];
     var arena=document.getElementById("battle-arena");
@@ -1203,17 +1258,17 @@ document.addEventListener("DOMContentLoaded", function() {
     var pa=document.getElementById("panel-a"),pb=document.getElementById("panel-b");
     var title=document.getElementById("winner-title"),sub=document.getElementById("winner-sub");
     if(sa>sb){
-      title.textContent="Ganador: "+a.name;
+      title.textContent=(T[currentLang].battle_winner||"Ganador")+": "+a.name;
       pa.style.border="2px solid var(--blue)";
       pb.style.border="2px solid rgba(220,38,38,.4)";
     } else if(sb>sa){
-      title.textContent="Ganador: "+b.name;
+      title.textContent=(T[currentLang].battle_winner||"Ganador")+": "+b.name;
       pb.style.border="2px solid var(--blue)";
       pa.style.border="2px solid rgba(220,38,38,.4)";
     } else {
-      title.textContent="Empate";
+      title.textContent=T[currentLang].battle_tie||"Empate";
     }
-    sub.textContent="Resultado: "+sa+" - "+sb+" en "+BS.length+" categorias";
+    sub.textContent=(T[currentLang].battle_result||"Resultado")+": "+sa+" - "+sb;
     document.getElementById("winner-box").style.display="block";
     document.getElementById("battle-btn").disabled=false;
   }
