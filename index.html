@@ -628,8 +628,8 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 <section id="calculadora">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Presupuesto al instante</div>
-      <h2 class="section-title">Calcula tu precio</h2>
+      <div class="section-label" data-t="calc_lbl">Presupuesto al instante</div>
+      <h2 class="section-title" data-t="calc_title">Calcula tu precio</h2>
       <p class="section-desc">Selecciona el vehículo y el tiempo — te calculamos el precio al momento.</p>
     </div>
     <div class="calc-grid reveal">
@@ -673,10 +673,10 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
         <div class="calc-result-row"><span class="calc-result-lbl">Personas</span><span class="calc-result-val" id="cr-per">—</span></div>
         <div class="calc-result-row"><span class="calc-result-lbl">Fianza (reembolsable)</span><span class="calc-result-val" id="cr-fian">—</span></div>
         <div class="calc-total">
-          <div class="calc-total-lbl">Precio estimado</div>
+          <div class="calc-total-lbl" data-t="calc_est">Precio estimado</div>
           <div class="calc-total-num" id="cr-total"><span>—</span></div>
         </div>
-        <button class="calc-book-btn" id="calc-book-btn">Reservar ahora →</button>
+        <button class="calc-book-btn" id="calc-book-btn" data-t="calc_book">Reservar ahora →</button>
       </div>
     </div>
   </div>
@@ -686,9 +686,9 @@ footer{background:var(--dark);border-top:2px solid var(--blue);padding:40px 0;te
 <section id="faq">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Preguntas frecuentes</div>
-      <h2 class="section-title">Todo lo que necesitas saber</h2>
-      <p class="section-desc">Resolvemos las dudas más comunes antes de tu alquiler.</p>
+      <div class="section-label" data-t="faq_lbl">Preguntas frecuentes</div>
+      <h2 class="section-title" data-t="faq_title">Todo lo que necesitas saber</h2>
+      <p class="section-desc" data-t="faq_desc">Resolvemos las dudas más comunes antes de tu alquiler.</p>
     </div>
     <div class="faq-grid reveal">
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Necesito carnet para alquilar?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Depende del vehículo. Los scooters 50cc requieren carnet AM (desde 15 años), las motos 125cc requieren A1 o B, y los quads 150cc+ requieren carnet B. La bicicleta no necesita ningún carnet. Consúltanos y te orientamos.</p></div></div>
@@ -796,7 +796,14 @@ var T={
     battle_winner:"Ganador",
     battle_tie:"Empate",
     battle_result:"Resultado",
-    battle_pick:"Selecciona los dos vehículos"
+    battle_pick:"Selecciona los dos vehículos",
+    calc_lbl:"Presupuesto al instante",
+    calc_title:"Calcula tu precio",
+    calc_book:"Reservar ahora →",
+    calc_est:"Precio estimado",
+    faq_lbl:"Preguntas frecuentes",
+    faq_title:"Todo lo que necesitas saber",
+    faq_desc:"Resolvemos las dudas más comunes antes de tu alquiler."
   },
   en:{
     banner_sub:"Motorbike, scooter, quad and bicycle rental in Lloret de Mar",banner_btn:"Explore now",
@@ -854,7 +861,14 @@ var T={
     battle_winner:"Winner",
     battle_tie:"Draw",
     battle_result:"Result",
-    battle_pick:"Select both vehicles"
+    battle_pick:"Select both vehicles",
+    calc_lbl:"Instant quote",
+    calc_title:"Calculate your price",
+    calc_book:"Book now →",
+    calc_est:"Estimated price",
+    faq_lbl:"Frequently asked questions",
+    faq_title:"Everything you need to know",
+    faq_desc:"We answer the most common questions before your rental."
   },
   fr:{
     banner_sub:"Location de motos, scooters, quads et velos a Lloret de Mar",banner_btn:"Explorer maintenant",
@@ -912,7 +926,14 @@ var T={
     battle_winner:"Gagnant",
     battle_tie:"Égalité",
     battle_result:"Résultat",
-    battle_pick:"Sélectionnez les deux véhicules"
+    battle_pick:"Sélectionnez les deux véhicules",
+    calc_lbl:"Devis instantané",
+    calc_title:"Calculez votre prix",
+    calc_book:"Réserver maintenant →",
+    calc_est:"Prix estimé",
+    faq_lbl:"Questions fréquentes",
+    faq_title:"Tout ce que vous devez savoir",
+    faq_desc:"Nous répondons aux questions les plus fréquentes avant votre location."
   },
   ru:{
     banner_sub:"Arenda motociklov, skuterov, kvadrociklov i velosipedov v Lloret de Mar",banner_btn:"Nachat",
@@ -970,7 +991,14 @@ var T={
     battle_winner:"Победитель",
     battle_tie:"Ничья",
     battle_result:"Результат",
-    battle_pick:"Выберите оба транспортных средства"
+    battle_pick:"Выберите оба транспортных средства",
+    calc_lbl:"Мгновенный расчёт",
+    calc_title:"Рассчитайте цену",
+    calc_book:"Забронировать →",
+    calc_est:"Примерная цена",
+    faq_lbl:"Частые вопросы",
+    faq_title:"Всё что нужно знать",
+    faq_desc:"Отвечаем на самые частые вопросы перед арендой."
   },
   ma:{
     banner_sub:"كراء الدراجات والسكوتيرات والكواد بلويريت دي مار",banner_btn:"استكشف الآن",
@@ -1028,7 +1056,14 @@ var T={
     battle_winner:"الفائز",
     battle_tie:"تعادل",
     battle_result:"النتيجة",
-    battle_pick:"اختر السيارتين"
+    battle_pick:"اختر السيارتين",
+    calc_lbl:"سعر فوري",
+    calc_title:"احسب سعرك",
+    calc_book:"احجز الآن →",
+    calc_est:"السعر التقريبي",
+    faq_lbl:"أسئلة شائعة",
+    faq_title:"كل ما تحتاج معرفته",
+    faq_desc:"نجاوب على أكثر الأسئلة الشائعة قبل الكراء."
   }
 };
 var currentLang="es";
